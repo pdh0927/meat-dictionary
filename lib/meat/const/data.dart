@@ -10,7 +10,7 @@ List<MeatModel> porkList = [
     savoryFlavor: 3.0,
     meatAroma: 2.0,
     price: 4.0,
-    imgPath: 'assets/images/가브리살.png',
+    imgPath: 'assets/imgs/pork/가브리살.png',
   ),
   MeatModel(
     name: '목살',
@@ -21,7 +21,7 @@ List<MeatModel> porkList = [
     savoryFlavor: 3.0,
     meatAroma: 2.0,
     price: 2.0,
-    imgPath: 'assets/images/목살.png',
+    imgPath: 'assets/imgs/pork/목살.png',
   ),
   MeatModel(
     name: '삼겹살',
@@ -32,7 +32,7 @@ List<MeatModel> porkList = [
     savoryFlavor: 2.0,
     meatAroma: 2.0,
     price: 2.0,
-    imgPath: 'assets/images/삼겹살.png',
+    imgPath: 'assets/imgs/pork/삼겹살.png',
   ),
   MeatModel(
     name: '안심',
@@ -43,7 +43,7 @@ List<MeatModel> porkList = [
     savoryFlavor: 3.0,
     meatAroma: 2.0,
     price: 2.0,
-    imgPath: 'assets/images/안심.png',
+    imgPath: 'assets/imgs/pork/안심.png',
   ),
   MeatModel(
     name: '등심',
@@ -54,6 +54,6 @@ List<MeatModel> porkList = [
     savoryFlavor: 3.0,
     meatAroma: 2.0,
     price: 2.0,
-    imgPath: 'assets/images/등심.png',
+    imgPath: 'assets/imgs/pork/등심.png',
   ),
 ];
