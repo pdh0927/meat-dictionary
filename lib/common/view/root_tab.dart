@@ -4,6 +4,7 @@ import 'package:meat_dictionary/common/const/colors.dart';
 import 'package:meat_dictionary/common/layout/default_layout.dart';
 import 'package:meat_dictionary/common/provider/root_tab_index_provider.dart';
 import 'package:meat_dictionary/common/view/home_screen.dart';
+import 'package:meat_dictionary/meat/view/favorites_screen.dart';
 
 class RootTab extends ConsumerStatefulWidget {
   static String get routeName => 'rootTab';
@@ -63,7 +64,7 @@ class _RootTabState extends ConsumerState<RootTab>
           controller: controller,
           children: const [
             HomeScreen(),
-            Center(child: Text('즐겨찾기')),
+            FavoritesScreen(),
           ]),
     );
   }
