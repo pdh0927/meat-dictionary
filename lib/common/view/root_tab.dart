@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:meat_dictionary/common/const/colors.dart';
 import 'package:meat_dictionary/common/layout/default_layout.dart';
 import 'package:meat_dictionary/common/provider/root_tab_index_provider.dart';
+import 'package:meat_dictionary/common/view/home_screen.dart';
 
 class RootTab extends ConsumerStatefulWidget {
   static String get routeName => 'rootTab';
@@ -55,14 +56,13 @@ class _RootTabState extends ConsumerState<RootTab>
           items: const [
             BottomNavigationBarItem(
                 icon: Icon(Icons.home_outlined), label: '홈'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.bookmark), label: '즐겨찾기'),
+            BottomNavigationBarItem(icon: Icon(Icons.bookmark), label: '즐겨찾기'),
           ]),
       child: TabBarView(
           physics: const NeverScrollableScrollPhysics(), // scroll로는 화면 전환 x
           controller: controller,
           children: const [
-            Center(child: Text('홈')),
+            HomeScreen(),
             Center(child: Text('즐겨찾기')),
           ]),
     );
