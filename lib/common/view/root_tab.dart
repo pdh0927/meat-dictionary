@@ -5,6 +5,8 @@ import 'package:meat_dictionary/common/layout/default_layout.dart';
 import 'package:meat_dictionary/common/provider/root_tab_index_provider.dart';
 
 class RootTab extends ConsumerStatefulWidget {
+  static String get routeName => 'rootTab';
+
   const RootTab({super.key});
 
   @override
