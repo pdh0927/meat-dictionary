@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:meat_dictionary/common/const/colors.dart';
 import 'package:meat_dictionary/common/layout/default_layout.dart';
 import 'package:meat_dictionary/common/provider/root_tab_index_provider.dart';
@@ -54,10 +55,20 @@ class _RootTabState extends ConsumerState<RootTab>
                 .animateTo((index)); // 현재 탭과 인덱스가 다를 경우, 애니메이션을 사용하여 탭을 부드럽게 전환
           },
           currentIndex: ref.watch(rootTabIndexProvider),
-          items: const [
+          items: [
             BottomNavigationBarItem(
-                icon: Icon(Icons.home_outlined), label: '홈'),
-            BottomNavigationBarItem(icon: Icon(Icons.bookmark), label: '즐겨찾기'),
+                icon: SvgPicture.asset(
+                  'assets/icons/icon_nav_home.svg',
+                  color: controller.index == 0 ? PRIMARY_COLOR : BLACK_COLOR,
+                ),
+                label: '홈'),
+            BottomNavigationBarItem(
+              icon: SvgPicture.asset(
+                'assets/icons/icon_nav_bookmark.svg',
+                color: controller.index == 1 ? PRIMARY_COLOR : BLACK_COLOR,
+              ),
+              label: '즐겨찾기',
+            ),
           ]),
       child: TabBarView(
           physics: const NeverScrollableScrollPhysics(), // scroll로는 화면 전환 x
