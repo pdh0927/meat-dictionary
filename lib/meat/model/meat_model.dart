@@ -4,10 +4,10 @@ class MeatModel {
   String type;
   List<String> usage;
   String description;
-  double texture;
-  double savoryFlavor;
-  double meatAroma;
-  double price;
+  int texture;
+  int savoryFlavor;
+  int meatAroma;
+  int price;
   String imgPath;
 
   MeatModel({
