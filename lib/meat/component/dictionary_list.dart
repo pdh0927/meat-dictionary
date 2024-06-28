@@ -7,38 +7,49 @@ import 'package:meat_dictionary/meat/provider/favorites_provider.dart';
 
 class DictionaryList extends ConsumerWidget {
   final bool isFavoritesScreen;
+  final String? type;
 
-  const DictionaryList({super.key, required this.isFavoritesScreen});
+  const DictionaryList({
+    super.key,
+    required this.isFavoritesScreen,
+    this.type,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final favoriteIds = ref.watch(favoritesProvider);
+    final favoriteMap = ref.watch(favoritesProvider);
+    final favoriteIds = favoriteMap[type] ?? {};
 
     // 즐겨찾기 화면인 경우 즐겨찾기 항목만 필터링
-    final favoritesList = isFavoritesScreen
-        ? porkList.where((meat) => favoriteIds.contains(meat.id)).toList()
+    final filteredList = isFavoritesScreen
+        ? porkList
+            .where((meat) =>
+                favoriteIds.contains(meat.id) &&
+                (type == null || meat.type == type))
+            .toList()
         : porkList;
 
-    return ListView.builder(
-      itemCount: favoritesList.length,
-      itemBuilder: (context, index) {
-        final meat = favoritesList[index];
-        final isSelected =
-            isFavoritesScreen ? true : favoriteIds.contains(meat.id);
-
-        return Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8.0),
-          child: InkWell(
-            onTap: () {
-              context.pushNamed("meat_detail");
-            },
-            child: DictionaryListComponent(
-              meatModel: meat,
-              isSelected: isSelected,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      child: ListView.builder(
+        itemCount: filteredList.length,
+        itemBuilder: (context, index) {
+          final meat = filteredList[index];
+          final isSelected = favoriteIds.contains(meat.id);
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: InkWell(
+              onTap: () {
+                context.pushNamed("meat_detail");
+              },
+              child: DictionaryListComponent(
+                meatModel: meat,
+                isSelected: isSelected,
+              ),
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }

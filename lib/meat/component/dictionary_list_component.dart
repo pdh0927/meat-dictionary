@@ -58,7 +58,7 @@ class DictionaryListComponent extends ConsumerWidget {
                     onTap: () async {
                       await ref
                           .read(favoritesProvider.notifier)
-                          .toggleFavorite(meatModel.id, meatModel.type);
+                          .toggleFavorite(meatModel.type, meatModel.id);
                     },
                     child: SvgPicture.asset(
                       isSelected
