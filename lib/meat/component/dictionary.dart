@@ -10,7 +10,9 @@ class Dictionary extends StatelessWidget {
       children: [
         SizedBox(
           height: 500,
-          child: DictionaryList(),
+          child: DictionaryList(
+            isFavoritesScreen: false,
+          ),
         ),
       ],
     );
