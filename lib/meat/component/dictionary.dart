@@ -6,7 +6,15 @@ class Dictionary extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(children: [SizedBox(height:500,
-      child: DictionaryList(),),],);
+    return const Column(
+      children: [
+        SizedBox(
+          height: 500,
+          child: DictionaryList(
+            isFavoritesScreen: false,
+          ),
+        ),
+      ],
+    );
   }
 }

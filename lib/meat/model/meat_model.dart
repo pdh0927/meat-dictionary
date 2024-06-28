@@ -1,15 +1,17 @@
 class MeatModel {
+  int id;
   String name;
   String type;
   List<String> usage;
   String description;
-  double texture;
-  double savoryFlavor;
-  double meatAroma;
-  double price;
+  int texture;
+  int savoryFlavor;
+  int meatAroma;
+  int price;
   String imgPath;
 
   MeatModel({
+    required this.id,
     required this.name,
     required this.type,
     required this.usage,
