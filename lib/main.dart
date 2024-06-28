@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'common/provider/go_router_provider.dart';
 
 void main() {
-  runApp(const ProviderScope(child:MyApp()));
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends ConsumerWidget {
@@ -12,14 +12,14 @@ class MyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final router = ref.watch(routerProvider); 
+    final router = ref.watch(routerProvider);
 
-    return  MaterialApp.router(
+    return MaterialApp.router(
+      theme: ThemeData(fontFamily: 'Pretendard'),
       debugShowCheckedModeBanner: false,
-      routeInformationParser: router.routeInformationParser, 
-      routerDelegate: router.routerDelegate, 
-      routeInformationProvider: router
-          .routeInformationProvider,
+      routeInformationParser: router.routeInformationParser,
+      routerDelegate: router.routerDelegate,
+      routeInformationProvider: router.routeInformationProvider,
     );
   }
 }

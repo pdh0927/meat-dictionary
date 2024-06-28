@@ -37,7 +37,6 @@ class DictionaryListComponent extends StatelessWidget {
                   Text(
                     meatModel.name,
                     style: const TextStyle(
-                      fontFamily: 'Pretendard',
                       fontSize: 14,
                       color: BLACK_COLOR,
                       fontWeight: FontWeight.w800,
@@ -47,7 +46,6 @@ class DictionaryListComponent extends StatelessWidget {
                   Text(
                     meatModel.usage.join(', '),
                     style: const TextStyle(
-                      fontFamily: 'Pretendard',
                       fontSize: 12,
                       color: GREY_COLOR,
                       fontWeight: FontWeight.w400,
@@ -69,7 +67,6 @@ class DictionaryListComponent extends StatelessWidget {
               Text(
                 meatModel.description,
                 style: const TextStyle(
-                  fontFamily: 'Pretendard',
                   fontSize: 12,
                   color: BLACK_COLOR,
                   fontWeight: FontWeight.w400,
@@ -137,7 +134,6 @@ class OvalLabel extends StatelessWidget {
           Text(
             label,
             style: TextStyle(
-              fontFamily: 'Pretendard',
               fontSize: 12,
               color: isSelected ? PRIMARY_COLOR : const Color(0XFF5B5D6B),
               fontWeight: FontWeight.w600,
@@ -147,7 +143,6 @@ class OvalLabel extends StatelessWidget {
           Text(
             value.toString(),
             style: TextStyle(
-              fontFamily: 'Pretendard',
               fontSize: 12,
               color: isSelected ? PRIMARY_COLOR : const Color(0XFF5B5D6B),
               fontWeight: FontWeight.w600,
