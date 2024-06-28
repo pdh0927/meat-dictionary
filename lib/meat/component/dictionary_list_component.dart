@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:meat_dictionary/common/const/colors.dart';
 import 'package:meat_dictionary/meat/model/meat_model.dart';
+import 'package:meat_dictionary/meat/provider/favorites_provider.dart';
 import 'package:sizer/sizer.dart';
 
-class DictionaryListComponent extends StatelessWidget {
+class DictionaryListComponent extends ConsumerWidget {
   final MeatModel meatModel;
   final bool isSelected;
 
@@ -15,7 +17,7 @@ class DictionaryListComponent extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Row(
       children: [
         ClipRRect(
@@ -53,14 +55,18 @@ class DictionaryListComponent extends StatelessWidget {
                   ),
                   const Spacer(),
                   InkWell(
-                    onTap: () {},
+                    onTap: () async {
+                      await ref
+                          .read(favoritesProvider.notifier)
+                          .toggleFavorite(meatModel.id, meatModel.type);
+                    },
                     child: SvgPicture.asset(
                       isSelected
                           ? 'assets/icons/icon_bookmark_on_20.svg'
                           : 'assets/icons/icon_bookmark_off_20.svg',
                       color: isSelected ? const Color(0XFFFFA928) : GREY_COLOR,
                     ),
-                  )
+                  ),
                 ],
               ),
               const SizedBox(height: 4),
@@ -110,7 +116,7 @@ class DictionaryListComponent extends StatelessWidget {
 
 class OvalLabel extends StatelessWidget {
   final String label;
-  final double value;
+  final int value;
   final bool isSelected;
 
   const OvalLabel({
