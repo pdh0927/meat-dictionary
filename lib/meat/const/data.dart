@@ -2,6 +2,7 @@ import 'package:meat_dictionary/meat/model/meat_model.dart';
 
 List<MeatModel> porkList = [
   MeatModel(
+    id: 1,
     name: '가브리살',
     type: 'pork',
     usage: ['구이'],
@@ -13,6 +14,7 @@ List<MeatModel> porkList = [
     imgPath: 'assets/imgs/pork/가브리살.png',
   ),
   MeatModel(
+    id: 2,
     name: '목살',
     type: 'pork',
     usage: ['구이'],
@@ -24,6 +26,7 @@ List<MeatModel> porkList = [
     imgPath: 'assets/imgs/pork/목살.png',
   ),
   MeatModel(
+    id: 3,
     name: '삼겹살',
     type: 'pork',
     usage: ['구이'],
@@ -35,6 +38,7 @@ List<MeatModel> porkList = [
     imgPath: 'assets/imgs/pork/삼겹살.png',
   ),
   MeatModel(
+    id: 4,
     name: '안심',
     type: 'pork',
     usage: ['돈가스'],
@@ -46,6 +50,7 @@ List<MeatModel> porkList = [
     imgPath: 'assets/imgs/pork/안심.png',
   ),
   MeatModel(
+    id: 5,
     name: '등심',
     type: 'pork',
     usage: ['돈가스, 탕수육'],

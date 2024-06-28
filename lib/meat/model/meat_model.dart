@@ -1,4 +1,5 @@
 class MeatModel {
+  int id;
   String name;
   String type;
   List<String> usage;
@@ -10,6 +11,7 @@ class MeatModel {
   String imgPath;
 
   MeatModel({
+    required this.id,
     required this.name,
     required this.type,
     required this.usage,
