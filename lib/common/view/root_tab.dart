@@ -50,6 +50,7 @@ class _RootTabState extends ConsumerState<RootTab>
           selectedFontSize: 10,
           unselectedFontSize: 10,
           type: BottomNavigationBarType.fixed,
+          backgroundColor: Colors.white,
           onTap: (int index) {
             controller
                 .animateTo((index)); // 현재 탭과 인덱스가 다를 경우, 애니메이션을 사용하여 탭을 부드럽게 전환
