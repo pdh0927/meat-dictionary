@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:meat_dictionary/common/const/colors.dart';
 import 'package:meat_dictionary/meat/model/meat_model.dart';
 import 'package:meat_dictionary/meat/provider/favorites_provider.dart';
@@ -60,10 +59,8 @@ class DictionaryListComponent extends ConsumerWidget {
                           .read(favoritesProvider.notifier)
                           .toggleFavorite(meatModel.type, meatModel.id);
                     },
-                    child: SvgPicture.asset(
-                      isSelected
-                          ? 'assets/icons/icon_bookmark_on_20.svg'
-                          : 'assets/icons/icon_bookmark_off_20.svg',
+                    child: Icon(
+                      isSelected ? Icons.star_border : Icons.star,
                       color: isSelected ? const Color(0XFFFFA928) : GREY_COLOR,
                     ),
                   ),

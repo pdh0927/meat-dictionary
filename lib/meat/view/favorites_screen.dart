@@ -27,7 +27,9 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              const SizedBox(height: 12.0),
               Text('즐겨찾기', style: screenTitleStyle),
               const SizedBox(height: 12.0),
               MeatMenu(

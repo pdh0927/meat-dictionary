@@ -38,8 +38,8 @@ dependencies:
   flutter_riverpod: ^2.5.1
   sizer: ^2.0.15
   go_router: ^12.0.1
-  flutter_svg: ^1.0.0
   shared_preferences: ^2.2.3
+  phosphor_flutter: ^2.1.0
 
 dev_dependencies:
   flutter_test:
@@ -67,7 +67,7 @@ flutter:
   assets:
     - assets/imgs/common/
     - assets/imgs/pork/
-    - assets/icons/
+    - assets/imgs/beef/
   
 
   # An image asset can refer to one or more resolution-specific "variants", see
