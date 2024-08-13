@@ -37,7 +37,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
-              'assets/imgs/common/logo1.png',
+              'assets/imgs/common/cow_home.png',
               width: MediaQuery.of(context).size.width / 2,
             ),
             const SizedBox(height: 16),
