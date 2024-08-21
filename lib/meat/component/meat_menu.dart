@@ -53,7 +53,7 @@ class _TitleBox extends StatelessWidget {
           decoration: BoxDecoration(
             border: Border(
               bottom: BorderSide(
-                color: isSelect ? PRIMARY_COLOR : Colors.transparent,
+                color: isSelect ? BLACK_COLOR : Colors.transparent,
                 width: 2.0,
               ),
             ),
@@ -63,7 +63,7 @@ class _TitleBox extends StatelessWidget {
               title,
               style: TextStyle(
                 fontSize: 16,
-                color: isSelect ? PRIMARY_COLOR : BLACK_COLOR,
+                color: isSelect ? BLACK_COLOR : GREY_COLOR,
                 fontWeight: FontWeight.w600,
               ),
             ),
