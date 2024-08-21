@@ -5,6 +5,7 @@ import 'package:meat_dictionary/common/layout/default_layout.dart';
 import 'package:meat_dictionary/common/provider/root_tab_index_provider.dart';
 import 'package:meat_dictionary/common/view/home_screen.dart';
 import 'package:meat_dictionary/meat/view/favorites_screen.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 class RootTab extends ConsumerStatefulWidget {
   static String get routeName => 'rootTab';
@@ -42,29 +43,39 @@ class _RootTabState extends ConsumerState<RootTab>
   Widget build(BuildContext context) {
     return DefaultLayout(
       bottomNavigationBar: BottomNavigationBar(
-          showUnselectedLabels: true,
-          showSelectedLabels: true,
-          selectedItemColor: PRIMARY_COLOR,
-          unselectedItemColor: BLACK_COLOR,
-          selectedFontSize: 10,
-          unselectedFontSize: 10,
-          type: BottomNavigationBarType.fixed,
-          backgroundColor: Colors.white,
-          onTap: (int index) {
-            controller
-                .animateTo((index)); // 현재 탭과 인덱스가 다를 경우, 애니메이션을 사용하여 탭을 부드럽게 전환
-          },
-          currentIndex: ref.watch(rootTabIndexProvider),
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: '홈',
+        showUnselectedLabels: true,
+        showSelectedLabels: true,
+        selectedItemColor: BLACK_COLOR,
+        unselectedItemColor: BLACK_COLOR,
+        selectedFontSize: 11,
+        unselectedFontSize: 11,
+        selectedLabelStyle: const TextStyle(fontWeight: FontWeight.w600),
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: Colors.white,
+        onTap: (int index) {
+          controller
+              .animateTo((index)); // 현재 탭과 인덱스가 다를 경우, 애니메이션을 사용하여 탭을 부드럽게 전환
+        },
+        currentIndex: ref.watch(rootTabIndexProvider),
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(
+              ref.watch(rootTabIndexProvider) == 0
+                  ? PhosphorIconsFill.house
+                  : PhosphorIcons.house(),
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.search),
-              label: '검색',
+            label: '홈',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              ref.watch(rootTabIndexProvider) == 1
+                  ? PhosphorIconsFill.star
+                  : PhosphorIcons.star(),
             ),
-          ]),
+            label: '즐겨찾기',
+          ),
+        ],
+      ),
       child: TabBarView(
           physics: const NeverScrollableScrollPhysics(), // scroll로는 화면 전환 x
           controller: controller,

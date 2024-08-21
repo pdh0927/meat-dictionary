@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:meat_dictionary/common/const/text_style.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:meat_dictionary/common/layout/default_layout.dart';
 import 'package:meat_dictionary/meat/component/dictionary_list.dart';
 import 'package:meat_dictionary/meat/component/meat_menu.dart';
 import 'package:meat_dictionary/meat/model/meat_model.dart';
+import 'package:meat_dictionary/meat/provider/favorites_provider.dart';
 
-class FavoritesScreen extends StatefulWidget {
+class FavoritesScreen extends ConsumerStatefulWidget {
+  static String get routeName => 'favorites';
+
   const FavoritesScreen({super.key});
 
   @override
-  State createState() => _FavoritesScreenState();
+  ConsumerState createState() => _FavoritesScreenState();
 }
 
-class _FavoritesScreenState extends State<FavoritesScreen> {
+class _FavoritesScreenState extends ConsumerState<FavoritesScreen> {
   MeatType selectedType = MeatType.pork; // 기본값을 돼지로 설정
 
   void _onTypeChanged(MeatType type) {
@@ -24,29 +27,33 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
   @override
   Widget build(BuildContext context) {
     return DefaultLayout(
-      child: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 12.0),
-              Text('즐겨찾기', style: screenTitleStyle),
-              const SizedBox(height: 12.0),
-              MeatMenu(
-                selectedType: selectedType,
-                onTypeChanged: _onTypeChanged,
-              ),
-              const SizedBox(height: 24.0),
-              Expanded(
-                child: DictionaryList(
-                  isFavoritesScreen: true,
-                  meatType: selectedType,
-                ),
-              ),
-            ],
+      title: "즐겨찾기 목록",
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          MeatMenu(
+            selectedType: selectedType,
+            onTypeChanged: _onTypeChanged,
           ),
-        ),
+          const SizedBox(height: 10.0),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Text(
+              '전체 ${ref.read(favoritesProvider)[selectedType]!.length}개',
+              style: const TextStyle(
+                fontWeight: FontWeight.w400,
+                fontSize: 15,
+              ),
+            ),
+          ),
+          const SizedBox(height: 10.0),
+          Expanded(
+            child: DictionaryList(
+              isFavoritesScreen: true,
+              meatType: selectedType,
+            ),
+          ),
+        ],
       ),
     );
   }
