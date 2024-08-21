@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:meat_dictionary/common/view/root_tab.dart';
 import 'package:meat_dictionary/common/view/splash_screen.dart';
 import 'package:meat_dictionary/meat/model/meat_model.dart';
+import 'package:meat_dictionary/meat/view/favorites_screen.dart';
 import 'package:meat_dictionary/meat/view/meat_detail_screen.dart';
 import 'package:meat_dictionary/meat/view/meat_list_screen.dart';
 
@@ -29,13 +30,17 @@ class AuthProvider extends ChangeNotifier {
           builder: (_, __) => const MeatDetailScreen(),
         ),
         GoRoute(
-          path: '/meat_list', // Define the route without parameters
+          path: '/meat_list',
           name: DictionaryListScreen.routeName,
           builder: (context, state) {
-            final meatType =
-                state.extra as MeatType; // Extract the meatType from extra
+            final meatType = state.extra as MeatType;
             return DictionaryListScreen(meatType: meatType);
           },
+        ),
+        GoRoute(
+          path: '/favorites',
+          name: FavoritesScreen.routeName,
+          builder: (_, __) => const FavoritesScreen(),
         ),
       ];
 }

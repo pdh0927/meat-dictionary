@@ -4,6 +4,7 @@ import 'package:meat_dictionary/common/const/colors.dart';
 import 'package:meat_dictionary/common/layout/default_layout.dart';
 import 'package:meat_dictionary/meat/component/custom_search_bar.dart';
 import 'package:meat_dictionary/meat/model/meat_model.dart';
+import 'package:meat_dictionary/meat/view/favorites_screen.dart';
 import 'package:meat_dictionary/meat/view/meat_list_screen.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
@@ -169,7 +170,7 @@ class _FavoritesComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        // 즐겨찾기로 이동
+        context.pushNamed(FavoritesScreen.routeName);
       },
       child: Container(
         width: double.infinity,
