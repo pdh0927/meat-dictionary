@@ -1,12 +1,87 @@
+enum Texture {
+  verySoft,
+  slightlySoft,
+  normal,
+  slightlyChewy,
+  chewy,
+}
+
+enum MeatAroma {
+  veryWeak,
+  weak,
+  normal,
+  strong,
+  veryStrong,
+}
+
+enum SavoryFlavor {
+  mild,
+  slightlyMild,
+  normal,
+  slightlySavory,
+  savory,
+}
+
+extension TextureExtension on Texture {
+  String get label {
+    switch (this) {
+      case Texture.verySoft:
+        return '부드러움';
+      case Texture.slightlySoft:
+        return '약간 부드러움';
+      case Texture.normal:
+        return '보통';
+      case Texture.slightlyChewy:
+        return '약간 쫄깃함';
+      case Texture.chewy:
+        return '쫄깃함';
+    }
+  }
+}
+
+extension MeatAromaExtension on MeatAroma {
+  String get label {
+    switch (this) {
+      case MeatAroma.veryWeak:
+        return '매우 약함';
+      case MeatAroma.weak:
+        return '약함';
+      case MeatAroma.normal:
+        return '적당함';
+      case MeatAroma.strong:
+        return '강함';
+      case MeatAroma.veryStrong:
+        return '매우 강함';
+    }
+  }
+}
+
+extension SavoryFlavorExtension on SavoryFlavor {
+  String get label {
+    switch (this) {
+      case SavoryFlavor.mild:
+        return '담백함';
+      case SavoryFlavor.slightlyMild:
+        return '약간 담백함';
+      case SavoryFlavor.normal:
+        return '보통';
+      case SavoryFlavor.slightlySavory:
+        return '약간 고소함';
+      case SavoryFlavor.savory:
+        return '고소함';
+    }
+  }
+}
+
 class MeatModel {
   int id;
   String name;
   String type;
   List<String> usage;
   String description;
-  int texture;
-  int savoryFlavor;
-  int meatAroma;
+  Texture texture;
+  SavoryFlavor savoryFlavor;
+  MeatAroma meatAroma;
   int price;
   String imgPath;
 

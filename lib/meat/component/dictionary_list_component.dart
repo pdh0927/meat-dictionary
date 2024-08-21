@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:meat_dictionary/common/const/colors.dart';
 import 'package:meat_dictionary/meat/model/meat_model.dart';
 import 'package:meat_dictionary/meat/provider/favorites_provider.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:sizer/sizer.dart';
 
 class DictionaryListComponent extends ConsumerWidget {
@@ -38,18 +39,9 @@ class DictionaryListComponent extends ConsumerWidget {
                   Text(
                     meatModel.name,
                     style: const TextStyle(
-                      fontSize: 14,
+                      fontSize: 20,
                       color: BLACK_COLOR,
-                      fontWeight: FontWeight.w800,
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  Text(
-                    meatModel.usage.join(', '),
-                    style: const TextStyle(
-                      fontSize: 12,
-                      color: GREY_COLOR,
-                      fontWeight: FontWeight.w400,
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
                   const Spacer(),
@@ -58,48 +50,43 @@ class DictionaryListComponent extends ConsumerWidget {
                       await ref
                           .read(favoritesProvider.notifier)
                           .toggleFavorite(meatModel.type, meatModel.id);
+                      print('눌림');
                     },
                     child: Icon(
-                      isSelected ? Icons.star_border : Icons.star,
-                      color: isSelected ? const Color(0XFFFFA928) : GREY_COLOR,
+                      isSelected
+                          ? PhosphorIconsFill.star
+                          : PhosphorIcons.star(),
+                      color: isSelected ? const Color(0XFFFF0000) : GREY_COLOR,
+                      size: 23.0,
                     ),
                   ),
                 ],
               ),
-              const SizedBox(height: 4),
+              const SizedBox(height: 6),
               Text(
-                meatModel.description,
+                meatModel.usage.join(', '),
                 style: const TextStyle(
                   fontSize: 12,
-                  color: BLACK_COLOR,
-                  fontWeight: FontWeight.w400,
+                  color: Color(0xFF636366),
+                  fontWeight: FontWeight.w500,
                 ),
               ),
-              const SizedBox(height: 7),
+              const SizedBox(height: 6),
               Row(
                 children: [
-                  OvalLabel(
+                  _OvalLabel(
                     label: '식감',
-                    value: meatModel.texture,
-                    isSelected: true,
+                    value: meatModel.texture.label,
                   ),
                   const SizedBox(width: 4),
-                  OvalLabel(
+                  _OvalLabel(
                     label: '고소함',
-                    value: meatModel.savoryFlavor,
-                    isSelected: false,
+                    value: meatModel.savoryFlavor.label,
                   ),
                   const SizedBox(width: 4),
-                  OvalLabel(
+                  _OvalLabel(
                     label: '육향',
-                    value: meatModel.meatAroma,
-                    isSelected: false,
-                  ),
-                  const SizedBox(width: 4),
-                  OvalLabel(
-                    label: '가격',
-                    value: meatModel.price,
-                    isSelected: false,
+                    value: meatModel.meatAroma.label,
                   ),
                 ],
               ),
@@ -111,16 +98,13 @@ class DictionaryListComponent extends ConsumerWidget {
   }
 }
 
-class OvalLabel extends StatelessWidget {
+class _OvalLabel extends StatelessWidget {
   final String label;
-  final int value;
-  final bool isSelected;
+  final String value;
 
-  const OvalLabel({
-    super.key,
+  const _OvalLabel({
     required this.label,
     required this.value,
-    required this.isSelected,
   });
 
   @override
@@ -128,7 +112,7 @@ class OvalLabel extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 3),
       decoration: BoxDecoration(
-        color: isSelected ? const Color(0XFFFFF6F6) : const Color(0XFFF3F4F8),
+        color: const Color(0XFFF4F6FA),
         borderRadius: BorderRadius.circular(16),
       ),
       child: Row(
@@ -136,18 +120,18 @@ class OvalLabel extends StatelessWidget {
         children: [
           Text(
             label,
-            style: TextStyle(
-              fontSize: 12,
-              color: isSelected ? PRIMARY_COLOR : const Color(0XFF5B5D6B),
+            style: const TextStyle(
+              fontSize: 11,
+              color: BLACK_COLOR,
               fontWeight: FontWeight.w600,
             ),
           ),
           const SizedBox(width: 4),
           Text(
-            value.toString(),
-            style: TextStyle(
-              fontSize: 12,
-              color: isSelected ? PRIMARY_COLOR : const Color(0XFF5B5D6B),
+            value,
+            style: const TextStyle(
+              fontSize: 11,
+              color: Color(0xFF007BFE),
               fontWeight: FontWeight.w600,
             ),
           ),
