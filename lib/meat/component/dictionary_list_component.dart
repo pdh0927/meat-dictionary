@@ -50,7 +50,6 @@ class DictionaryListComponent extends ConsumerWidget {
                       await ref
                           .read(favoritesProvider.notifier)
                           .toggleFavorite(meatModel.type, meatModel.id);
-                      print('눌림');
                     },
                     child: Icon(
                       isSelected
