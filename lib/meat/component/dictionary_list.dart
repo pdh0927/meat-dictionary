@@ -30,24 +30,33 @@ class DictionaryList extends ConsumerWidget {
             .toList()
         : selectedList;
 
-    return ListView.builder(
-      itemCount: filteredList.length,
-      itemBuilder: (context, index) {
-        final meat = filteredList[index];
-        final isSelected = favoriteIds.contains(meat.id);
-        return Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8.0),
-          child: InkWell(
-            onTap: () {
-              context.pushNamed("meat_detail");
-            },
-            child: DictionaryListComponent(
-              meatModel: meat,
-              isSelected: isSelected,
+    return Column(
+      children: filteredList.map((meat) {
+        final isSelected =
+            ref.read(favoritesProvider.notifier).isFavorite(meat.type, meat.id);
+        return Column(
+          children: [
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 14.0),
+              child: InkWell(
+                onTap: () {
+                  context.pushNamed("meat_detail");
+                },
+                child: DictionaryListComponent(
+                  meatModel: meat,
+                  isSelected: isSelected,
+                ),
+              ),
             ),
-          ),
+            const Divider(
+              height: 0,
+              thickness: 2.0,
+              color: Color(0xFFF4F6FA),
+            )
+          ],
         );
-      },
+      }).toList(),
     );
   }
 }
