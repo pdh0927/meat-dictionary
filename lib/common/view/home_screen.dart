@@ -113,7 +113,7 @@ class _CategoryCard extends StatelessWidget {
     return InkWell(
       onTap: () {
         context.pushNamed(
-          MeatListScreen.routeName,
+          DictionaryListScreen.routeName,
           extra: label,
         );
       },
