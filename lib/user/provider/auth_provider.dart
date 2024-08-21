@@ -29,11 +29,11 @@ class AuthProvider extends ChangeNotifier {
         ),
         GoRoute(
           path: '/meat_list', // Define the route without parameters
-          name: MeatListScreen.routeName,
+          name: DictionaryListScreen.routeName,
           builder: (context, state) {
             final meatType =
                 state.extra as String; // Extract the meatType from extra
-            return MeatListScreen(meatType: meatType);
+            return DictionaryListScreen(meatType: meatType);
           },
         ),
       ];
