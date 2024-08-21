@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meat_dictionary/common/layout/default_layout.dart';
 import 'package:meat_dictionary/meat/component/dictionary_list.dart';
+import 'package:meat_dictionary/meat/model/meat_model.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 class DictionaryListScreen extends StatelessWidget {
@@ -11,12 +12,12 @@ class DictionaryListScreen extends StatelessWidget {
     required this.meatType,
   });
 
-  final String meatType;
+  final MeatType meatType;
 
   @override
   Widget build(BuildContext context) {
     return DefaultLayout(
-        title: meatType,
+        title: meatType.displayName,
         actions: [
           InkWell(
             onTap: () {},
@@ -35,8 +36,9 @@ class DictionaryListScreen extends StatelessWidget {
                 color: Colors.grey,
                 child: const Text('배너'),
               ),
-              const DictionaryList(
+              DictionaryList(
                 isFavoritesScreen: false,
+                meatType: meatType,
               ),
             ],
           ),

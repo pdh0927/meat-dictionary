@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:meat_dictionary/common/const/colors.dart';
+import 'package:meat_dictionary/meat/model/meat_model.dart';
 
 class MeatMenu extends StatelessWidget {
-  final String selectedType;
-  final ValueChanged<String> onTypeChanged;
+  final MeatType selectedType;
+  final ValueChanged<MeatType> onTypeChanged;
 
   const MeatMenu({
     super.key,
@@ -17,14 +18,14 @@ class MeatMenu extends StatelessWidget {
       children: [
         _TitleBox(
           title: '돼지',
-          isSelect: selectedType == 'pork',
-          onTap: () => onTypeChanged('pork'),
+          isSelect: selectedType == MeatType.pork,
+          onTap: () => onTypeChanged(MeatType.pork),
         ),
         const SizedBox(width: 8.0),
         _TitleBox(
           title: '소',
-          isSelect: selectedType == 'beef',
-          onTap: () => onTypeChanged('beef'),
+          isSelect: selectedType == MeatType.beef,
+          onTap: () => onTypeChanged(MeatType.beef),
         ),
       ],
     );
