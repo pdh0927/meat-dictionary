@@ -4,7 +4,7 @@ List<MeatModel> porkList = [
   MeatModel(
     id: 1,
     name: '가브리살',
-    type: 'pork',
+    type: MeatType.pork,
     usage: ['구이'],
     description: '항정살만큼 부드럽고 쫄깃한 부위',
     texture: Texture.slightlyChewy,
@@ -16,7 +16,7 @@ List<MeatModel> porkList = [
   MeatModel(
     id: 2,
     name: '목살',
-    type: 'pork',
+    type: MeatType.pork,
     usage: ['구이'],
     description: '잘 고르기 도전해보자!',
     texture: Texture.verySoft,
@@ -28,7 +28,7 @@ List<MeatModel> porkList = [
   MeatModel(
     id: 3,
     name: '삼겹살',
-    type: 'pork',
+    type: MeatType.pork,
     usage: ['구이'],
     description: '잘 고르기 도전해보자!',
     texture: Texture.normal,
@@ -40,7 +40,7 @@ List<MeatModel> porkList = [
   MeatModel(
     id: 4,
     name: '안심',
-    type: 'pork',
+    type: MeatType.pork,
     usage: ['돈가스'],
     description: '부드럽고 담백한',
     texture: Texture.normal,
@@ -52,7 +52,7 @@ List<MeatModel> porkList = [
   MeatModel(
     id: 5,
     name: '등심',
-    type: 'pork',
+    type: MeatType.pork,
     usage: ['돈가스', '탕수육'],
     description: '이건 구이로 먹지 마세요!',
     texture: Texture.slightlyChewy,
@@ -67,7 +67,7 @@ List<MeatModel> beefList = [
   MeatModel(
     id: 1,
     name: '아롱사태',
-    type: 'beef',
+    type: MeatType.beef,
     usage: ['수육'],
     description: '항정살만큼 부드럽고 쫄깃한 부위',
     texture: Texture.slightlyChewy,
@@ -79,7 +79,7 @@ List<MeatModel> beefList = [
   MeatModel(
     id: 2,
     name: '부채살',
-    type: 'beef',
+    type: MeatType.beef,
     usage: ['구이'],
     description: '잘 고르기 도전해보자!',
     texture: Texture.verySoft,
@@ -91,7 +91,7 @@ List<MeatModel> beefList = [
   MeatModel(
     id: 3,
     name: '안창살',
-    type: 'beef',
+    type: MeatType.beef,
     usage: ['구이'],
     description: '잘 고르기 도전해보자!',
     texture: Texture.normal,
@@ -103,7 +103,7 @@ List<MeatModel> beefList = [
   MeatModel(
     id: 4,
     name: '안심',
-    type: 'beef',
+    type: MeatType.beef,
     usage: ['스테이크'],
     description: '부드럽고 담백한',
     texture: Texture.normal,
@@ -115,7 +115,7 @@ List<MeatModel> beefList = [
   MeatModel(
     id: 5,
     name: '등심',
-    type: 'beef',
+    type: MeatType.beef,
     usage: ['스테이크', '구이'],
     description: '이건 구이로 먹지 마세요!',
     texture: Texture.slightlyChewy,

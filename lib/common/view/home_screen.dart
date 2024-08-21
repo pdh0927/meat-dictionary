@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:meat_dictionary/common/const/colors.dart';
 import 'package:meat_dictionary/common/layout/default_layout.dart';
 import 'package:meat_dictionary/meat/component/custom_search_bar.dart';
+import 'package:meat_dictionary/meat/model/meat_model.dart';
 import 'package:meat_dictionary/meat/view/meat_list_screen.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
@@ -76,7 +77,7 @@ class _DictionaryComponent extends StatelessWidget {
                     aspectRatio: aspectRatio,
                     child: const _CategoryCard(
                       imagePath: 'assets/imgs/common/pig_home.png',
-                      label: '돼지고기',
+                      meatType: MeatType.pork,
                     ),
                   ),
                 ),
@@ -86,7 +87,7 @@ class _DictionaryComponent extends StatelessWidget {
                     aspectRatio: aspectRatio,
                     child: const _CategoryCard(
                       imagePath: 'assets/imgs/common/cow_home.png',
-                      label: '소고기',
+                      meatType: MeatType.beef,
                     ),
                   ),
                 ),
@@ -101,11 +102,11 @@ class _DictionaryComponent extends StatelessWidget {
 
 class _CategoryCard extends StatelessWidget {
   final String imagePath;
-  final String label;
+  final MeatType meatType;
 
   const _CategoryCard({
     required this.imagePath,
-    required this.label,
+    required this.meatType,
   });
 
   @override
@@ -113,8 +114,8 @@ class _CategoryCard extends StatelessWidget {
     return InkWell(
       onTap: () {
         context.pushNamed(
-          MeatListScreen.routeName,
-          extra: label,
+          DictionaryListScreen.routeName,
+          extra: meatType,
         );
       },
       child: Container(
@@ -146,7 +147,7 @@ class _CategoryCard extends StatelessWidget {
             ),
             const SizedBox(height: 13.0),
             Text(
-              label,
+              meatType.displayName,
               style: const TextStyle(
                 fontFamily: 'Pretendard',
                 fontSize: 17,

@@ -1,3 +1,29 @@
+enum MeatType {
+  pork,
+  beef,
+  // 필요한 다른 타입도 여기에 추가 가능
+}
+
+extension MeatTypeExtension on MeatType {
+  String get label {
+    switch (this) {
+      case MeatType.pork:
+        return 'pork';
+      case MeatType.beef:
+        return 'beef';
+    }
+  }
+
+  String get displayName {
+    switch (this) {
+      case MeatType.pork:
+        return '돼지고기';
+      case MeatType.beef:
+        return '소고기';
+    }
+  }
+}
+
 enum Texture {
   verySoft,
   slightlySoft,
@@ -76,7 +102,7 @@ extension SavoryFlavorExtension on SavoryFlavor {
 class MeatModel {
   int id;
   String name;
-  String type;
+  MeatType type;
   List<String> usage;
   String description;
   Texture texture;

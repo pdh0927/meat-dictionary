@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:meat_dictionary/common/view/root_tab.dart';
 import 'package:meat_dictionary/common/view/splash_screen.dart';
+import 'package:meat_dictionary/meat/model/meat_model.dart';
 import 'package:meat_dictionary/meat/view/meat_detail_screen.dart';
 import 'package:meat_dictionary/meat/view/meat_list_screen.dart';
 
@@ -32,7 +33,7 @@ class AuthProvider extends ChangeNotifier {
           name: DictionaryListScreen.routeName,
           builder: (context, state) {
             final meatType =
-                state.extra as String; // Extract the meatType from extra
+                state.extra as MeatType; // Extract the meatType from extra
             return DictionaryListScreen(meatType: meatType);
           },
         ),

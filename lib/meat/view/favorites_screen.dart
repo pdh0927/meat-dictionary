@@ -3,6 +3,7 @@ import 'package:meat_dictionary/common/const/text_style.dart';
 import 'package:meat_dictionary/common/layout/default_layout.dart';
 import 'package:meat_dictionary/meat/component/dictionary_list.dart';
 import 'package:meat_dictionary/meat/component/meat_menu.dart';
+import 'package:meat_dictionary/meat/model/meat_model.dart';
 
 class FavoritesScreen extends StatefulWidget {
   const FavoritesScreen({super.key});
@@ -12,9 +13,9 @@ class FavoritesScreen extends StatefulWidget {
 }
 
 class _FavoritesScreenState extends State<FavoritesScreen> {
-  String selectedType = 'pork'; // 기본값을 돼지로 설정
+  MeatType selectedType = MeatType.pork; // 기본값을 돼지로 설정
 
-  void _onTypeChanged(String type) {
+  void _onTypeChanged(MeatType type) {
     setState(() {
       selectedType = type;
     });
@@ -40,7 +41,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
               Expanded(
                 child: DictionaryList(
                   isFavoritesScreen: true,
-                  type: selectedType,
+                  meatType: selectedType,
                 ),
               ),
             ],

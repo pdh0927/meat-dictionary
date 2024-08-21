@@ -1,13 +1,14 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:meat_dictionary/common/provider/shared_preferences_provider.dart';
+import 'package:meat_dictionary/meat/model/meat_model.dart';
 
 // 즐겨찾기 상태를 관리하는 StateNotifierProvider
 final favoritesProvider =
-    StateNotifierProvider<FavoritesNotifier, Map<String, Set<int>>>((ref) {
+    StateNotifierProvider<FavoritesNotifier, Map<MeatType, Set<int>>>((ref) {
   return FavoritesNotifier(ref);
 });
 
-class FavoritesNotifier extends StateNotifier<Map<String, Set<int>>> {
+class FavoritesNotifier extends StateNotifier<Map<MeatType, Set<int>>> {
   FavoritesNotifier(this.ref) : super({}) {
     _loadAllFavorites();
   }
@@ -17,19 +18,19 @@ class FavoritesNotifier extends StateNotifier<Map<String, Set<int>>> {
   Future<void> _loadAllFavorites() async {
     final prefs = ref.read(sharedPreferencesProvider);
     state = {
-      'pork': (prefs.getStringList('pork_favorites') ?? [])
+      MeatType.pork: (prefs.getStringList('pork_favorites') ?? [])
           .map((id) => int.parse(id))
           .toSet(),
-      'beef': (prefs.getStringList('beef_favorites') ?? [])
+      MeatType.beef: (prefs.getStringList('beef_favorites') ?? [])
           .map((id) => int.parse(id))
           .toSet(),
       // 필요한 다른 타입도 여기에 추가
     };
   }
 
-  Future<void> toggleFavorite(String type, int id) async {
+  Future<void> toggleFavorite(MeatType type, int id) async {
     final prefs = ref.read(sharedPreferencesProvider);
-    final key = '${type}_favorites';
+    final key = '${type.label}_favorites';
     final currentFavorites = (prefs.getStringList(key) ?? []).toSet();
 
     if (state[type]?.contains(id) ?? false) {
@@ -45,11 +46,11 @@ class FavoritesNotifier extends StateNotifier<Map<String, Set<int>>> {
         type: {...state[type] ?? {}, id},
       };
     }
-    print(state);
+
     await prefs.setStringList(key, currentFavorites.toList());
   }
 
-  bool isFavorite(String type, int id) {
+  bool isFavorite(MeatType type, int id) {
     return state[type]?.contains(id) ?? false;
   }
 }
