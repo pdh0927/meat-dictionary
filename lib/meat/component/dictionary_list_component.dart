@@ -63,7 +63,7 @@ class DictionaryListComponent extends ConsumerWidget {
               ),
               const SizedBox(height: 4),
               Text(
-                meatModel.usage.join(', '),
+                meatModel.usage.map((usage) => usage.label).join(', '),
                 style: const TextStyle(
                   fontSize: 12,
                   color: Color(0xFF636366),

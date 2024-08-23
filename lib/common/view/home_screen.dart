@@ -148,7 +148,7 @@ class _CategoryCard extends StatelessWidget {
             ),
             const SizedBox(height: 13.0),
             Text(
-              meatType.displayName,
+              meatType.label,
               style: const TextStyle(
                 fontFamily: 'Pretendard',
                 fontSize: 17,

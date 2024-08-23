@@ -8,18 +8,40 @@ extension MeatTypeExtension on MeatType {
   String get label {
     switch (this) {
       case MeatType.pork:
-        return 'pork';
-      case MeatType.beef:
-        return 'beef';
-    }
-  }
-
-  String get displayName {
-    switch (this) {
-      case MeatType.pork:
         return '돼지고기';
       case MeatType.beef:
         return '소고기';
+    }
+  }
+}
+
+enum Usage {
+  grilling, // 구이
+  boiledPork, // 수육
+  soup, // 국거리
+  bulgogi, // 불고기
+  cutlet, // 돈가스
+  sweetAndSourPork, // 탕수육
+  steak, // 스테이크
+}
+
+extension UsageExtension on Usage {
+  String get label {
+    switch (this) {
+      case Usage.grilling:
+        return '구이';
+      case Usage.boiledPork:
+        return '수육';
+      case Usage.soup:
+        return '국거리';
+      case Usage.bulgogi:
+        return '불고기';
+      case Usage.cutlet:
+        return '돈가스';
+      case Usage.sweetAndSourPork:
+        return '탕수육';
+      case Usage.steak:
+        return '스테이크';
     }
   }
 }
@@ -103,7 +125,7 @@ class MeatModel {
   int id;
   String name;
   MeatType type;
-  List<String> usage;
+  List<Usage> usage;
   String description;
   Texture texture;
   SavoryFlavor savoryFlavor;

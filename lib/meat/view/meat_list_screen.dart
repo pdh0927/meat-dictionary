@@ -17,7 +17,7 @@ class DictionaryListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultLayout(
-        title: meatType.displayName,
+        title: meatType.label,
         leading: InkWell(
           onTap: () {
             Navigator.pop(context);

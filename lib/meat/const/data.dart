@@ -5,7 +5,7 @@ List<MeatModel> porkList = [
     id: 1,
     name: '가브리살',
     type: MeatType.pork,
-    usage: ['구이'],
+    usage: [Usage.grilling], // '구이' -> Usage.grilling
     description: '항정살만큼 부드럽고 쫄깃한 부위',
     texture: Texture.slightlyChewy,
     savoryFlavor: SavoryFlavor.normal,
@@ -17,19 +17,19 @@ List<MeatModel> porkList = [
     id: 2,
     name: '목살',
     type: MeatType.pork,
-    usage: ['구이'],
+    usage: [Usage.grilling], // '구이' -> Usage.grilling
     description: '잘 고르기 도전해보자!',
     texture: Texture.verySoft,
     savoryFlavor: SavoryFlavor.normal,
     meatAroma: MeatAroma.weak,
     price: 2,
-    imgPath: 'assets/imgs/pork/목살.png',
+    imgPath: 'assets/imgs/pork/mocksal.png',
   ),
   MeatModel(
     id: 3,
     name: '삼겹살',
     type: MeatType.pork,
-    usage: ['구이'],
+    usage: [Usage.grilling], // '구이' -> Usage.grilling
     description: '잘 고르기 도전해보자!',
     texture: Texture.normal,
     savoryFlavor: SavoryFlavor.slightlyMild,
@@ -41,7 +41,7 @@ List<MeatModel> porkList = [
     id: 4,
     name: '안심',
     type: MeatType.pork,
-    usage: ['돈가스'],
+    usage: [Usage.cutlet], // '돈가스' -> Usage.cutlet
     description: '부드럽고 담백한',
     texture: Texture.normal,
     savoryFlavor: SavoryFlavor.normal,
@@ -53,7 +53,10 @@ List<MeatModel> porkList = [
     id: 5,
     name: '등심',
     type: MeatType.pork,
-    usage: ['돈가스', '탕수육'],
+    usage: [
+      Usage.cutlet,
+      Usage.sweetAndSourPork
+    ], // '돈가스', '탕수육' -> Usage.cutlet, Usage.sweetAndSourPork
     description: '이건 구이로 먹지 마세요!',
     texture: Texture.slightlyChewy,
     savoryFlavor: SavoryFlavor.normal,
@@ -68,7 +71,7 @@ List<MeatModel> beefList = [
     id: 1,
     name: '아롱사태',
     type: MeatType.beef,
-    usage: ['수육'],
+    usage: [Usage.boiledPork], // '수육' -> Usage.boiledPork
     description: '항정살만큼 부드럽고 쫄깃한 부위',
     texture: Texture.slightlyChewy,
     savoryFlavor: SavoryFlavor.normal,
@@ -80,7 +83,7 @@ List<MeatModel> beefList = [
     id: 2,
     name: '부채살',
     type: MeatType.beef,
-    usage: ['구이'],
+    usage: [Usage.grilling], // '구이' -> Usage.grilling
     description: '잘 고르기 도전해보자!',
     texture: Texture.verySoft,
     savoryFlavor: SavoryFlavor.normal,
@@ -92,7 +95,7 @@ List<MeatModel> beefList = [
     id: 3,
     name: '안창살',
     type: MeatType.beef,
-    usage: ['구이'],
+    usage: [Usage.grilling], // '구이' -> Usage.grilling
     description: '잘 고르기 도전해보자!',
     texture: Texture.normal,
     savoryFlavor: SavoryFlavor.slightlyMild,
@@ -104,7 +107,7 @@ List<MeatModel> beefList = [
     id: 4,
     name: '안심',
     type: MeatType.beef,
-    usage: ['스테이크'],
+    usage: [Usage.steak], // '스테이크' -> Usage.steak
     description: '부드럽고 담백한',
     texture: Texture.normal,
     savoryFlavor: SavoryFlavor.normal,
@@ -116,7 +119,10 @@ List<MeatModel> beefList = [
     id: 5,
     name: '등심',
     type: MeatType.beef,
-    usage: ['스테이크', '구이'],
+    usage: [
+      Usage.steak,
+      Usage.grilling
+    ], // '스테이크', '구이' -> Usage.steak, Usage.grilling
     description: '이건 구이로 먹지 마세요!',
     texture: Texture.slightlyChewy,
     savoryFlavor: SavoryFlavor.normal,
