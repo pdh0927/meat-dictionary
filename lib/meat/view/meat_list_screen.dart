@@ -18,6 +18,18 @@ class DictionaryListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return DefaultLayout(
         title: meatType.displayName,
+        leading: InkWell(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: const Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: 6.0,
+              vertical: 8.0,
+            ),
+            child: Icon(PhosphorIconsBold.arrowLeft, size: 24),
+          ),
+        ),
         actions: [
           InkWell(
             onTap: () {},
