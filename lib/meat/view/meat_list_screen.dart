@@ -31,10 +31,15 @@ class DictionaryListScreen extends StatelessWidget {
           child: Column(
             children: [
               Container(
-                height: 200,
+                width: double.infinity,
+                height: 260,
                 alignment: Alignment.center,
                 color: Colors.grey,
-                child: const Text('배너'),
+                child: Image.asset(
+                  "assets/imgs/common/tmp_pig_list.png",
+                  fit: BoxFit.fill,
+                  width: double.infinity,
+                ),
               ),
               DictionaryList(
                 isFavoritesScreen: false,
