@@ -7,7 +7,7 @@ List<MeatModel> porkList = [
     type: MeatType.pork,
     usage: [Usage.grilling], // '구이' -> Usage.grilling
     description: '항정살만큼 부드럽고 쫄깃한 부위',
-    texture: Texture.slightlyChewy,
+    texture: MeatTexture.slightlyChewy,
     savoryFlavor: SavoryFlavor.normal,
     meatAroma: MeatAroma.weak,
     price: 4,
@@ -19,7 +19,7 @@ List<MeatModel> porkList = [
     type: MeatType.pork,
     usage: [Usage.grilling], // '구이' -> Usage.grilling
     description: '잘 고르기 도전해보자!',
-    texture: Texture.verySoft,
+    texture: MeatTexture.verySoft,
     savoryFlavor: SavoryFlavor.normal,
     meatAroma: MeatAroma.weak,
     price: 2,
@@ -31,7 +31,7 @@ List<MeatModel> porkList = [
     type: MeatType.pork,
     usage: [Usage.grilling], // '구이' -> Usage.grilling
     description: '잘 고르기 도전해보자!',
-    texture: Texture.normal,
+    texture: MeatTexture.normal,
     savoryFlavor: SavoryFlavor.slightlyMild,
     meatAroma: MeatAroma.weak,
     price: 2,
@@ -43,7 +43,7 @@ List<MeatModel> porkList = [
     type: MeatType.pork,
     usage: [Usage.cutlet], // '돈가스' -> Usage.cutlet
     description: '부드럽고 담백한',
-    texture: Texture.normal,
+    texture: MeatTexture.normal,
     savoryFlavor: SavoryFlavor.normal,
     meatAroma: MeatAroma.weak,
     price: 2,
@@ -58,7 +58,7 @@ List<MeatModel> porkList = [
       Usage.sweetAndSourPork
     ], // '돈가스', '탕수육' -> Usage.cutlet, Usage.sweetAndSourPork
     description: '이건 구이로 먹지 마세요!',
-    texture: Texture.slightlyChewy,
+    texture: MeatTexture.slightlyChewy,
     savoryFlavor: SavoryFlavor.normal,
     meatAroma: MeatAroma.weak,
     price: 2,
@@ -73,7 +73,7 @@ List<MeatModel> beefList = [
     type: MeatType.beef,
     usage: [Usage.boiledPork], // '수육' -> Usage.boiledPork
     description: '항정살만큼 부드럽고 쫄깃한 부위',
-    texture: Texture.slightlyChewy,
+    texture: MeatTexture.slightlyChewy,
     savoryFlavor: SavoryFlavor.normal,
     meatAroma: MeatAroma.weak,
     price: 4,
@@ -85,7 +85,7 @@ List<MeatModel> beefList = [
     type: MeatType.beef,
     usage: [Usage.grilling], // '구이' -> Usage.grilling
     description: '잘 고르기 도전해보자!',
-    texture: Texture.verySoft,
+    texture: MeatTexture.verySoft,
     savoryFlavor: SavoryFlavor.normal,
     meatAroma: MeatAroma.weak,
     price: 2,
@@ -97,7 +97,7 @@ List<MeatModel> beefList = [
     type: MeatType.beef,
     usage: [Usage.grilling], // '구이' -> Usage.grilling
     description: '잘 고르기 도전해보자!',
-    texture: Texture.normal,
+    texture: MeatTexture.normal,
     savoryFlavor: SavoryFlavor.slightlyMild,
     meatAroma: MeatAroma.weak,
     price: 2,
@@ -109,7 +109,7 @@ List<MeatModel> beefList = [
     type: MeatType.beef,
     usage: [Usage.steak], // '스테이크' -> Usage.steak
     description: '부드럽고 담백한',
-    texture: Texture.normal,
+    texture: MeatTexture.normal,
     savoryFlavor: SavoryFlavor.normal,
     meatAroma: MeatAroma.weak,
     price: 2,
@@ -124,7 +124,7 @@ List<MeatModel> beefList = [
       Usage.grilling
     ], // '스테이크', '구이' -> Usage.steak, Usage.grilling
     description: '이건 구이로 먹지 마세요!',
-    texture: Texture.slightlyChewy,
+    texture: MeatTexture.slightlyChewy,
     savoryFlavor: SavoryFlavor.normal,
     meatAroma: MeatAroma.weak,
     price: 2,
