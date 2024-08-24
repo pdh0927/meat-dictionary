@@ -33,9 +33,11 @@ class _FavoritesScreenState extends ConsumerState<FavoritesScreen> {
         children: [
           // 고기 type 선택 버튼
           TwoMenu(
-            selectedType: selectedType,
+            selectIndex: selectedType == MeatType.pork ? 0 : 1,
             onLeftTap: () => _onTypeChanged(MeatType.pork),
             onRightTap: () => _onTypeChanged(MeatType.beef),
+            leftLabel: '돼지',
+            rightLabel: '소',
           ),
           const SizedBox(height: 10.0),
           // 전체 개수
