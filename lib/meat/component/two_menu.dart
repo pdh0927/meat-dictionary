@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:meat_dictionary/common/const/colors.dart';
 import 'package:meat_dictionary/meat/model/meat_model.dart';
 
-class MeatMenu extends StatelessWidget {
+class TwoMenu extends StatelessWidget {
   final MeatType selectedType;
-  final ValueChanged<MeatType> onTypeChanged;
+  final VoidCallback onLeftTap;
+  final VoidCallback onRightTap;
 
-  const MeatMenu({
+  const TwoMenu({
     super.key,
     required this.selectedType,
-    required this.onTypeChanged,
+    required this.onLeftTap,
+    required this.onRightTap,
   });
 
   @override
@@ -19,13 +21,13 @@ class MeatMenu extends StatelessWidget {
         _TitleBox(
           title: '돼지',
           isSelect: selectedType == MeatType.pork,
-          onTap: () => onTypeChanged(MeatType.pork),
+          onTap: onLeftTap,
         ),
         const SizedBox(width: 8.0),
         _TitleBox(
           title: '소',
           isSelect: selectedType == MeatType.beef,
-          onTap: () => onTypeChanged(MeatType.beef),
+          onTap: onRightTap,
         ),
       ],
     );
