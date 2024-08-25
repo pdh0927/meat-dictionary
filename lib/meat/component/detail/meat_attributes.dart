@@ -17,47 +17,47 @@ class MeatAttributes extends StatelessWidget {
       children: [
         // 식감 수치
         _AttributeBar(
+          width: 80.w,
           title: '식감',
           minLabel: '부드러움',
           maxLabel: '쫄깃함',
           valueLabel: meatModel.texture.label,
-          sliderPosition: meatModel.texture.sliderValue * 70.w,
+          sliderPosition: meatModel.texture.sliderValue * (80.w - 60),
           gradientColors: const [
             Color(0xFFFF0D00),
             Color(0xFFFF0D00),
             Color(0xFFFF0072),
           ],
-          width: 70.w,
         ),
         const SizedBox(height: 12),
         // 지방 수치
         _AttributeBar(
+          width: 80.w,
           title: '지방',
           minLabel: '적음',
           maxLabel: '많음',
           valueLabel: meatModel.savoryFlavor.label,
-          sliderPosition: meatModel.savoryFlavor.sliderValue * 70.w,
+          sliderPosition: meatModel.savoryFlavor.sliderValue * (80.w - 60),
           gradientColors: const [
             Color(0xFF9DF200),
             Color(0xFF44C400),
             Color(0xFF0093B4),
           ],
-          width: 70.w,
         ),
         const SizedBox(height: 12),
         // 육향 수치
         _AttributeBar(
+          width: 80.w,
           title: '육향',
           minLabel: '적음',
           maxLabel: '많음',
           valueLabel: meatModel.meatAroma.label,
-          sliderPosition: meatModel.meatAroma.sliderValue * 70.w,
+          sliderPosition: meatModel.meatAroma.sliderValue * (80.w - 60),
           gradientColors: const [
             Color(0xFF007BFE),
             Color(0xFF5856D6),
             Color(0xFFAF52DE),
           ],
-          width: 70.w,
         ),
       ],
     );
@@ -67,13 +67,13 @@ class MeatAttributes extends StatelessWidget {
 // 속성바
 class _AttributeBar extends StatelessWidget {
   const _AttributeBar({
+    required this.width,
     required this.title,
     required this.minLabel,
     required this.maxLabel,
     required this.valueLabel,
     required this.sliderPosition,
     required this.gradientColors,
-    required this.width,
   });
 
   final String title;
@@ -86,45 +86,95 @@ class _AttributeBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: width,
-      child: Stack(
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+    // valueLabel의 길이를 계산
+    final TextPainter textPainter = TextPainter(
+      text: TextSpan(
+        text: valueLabel,
+        style: const TextStyle(
+          color: Colors.black,
+          fontSize: 14.0,
+          fontFamily: 'Pretendard',
+          fontWeight: FontWeight.w600,
+        ),
+      ),
+      textDirection: TextDirection.ltr,
+    )..layout();
+
+    final double valueLabelWidth = textPainter.size.width;
+
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        // 속성 이름
+        Container(
+          width: 45,
+          margin: const EdgeInsets.only(bottom: 8),
+          padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 2.2),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(14.0),
+            color: const Color(0xFFE0F2FF),
+          ),
+          child: Text(
+            title,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              color: Colors.black,
+              fontSize: 14.0,
+              fontFamily: 'Pretendard',
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ),
+        SizedBox(
+          width: width - 45,
+          child: Stack(
             children: [
-              // 속성 이름
-              Text(
-                title,
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  color: Colors.black,
-                  fontSize: 13.0,
-                  fontFamily: 'Pretendard',
-                  fontWeight: FontWeight.w600,
+              SizedBox(
+                height: 59.0,
+                child: Row(
+                  children: [
+                    const SizedBox(width: 15.0),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        const SizedBox(height: 12),
+                        // 배경바
+                        _BackgroundBar(width: width - 60, height: 10),
+                        const SizedBox(height: 3.0),
+                        // 수치 최대, 최소 라벨
+                        _ValueLabel(
+                            width: width - 60,
+                            minLabel: minLabel,
+                            maxLabel: maxLabel)
+                      ],
+                    ),
+                  ],
                 ),
               ),
-              const SizedBox(height: 12),
-              // 배경바
-              _BackgroundBar(width: width, height: 10),
-              // 수치 최대, 최소 라벨
-              _ValueLabel(minLabel: minLabel, maxLabel: maxLabel)
+              // 수치바
+              Positioned(
+                left: sliderPosition + 15,
+                top: 33,
+                child: _ValueBar(
+                  width: (width - 60) / 5,
+                  gradientColors: gradientColors,
+                ),
+              ),
+              // 말풍선
+              Positioned(
+                left: sliderPosition +
+                    15 +
+                    (width - 60) / 5 / 2 -
+                    (valueLabelWidth / 2 + 7),
+                top: 0,
+                child: _SpeachBubble(valueLabel: valueLabel),
+              ),
             ],
           ),
-          // 수치바
-          Positioned(
-            left: sliderPosition,
-            top: 31,
-            child: _ValueBar(gradientColors: gradientColors),
-          ),
-          // 말풍선
-          Positioned(
-            left: sliderPosition,
-            top: 8,
-            child: _SpeachBubble(valueLabel: valueLabel),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
@@ -157,10 +207,12 @@ class _ValueLabel extends StatelessWidget {
   const _ValueLabel({
     required this.minLabel,
     required this.maxLabel,
+    required this.width,
   });
 
   final String minLabel;
   final String maxLabel;
+  final double width;
 
   @override
   Widget build(BuildContext context) {
@@ -171,29 +223,33 @@ class _ValueLabel extends StatelessWidget {
       fontWeight: FontWeight.w400,
     );
 
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        // 최소수치 라벨
-        Text(minLabel, style: labelTextStyle),
-        const SizedBox(height: 3.0),
-        // 최소수치 라벨
-        Text(maxLabel, style: labelTextStyle),
-      ],
+    return SizedBox(
+      width: width,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          // 최소수치 라벨
+          Text(minLabel, style: labelTextStyle),
+          const SizedBox(height: 3.0),
+          // 최소수치 라벨
+          Text(maxLabel, style: labelTextStyle),
+        ],
+      ),
     );
   }
 }
 
 // 수치바
 class _ValueBar extends StatelessWidget {
-  const _ValueBar({required this.gradientColors});
+  const _ValueBar({required this.gradientColors, required this.width});
 
   final List<Color> gradientColors;
+  final double width;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 70.w / 5,
+      width: width,
       height: 10,
       decoration: ShapeDecoration(
         gradient: LinearGradient(
@@ -230,8 +286,7 @@ class _SpeachBubble extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Container(
-          width: 70.w / 4.5,
-          height: 20,
+          padding: const EdgeInsets.symmetric(horizontal: 7.0, vertical: 4.0),
           alignment: Alignment.center,
           decoration: ShapeDecoration(
             color: const Color(0xFFF4F6FA),
@@ -242,9 +297,9 @@ class _SpeachBubble extends StatelessWidget {
           child: Text(
             valueLabel,
             style: const TextStyle(
-              fontSize: 10.8,
+              fontSize: 14.0,
               color: Colors.blue,
-              fontWeight: FontWeight.w600,
+              fontWeight: FontWeight.w700,
             ),
           ),
         ),
