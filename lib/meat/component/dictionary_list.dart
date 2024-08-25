@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:meat_dictionary/meat/const/data.dart';
 import 'package:meat_dictionary/meat/model/meat_model.dart';
 import 'package:meat_dictionary/meat/provider/favorites_provider.dart';
-import 'package:meat_dictionary/meat/view/detail/pork/mocksal_detail_scree.dart';
+import 'package:meat_dictionary/meat/view/detail/pork/mocksal_detail_screen.dart';
 
 class DictionaryList extends ConsumerWidget {
   final bool isFavoritesScreen;
