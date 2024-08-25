@@ -23,7 +23,7 @@ List<MeatModel> porkList = [
     savoryFlavor: SavoryFlavor.normal,
     meatAroma: MeatAroma.weak,
     price: 2,
-    imgPath: 'assets/imgs/pork/mocksal.png',
+    imgPath: 'assets/imgs/pork/mocksal/mocksal_main.png',
   ),
   MeatModel(
     id: 3,

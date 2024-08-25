@@ -67,6 +67,7 @@ flutter:
   assets:
     - assets/imgs/common/
     - assets/imgs/pork/
+    - assets/imgs/pork/mocksal/
     - assets/imgs/beef/
   
 
