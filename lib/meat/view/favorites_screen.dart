@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:meat_dictionary/common/layout/default_layout.dart';
 import 'package:meat_dictionary/meat/component/dictionary_list.dart';
-import 'package:meat_dictionary/meat/component/meat_menu.dart';
+import 'package:meat_dictionary/meat/component/two_menu.dart';
 import 'package:meat_dictionary/meat/model/meat_model.dart';
 import 'package:meat_dictionary/meat/provider/favorites_provider.dart';
 
@@ -31,11 +31,16 @@ class _FavoritesScreenState extends ConsumerState<FavoritesScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          MeatMenu(
-            selectedType: selectedType,
-            onTypeChanged: _onTypeChanged,
+          // 고기 type 선택 버튼
+          TwoMenu(
+            selectIndex: selectedType == MeatType.pork ? 0 : 1,
+            onLeftTap: () => _onTypeChanged(MeatType.pork),
+            onRightTap: () => _onTypeChanged(MeatType.beef),
+            leftLabel: '돼지',
+            rightLabel: '소',
           ),
           const SizedBox(height: 10.0),
+          // 전체 개수
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Text(
@@ -47,6 +52,7 @@ class _FavoritesScreenState extends ConsumerState<FavoritesScreen> {
             ),
           ),
           const SizedBox(height: 10.0),
+          // 즐겨찾기 고기 목록
           Expanded(
             child: DictionaryList(
               isFavoritesScreen: true,

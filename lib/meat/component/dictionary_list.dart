@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:meat_dictionary/meat/const/data.dart';
 import 'package:meat_dictionary/meat/model/meat_model.dart';
 import 'package:meat_dictionary/meat/provider/favorites_provider.dart';
+import 'package:meat_dictionary/meat/view/detail/pork/mocksal_detail_screen.dart';
 
 class DictionaryList extends ConsumerWidget {
   final bool isFavoritesScreen;
@@ -30,10 +31,15 @@ class DictionaryList extends ConsumerWidget {
             .toList()
         : selectedList;
 
+    final Map<String, String> meatDetailRoutes = {
+      '목살': MocksalDetailScreen.routeName,
+    };
+
     return Column(
-      children: filteredList.map((meat) {
-        final isSelected =
-            ref.read(favoritesProvider.notifier).isFavorite(meat.type, meat.id);
+      children: filteredList.map((meatModel) {
+        final isSelected = ref
+            .read(favoritesProvider.notifier)
+            .isFavorite(meatModel.type, meatModel.id);
         return Column(
           children: [
             Padding(
@@ -41,10 +47,18 @@ class DictionaryList extends ConsumerWidget {
                   const EdgeInsets.symmetric(horizontal: 16.0, vertical: 14.0),
               child: InkWell(
                 onTap: () {
-                  context.pushNamed("meat_detail");
+                  final routeName = meatDetailRoutes[meatModel.name];
+                  if (routeName != null) {
+                    context.pushNamed(
+                      routeName,
+                      extra: {'meatModel': meatModel},
+                    );
+                  } else {
+                    context.pushNamed("meat_detail");
+                  }
                 },
                 child: DictionaryListComponent(
-                  meatModel: meat,
+                  meatModel: meatModel,
                   isSelected: isSelected,
                 ),
               ),

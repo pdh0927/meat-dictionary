@@ -17,7 +17,19 @@ class DictionaryListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultLayout(
-        title: meatType.displayName,
+        title: meatType.label,
+        leading: InkWell(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: const Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: 6.0,
+              vertical: 8.0,
+            ),
+            child: Icon(PhosphorIconsBold.arrowLeft, size: 24),
+          ),
+        ),
         actions: [
           InkWell(
             onTap: () {},
@@ -31,10 +43,15 @@ class DictionaryListScreen extends StatelessWidget {
           child: Column(
             children: [
               Container(
-                height: 200,
+                width: double.infinity,
+                height: 260,
                 alignment: Alignment.center,
                 color: Colors.grey,
-                child: const Text('배너'),
+                child: Image.asset(
+                  "assets/imgs/common/tmp_pig_list.png",
+                  fit: BoxFit.fill,
+                  width: double.infinity,
+                ),
               ),
               DictionaryList(
                 isFavoritesScreen: false,

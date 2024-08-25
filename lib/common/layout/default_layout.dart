@@ -8,6 +8,7 @@ class DefaultLayout extends StatelessWidget {
   final String? title;
   final BottomNavigationBar? bottomNavigationBar;
   final List<Widget>? actions;
+  final Widget? leading;
 
   const DefaultLayout({
     required this.child,
@@ -15,6 +16,7 @@ class DefaultLayout extends StatelessWidget {
     this.actions,
     this.bottomNavigationBar,
     this.title,
+    this.leading,
     super.key,
   });
 
@@ -31,17 +33,20 @@ class DefaultLayout extends StatelessWidget {
   }
 
   AppBar? renderAppBar() {
-    if (title == null) {
+    if (title == null && actions == null) {
       return null;
     } else {
       return AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        title: Text(title!,
-            style: const TextStyle(
-              fontSize: 20.0,
-              fontWeight: FontWeight.w500,
-            )),
+        leading: leading,
+        title: title != null
+            ? Text(title!,
+                style: const TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.w500,
+                ))
+            : null,
         centerTitle: true,
         titleSpacing: 25,
         actions: actions ?? [],
