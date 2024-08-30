@@ -8,6 +8,7 @@ import 'package:meat_dictionary/meat/view/favorites_screen.dart';
 import 'package:meat_dictionary/meat/view/meat_list_screen.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
+// 홈 화면
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
@@ -44,6 +45,7 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
+// 사전 widget
 class _DictionaryComponent extends StatelessWidget {
   const _DictionaryComponent();
 
@@ -73,6 +75,7 @@ class _DictionaryComponent extends StatelessWidget {
             }
             return Row(
               children: [
+                // 돼지 card
                 Expanded(
                   child: AspectRatio(
                     aspectRatio: aspectRatio,
@@ -83,6 +86,7 @@ class _DictionaryComponent extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 15.0),
+                // 소 card
                 Expanded(
                   child: AspectRatio(
                     aspectRatio: aspectRatio,
@@ -101,6 +105,7 @@ class _DictionaryComponent extends StatelessWidget {
   }
 }
 
+// 사전으로 가기위한 card
 class _CategoryCard extends StatelessWidget {
   final String imagePath;
   final MeatType meatType;
@@ -114,8 +119,9 @@ class _CategoryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
+        // 고기 리스트 바로가기
         context.pushNamed(
-          DictionaryListScreen.routeName,
+          MeatListScreen.routeName,
           extra: meatType,
         );
       },
@@ -136,6 +142,7 @@ class _CategoryCard extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            // 이미지
             Container(
               padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
@@ -147,6 +154,7 @@ class _CategoryCard extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 13.0),
+            // 고기 라벨
             Text(
               meatType.label,
               style: const TextStyle(

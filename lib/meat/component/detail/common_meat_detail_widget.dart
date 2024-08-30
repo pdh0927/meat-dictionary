@@ -13,6 +13,7 @@ import 'package:meat_dictionary/meat/view/detail/pork/mocksal_detail_screeN.dart
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:sizer/sizer.dart';
 
+// 공통 고기 detail 내용
 class CommonMeatDetailWidget extends ConsumerStatefulWidget {
   static String get routeName => 'mocksal_detail';
 
@@ -174,7 +175,9 @@ class _Recommend extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final selectedList = meatType == MeatType.pork ? porkList : beefList;
+    final List<MeatModel> selectedList = List.from(
+      meatType == MeatType.pork ? porkList : beefList,
+    );
 
     // 현재 페이지에 해당하는 고기 제외
     selectedList.removeWhere((meat) => meat.id == thisPageId);
