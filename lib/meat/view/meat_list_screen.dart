@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:meat_dictionary/common/layout/default_layout.dart';
-import 'package:meat_dictionary/meat/component/dictionary_list.dart';
+import 'package:meat_dictionary/meat/component/meat_list.dart';
 import 'package:meat_dictionary/meat/model/meat_model.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
-class DictionaryListScreen extends StatelessWidget {
+class MeatListScreen extends StatelessWidget {
   static String get routeName => 'meat_list';
 
-  const DictionaryListScreen({
+  const MeatListScreen({
     super.key,
     required this.meatType,
   });
@@ -53,7 +53,7 @@ class DictionaryListScreen extends StatelessWidget {
                   width: double.infinity,
                 ),
               ),
-              DictionaryList(
+              MeatList(
                 isFavoritesScreen: false,
                 meatType: meatType,
               ),

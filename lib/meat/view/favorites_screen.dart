@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:meat_dictionary/common/layout/default_layout.dart';
-import 'package:meat_dictionary/meat/component/dictionary_list.dart';
+import 'package:meat_dictionary/meat/component/meat_list.dart';
 import 'package:meat_dictionary/meat/component/two_menu.dart';
 import 'package:meat_dictionary/meat/model/meat_model.dart';
 import 'package:meat_dictionary/meat/provider/favorites_provider.dart';
@@ -54,7 +54,7 @@ class _FavoritesScreenState extends ConsumerState<FavoritesScreen> {
           const SizedBox(height: 10.0),
           // 즐겨찾기 고기 목록
           Expanded(
-            child: DictionaryList(
+            child: MeatList(
               isFavoritesScreen: true,
               meatType: selectedType,
             ),

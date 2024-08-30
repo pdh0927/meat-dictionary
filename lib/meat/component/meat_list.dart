@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:meat_dictionary/meat/component/dictionary_list_component.dart';
+import 'package:meat_dictionary/meat/component/meat_list_component.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:meat_dictionary/meat/const/data.dart';
 import 'package:meat_dictionary/meat/model/meat_model.dart';
 import 'package:meat_dictionary/meat/provider/favorites_provider.dart';
 import 'package:meat_dictionary/meat/view/detail/pork/mocksal_detail_screen.dart';
 
-class DictionaryList extends ConsumerWidget {
+class MeatList extends ConsumerWidget {
   final bool isFavoritesScreen;
   final MeatType meatType;
 
-  const DictionaryList({
+  const MeatList({
     super.key,
     required this.isFavoritesScreen,
     required this.meatType,
@@ -57,7 +57,7 @@ class DictionaryList extends ConsumerWidget {
                     context.pushNamed("meat_detail");
                   }
                 },
-                child: DictionaryListComponent(
+                child: MeatListComponent(
                   meatModel: meatModel,
                   isSelected: isSelected,
                 ),

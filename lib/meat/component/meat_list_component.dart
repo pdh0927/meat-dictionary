@@ -6,11 +6,11 @@ import 'package:meat_dictionary/meat/provider/favorites_provider.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:sizer/sizer.dart';
 
-class DictionaryListComponent extends ConsumerWidget {
+class MeatListComponent extends ConsumerWidget {
   final MeatModel meatModel;
   final bool isSelected;
 
-  const DictionaryListComponent({
+  const MeatListComponent({
     super.key,
     required this.meatModel,
     required this.isSelected,

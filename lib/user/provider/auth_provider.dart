@@ -32,10 +32,10 @@ class AuthProvider extends ChangeNotifier {
         ),
         GoRoute(
           path: '/meat_list',
-          name: DictionaryListScreen.routeName,
+          name: MeatListScreen.routeName,
           builder: (context, state) {
             final meatType = state.extra as MeatType;
-            return DictionaryListScreen(meatType: meatType);
+            return MeatListScreen(meatType: meatType);
           },
         ),
         GoRoute(
