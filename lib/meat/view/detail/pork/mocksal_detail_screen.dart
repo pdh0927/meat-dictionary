@@ -262,8 +262,11 @@ class _CutMeatChoosingTips extends StatelessWidget {
 }
 
 class _HorizontalImages extends StatelessWidget {
-  const _HorizontalImages(
-      {required this.imagePaths, required this.height, required this.width});
+  const _HorizontalImages({
+    required this.imagePaths,
+    required this.height,
+    required this.width,
+  });
 
   final List<String> imagePaths;
   final double height;
