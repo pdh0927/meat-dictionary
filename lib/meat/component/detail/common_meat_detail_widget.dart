@@ -13,6 +13,7 @@ import 'package:meat_dictionary/meat/view/detail/pork/mocksal_detail_screeN.dart
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:sizer/sizer.dart';
 
+// 공통 고기 detail 내용
 class CommonMeatDetailWidget extends ConsumerStatefulWidget {
   static String get routeName => 'mocksal_detail';
 

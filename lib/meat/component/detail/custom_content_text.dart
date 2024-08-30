@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// 앞에 점 있는 Text
 class CustomContentText extends StatelessWidget {
   const CustomContentText({
     super.key,

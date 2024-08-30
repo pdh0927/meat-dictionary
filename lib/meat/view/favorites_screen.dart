@@ -6,6 +6,7 @@ import 'package:meat_dictionary/meat/component/two_menu.dart';
 import 'package:meat_dictionary/meat/model/meat_model.dart';
 import 'package:meat_dictionary/meat/provider/favorites_provider.dart';
 
+// 즐겨찾기 화면
 class FavoritesScreen extends ConsumerStatefulWidget {
   static String get routeName => 'favorites';
 

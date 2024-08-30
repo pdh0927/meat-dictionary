@@ -4,6 +4,7 @@ import 'package:meat_dictionary/meat/component/meat_list.dart';
 import 'package:meat_dictionary/meat/model/meat_model.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
+// 사전 내 고기 리스트 화면
 class MeatListScreen extends StatelessWidget {
   static String get routeName => 'meat_list';
 
@@ -17,7 +18,9 @@ class MeatListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultLayout(
+        // 화면 title
         title: meatType.label,
+        // 뒤로가기 버튼
         leading: InkWell(
           onTap: () {
             Navigator.pop(context);
@@ -30,6 +33,7 @@ class MeatListScreen extends StatelessWidget {
             child: Icon(PhosphorIconsBold.arrowLeft, size: 24),
           ),
         ),
+        // 검색 버튼
         actions: [
           InkWell(
             onTap: () {},
@@ -39,9 +43,11 @@ class MeatListScreen extends StatelessWidget {
             ),
           )
         ],
+        // 화면 구성 내용
         child: SingleChildScrollView(
           child: Column(
             children: [
+              // 배너
               Container(
                 width: double.infinity,
                 height: 260,
@@ -53,6 +59,7 @@ class MeatListScreen extends StatelessWidget {
                   width: double.infinity,
                 ),
               ),
+              // 고기 리스트
               MeatList(
                 isFavoritesScreen: false,
                 meatType: meatType,
