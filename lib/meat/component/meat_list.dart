@@ -7,6 +7,7 @@ import 'package:meat_dictionary/meat/model/meat_model.dart';
 import 'package:meat_dictionary/meat/provider/favorites_provider.dart';
 import 'package:meat_dictionary/meat/view/detail/pork/mocksal_detail_screen.dart';
 
+// 고기 리스트
 class MeatList extends ConsumerWidget {
   final bool isFavoritesScreen;
   final MeatType meatType;
