@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
-// 검색창
+// 검색바
 class CustomSearchBar extends StatelessWidget {
   const CustomSearchBar({
     super.key,
