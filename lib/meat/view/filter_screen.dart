@@ -64,6 +64,14 @@ class _FilterScreenState extends State<FilterScreen> {
     return allAttributes;
   }
 
+  // 필터 적용 버튼을 눌렀을 때 선택된 속성과 값을 MeatListScreen으로 전달
+  void _applyFilters() {
+    Navigator.pop(context, {
+      'selectedAttributes': selectedAttributes,
+      'selectedValues': selectedValues,
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultLayout(
@@ -147,6 +155,25 @@ class _FilterScreenState extends State<FilterScreen> {
                   availableAttributes: _getAvailableAttributes(2),
                   onReset: () => _resetAttribute(2),
                 ),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: _applyFilters,
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(vertical: 16.0),
+                  backgroundColor: Colors.red, // 버튼 색상
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                ),
+                child: const Text(
+                  '적용',
+                  style: TextStyle(
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
             ],
           ),
         ),
@@ -400,7 +427,7 @@ class _ValueBoxState extends State<_ValueBox> {
                           setState(() {
                             _currentValue = value;
                           });
-                          widget.onValueSelected(value);
+                          widget.onValueSelected(value / 5);
                         },
                       ),
                     ),
