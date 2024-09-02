@@ -9,11 +9,13 @@ import 'package:sizer/sizer.dart';
 class MeatListComponent extends ConsumerWidget {
   final MeatModel meatModel;
   final bool isSelected;
+  final double? score;
 
   const MeatListComponent({
     super.key,
     required this.meatModel,
     required this.isSelected,
+    this.score,
   });
 
   @override
@@ -87,6 +89,7 @@ class MeatListComponent extends ConsumerWidget {
                     label: '육향',
                     value: meatModel.meatAroma.label,
                   ),
+                  if (score != null) Text(score!.round().toString())
                 ],
               ),
             ],

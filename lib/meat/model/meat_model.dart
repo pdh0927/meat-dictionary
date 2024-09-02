@@ -70,7 +70,7 @@ enum SavoryFlavor {
   savory,
 }
 
-extension TextureExtension on MeatTexture {
+extension MeatTextureExtension on MeatTexture {
   String get label {
     switch (this) {
       case MeatTexture.verySoft:
@@ -99,6 +99,14 @@ extension TextureExtension on MeatTexture {
       case MeatTexture.chewy:
         return 0.8;
     }
+  }
+
+  // Slider value로부터 MeatTexture를 역으로 찾는 메소드
+  static MeatTexture fromSliderValue(double value) {
+    return MeatTexture.values.firstWhere(
+      (texture) => texture.sliderValue == value,
+      orElse: () => MeatTexture.normal, // 기본값으로 'normal' 설정
+    );
   }
 }
 
@@ -132,6 +140,14 @@ extension MeatAromaExtension on MeatAroma {
         return 0.8;
     }
   }
+
+  // Slider value로부터 MeatAroma를 역으로 찾는 메소드
+  static MeatAroma fromSliderValue(double value) {
+    return MeatAroma.values.firstWhere(
+      (aroma) => aroma.sliderValue == value,
+      orElse: () => MeatAroma.normal, // 기본값으로 'normal' 설정
+    );
+  }
 }
 
 extension SavoryFlavorExtension on SavoryFlavor {
@@ -164,6 +180,14 @@ extension SavoryFlavorExtension on SavoryFlavor {
         return 0.8;
     }
   }
+
+  // Slider value로부터 SavoryFlavor를 역으로 찾는 메소드
+  static SavoryFlavor fromSliderValue(double value) {
+    return SavoryFlavor.values.firstWhere(
+      (flavor) => flavor.sliderValue == value,
+      orElse: () => SavoryFlavor.normal, // 기본값으로 'normal' 설정
+    );
+  }
 }
 
 class MeatModel {
@@ -190,4 +214,13 @@ class MeatModel {
     required this.price,
     required this.imgPath,
   });
+
+  @override
+  String toString() {
+    return 'MeatModel { '
+        'id: $id, '
+        'name: $name, '
+        'type: ${type.label}, '
+        '}';
+  }
 }

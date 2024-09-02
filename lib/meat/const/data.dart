@@ -9,7 +9,7 @@ List<MeatModel> porkList = [
     description: '항정살만큼 부드럽고 쫄깃한 부위',
     texture: MeatTexture.slightlyChewy,
     savoryFlavor: SavoryFlavor.normal,
-    meatAroma: MeatAroma.weak,
+    meatAroma: MeatAroma.veryWeak,
     price: 4,
     imgPath: 'assets/imgs/pork/가브리살.png',
   ),

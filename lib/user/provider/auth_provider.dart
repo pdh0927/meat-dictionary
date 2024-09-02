@@ -6,6 +6,7 @@ import 'package:meat_dictionary/common/view/splash_screen.dart';
 import 'package:meat_dictionary/meat/model/meat_model.dart';
 import 'package:meat_dictionary/meat/view/detail/pork/mocksal_detail_screen.dart';
 import 'package:meat_dictionary/meat/view/favorites_screen.dart';
+import 'package:meat_dictionary/meat/view/filter_screen.dart';
 import 'package:meat_dictionary/meat/view/meat_detail_screen.dart';
 import 'package:meat_dictionary/meat/view/meat_list_screen.dart';
 
@@ -44,15 +45,21 @@ class AuthProvider extends ChangeNotifier {
           builder: (_, __) => const FavoritesScreen(),
         ),
         GoRoute(
-            path: '/mocksal_detail',
-            name: MocksalDetailScreen.routeName,
-            builder: (context, state) {
-              final Map<String, dynamic> extra =
-                  state.extra as Map<String, dynamic>;
+          path: '/mocksal_detail',
+          name: MocksalDetailScreen.routeName,
+          builder: (context, state) {
+            final Map<String, dynamic> extra =
+                state.extra as Map<String, dynamic>;
 
-              final meatModel = extra['meatModel'] as MeatModel;
+            final meatModel = extra['meatModel'] as MeatModel;
 
-              return MocksalDetailScreen(meatModel: meatModel);
-            }),
+            return MocksalDetailScreen(meatModel: meatModel);
+          },
+        ),
+        GoRoute(
+          path: '/filter',
+          name: FilterScreen.routeName,
+          builder: (_, __) => const FilterScreen(),
+        ),
       ];
 }
