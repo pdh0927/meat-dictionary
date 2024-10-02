@@ -14,6 +14,12 @@ TextStyle detailTitleStyle = const TextStyle(
 
 TextStyle detailContentStyle = const TextStyle(
   fontFamily: "Pretend",
-  fontSize: 17,
-  fontWeight: FontWeight.w500,
+  fontSize: 16,
+  fontWeight: FontWeight.w700,
+);
+
+TextStyle detailSmallTitleStyle = const TextStyle(
+  fontFamily: "Pretend",
+  fontSize: 16,
+  fontWeight: FontWeight.w700,
 );
