@@ -5,6 +5,7 @@ import 'package:meat_dictionary/meat/component/detail/common_meat_detail_frame.d
 import 'package:meat_dictionary/meat/component/detail/introduction_component.dart';
 import 'package:meat_dictionary/meat/model/meat_model.dart';
 
+// 목살 디테일
 class MocksalDetailScreen extends StatelessWidget {
   static String get routeName => 'mocksal_detail';
 
@@ -20,20 +21,12 @@ class MocksalDetailScreen extends StatelessWidget {
     return CommonMeatDetailFrame(
       meatModel: meatModel,
       topChild: const _TopContents(),
-      bottomChild: const _Content(),
+      bottomChild: const _BottomContent(),
     );
   }
 }
 
-class _Content extends StatelessWidget {
-  const _Content();
-
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
-  }
-}
-
+// 위쪽 컨텐츠
 class _TopContents extends StatelessWidget {
   const _TopContents();
 
@@ -214,5 +207,15 @@ class _Tips extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+// 아래쪽 컨텐츠
+class _BottomContent extends StatelessWidget {
+  const _BottomContent();
+
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
   }
 }
