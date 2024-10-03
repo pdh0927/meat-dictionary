@@ -96,7 +96,7 @@ class _Content extends StatelessWidget {
           child: CustomContentText(
             dotSize: 15.0,
             text: subContent,
-            textStyle: detailContentStyle,
+            textStyle: detailBoldContentStyle,
           ),
         )
       ],

@@ -12,14 +12,14 @@ TextStyle detailTitleStyle = const TextStyle(
   fontWeight: FontWeight.w700,
 );
 
-TextStyle detailContentStyle = const TextStyle(
+TextStyle detailBoldContentStyle = const TextStyle(
   fontFamily: "Pretend",
   fontSize: 16,
   fontWeight: FontWeight.w700,
 );
 
-TextStyle detailSmallTitleStyle = const TextStyle(
+TextStyle detailThinContentStyle = const TextStyle(
   fontFamily: "Pretend",
   fontSize: 16,
-  fontWeight: FontWeight.w700,
+  fontWeight: FontWeight.w400,
 );
