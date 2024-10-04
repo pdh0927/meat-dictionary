@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:meat_dictionary/common/const/colors.dart';
 import 'package:meat_dictionary/common/const/text_style.dart';
 import 'package:meat_dictionary/common/layout/default_layout.dart';
-import 'package:meat_dictionary/meat/component/detail/meat_attributes.dart';
+import 'package:meat_dictionary/meat/component/detail/fresh_pork_choosing_tips.dart';
 import 'package:meat_dictionary/meat/component/detail/meat_profile.dart';
 import 'package:meat_dictionary/meat/const/data.dart';
 import 'package:meat_dictionary/meat/model/meat_model.dart';
@@ -95,9 +95,33 @@ class CommonMeatDetailFrame extends ConsumerWidget {
             const SizedBox(height: 30.0),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: topChild,
+              child: Column(
+                children: [
+                  topChild,
+                  const Divider(
+                    height: 48,
+                    thickness: 1.0,
+                    color: Color(0xFFD8D8D8),
+                  ),
+                  // 풍미 그래프
+                  _MeatAttributes(meatModel: meatModel),
+                  const Divider(
+                    height: 48.0,
+                    thickness: 1.0,
+                    color: Color(0xFFD8D8D8),
+                  ),
+                ],
+              ),
             ),
-            MeatAttributes(meatModel: meatModel),
+            // 신선한 고기 고르는 방법
+            meatModel.type == MeatType.pork
+                ? const FreshPorkChoosingTips()
+                : const FreshPorkChoosingTips(),
+            const Divider(
+              height: 48.0,
+              thickness: 1.0,
+              color: Color(0xFFD8D8D8),
+            ),
             bottomChild,
             // 베너
             const _Banner(),
@@ -106,6 +130,7 @@ class CommonMeatDetailFrame extends ConsumerWidget {
               height: 0,
               thickness: 15.0,
             ),
+
             // 다른 고기 추천
             _Recommend(
               thisPageId: meatModel.id,
@@ -115,6 +140,117 @@ class CommonMeatDetailFrame extends ConsumerWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+// 풍미 그래프
+class _MeatAttributes extends StatelessWidget {
+  const _MeatAttributes({required this.meatModel});
+
+  final MeatModel meatModel;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text.rich(
+          TextSpan(
+            children: [
+              TextSpan(
+                text: '풍미 ',
+                style: detailBoldContentStyle,
+              ),
+              TextSpan(text: '그래프', style: detailThinContentStyle),
+            ],
+          ),
+        ),
+        const SizedBox(height: 17),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // 식감 수치
+            _VerticalBar(
+              title: '식감',
+              label: meatModel.texture.label,
+              value: meatModel.texture.sliderValue / 0.8,
+            ),
+            const SizedBox(width: 50),
+            // 지방 수치
+            _VerticalBar(
+              title: '지방',
+              label: meatModel.savoryFlavor.label,
+              value: meatModel.savoryFlavor.sliderValue / 0.8,
+            ),
+            const SizedBox(width: 50),
+            // 육향 수치
+            _VerticalBar(
+              title: '육향',
+              label: meatModel.meatAroma.label,
+              value: meatModel.meatAroma.sliderValue / 0.8,
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+// 수직 막대 그래프
+class _VerticalBar extends StatelessWidget {
+  const _VerticalBar({
+    required this.title,
+    required this.label,
+    required this.value,
+  });
+
+  final String title;
+  final String label;
+  final double value;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        // 막대 그래프
+        Stack(
+          children: [
+            Container(
+              width: 10,
+              height: 80,
+              color: const Color(0xFFD9D9D9), // 배경색
+            ),
+            Positioned(
+              bottom: 0,
+              child: Container(
+                width: 10,
+                height: 80 * value,
+                color: PRIMARY_COLOR, // 막대 색상
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        // 속성명
+        Text(
+          title,
+          style: const TextStyle(
+            fontSize: 12,
+            fontWeight: FontWeight.w600,
+            color: Colors.grey,
+          ),
+        ),
+        // 속성 값 라벨
+        Text(
+          label,
+          style: const TextStyle(
+            fontSize: 12,
+            fontWeight: FontWeight.w400,
+          ),
+        ),
+      ],
     );
   }
 }

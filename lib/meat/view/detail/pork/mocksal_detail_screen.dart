@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meat_dictionary/common/const/colors.dart';
 import 'package:meat_dictionary/common/const/text_style.dart';
+import 'package:meat_dictionary/meat/component/detail/choosing_tips_frame.dart';
 import 'package:meat_dictionary/meat/component/detail/common_meat_detail_frame.dart';
 import 'package:meat_dictionary/meat/component/detail/introduction_component.dart';
 import 'package:meat_dictionary/meat/model/meat_model.dart';
@@ -113,8 +114,9 @@ class _Introductions extends StatelessWidget {
                     style: detailBoldContentStyle,
                   ),
                   TextSpan(
-                      text: '에 따라서 고기 맛의 차이가 커요.',
-                      style: detailThinContentStyle),
+                    text: '에 따라서 고기 맛의 차이가 커요.',
+                    style: detailThinContentStyle,
+                  ),
                 ],
               ),
             ),
@@ -171,7 +173,7 @@ class _Tips extends StatelessWidget {
                       TextSpan(
                         text: '담백한 구이',
                         style: detailBoldContentStyle.copyWith(
-                          backgroundColor: PRIMARY_COLOR,
+                          backgroundColor: PRIMARY_COLOR.withOpacity(0.6),
                         ),
                       ),
                       TextSpan(
@@ -191,7 +193,7 @@ class _Tips extends StatelessWidget {
                       TextSpan(
                         text: '지방과 살코기',
                         style: detailBoldContentStyle.copyWith(
-                          backgroundColor: PRIMARY_COLOR,
+                          backgroundColor: PRIMARY_COLOR.withOpacity(0.6),
                         ),
                       ),
                       TextSpan(
@@ -216,6 +218,76 @@ class _BottomContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return const Column(
+      children: [
+        // 맛있는 목살 고르는법
+        _MocksalChoosingTips(),
+        Divider(
+          height: 48.0,
+          thickness: 1.0,
+          color: Color(0xFFD8D8D8),
+        ),
+      ],
+    );
+  }
+}
+
+// 맛있는 목살 고르는법
+class _MocksalChoosingTips extends StatelessWidget {
+  const _MocksalChoosingTips();
+
+  final List<String> imagePaths = const [
+    'assets/imgs/pork/fresh_choosing/1.png',
+    'assets/imgs/pork/fresh_choosing/2.png',
+    'assets/imgs/pork/fresh_choosing/3.png'
+  ];
+
+  final List<String> titles = const [
+    '고기가 섬을 이루는 것',
+    '한쪽 살코기가 크지 않은 것',
+    '지방이 희고 단단한 것'
+  ];
+
+  final List<String> highlights = const ['섬', '살코기', '희고 단단'];
+
+  final List<String> descriptions = const [
+    '섬이 많을수록 부드러워요.',
+    '살코기가 커지면 퍽퍽해요.',
+    '지방이 누런건 오래된 고기예요.'
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // 제목
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Text.rich(
+              TextSpan(
+                children: [
+                  TextSpan(text: '맛있는 ', style: detailThinContentStyle),
+                  TextSpan(text: '목살 ', style: detailBoldContentStyle),
+                  TextSpan(
+                    text: '고르는법',
+                    style: detailThinContentStyle,
+                  ),
+                ],
+              ),
+            ),
+          ),
+          const SizedBox(height: 16.0),
+          HorizontalImages(
+            imagePaths: imagePaths,
+            titles: titles,
+            highlights: highlights,
+            descriptions: descriptions,
+          )
+        ],
+      ),
+    );
   }
 }
