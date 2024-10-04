@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meat_dictionary/common/const/colors.dart';
-import 'package:meat_dictionary/meat/component/detail/meat_attributes.dart';
+import 'package:meat_dictionary/meat/backup/meat_attributes.dart';
 import 'package:meat_dictionary/meat/backup/meat_usages.dart';
 import 'package:meat_dictionary/meat/model/meat_model.dart';
 
