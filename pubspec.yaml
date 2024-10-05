@@ -68,6 +68,7 @@ flutter:
     - assets/imgs/common/
     - assets/imgs/pork/
     - assets/imgs/pork/mocksal/
+    - assets/imgs/pork/mocksal/recipe/
     - assets/imgs/pork/fresh_choosing/
     - assets/imgs/beef/
   
