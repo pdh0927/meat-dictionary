@@ -123,11 +123,10 @@ class CommonMeatDetailFrame extends ConsumerWidget {
               color: Color(0xFFD8D8D8),
             ),
             bottomChild,
-            // 베너
-            const _Banner(),
+
             const Divider(
               color: Color(0xFFF4F6FA),
-              height: 0,
+              height: 48,
               thickness: 15.0,
             ),
 
@@ -255,22 +254,6 @@ class _VerticalBar extends StatelessWidget {
   }
 }
 
-// 배너
-class _Banner extends StatelessWidget {
-  const _Banner();
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 100,
-      color: Colors.green,
-      child: const Center(
-        child: Text('배너'),
-      ),
-    );
-  }
-}
-
 // 다른 고기 추천
 class _Recommend extends StatelessWidget {
   const _Recommend({
@@ -293,7 +276,6 @@ class _Recommend extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SizedBox(height: 20.0),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Text('추천', style: detailTitleStyle),
