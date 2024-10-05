@@ -4,6 +4,7 @@ import 'package:meat_dictionary/common/const/text_style.dart';
 import 'package:meat_dictionary/meat/component/detail/horizozntal_images.dart';
 import 'package:meat_dictionary/meat/component/detail/common_meat_detail_frame.dart';
 import 'package:meat_dictionary/meat/component/detail/introduction_component.dart';
+import 'package:meat_dictionary/meat/component/detail/recipe_widget.dart';
 import 'package:meat_dictionary/meat/model/meat_model.dart';
 
 // 목살 디테일
@@ -227,6 +228,8 @@ class _BottomContent extends StatelessWidget {
           thickness: 1.0,
           color: Color(0xFFD8D8D8),
         ),
+        // 목살 추천 레시피
+        MocksalRecipe(),
       ],
     );
   }
@@ -288,6 +291,39 @@ class _MocksalChoosingTips extends StatelessWidget {
           )
         ],
       ),
+    );
+  }
+}
+
+// 목살 추천 레시피
+class MocksalRecipe extends StatelessWidget {
+  const MocksalRecipe({super.key});
+
+  final List<String> imageUrls = const [
+    'assets/imgs/pork/mocksal/recipe/1.png',
+    'assets/imgs/pork/mocksal/recipe/2.png',
+    'assets/imgs/pork/mocksal/recipe/3.png',
+    'assets/imgs/pork/mocksal/recipe/4.png',
+  ];
+  final List<String> titles = const [
+    '인플루언서 PICK',
+    '자취생 PICK',
+    '육식도감 PICK',
+    'HOT',
+  ];
+  final List<String> foodNames = const [
+    '목살 수육',
+    '제육복음',
+    '목살 스테이크',
+    '목살 간장 덮밥',
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return RecipeWidgetFrame(
+      imageUrls: imageUrls,
+      titles: titles,
+      foodNames: foodNames,
     );
   }
 }
