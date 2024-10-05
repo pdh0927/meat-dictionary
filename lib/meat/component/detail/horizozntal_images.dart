@@ -31,6 +31,7 @@ class HorizontalImages extends StatelessWidget {
               width: 180,
               child: GestureDetector(
                 onTap: () {
+                  // 확대 했을 때
                   showDialog(
                     context: context,
                     barrierColor: Colors.black.withOpacity(0.7),
