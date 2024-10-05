@@ -317,6 +317,12 @@ class MocksalRecipe extends StatelessWidget {
     '목살 스테이크',
     '목살 간장 덮밥',
   ];
+  final List<String> linkUrls = const [
+    'https://www.youtube.com/watch?v=_FKZDjgXm90',
+    'https://www.youtube.com/watch?v=_FKZDjgXm90',
+    'https://www.youtube.com/watch?v=_FKZDjgXm90',
+    'https://www.youtube.com/watch?v=_FKZDjgXm90',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -324,6 +330,7 @@ class MocksalRecipe extends StatelessWidget {
       imageUrls: imageUrls,
       titles: titles,
       foodNames: foodNames,
+      linkUrls: linkUrls,
     );
   }
 }
