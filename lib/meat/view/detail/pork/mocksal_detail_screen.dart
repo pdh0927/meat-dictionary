@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:meat_dictionary/common/const/colors.dart';
 import 'package:meat_dictionary/common/const/text_style.dart';
-import 'package:meat_dictionary/meat/component/detail/basic_choosing_tips.dart';
-import 'package:meat_dictionary/meat/component/detail/common_meat_detail_widget.dart';
-import 'package:meat_dictionary/meat/component/detail/custom_content_text.dart';
+import 'package:meat_dictionary/meat/component/detail/horizozntal_images.dart';
+import 'package:meat_dictionary/meat/component/detail/common_meat_detail_frame.dart';
+import 'package:meat_dictionary/meat/component/detail/introduction_component.dart';
+import 'package:meat_dictionary/meat/component/detail/recipe_widget.dart';
 import 'package:meat_dictionary/meat/model/meat_model.dart';
 
+// 목살 디테일
 class MocksalDetailScreen extends StatelessWidget {
   static String get routeName => 'mocksal_detail';
 
@@ -17,99 +20,189 @@ class MocksalDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CommonMeatDetailWidget(
-        meatModel: meatModel,
-        homeInformation: const _HomeInformation(),
-        chooseInformation: const _ChoosingTips());
+    return CommonMeatDetailFrame(
+      meatModel: meatModel,
+      topChild: const _TopContents(),
+      bottomChild: const _BottomContent(),
+    );
   }
 }
 
-class _HomeInformation extends StatelessWidget {
-  const _HomeInformation();
+// 위쪽 컨텐츠
+class _TopContents extends StatelessWidget {
+  const _TopContents();
 
   @override
   Widget build(BuildContext context) {
     return const Column(
       children: [
-        // 소개
-        _Introduction(),
+        _Introductions(),
         Divider(
-          color: Color(0xFFF4F6FA),
-          height: 0,
-          thickness: 15.0,
+          height: 48,
+          thickness: 1.0,
+          color: Color(0xFFD8D8D8),
         ),
-        // 특징
-        _Characteristic()
+        _Tips(),
       ],
     );
   }
 }
 
-// 소개
-class _Introduction extends StatelessWidget {
-  const _Introduction();
+// 고기 소개 및 특징
+class _Introductions extends StatelessWidget {
+  const _Introductions();
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
+    return SizedBox(
+      width: double.infinity,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // 제목
-          Text('소개', style: detailTitleStyle),
-          const SizedBox(height: 13.0),
-          // 위치 이미지
-          Image.asset(
-            'assets/imgs/pork/mocksal/mocksal_introduction.png',
-            fit: BoxFit.cover,
+          Text.rich(
+            TextSpan(
+              children: [
+                TextSpan(text: '부위 ', style: detailThinContentStyle),
+                TextSpan(
+                  text: '소개',
+                  style: detailBoldContentStyle,
+                ),
+              ],
+            ),
           ),
-          const SizedBox(height: 13.0),
-          // 간단 소개
-          Text('🐷 머리와 등심 사이, 목의 살이에요.', style: detailContentStyle),
-          Text('💡 담백한 고기를 선호한다면 목살을 추천해요.', style: detailContentStyle),
+          const SizedBox(height: 16.0),
+          IntroductionComponent(
+            num: 1,
+            text:
+                Text('목살은 머리와 등심 사이, 목의 살이에요.', style: detailThinContentStyle),
+          ),
+          const SizedBox(height: 16.0),
+          IntroductionComponent(
+            num: 2,
+            text:
+                Text('삼겹살 다음으로 인기있는 구이용 부위에요.', style: detailThinContentStyle),
+          ),
+          const SizedBox(height: 16.0),
+          IntroductionComponent(
+            num: 3,
+            text: Text.rich(
+              TextSpan(
+                children: [
+                  TextSpan(text: '지방과 살코기', style: detailThinContentStyle),
+                  TextSpan(
+                    text: '비율이 조화',
+                    style: detailBoldContentStyle,
+                  ),
+                  TextSpan(text: '로운 부위에요.', style: detailThinContentStyle),
+                ],
+              ),
+            ),
+          ),
+          const SizedBox(height: 16.0),
+          IntroductionComponent(
+            num: 4,
+            text: Text('목심, 목등심 등으로도 불려요.', style: detailThinContentStyle),
+          ),
+          const SizedBox(height: 16.0),
+          IntroductionComponent(
+            num: 5,
+            text: Text.rich(
+              TextSpan(
+                children: [
+                  TextSpan(
+                    text: '고르는 방법',
+                    style: detailBoldContentStyle,
+                  ),
+                  TextSpan(
+                    text: '에 따라서 고기 맛의 차이가 커요.',
+                    style: detailThinContentStyle,
+                  ),
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );
   }
 }
 
-class _Characteristic extends StatelessWidget {
-  const _Characteristic();
+// 개발자의 팁
+class _Tips extends StatelessWidget {
+  const _Tips();
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
+    return SizedBox(
+      width: double.infinity,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // 제목
-          Text('특징', style: detailTitleStyle),
-          const SizedBox(height: 13.0),
+          Text.rich(
+            TextSpan(
+              children: [
+                TextSpan(
+                  text: '개발자의 ',
+                  style: detailThinContentStyle,
+                ),
+                TextSpan(
+                  text: '팁',
+                  style: detailBoldContentStyle,
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 16.0),
+          // 내용
           Padding(
-            padding: const EdgeInsets.only(left: 5.0),
+            padding: const EdgeInsets.symmetric(horizontal: 5.0),
             child: Column(
               children: [
-                CustomContentText(
-                  text: '지방과 살코기의 비율이 조화로운 부위예요.',
-                  textStyle: detailContentStyle,
-                  dotSize: 15.0,
+                // 내용 1
+                Text.rich(
+                  TextSpan(
+                    children: [
+                      TextSpan(
+                        text: '💡',
+                        style: detailBoldContentStyle.copyWith(
+                          fontSize: 20,
+                        ),
+                      ),
+                      TextSpan(text: '삼겹살보다 ', style: detailThinContentStyle),
+                      TextSpan(
+                        text: '담백한 구이',
+                        style: detailBoldContentStyle.copyWith(
+                          backgroundColor: PRIMARY_COLOR.withOpacity(0.6),
+                        ),
+                      ),
+                      TextSpan(
+                          text: '를 선호한다면 추천해요.', style: detailThinContentStyle),
+                    ],
+                  ),
                 ),
-                CustomContentText(
-                  text: '목살은 크게 머리쪽 목살과 등심쪽 목살 두가지로 나뉘어요.',
-                  textStyle: detailContentStyle,
-                  dotSize: 15.0,
-                ),
-                CustomContentText(
-                  text: '기름과 살코기를 분리해서 구우면 더 맛있어요.',
-                  textStyle: detailContentStyle,
-                  dotSize: 15.0,
-                ),
-                CustomContentText(
-                  text: '목심, 목등심 등으로도 불려요.',
-                  textStyle: detailContentStyle,
-                  dotSize: 15.0,
+                const SizedBox(height: 13.0),
+                // 내용 2
+                Text.rich(
+                  TextSpan(
+                    children: [
+                      TextSpan(
+                        text: '🥩',
+                        style: detailBoldContentStyle.copyWith(fontSize: 20),
+                      ),
+                      TextSpan(
+                        text: '지방과 살코기',
+                        style: detailBoldContentStyle.copyWith(
+                          backgroundColor: PRIMARY_COLOR.withOpacity(0.6),
+                        ),
+                      ),
+                      TextSpan(
+                        text: '를 분리해서 구우면 더 맛있어요.',
+                        style: detailThinContentStyle,
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
@@ -120,202 +213,124 @@ class _Characteristic extends StatelessWidget {
   }
 }
 
-// 고르는 팁
-class _ChoosingTips extends StatelessWidget {
-  const _ChoosingTips();
+// 아래쪽 컨텐츠
+class _BottomContent extends StatelessWidget {
+  const _BottomContent();
 
   @override
   Widget build(BuildContext context) {
     return const Column(
       children: [
-        // 기본적으로 고기 잘 고르는법
-        BasicChoosingTips(),
+        // 맛있는 목살 고르는법
+        _MocksalChoosingTips(),
         Divider(
-          color: Color(0xFFF4F6FA),
-          height: 0,
-          thickness: 15.0,
+          height: 48.0,
+          thickness: 1.0,
+          color: Color(0xFFD8D8D8),
         ),
-        SizedBox(height: 20.0),
-        // 잘린 고기 고르는 팁
-        _CutMeatChoosingTips(), SizedBox(height: 20.0),
+        // 목살 추천 레시피
+        MocksalRecipe(),
       ],
     );
   }
 }
 
-// 잘린 고기 고르는 팁
-class _CutMeatChoosingTips extends StatelessWidget {
-  const _CutMeatChoosingTips();
+// 맛있는 목살 고르는법
+class _MocksalChoosingTips extends StatelessWidget {
+  const _MocksalChoosingTips();
 
-  // 추천 고기 이미지 경로
-  final List<String> goodImagePaths = const [
-    'assets/imgs/pork/mocksal/mocksal_good_1.png',
-    'assets/imgs/pork/mocksal/mocksal_good_1.png',
-    'assets/imgs/pork/mocksal/mocksal_good_1.png',
-    'assets/imgs/pork/mocksal/mocksal_good_1.png',
-    'assets/imgs/pork/mocksal/mocksal_good_1.png',
+  final List<String> imagePaths = const [
+    'assets/imgs/pork/fresh_choosing/1.png',
+    'assets/imgs/pork/fresh_choosing/2.png',
+    'assets/imgs/pork/fresh_choosing/3.png'
   ];
 
-  // 비추천 고기 이미지 경로
-  final List<String> badImagePaths = const [
-    'assets/imgs/pork/mocksal/mocksal_bad_1.png',
-    'assets/imgs/pork/mocksal/mocksal_bad_1.png',
-    'assets/imgs/pork/mocksal/mocksal_bad_1.png',
-    'assets/imgs/pork/mocksal/mocksal_bad_1.png',
-    'assets/imgs/pork/mocksal/mocksal_bad_1.png',
+  final List<String> titles = const [
+    '고기가 섬을 이루는 것',
+    '한쪽 살코기가 크지 않은 것',
+    '지방이 희고 단단한 것'
   ];
 
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // 제목
-              Text('잘린 목살 고르는 팁', style: detailTitleStyle),
-              const SizedBox(height: 13.0),
-              // 소제목
-              Text(
-                '이런 고기를 추천해요.',
-                style: detailTitleStyle.copyWith(
-                  fontSize: 17.0,
-                  color: const Color(0xFF007BFE),
-                ),
-              ),
-              const SizedBox(height: 7.0),
-              // 추천 고기 특징
-              Text(
-                '🥩 작은 살코기 섬이 많아요.',
-                style: detailContentStyle.copyWith(
-                  fontSize: 15.0,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(height: 10.0),
-        // 추천 고기 사진
-        _HorizontalImages(
-          imagePaths: goodImagePaths,
-          height: 120.0,
-          width: 120.0,
-        ),
-        const SizedBox(height: 7.0),
-        // 추천 고기 부가 설명
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: Text(
-            '지방이 잘 분포되었고, 작은 동그란 살코기가 많은 앞목살이에요.',
-            style: detailContentStyle.copyWith(fontSize: 14.0),
-          ),
-        ),
-        const SizedBox(height: 13.0),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // 소제목
-              Text(
-                '이런 고기는 비추천해요.',
-                style: detailTitleStyle.copyWith(
-                  fontSize: 17.0,
-                  color: const Color(0xFFFF0000),
-                ),
-              ),
-              const SizedBox(height: 7.0),
-              // 비추천 고기 특징
-              Text(
-                '😔 한 쪽 살코기가 너무 커요.',
-                style: detailContentStyle.copyWith(
-                  fontSize: 15.0,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(height: 10.0),
-        // 비추천 고기 사진
-        _HorizontalImages(
-          imagePaths: badImagePaths,
-          height: 120.0,
-          width: 120.0,
-        ),
-        const SizedBox(height: 7.0),
-        // 비추천 고기 부가 설명
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: Text(
-            '잘 굽지 못한다면, 퍽퍽하게 먹을 가능성이 큰 고기에요.',
-            style: detailContentStyle.copyWith(fontSize: 14.0),
-          ),
-        ),
-      ],
-    );
-  }
-}
+  final List<String> highlights = const ['섬', '살코기', '희고 단단'];
 
-class _HorizontalImages extends StatelessWidget {
-  const _HorizontalImages({
-    required this.imagePaths,
-    required this.height,
-    required this.width,
-  });
-
-  final List<String> imagePaths;
-  final double height;
-  final double width;
+  final List<String> descriptions = const [
+    '섬이 많을수록 부드러워요.',
+    '살코기가 커지면 퍽퍽해요.',
+    '지방이 누런건 오래된 고기예요.'
+  ];
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: height, // 이미지 높이
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: imagePaths.length,
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: GestureDetector(
-              onTap: () {
-                showDialog(
-                  context: context,
-                  barrierColor: Colors.black.withOpacity(0.7), // 배경 흐림 효과
-                  builder: (BuildContext context) {
-                    return Dialog(
-                      child: Container(
-                        padding: const EdgeInsets.all(10.0),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10.0),
-                          child: Image.asset(
-                            imagePaths[index], // 이미지 경로
-                            fit: BoxFit.contain,
-                          ),
-                        ),
-                      ),
-                    );
-                  },
-                );
-              },
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(10.0),
-                child: Image.asset(
-                  imagePaths[index], // 이미지 경로
-                  fit: BoxFit.fill,
-                  width: width, // 이미지 가로
-                  height: height, // 이미지 높이
-                ),
+      width: double.infinity,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // 제목
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Text.rich(
+              TextSpan(
+                children: [
+                  TextSpan(text: '맛있는 ', style: detailThinContentStyle),
+                  TextSpan(text: '목살 ', style: detailBoldContentStyle),
+                  TextSpan(
+                    text: '고르는법',
+                    style: detailThinContentStyle,
+                  ),
+                ],
               ),
             ),
-          );
-        },
+          ),
+          const SizedBox(height: 16.0),
+          HorizontalImages(
+            imagePaths: imagePaths,
+            titles: titles,
+            highlights: highlights,
+            descriptions: descriptions,
+          )
+        ],
       ),
+    );
+  }
+}
+
+// 목살 추천 레시피
+class MocksalRecipe extends StatelessWidget {
+  const MocksalRecipe({super.key});
+
+  final List<String> imageUrls = const [
+    'assets/imgs/pork/mocksal/recipe/1.png',
+    'assets/imgs/pork/mocksal/recipe/2.png',
+    'assets/imgs/pork/mocksal/recipe/3.png',
+    'assets/imgs/pork/mocksal/recipe/4.png',
+  ];
+  final List<String> titles = const [
+    '인플루언서 PICK',
+    '자취생 PICK',
+    '육식도감 PICK',
+    'HOT',
+  ];
+  final List<String> foodNames = const [
+    '목살 수육',
+    '제육복음',
+    '목살 스테이크',
+    '목살 간장 덮밥',
+  ];
+  final List<String> linkUrls = const [
+    'https://www.youtube.com/watch?v=_FKZDjgXm90',
+    'https://www.youtube.com/watch?v=_FKZDjgXm90',
+    'https://www.youtube.com/watch?v=_FKZDjgXm90',
+    'https://www.youtube.com/watch?v=_FKZDjgXm90',
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return RecipeWidgetFrame(
+      imageUrls: imageUrls,
+      titles: titles,
+      foodNames: foodNames,
+      linkUrls: linkUrls,
     );
   }
 }

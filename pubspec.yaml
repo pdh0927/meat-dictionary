@@ -40,6 +40,7 @@ dependencies:
   go_router: ^12.0.1
   shared_preferences: ^2.2.3
   phosphor_flutter: ^2.1.0
+  url_launcher: ^6.3.0
 
 dev_dependencies:
   flutter_test:
@@ -68,6 +69,8 @@ flutter:
     - assets/imgs/common/
     - assets/imgs/pork/
     - assets/imgs/pork/mocksal/
+    - assets/imgs/pork/mocksal/recipe/
+    - assets/imgs/pork/fresh_choosing/
     - assets/imgs/beef/
   
 

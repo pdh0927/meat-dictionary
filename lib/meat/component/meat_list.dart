@@ -4,7 +4,8 @@ import 'package:meat_dictionary/meat/component/meat_list_component.dart';
 import 'package:meat_dictionary/meat/const/data.dart';
 import 'package:meat_dictionary/meat/model/meat_model.dart';
 import 'package:meat_dictionary/meat/provider/favorites_provider.dart';
-import 'package:meat_dictionary/meat/view/detail/pork/mocksal_detail_screen.dart';
+import 'package:meat_dictionary/meat/view/detail/pork/mocksal_detail_screeN.dart';
+
 import 'package:go_router/go_router.dart';
 
 // 고기 리스트
