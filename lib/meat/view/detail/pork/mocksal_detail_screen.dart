@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meat_dictionary/common/const/colors.dart';
 import 'package:meat_dictionary/common/const/text_style.dart';
+import 'package:meat_dictionary/meat/component/detail/detail_menu_bar.dart';
 import 'package:meat_dictionary/meat/component/detail/horizozntal_images.dart';
 import 'package:meat_dictionary/meat/component/detail/common_meat_detail_frame.dart';
 import 'package:meat_dictionary/meat/component/detail/introduction_component.dart';
@@ -8,7 +9,7 @@ import 'package:meat_dictionary/meat/component/detail/recipe_widget.dart';
 import 'package:meat_dictionary/meat/model/meat_model.dart';
 
 // 목살 디테일
-class MocksalDetailScreen extends StatelessWidget {
+class MocksalDetailScreen extends StatefulWidget {
   static String get routeName => 'mocksal_detail';
 
   const MocksalDetailScreen({
@@ -19,30 +20,67 @@ class MocksalDetailScreen extends StatelessWidget {
   final MeatModel meatModel;
 
   @override
+  State<MocksalDetailScreen> createState() => _MocksalDetailScreenState();
+}
+
+class _MocksalDetailScreenState extends State<MocksalDetailScreen> {
+  final ScrollController _scrollController = ScrollController();
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  } // 메뉴 선택 시 스크롤 위치로 이동하는 함수
+
+  void _scrollToSection(double offset) {
+    _scrollController.animateTo(
+      offset,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
     return CommonMeatDetailFrame(
-      meatModel: meatModel,
-      topChild: const _TopContents(),
+      meatModel: widget.meatModel,
+      topChild: _TopContents(onMenuSelected: _scrollToSection),
       bottomChild: const _BottomContent(),
+      scrollController: _scrollController,
     );
   }
 }
 
 // 위쪽 컨텐츠
 class _TopContents extends StatelessWidget {
-  const _TopContents();
+  const _TopContents({required this.onMenuSelected});
+  final Function(double) onMenuSelected;
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       children: [
-        _Introductions(),
-        Divider(
-          height: 48,
-          thickness: 1.0,
-          color: Color(0xFFD8D8D8),
+        DetailMenuBar(
+          names: ['1', '2', '3', '4'],
+          offsets: [500, 1000, 1500, 2000],
+          onMenuSelected: onMenuSelected,
         ),
-        _Tips(),
+        const SizedBox(height: 18.0),
+        // 고기 소개 및 특징
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16.0),
+          child: Column(
+            children: [
+              _Introductions(),
+              Divider(
+                height: 48,
+                thickness: 1.0,
+                color: Color(0xFFD8D8D8),
+              ),
+              _Tips(),
+            ],
+          ),
+        ),
       ],
     );
   }

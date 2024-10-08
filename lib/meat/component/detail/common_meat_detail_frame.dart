@@ -14,23 +14,40 @@ import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:sizer/sizer.dart';
 
 // 공통 고기 detail 내용
-class CommonMeatDetailFrame extends ConsumerWidget {
+class CommonMeatDetailFrame extends ConsumerStatefulWidget {
   const CommonMeatDetailFrame({
     super.key,
     required this.meatModel,
     required this.topChild,
     required this.bottomChild,
+    required this.scrollController,
   });
 
   final MeatModel meatModel;
   final Widget topChild;
   final Widget bottomChild;
+  final ScrollController scrollController;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<CommonMeatDetailFrame> createState() =>
+      _CommonMeatDetailFrameState();
+}
+
+class _CommonMeatDetailFrameState extends ConsumerState<CommonMeatDetailFrame> {
+  @override
+  Widget build(BuildContext context) {
     final isSelected = ref
         .watch(favoritesProvider.notifier)
-        .isFavorite(meatModel.type, meatModel.id);
+        .isFavorite(widget.meatModel.type, widget.meatModel.id);
+
+    // 맨 위로 스크롤하는 함수
+    void scrollToTop() {
+      widget.scrollController.animateTo(
+        0.0,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
+      );
+    }
 
     return DefaultLayout(
       leading: InkWell(
@@ -66,8 +83,8 @@ class CommonMeatDetailFrame extends ConsumerWidget {
             InkWell(
               onTap: () async {
                 await ref.read(favoritesProvider.notifier).toggleFavorite(
-                      meatModel.type,
-                      meatModel.id,
+                      widget.meatModel.type,
+                      widget.meatModel.id,
                     );
               },
               child: Padding(
@@ -86,25 +103,31 @@ class CommonMeatDetailFrame extends ConsumerWidget {
           ],
         ),
       ],
+      floatingActionButton: FloatingActionButton(
+        onPressed: scrollToTop, // 맨 위로 스크롤
+        backgroundColor: PRIMARY_COLOR,
+        child: const Icon(Icons.arrow_upward),
+      ),
       child: SingleChildScrollView(
+        controller: widget.scrollController,
         child: Column(
           children: [
             MeatProfile(
-              meatModel: meatModel,
+              meatModel: widget.meatModel,
             ),
-            const SizedBox(height: 30.0),
+            const SizedBox(height: 15.0),
+            widget.topChild,
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Column(
                 children: [
-                  topChild,
                   const Divider(
                     height: 48,
                     thickness: 1.0,
                     color: Color(0xFFD8D8D8),
                   ),
                   // 풍미 그래프
-                  _MeatAttributes(meatModel: meatModel),
+                  _MeatAttributes(meatModel: widget.meatModel),
                   const Divider(
                     height: 48.0,
                     thickness: 1.0,
@@ -114,7 +137,7 @@ class CommonMeatDetailFrame extends ConsumerWidget {
               ),
             ),
             // 신선한 고기 고르는 방법
-            meatModel.type == MeatType.pork
+            widget.meatModel.type == MeatType.pork
                 ? const FreshPorkChoosingTips()
                 : const FreshPorkChoosingTips(),
             const Divider(
@@ -122,7 +145,7 @@ class CommonMeatDetailFrame extends ConsumerWidget {
               thickness: 1.0,
               color: Color(0xFFD8D8D8),
             ),
-            bottomChild,
+            widget.bottomChild,
 
             const Divider(
               color: Color(0xFFF4F6FA),
@@ -132,8 +155,8 @@ class CommonMeatDetailFrame extends ConsumerWidget {
 
             // 다른 고기 추천
             _Recommend(
-              thisPageId: meatModel.id,
-              meatType: meatModel.type,
+              thisPageId: widget.meatModel.id,
+              meatType: widget.meatModel.type,
             ),
             const SizedBox(height: 50)
           ],
