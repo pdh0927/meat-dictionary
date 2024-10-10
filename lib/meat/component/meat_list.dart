@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:meat_dictionary/meat/component/meat_list_component.dart';
 import 'package:meat_dictionary/meat/const/data.dart';
+import 'package:meat_dictionary/meat/const/dummy_data.dart';
+import 'package:meat_dictionary/meat/model/meat_identifier.dart';
 import 'package:meat_dictionary/meat/model/meat_model.dart';
 import 'package:meat_dictionary/meat/provider/favorites_provider.dart';
-import 'package:meat_dictionary/meat/view/detail/pork/mocksal_detail_screeN.dart';
-
 import 'package:go_router/go_router.dart';
 
 // 고기 리스트
@@ -41,10 +41,6 @@ class MeatList extends ConsumerWidget {
           .toList();
     }
 
-    final Map<String, String> meatDetailRoutes = {
-      '목살': MocksalDetailScreen.routeName,
-    };
-
     return Column(
       children: selectedList.map((meatModel) {
         final isSelected = ref
@@ -67,7 +63,8 @@ class MeatList extends ConsumerWidget {
                   const EdgeInsets.symmetric(horizontal: 16.0, vertical: 14.0),
               child: InkWell(
                 onTap: () {
-                  final routeName = meatDetailRoutes[meatModel.name];
+                  final routeName = routeNames[
+                      MeatIdentifier(meatModel.type, meatModel.name)];
                   if (routeName != null) {
                     context.pushNamed(
                       routeName,

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:meat_dictionary/common/view/custom_search_screen.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 // 검색바
-class CustomSearchBar extends StatelessWidget {
+class CustomSearchBar extends ConsumerWidget {
   const CustomSearchBar({
     super.key,
     required this.isHome,
@@ -11,10 +13,20 @@ class CustomSearchBar extends StatelessWidget {
   final bool isHome;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return InkWell(
       onTap: () {
         // 검색 화면으로 이동
+        // showSearch(
+        //   context: context,
+        //   delegate: MeatSearchDelegate(ref: ref),
+        // );
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const CustomSearchScreen(),
+          ),
+        );
       },
       borderRadius: BorderRadius.circular(45.0),
       child: Container(
