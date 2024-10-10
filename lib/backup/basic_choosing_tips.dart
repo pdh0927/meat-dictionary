@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meat_dictionary/common/const/text_style.dart';
-import 'package:meat_dictionary/meat/backup/custom_content_text.dart';
+import 'package:meat_dictionary/backup/custom_content_text.dart';
 
 // 기본적으로 고기 잘 고르는 법
 class BasicChoosingTips extends StatelessWidget {
