@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:meat_dictionary/common/const/colors.dart';
 import 'package:meat_dictionary/common/layout/default_layout.dart';
-import 'package:meat_dictionary/meat/component/custom_search_bar.dart';
 import 'package:meat_dictionary/meat/model/meat_model.dart';
 import 'package:meat_dictionary/meat/view/favorites_screen.dart';
 import 'package:meat_dictionary/meat/view/meat_list_screen.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 // 홈 화면
 class HomeScreen extends StatelessWidget {
@@ -14,33 +14,80 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultLayout(
+    return const DefaultLayout(
       backgroundColor: const Color(0xFFF4F6FA),
       child: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // 홈 화면 로고
-              Image.asset(
-                'assets/imgs/common/logo_home.png',
-                height: 30,
-                fit: BoxFit.fill,
-              ),
-              const SizedBox(height: 20),
-              // 검색창
-              const CustomSearchBar(isHome: true),
-              const SizedBox(height: 20),
-              // 사전 바로가기
-              const _DictionaryComponent(),
-              const SizedBox(height: 20),
-              // 즐겨찾기 바로가기
-              const _FavoritesComponent(),
-            ],
-          ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ImageCarousel(
+              imageUrls: [
+                'assets/imgs/beef/안심.png',
+                'assets/imgs/beef/안심.png',
+                'assets/imgs/beef/안심.png',
+                'assets/imgs/beef/안심.png',
+                'assets/imgs/beef/안심.png',
+                'assets/imgs/beef/안심.png',
+              ],
+            )
+          ],
         ),
       ),
+    );
+  }
+}
+
+class ImageCarousel extends StatefulWidget {
+  final List<String> imageUrls;
+
+  const ImageCarousel({Key? key, required this.imageUrls}) : super(key: key);
+
+  @override
+  _ImageCarouselState createState() => _ImageCarouselState();
+}
+
+class _ImageCarouselState extends State<ImageCarousel> {
+  final PageController _pageController = PageController();
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      alignment: Alignment.bottomCenter,
+      children: [
+        AspectRatio(
+          aspectRatio: 1 / 1,
+          child: PageView.builder(
+            controller: _pageController,
+            itemCount: widget.imageUrls.length,
+            itemBuilder: (context, index) {
+              return Image.asset(
+                widget.imageUrls[index],
+                fit: BoxFit.cover,
+                width: double.infinity,
+              );
+            },
+          ),
+        ),
+        Positioned(
+          bottom: 16.0, // 이미지 하단으로부터의 간격 조정
+          child: SmoothPageIndicator(
+            controller: _pageController,
+            count: widget.imageUrls.length,
+            effect: const WormEffect(
+              dotWidth: 8.0,
+              dotHeight: 8.0,
+              activeDotColor: Colors.blue,
+              dotColor: Colors.white, // 하얀색 점으로 설정하여 이미지 위에서도 잘 보이게 함
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
