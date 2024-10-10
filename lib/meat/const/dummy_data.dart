@@ -3,7 +3,7 @@ import 'package:meat_dictionary/meat/model/meat_model.dart';
 List<MeatModel> porkList = [
   MeatModel(
     id: 1,
-    name: '가브리살',
+    name: '갈매기살',
     type: MeatType.pork,
     usage: [Usage.grilling], // '구이' -> Usage.grilling
     description: '항정살만큼 부드럽고 쫄깃한 부위',
@@ -52,6 +52,21 @@ List<MeatModel> porkList = [
   MeatModel(
     id: 5,
     name: '등심',
+    type: MeatType.pork,
+    usage: [
+      Usage.cutlet,
+      Usage.sweetAndSourPork
+    ], // '돈가스', '탕수육' -> Usage.cutlet, Usage.sweetAndSourPork
+    description: '이건 구이로 먹지 마세요!',
+    texture: MeatTexture.slightlyChewy,
+    savoryFlavor: SavoryFlavor.normal,
+    meatAroma: MeatAroma.weak,
+    price: 2,
+    imgPath: 'assets/imgs/pork/등심.png',
+  ),
+  MeatModel(
+    id: 6,
+    name: '앞다리살',
     type: MeatType.pork,
     usage: [
       Usage.cutlet,
@@ -118,6 +133,21 @@ List<MeatModel> beefList = [
   MeatModel(
     id: 5,
     name: '등심',
+    type: MeatType.beef,
+    usage: [
+      Usage.steak,
+      Usage.grilling
+    ], // '스테이크', '구이' -> Usage.steak, Usage.grilling
+    description: '이건 구이로 먹지 마세요!',
+    texture: MeatTexture.slightlyChewy,
+    savoryFlavor: SavoryFlavor.normal,
+    meatAroma: MeatAroma.weak,
+    price: 2,
+    imgPath: 'assets/imgs/beef/등심.png',
+  ),
+  MeatModel(
+    id: 6,
+    name: '갈비',
     type: MeatType.beef,
     usage: [
       Usage.steak,
