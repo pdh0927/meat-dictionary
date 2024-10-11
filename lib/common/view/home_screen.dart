@@ -4,6 +4,7 @@ import 'package:meat_dictionary/common/const/colors.dart';
 import 'package:meat_dictionary/common/layout/default_layout.dart';
 import 'package:meat_dictionary/meat/model/meat_model.dart';
 import 'package:meat_dictionary/meat/view/meat_list_screen.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 // 홈 화면
@@ -33,7 +34,15 @@ class HomeScreen extends StatelessWidget {
               SizedBox(height: 24.0),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.0),
-                child: _DictionaryComponent(),
+                child: Column(
+                  children: [
+                    // 사전 바로가기 widget
+                    _DictionaryComponent(),
+                    SizedBox(height: 16.0),
+                    // 취향 저격 부위 찾기 버튼
+                    _ChooseOwnMeat(),
+                  ],
+                ),
               ),
             ],
           ),
@@ -99,7 +108,7 @@ class _ImageCarouselState extends State<ImageCarousel> {
   }
 }
 
-// 사전 widget
+// 사전 바로가기 widget
 class _DictionaryComponent extends StatelessWidget {
   const _DictionaryComponent();
 
@@ -188,7 +197,7 @@ class _CategoryCard extends StatelessWidget {
               style: const TextStyle(
                 fontFamily: 'Pretendard',
                 fontSize: 12,
-                fontWeight: FontWeight.w600,
+                fontWeight: FontWeight.w500,
                 color: Colors.white,
               ),
             ),
@@ -203,6 +212,57 @@ class _CategoryCard extends StatelessWidget {
                 color: Colors.white,
               ),
             ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// 취향 저격 부위 찾기 버튼
+class _ChooseOwnMeat extends StatelessWidget {
+  const _ChooseOwnMeat();
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {},
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 13.0),
+        decoration: BoxDecoration(
+          color: PRIMARY_COLOR,
+          borderRadius: BorderRadius.circular(8.0),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  '원하는 부위를 못 고르겠다면',
+                  style: TextStyle(
+                    fontSize: 12.0,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.white,
+                  ),
+                ),
+                Text(
+                  '취향 저격 부위 찾기',
+                  style: TextStyle(
+                    fontSize: 17.0,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
+                  ),
+                )
+              ],
+            ),
+            Icon(
+              PhosphorIcons.caretRight(),
+              color: Colors.white,
+              size: 25.0,
+            )
           ],
         ),
       ),
