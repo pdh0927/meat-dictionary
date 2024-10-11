@@ -143,9 +143,11 @@ class _Introductions extends StatelessWidget {
               TextSpan(
                 children: [
                   TextSpan(text: '삼겹살은 ', style: detailThinContentStyle),
-                  TextSpan(text: '갈빗대, 미추리', style: detailBoldContentStyle),
+                  TextSpan(text: '갈빗대', style: detailBoldContentStyle),
+                  TextSpan(text: ', ', style: detailThinContentStyle),
+                  TextSpan(text: '미추리 ', style: detailBoldContentStyle),
                   TextSpan(
-                    text: ' 두 부분으로 나뉘어요.',
+                    text: '두 부분으로 나뉘어요.',
                     style: detailThinContentStyle,
                   ),
                 ],
@@ -205,7 +207,7 @@ class _Tips extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(height: 16.0),
+          const SizedBox(height: 12.0),
           // 내용
           Column(
             children: [
@@ -300,14 +302,14 @@ class _BottomContent extends StatelessWidget {
           thickness: 1.0,
           color: Color(0xFFD8D8D8),
         ),
-        // 목살 추천 레시피
-        MocksalRecipe(),
+        // 삼겹살 추천 레시피
+        SamgyeobsalRecipe(),
       ],
     );
   }
 }
 
-// 맛있는 목살 고르는법
+// 맛있는 삼겹살 고르는법
 class _SamgyeobsalChoosingTips extends StatelessWidget {
   const _SamgyeobsalChoosingTips();
 
@@ -361,9 +363,9 @@ class _SamgyeobsalChoosingTips extends StatelessWidget {
   }
 }
 
-// 목살 추천 레시피
-class MocksalRecipe extends StatelessWidget {
-  const MocksalRecipe({super.key});
+// 삼겹살 추천 레시피
+class SamgyeobsalRecipe extends StatelessWidget {
+  const SamgyeobsalRecipe({super.key});
 
   final List<String> imageUrls = const [
     'assets/imgs/pork/mocksal/recipe/1.png',

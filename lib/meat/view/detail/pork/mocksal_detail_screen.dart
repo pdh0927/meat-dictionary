@@ -193,7 +193,7 @@ class _Tips extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(height: 16.0),
+          const SizedBox(height: 12.0),
           // 내용
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 5.0),
