@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:meat_dictionary/common/const/colors.dart';
 import 'package:meat_dictionary/common/layout/default_layout.dart';
-import 'package:meat_dictionary/meat/component/custom_search_bar.dart';
 import 'package:meat_dictionary/meat/model/meat_model.dart';
-import 'package:meat_dictionary/meat/view/favorites_screen.dart';
 import 'package:meat_dictionary/meat/view/meat_list_screen.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 // 홈 화면
 class HomeScreen extends StatelessWidget {
@@ -14,29 +13,37 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultLayout(
+    return const DefaultLayout(
       backgroundColor: const Color(0xFFF4F6FA),
       child: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // 홈 화면 로고
-              Image.asset(
-                'assets/imgs/common/logo_home.png',
-                height: 30,
-                fit: BoxFit.fill,
+              // 카드뉴스 위젯
+              ImageCarousel(
+                imageUrls: [
+                  'assets/imgs/beef/안심.png',
+                  'assets/imgs/beef/안심.png',
+                  'assets/imgs/beef/안심.png',
+                  'assets/imgs/beef/안심.png',
+                  'assets/imgs/beef/안심.png',
+                  'assets/imgs/beef/안심.png',
+                ],
               ),
-              const SizedBox(height: 20),
-              // 검색창
-              const CustomSearchBar(isHome: true),
-              const SizedBox(height: 20),
-              // 사전 바로가기
-              const _DictionaryComponent(),
-              const SizedBox(height: 20),
-              // 즐겨찾기 바로가기
-              const _FavoritesComponent(),
+              SizedBox(height: 24.0),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.0),
+                child: Column(
+                  children: [
+                    // 사전 바로가기 widget
+                    _DictionaryComponent(),
+                    SizedBox(height: 16.0),
+                    // 취향 저격 부위 찾기 버튼
+                    _ChooseOwnMeat(),
+                  ],
+                ),
+              ),
             ],
           ),
         ),
@@ -45,61 +52,101 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-// 사전 widget
+// 카드뉴스 위젯
+class ImageCarousel extends StatefulWidget {
+  final List<String> imageUrls;
+
+  const ImageCarousel({super.key, required this.imageUrls});
+
+  @override
+  State createState() => _ImageCarouselState();
+}
+
+class _ImageCarouselState extends State<ImageCarousel> {
+  final PageController _pageController = PageController();
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      alignment: Alignment.bottomCenter,
+      children: [
+        AspectRatio(
+          aspectRatio: 1 / 0.9,
+          child: PageView.builder(
+            controller: _pageController,
+            itemCount: widget.imageUrls.length,
+            itemBuilder: (context, index) {
+              return Image.asset(
+                widget.imageUrls[index],
+                fit: BoxFit.cover,
+                width: double.infinity,
+              );
+            },
+          ),
+        ),
+        Positioned(
+          bottom: 16.0,
+          child: SmoothPageIndicator(
+            controller: _pageController,
+            count: widget.imageUrls.length,
+            effect: const WormEffect(
+              dotWidth: 8.0,
+              dotHeight: 8.0,
+              activeDotColor: PRIMARY_COLOR,
+              dotColor: Colors.white,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+// 사전 바로가기 widget
 class _DictionaryComponent extends StatelessWidget {
   const _DictionaryComponent();
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          '육식도감 사전 바로가기 🥩',
+        Text(
+          '어떤 고기를 찾고 계시나요?',
           style: TextStyle(
             fontFamily: "Pretendard",
-            fontSize: 21,
-            fontWeight: FontWeight.w700,
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
           ),
         ),
-        const SizedBox(height: 15),
-        LayoutBuilder(
-          builder: (context, constraints) {
-            double aspectRatio;
-            if (constraints.maxWidth < 350) {
-              // 작은 화면
-              aspectRatio = 0.88;
-            } else {
-              // 큰 화면
-              aspectRatio = 0.9;
-            }
-            return Row(
-              children: [
-                // 돼지 card
-                Expanded(
-                  child: AspectRatio(
-                    aspectRatio: aspectRatio,
-                    child: const _CategoryCard(
-                      imagePath: 'assets/imgs/common/pig_home.png',
-                      meatType: MeatType.pork,
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 15.0),
-                // 소 card
-                Expanded(
-                  child: AspectRatio(
-                    aspectRatio: aspectRatio,
-                    child: const _CategoryCard(
-                      imagePath: 'assets/imgs/common/cow_home.png',
-                      meatType: MeatType.beef,
-                    ),
-                  ),
-                ),
-              ],
-            );
-          },
-        ),
+        SizedBox(height: 15),
+        Row(
+          children: [
+            // 돼지 card
+            Expanded(
+              child: _CategoryCard(
+                imagePath: 'assets/imgs/common/pig_home.png',
+                description: '극강 감칠맛과 다용도 활용',
+                meatType: MeatType.pork,
+              ),
+            ),
+            SizedBox(width: 15.0),
+            // 소 card
+            Expanded(
+              child: _CategoryCard(
+                imagePath: 'assets/imgs/common/cow_home.png',
+                description: '진항 풍미와 고급진 맛',
+                meatType: MeatType.beef,
+              ),
+            ),
+          ],
+        )
       ],
     );
   }
@@ -108,10 +155,12 @@ class _DictionaryComponent extends StatelessWidget {
 // 사전으로 가기위한 card
 class _CategoryCard extends StatelessWidget {
   final String imagePath;
+  final String description;
   final MeatType meatType;
 
   const _CategoryCard({
     required this.imagePath,
+    required this.description,
     required this.meatType,
   });
 
@@ -126,41 +175,41 @@ class _CategoryCard extends StatelessWidget {
         );
       },
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 20.0),
+        height: 120.0,
+        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10.0),
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.15),
-              blurRadius: 7.2,
-              spreadRadius: 0.0,
-              offset: const Offset(0, 0),
+          borderRadius: BorderRadius.circular(8.0),
+          image: DecorationImage(
+            image: AssetImage(imagePath),
+            fit: BoxFit.fill,
+            colorFilter: ColorFilter.mode(
+              Colors.black.withOpacity(0.4),
+              BlendMode.darken,
             ),
-          ],
+          ),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // 이미지
-            Container(
-              padding: const EdgeInsets.all(16.0),
-              decoration: BoxDecoration(
-                color: const Color(0xFFF4F6FA),
-                borderRadius: BorderRadius.circular(100.0),
-              ),
-              child: Image.asset(
-                imagePath,
+            Text(
+              description,
+              style: const TextStyle(
+                fontFamily: 'Pretendard',
+                fontSize: 12,
+                fontWeight: FontWeight.w500,
+                color: Colors.white,
               ),
             ),
-            const SizedBox(height: 13.0),
+            const SizedBox(height: 15.0),
             // 고기 라벨
             Text(
               meatType.label,
               style: const TextStyle(
                 fontFamily: 'Pretendard',
-                fontSize: 17,
+                fontSize: 18,
                 fontWeight: FontWeight.w700,
+                color: Colors.white,
               ),
             ),
           ],
@@ -170,75 +219,49 @@ class _CategoryCard extends StatelessWidget {
   }
 }
 
-// 즐겨찾기 바로가기
-class _FavoritesComponent extends StatelessWidget {
-  const _FavoritesComponent();
+// 취향 저격 부위 찾기 버튼
+class _ChooseOwnMeat extends StatelessWidget {
+  const _ChooseOwnMeat();
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        context.pushNamed(FavoritesScreen.routeName);
-      },
+      onTap: () {},
       child: Container(
-        width: double.infinity,
-        height: 90,
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 19),
+        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 13.0),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10.0),
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.15),
-              blurRadius: 7.2,
-              spreadRadius: 0.0,
-              offset: const Offset(0, 0),
-            ),
-          ],
+          color: PRIMARY_COLOR,
+          borderRadius: BorderRadius.circular(8.0),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            // Text 설명
             const Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  '즐겨찾기 바로가기',
+                  '원하는 부위를 못 고르겠다면',
                   style: TextStyle(
-                    color: BLACK_COLOR,
-                    fontFamily: 'Pretendard',
-                    fontSize: 17,
-                    fontWeight: FontWeight.w700,
+                    fontSize: 12.0,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.white,
                   ),
                 ),
-                SizedBox(height: 5.0),
                 Text(
-                  '자주 찾는 고기는 여기서 볼 수 있어요.',
+                  '취향 저격 부위 찾기',
                   style: TextStyle(
-                    color: GREY_70_COLOR,
-                    fontFamily: 'Pretendard',
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400,
+                    fontSize: 17.0,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
                   ),
-                ),
+                )
               ],
             ),
-            // 즐겨찾기 아이콘
-            Container(
-              width: 50.0,
-              height: 50.0,
-              decoration: const BoxDecoration(
-                color: BLUE_COLOR,
-                shape: BoxShape.circle,
-              ),
-              child: const Center(
-                child: Icon(
-                  PhosphorIconsFill.star,
-                  color: Colors.white,
-                  size: 30.0,
-                ),
-              ),
+            Icon(
+              PhosphorIcons.caretRight(),
+              color: Colors.white,
+              size: 25.0,
             )
           ],
         ),

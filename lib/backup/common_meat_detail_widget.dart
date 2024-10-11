@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:meat_dictionary/common/const/colors.dart';
 import 'package:meat_dictionary/common/const/text_style.dart';
 import 'package:meat_dictionary/common/layout/default_layout.dart';
-import 'package:meat_dictionary/meat/backup/meat_profile.dart';
+import 'package:meat_dictionary/backup/meat_profile.dart';
 import 'package:meat_dictionary/meat/component/two_menu.dart';
 import 'package:meat_dictionary/meat/const/dummy_data.dart';
 import 'package:meat_dictionary/meat/model/meat_model.dart';
