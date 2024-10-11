@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meat_dictionary/common/const/colors.dart';
 
-// 가로 이미지들
 class HorizontalImages extends StatelessWidget {
   const HorizontalImages({
     super.key,
@@ -18,17 +17,15 @@ class HorizontalImages extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 168,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: imagePaths.length,
-        itemBuilder: (context, index) {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: List.generate(imagePaths.length, (index) {
           return Padding(
             padding: EdgeInsets.only(right: index == 0 ? 16 : 0, left: 16.0),
             child: SizedBox(
-              height: 180,
-              width: 180,
+              width: 180.0,
               child: GestureDetector(
                 onTap: () {
                   // 확대 했을 때
@@ -67,9 +64,10 @@ class HorizontalImages extends StatelessWidget {
                     const SizedBox(height: 4.0),
                     // 제목
                     RichText(
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                       text: TextSpan(
                         children: [
-                          // 강조 단어 이전 텍스트
                           TextSpan(
                             text:
                                 '✔️ ${titles[index].split(highlights[index])[0]}',
@@ -79,7 +77,6 @@ class HorizontalImages extends StatelessWidget {
                               fontWeight: FontWeight.w700,
                             ),
                           ),
-                          // 강조할 단어
                           TextSpan(
                             text: highlights[index],
                             style: const TextStyle(
@@ -88,7 +85,6 @@ class HorizontalImages extends StatelessWidget {
                               fontWeight: FontWeight.w700,
                             ),
                           ),
-                          // 강조 단어 이후 텍스트
                           TextSpan(
                             text: titles[index].split(highlights[index]).last,
                             style: const TextStyle(
@@ -104,6 +100,7 @@ class HorizontalImages extends StatelessWidget {
                     // 부가 설명
                     Text(
                       '  ${descriptions[index]}',
+                      maxLines: 2,
                       style: const TextStyle(
                         color: Colors.black,
                         fontSize: 12.0,
@@ -115,7 +112,7 @@ class HorizontalImages extends StatelessWidget {
               ),
             ),
           );
-        },
+        }),
       ),
     );
   }

@@ -14,6 +14,7 @@ class IntroductionComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
           width: 24,
@@ -33,7 +34,7 @@ class IntroductionComponent extends StatelessWidget {
           ),
         ),
         const SizedBox(width: 8.0),
-        text
+        Expanded(child: text)
       ],
     );
   }
