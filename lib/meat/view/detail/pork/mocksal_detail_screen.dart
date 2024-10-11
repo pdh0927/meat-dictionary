@@ -60,6 +60,7 @@ class _TopContents extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        // 바로가기 메뉴
         DetailMenuBar(
           names: ['1', '2', '3', '4'],
           offsets: [500, 1000, 1500, 2000],
@@ -199,48 +200,73 @@ class _Tips extends StatelessWidget {
             child: Column(
               children: [
                 // 내용 1
-                Text.rich(
-                  TextSpan(
-                    children: [
-                      TextSpan(
-                        text: '💡',
-                        style: detailBoldContentStyle.copyWith(
-                          fontSize: 20,
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      '💡 ',
+                      style: detailBoldContentStyle.copyWith(fontSize: 20),
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 4),
+                        child: Text.rich(
+                          TextSpan(
+                            children: [
+                              TextSpan(
+                                  text: '삼겹살보다 ',
+                                  style: detailThinContentStyle),
+                              TextSpan(
+                                text: '담백한 구이',
+                                style: detailBoldContentStyle.copyWith(
+                                  backgroundColor:
+                                      PRIMARY_COLOR.withOpacity(0.6),
+                                ),
+                              ),
+                              TextSpan(
+                                  text: '를 선호한다면 추천해요.',
+                                  style: detailThinContentStyle),
+                            ],
+                          ),
                         ),
                       ),
-                      TextSpan(text: '삼겹살보다 ', style: detailThinContentStyle),
-                      TextSpan(
-                        text: '담백한 구이',
-                        style: detailBoldContentStyle.copyWith(
-                          backgroundColor: PRIMARY_COLOR.withOpacity(0.6),
-                        ),
-                      ),
-                      TextSpan(
-                          text: '를 선호한다면 추천해요.', style: detailThinContentStyle),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
                 const SizedBox(height: 13.0),
                 // 내용 2
-                Text.rich(
-                  TextSpan(
-                    children: [
-                      TextSpan(
-                        text: '🥩',
-                        style: detailBoldContentStyle.copyWith(fontSize: 20),
-                      ),
-                      TextSpan(
-                        text: '지방과 살코기',
-                        style: detailBoldContentStyle.copyWith(
-                          backgroundColor: PRIMARY_COLOR.withOpacity(0.6),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      '🥩 ',
+                      style: detailBoldContentStyle.copyWith(fontSize: 20),
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 4),
+                        child: Text.rich(
+                          TextSpan(
+                            children: [
+                              TextSpan(
+                                text: '지방과 살코기',
+                                style: detailBoldContentStyle.copyWith(
+                                  backgroundColor:
+                                      PRIMARY_COLOR.withOpacity(0.6),
+                                ),
+                              ),
+                              TextSpan(
+                                text: '를 분리해서 구우면 더 맛있어요.',
+                                style: detailThinContentStyle,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                      TextSpan(
-                        text: '를 분리해서 구우면 더 맛있어요.',
-                        style: detailThinContentStyle,
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ],
             ),

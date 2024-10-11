@@ -30,7 +30,7 @@ List<MeatModel> porkList = [
     name: '삼겹살',
     type: MeatType.pork,
     usage: [Usage.grilling], // '구이' -> Usage.grilling
-    description: '잘 고르기 도전해보자!',
+    description: '대한민국을 대표 고기',
     texture: MeatTexture.normal,
     savoryFlavor: SavoryFlavor.slightlyMild,
     meatAroma: MeatAroma.weak,
