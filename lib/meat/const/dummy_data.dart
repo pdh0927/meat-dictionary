@@ -39,7 +39,7 @@ List<MeatModel> porkList = [
   ),
   MeatModel(
     id: 4,
-    name: '안심',
+    name: '항정살',
     type: MeatType.pork,
     usage: [Usage.cutlet], // '돈가스' -> Usage.cutlet
     description: '부드럽고 담백한',
