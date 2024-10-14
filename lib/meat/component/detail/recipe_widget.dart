@@ -30,7 +30,7 @@ class RecipeWidgetFrame extends StatelessWidget {
             TextSpan(
               children: [
                 TextSpan(
-                  text: '추천',
+                  text: '추천 ',
                   style: detailThinContentStyle,
                 ),
                 TextSpan(

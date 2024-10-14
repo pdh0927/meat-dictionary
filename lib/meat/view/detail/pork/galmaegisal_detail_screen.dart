@@ -8,11 +8,11 @@ import 'package:meat_dictionary/meat/component/detail/introduction_component.dar
 import 'package:meat_dictionary/meat/component/detail/recipe_widget.dart';
 import 'package:meat_dictionary/meat/model/meat_model.dart';
 
-// 목살 디테일
-class MocksalDetailScreen extends StatefulWidget {
-  static String get routeName => 'mocksal_detail';
+// 갈매기살 디테일
+class GalmaegisalDetailScreen extends StatefulWidget {
+  static String get routeName => 'galmaegisal_detail';
 
-  const MocksalDetailScreen({
+  const GalmaegisalDetailScreen({
     super.key,
     required this.meatModel,
   });
@@ -20,10 +20,11 @@ class MocksalDetailScreen extends StatefulWidget {
   final MeatModel meatModel;
 
   @override
-  State<MocksalDetailScreen> createState() => _MocksalDetailScreenState();
+  State<GalmaegisalDetailScreen> createState() =>
+      _GalmaegisalDetailScreenState();
 }
 
-class _MocksalDetailScreenState extends State<MocksalDetailScreen> {
+class _GalmaegisalDetailScreenState extends State<GalmaegisalDetailScreen> {
   final ScrollController _scrollController = ScrollController();
 
   @override
@@ -113,14 +114,25 @@ class _Introductions extends StatelessWidget {
           const SizedBox(height: 16.0),
           IntroductionComponent(
             num: 1,
-            text:
-                Text('목살은 머리와 등심 사이, 목의 살이에요.', style: detailThinContentStyle),
+            text: Text.rich(
+              TextSpan(
+                children: [
+                  TextSpan(
+                    text: '갈매기의 살',
+                    style: detailBoldContentStyle,
+                  ),
+                  TextSpan(
+                    text: '이 아니예요.',
+                    style: detailThinContentStyle,
+                  ),
+                ],
+              ),
+            ),
           ),
           const SizedBox(height: 16.0),
           IntroductionComponent(
             num: 2,
-            text:
-                Text('삼겹살 다음으로 인기있는 구이용 부위에요.', style: detailThinContentStyle),
+            text: Text('삼겹살 위에 있는 부위예요.', style: detailThinContentStyle),
           ),
           const SizedBox(height: 16.0),
           IntroductionComponent(
@@ -128,12 +140,18 @@ class _Introductions extends StatelessWidget {
             text: Text.rich(
               TextSpan(
                 children: [
-                  TextSpan(text: '지방과 살코기', style: detailThinContentStyle),
                   TextSpan(
-                    text: '비율이 조화',
+                    text: '한 마리당 300~400g만 나오는 ',
+                    style: detailThinContentStyle,
+                  ),
+                  TextSpan(
+                    text: '특수부위',
                     style: detailBoldContentStyle,
                   ),
-                  TextSpan(text: '로운 부위에요.', style: detailThinContentStyle),
+                  TextSpan(
+                    text: '예요.',
+                    style: detailThinContentStyle,
+                  ),
                 ],
               ),
             ),
@@ -141,7 +159,24 @@ class _Introductions extends StatelessWidget {
           const SizedBox(height: 16.0),
           IntroductionComponent(
             num: 4,
-            text: Text('목심, 목등심 등으로도 불려요.', style: detailThinContentStyle),
+            text: Text.rich(
+              TextSpan(
+                children: [
+                  TextSpan(
+                    text: '내장에 가까이 있어서 ',
+                    style: detailThinContentStyle,
+                  ),
+                  TextSpan(
+                    text: '육향',
+                    style: detailBoldContentStyle,
+                  ),
+                  TextSpan(
+                    text: '이 강해요!',
+                    style: detailThinContentStyle,
+                  ),
+                ],
+              ),
+            ),
           ),
           const SizedBox(height: 16.0),
           IntroductionComponent(
@@ -150,11 +185,15 @@ class _Introductions extends StatelessWidget {
               TextSpan(
                 children: [
                   TextSpan(
-                    text: '고르는 방법',
+                    text: '내장에 가까이 있어서 구입 후 ',
+                    style: detailThinContentStyle,
+                  ),
+                  TextSpan(
+                    text: '빨리 ',
                     style: detailBoldContentStyle,
                   ),
                   TextSpan(
-                    text: '에 따라서 고기 맛의 차이가 커요.',
+                    text: '먹어야 해요.',
                     style: detailThinContentStyle,
                   ),
                 ],
@@ -215,17 +254,17 @@ class _Tips extends StatelessWidget {
                           TextSpan(
                             children: [
                               TextSpan(
-                                  text: '삼겹살보다 ',
+                                  text: '육향이 강한 ',
                                   style: detailThinContentStyle),
                               TextSpan(
-                                text: '담백한 구이',
+                                text: '돼지의 참맛',
                                 style: detailBoldContentStyle.copyWith(
                                   backgroundColor:
                                       PRIMARY_COLOR.withOpacity(0.6),
                                 ),
                               ),
                               TextSpan(
-                                  text: '를 선호한다면 추천해요.',
+                                  text: '을 느끼고 싶은분께 추천해요.',
                                   style: detailThinContentStyle),
                             ],
                           ),
@@ -251,14 +290,7 @@ class _Tips extends StatelessWidget {
                           TextSpan(
                             children: [
                               TextSpan(
-                                text: '지방과 살코기',
-                                style: detailBoldContentStyle.copyWith(
-                                  backgroundColor:
-                                      PRIMARY_COLOR.withOpacity(0.6),
-                                ),
-                              ),
-                              TextSpan(
-                                text: '를 분리해서 구우면 더 맛있어요.',
+                                text: '바싹 익히면 육즙이 다 사라져서 퍽퍽해요.',
                                 style: detailThinContentStyle,
                               ),
                             ],
@@ -285,23 +317,23 @@ class _BottomContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Column(
       children: [
-        // 맛있는 목살 고르는법
-        _MocksalChoosingTips(),
+        // 맛있는 갈매기살 고르는법
+        _GalmaegisalChoosingTips(),
         Divider(
           height: 48.0,
           thickness: 1.0,
           color: Color(0xFFD8D8D8),
         ),
-        // 목살 추천 레시피
-        MocksalRecipe(),
+        // 갈매기살 추천 레시피
+        GalmaegisalRecipe(),
       ],
     );
   }
 }
 
-// 맛있는 목살 고르는법
-class _MocksalChoosingTips extends StatelessWidget {
-  const _MocksalChoosingTips();
+// 맛있는 갈매기살 고르는법
+class _GalmaegisalChoosingTips extends StatelessWidget {
+  const _GalmaegisalChoosingTips();
 
   final List<String> imagePaths = const [
     'assets/imgs/pork/fresh_choosing/1.png',
@@ -310,17 +342,17 @@ class _MocksalChoosingTips extends StatelessWidget {
   ];
 
   final List<String> titles = const [
-    '고기가 섬을 이루는 것',
-    '한쪽 살코기가 크지 않은 것',
-    '지방이 희고 단단한 것'
+    '짙은 붉은색을 띄는 것',
+    '꿉꿉한 냄새가 나지 않는 것',
+    '적당한 지방이 있는 것'
   ];
 
-  final List<String> highlights = const ['섬', '살코기', '희고 단단'];
+  final List<String> highlights = const ['짙은 붉은색', '꿉꿉한 냄새', '적당한 지방'];
 
   final List<String> descriptions = const [
-    '섬이 많을수록 부드러워요.',
-    '살코기가 커지면 퍽퍽해요.',
-    '지방이 누런건 오래된 고기예요.'
+    '너무 옅은색이나 갈색은 피해주세요.',
+    '부패 상태를 확인할 수 있어요.',
+    '한층 더 부드럽게 느껴져요.'
   ];
 
   @override
@@ -359,9 +391,9 @@ class _MocksalChoosingTips extends StatelessWidget {
   }
 }
 
-// 목살 추천 레시피
-class MocksalRecipe extends StatelessWidget {
-  const MocksalRecipe({super.key});
+// 갈매기살 추천 레시피
+class GalmaegisalRecipe extends StatelessWidget {
+  const GalmaegisalRecipe({super.key});
 
   final List<String> imageUrls = const [
     'assets/imgs/pork/mocksal/recipe/1.png',

@@ -39,7 +39,7 @@ List<MeatModel> porkList = [
   ),
   MeatModel(
     id: 4,
-    name: '안심',
+    name: '항정살',
     type: MeatType.pork,
     usage: [Usage.cutlet], // '돈가스' -> Usage.cutlet
     description: '부드럽고 담백한',
@@ -72,7 +72,7 @@ List<MeatModel> porkList = [
       Usage.cutlet,
       Usage.sweetAndSourPork
     ], // '돈가스', '탕수육' -> Usage.cutlet, Usage.sweetAndSourPork
-    description: '이건 구이로 먹지 마세요!',
+    description: '잘 고르면 삼겹살 뺨치는 부위',
     texture: MeatTexture.slightlyChewy,
     savoryFlavor: SavoryFlavor.normal,
     meatAroma: MeatAroma.weak,
