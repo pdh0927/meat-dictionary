@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:meat_dictionary/common/view/root_tab.dart';
 import 'package:meat_dictionary/common/view/splash_screen.dart';
 import 'package:meat_dictionary/meat/model/meat_model.dart';
+import 'package:meat_dictionary/meat/view/detail/pork/apdalisal_detail_screen.dart';
 import 'package:meat_dictionary/meat/view/detail/pork/galmaegisal_detail_screen.dart';
 import 'package:meat_dictionary/meat/view/detail/pork/hangjeongsal_detail_screen.dart';
 import 'package:meat_dictionary/meat/view/detail/pork/mocksal_detail_screen.dart';
@@ -93,6 +94,18 @@ class AuthProvider extends ChangeNotifier {
             final meatModel = extra['meatModel'] as MeatModel;
 
             return HangjeongsalDetailScreen(meatModel: meatModel);
+          },
+        ),
+        GoRoute(
+          path: '/apdalisal_detail',
+          name: ApdalisalDetailScreen.routeName,
+          builder: (context, state) {
+            final Map<String, dynamic> extra =
+                state.extra as Map<String, dynamic>;
+
+            final meatModel = extra['meatModel'] as MeatModel;
+
+            return ApdalisalDetailScreen(meatModel: meatModel);
           },
         ),
         GoRoute(

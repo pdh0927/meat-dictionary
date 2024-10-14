@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:meat_dictionary/common/const/colors.dart';
 import 'package:meat_dictionary/common/layout/default_layout.dart';
+import 'package:meat_dictionary/common/view/custom_search_screen.dart';
 import 'package:meat_dictionary/meat/component/custom_search_bar.dart';
 import 'package:meat_dictionary/meat/component/meat_list.dart';
 import 'package:meat_dictionary/meat/model/meat_model.dart';
@@ -57,7 +58,14 @@ class _MeatListScreenState extends State<MeatListScreen> {
       ),
       actions: [
         InkWell(
-          onTap: () {},
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const CustomSearchScreen(),
+              ),
+            );
+          },
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
             child: Icon(PhosphorIcons.magnifyingGlass()),
