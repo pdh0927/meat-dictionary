@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 
-TextStyle screenTitleStyle = const TextStyle(
+TextStyle detailBoldSmallTitleStyle = const TextStyle(
   fontFamily: "Pretend",
   fontSize: 16,
   fontWeight: FontWeight.w700,
+);
+
+TextStyle detailThinSmallTitleStyle = const TextStyle(
+  fontFamily: "Pretend",
+  fontSize: 16,
+  fontWeight: FontWeight.w400,
 );
 
 TextStyle detailTitleStyle = const TextStyle(
@@ -14,12 +20,12 @@ TextStyle detailTitleStyle = const TextStyle(
 
 TextStyle detailBoldContentStyle = const TextStyle(
   fontFamily: "Pretend",
-  fontSize: 16,
+  fontSize: 15,
   fontWeight: FontWeight.w700,
 );
 
 TextStyle detailThinContentStyle = const TextStyle(
   fontFamily: "Pretend",
-  fontSize: 16,
+  fontSize: 15,
   fontWeight: FontWeight.w400,
 );

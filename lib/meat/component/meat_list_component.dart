@@ -55,8 +55,8 @@ class MeatListComponent extends ConsumerWidget {
                     },
                     child: Icon(
                       isSelected
-                          ? PhosphorIconsFill.star
-                          : PhosphorIcons.star(),
+                          ? PhosphorIconsFill.heart
+                          : PhosphorIcons.heart(),
                       color: isSelected ? const Color(0XFFFF0000) : GREY_COLOR,
                       size: 20.0,
                     ),

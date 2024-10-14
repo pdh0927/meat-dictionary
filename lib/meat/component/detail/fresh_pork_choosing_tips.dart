@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:meat_dictionary/common/const/text_style.dart';
 import 'package:meat_dictionary/meat/component/detail/horizozntal_images.dart';
+import 'package:meat_dictionary/meat/component/detail/small_title_components.dart';
 
 class FreshPorkChoosingTips extends StatelessWidget {
   const FreshPorkChoosingTips({super.key});
@@ -36,20 +36,9 @@ class FreshPorkChoosingTips extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // 제목
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Text.rich(
-              TextSpan(
-                children: [
-                  TextSpan(text: '신선한 고기 ', style: detailBoldContentStyle),
-                  TextSpan(
-                    text: '고르는법',
-                    style: detailThinContentStyle,
-                  ),
-                ],
-              ),
-            ),
-          ),
+          const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              child: ChoosingFreshMeat()),
           const SizedBox(height: 16.0),
           HorizontalImages(
             imagePaths: imagePaths,

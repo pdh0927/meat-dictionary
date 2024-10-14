@@ -6,6 +6,7 @@ import 'package:meat_dictionary/common/const/text_style.dart';
 import 'package:meat_dictionary/common/layout/default_layout.dart';
 import 'package:meat_dictionary/meat/component/detail/fresh_pork_choosing_tips.dart';
 import 'package:meat_dictionary/meat/component/detail/meat_profile.dart';
+import 'package:meat_dictionary/meat/component/detail/small_title_components.dart';
 import 'package:meat_dictionary/meat/const/dummy_data.dart';
 import 'package:meat_dictionary/meat/model/meat_model.dart';
 import 'package:meat_dictionary/meat/provider/favorites_provider.dart';
@@ -86,6 +87,7 @@ class _CommonMeatDetailFrameState extends ConsumerState<CommonMeatDetailFrame> {
                       widget.meatModel.type,
                       widget.meatModel.id,
                     );
+                setState(() {});
               },
               child: Padding(
                 padding: const EdgeInsets.symmetric(
@@ -93,7 +95,7 @@ class _CommonMeatDetailFrameState extends ConsumerState<CommonMeatDetailFrame> {
                   vertical: 8.0,
                 ),
                 child: Icon(
-                  isSelected ? PhosphorIconsFill.star : PhosphorIcons.star(),
+                  isSelected ? PhosphorIconsFill.heart : PhosphorIcons.heart(),
                   color: isSelected ? const Color(0XFFFF0000) : BLACK_COLOR,
                   size: 24.0,
                 ),
@@ -177,17 +179,7 @@ class _MeatAttributes extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text.rich(
-          TextSpan(
-            children: [
-              TextSpan(
-                text: '풍미 ',
-                style: detailBoldContentStyle,
-              ),
-              TextSpan(text: '그래프', style: detailThinContentStyle),
-            ],
-          ),
-        ),
+        const AttributesGraph(),
         const SizedBox(height: 17),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -301,7 +293,7 @@ class _Recommend extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: Text('추천', style: detailTitleStyle),
+          child: Text('추천', style: detailBoldSmallTitleStyle),
         ),
         const SizedBox(height: 8.0),
         SizedBox(
