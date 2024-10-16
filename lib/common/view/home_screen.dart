@@ -1,10 +1,14 @@
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:meat_dictionary/card_news/provider/card_news_provider.dart';
 import 'package:meat_dictionary/common/const/colors.dart';
 import 'package:meat_dictionary/common/layout/default_layout.dart';
 import 'package:meat_dictionary/meat/model/meat_model.dart';
 import 'package:meat_dictionary/meat/view/meat_list_screen.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 // 홈 화면
@@ -14,23 +18,14 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const DefaultLayout(
-      backgroundColor: const Color(0xFFF4F6FA),
+      backgroundColor: Color(0xFFF4F6FA),
       child: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // 카드뉴스 위젯
-              ImageCarousel(
-                imageUrls: [
-                  'assets/imgs/beef/안심.png',
-                  'assets/imgs/beef/안심.png',
-                  'assets/imgs/beef/안심.png',
-                  'assets/imgs/beef/안심.png',
-                  'assets/imgs/beef/안심.png',
-                  'assets/imgs/beef/안심.png',
-                ],
-              ),
+              ImageCarousel(),
               SizedBox(height: 24.0),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.0),
@@ -53,16 +48,14 @@ class HomeScreen extends StatelessWidget {
 }
 
 // 카드뉴스 위젯
-class ImageCarousel extends StatefulWidget {
-  final List<String> imageUrls;
-
-  const ImageCarousel({super.key, required this.imageUrls});
+class ImageCarousel extends ConsumerStatefulWidget {
+  const ImageCarousel({super.key});
 
   @override
-  State createState() => _ImageCarouselState();
+  ConsumerState createState() => _ImageCarouselState();
 }
 
-class _ImageCarouselState extends State<ImageCarousel> {
+class _ImageCarouselState extends ConsumerState<ImageCarousel> {
   final PageController _pageController = PageController();
 
   @override
@@ -73,38 +66,83 @@ class _ImageCarouselState extends State<ImageCarousel> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.bottomCenter,
-      children: [
-        AspectRatio(
-          aspectRatio: 1 / 0.9,
-          child: PageView.builder(
-            controller: _pageController,
-            itemCount: widget.imageUrls.length,
-            itemBuilder: (context, index) {
-              return Image.asset(
-                widget.imageUrls[index],
-                fit: BoxFit.cover,
-                width: double.infinity,
-              );
-            },
-          ),
+    final randomCardNews = ref.watch(randomCardNewsProvider);
+
+    if (randomCardNews == null) {
+      // 로딩 중 Shimmer 효과
+      return Shimmer.fromColors(
+        baseColor: Colors.grey[300]!,
+        highlightColor: Colors.grey[100]!,
+        child: Container(
+          height: 300,
+          color: Colors.white,
+          margin: const EdgeInsets.symmetric(horizontal: 16.0),
         ),
-        Positioned(
-          bottom: 16.0,
-          child: SmoothPageIndicator(
-            controller: _pageController,
-            count: widget.imageUrls.length,
-            effect: const WormEffect(
-              dotWidth: 8.0,
-              dotHeight: 8.0,
-              activeDotColor: PRIMARY_COLOR,
-              dotColor: Colors.white,
+      );
+    }
+
+    return FutureBuilder<List<String>>(
+      future: _getDownloadUrls(randomCardNews.urls),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        }
+
+        if (snapshot.hasError || !snapshot.hasData) {
+          return const Center(child: Text('이미지를 불러올 수 없습니다.'));
+        }
+
+        final urls = snapshot.data!;
+
+        return Stack(
+          alignment: Alignment.bottomCenter,
+          children: [
+            AspectRatio(
+              aspectRatio: 1 / 0.9,
+              child: PageView.builder(
+                controller: _pageController,
+                itemCount: urls.length,
+                itemBuilder: (context, index) {
+                  return Image.network(
+                    urls[index],
+                    fit: BoxFit.fill,
+                    width: double.infinity,
+                  );
+                },
+              ),
             ),
-          ),
-        ),
-      ],
+            Positioned(
+              bottom: 16.0,
+              child: SmoothPageIndicator(
+                controller: _pageController,
+                count: urls.length,
+                effect: const WormEffect(
+                  dotWidth: 8.0,
+                  dotHeight: 8.0,
+                  activeDotColor: PRIMARY_COLOR,
+                  dotColor: Colors.white,
+                ),
+              ),
+            ),
+          ],
+        );
+      },
     );
+  }
+
+  // gs:// 경로를 다운로드 URL로 변환하는 함수
+  Future<List<String>> _getDownloadUrls(List<String> gsUrls) async {
+    final List<String> downloadUrls = [];
+    for (var gsUrl in gsUrls) {
+      try {
+        final downloadUrl =
+            await FirebaseStorage.instance.refFromURL(gsUrl).getDownloadURL();
+        downloadUrls.add(downloadUrl);
+      } catch (e) {
+        print('Error fetching URL: $e');
+      }
+    }
+    return downloadUrls;
   }
 }
 
