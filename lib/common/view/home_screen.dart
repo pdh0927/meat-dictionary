@@ -70,22 +70,14 @@ class _ImageCarouselState extends ConsumerState<ImageCarousel> {
 
     if (randomCardNews == null) {
       // 로딩 중 Shimmer 효과
-      return Shimmer.fromColors(
-        baseColor: Colors.grey[300]!,
-        highlightColor: Colors.grey[100]!,
-        child: Container(
-          height: 300,
-          color: Colors.white,
-          margin: const EdgeInsets.symmetric(horizontal: 16.0),
-        ),
-      );
+      return getShimmer();
     }
 
     return FutureBuilder<List<String>>(
       future: _getDownloadUrls(randomCardNews.urls),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(child: CircularProgressIndicator());
+          return getShimmer();
         }
 
         if (snapshot.hasError || !snapshot.hasData) {
@@ -130,19 +122,35 @@ class _ImageCarouselState extends ConsumerState<ImageCarousel> {
     );
   }
 
-  // gs:// 경로를 다운로드 URL로 변환하는 함수
+  // gs:// 경로를 다운로드 URL로 병렬로 변환하는 함수
   Future<List<String>> _getDownloadUrls(List<String> gsUrls) async {
-    final List<String> downloadUrls = [];
-    for (var gsUrl in gsUrls) {
-      try {
-        final downloadUrl =
-            await FirebaseStorage.instance.refFromURL(gsUrl).getDownloadURL();
-        downloadUrls.add(downloadUrl);
-      } catch (e) {
-        print('Error fetching URL: $e');
-      }
+    try {
+      // 각 gs:// URL을 비동기적으로 병렬 요청
+      final downloadUrls = await Future.wait(
+        gsUrls.map((gsUrl) async {
+          return await FirebaseStorage.instance
+              .refFromURL(gsUrl)
+              .getDownloadURL();
+        }),
+      );
+
+      return downloadUrls;
+    } catch (e) {
+      print('Error fetching URLs: $e');
+      return [];
     }
-    return downloadUrls;
+  }
+
+  Widget getShimmer() {
+    return Shimmer.fromColors(
+      baseColor: Colors.grey[300]!,
+      highlightColor: Colors.grey[100]!,
+      child: Container(
+        height: 300,
+        color: Colors.white,
+        margin: const EdgeInsets.symmetric(horizontal: 16.0),
+      ),
+    );
   }
 }
 
