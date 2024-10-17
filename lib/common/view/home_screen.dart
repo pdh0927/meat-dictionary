@@ -1,4 +1,3 @@
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -31,7 +30,7 @@ class HomeScreen extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 16.0),
                 child: Column(
                   children: [
-                    // 사전 바로가기 widget
+                    // 사전 바로가기 위젯
                     _DictionaryComponent(),
                     SizedBox(height: 16.0),
                     // 취향 저격 부위 찾기 버튼
@@ -70,78 +69,46 @@ class _ImageCarouselState extends ConsumerState<ImageCarousel> {
 
     if (randomCardNews == null) {
       // 로딩 중 Shimmer 효과
-      return getShimmer();
+      return _buildShimmer();
     }
 
-    return FutureBuilder<List<String>>(
-      future: _getDownloadUrls(randomCardNews.urls),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return getShimmer();
-        }
+    final urls = randomCardNews.urls;
 
-        if (snapshot.hasError || !snapshot.hasData) {
-          return const Center(child: Text('이미지를 불러올 수 없습니다.'));
-        }
-
-        final urls = snapshot.data!;
-
-        return Stack(
-          alignment: Alignment.bottomCenter,
-          children: [
-            AspectRatio(
-              aspectRatio: 1 / 0.9,
-              child: PageView.builder(
-                controller: _pageController,
-                itemCount: urls.length,
-                itemBuilder: (context, index) {
-                  return Image.network(
-                    urls[index],
-                    fit: BoxFit.fill,
-                    width: double.infinity,
-                  );
-                },
-              ),
+    return Stack(
+      alignment: Alignment.bottomCenter,
+      children: [
+        AspectRatio(
+          aspectRatio: 1 / 0.9,
+          child: PageView.builder(
+            controller: _pageController,
+            itemCount: urls.length,
+            itemBuilder: (context, index) {
+              return Image.network(
+                urls[index],
+                fit: BoxFit.fill,
+                width: double.infinity,
+              );
+            },
+          ),
+        ),
+        Positioned(
+          bottom: 16.0,
+          child: SmoothPageIndicator(
+            controller: _pageController,
+            count: urls.length,
+            effect: const WormEffect(
+              dotWidth: 8.0,
+              dotHeight: 8.0,
+              activeDotColor: PRIMARY_COLOR,
+              dotColor: Colors.white,
             ),
-            Positioned(
-              bottom: 16.0,
-              child: SmoothPageIndicator(
-                controller: _pageController,
-                count: urls.length,
-                effect: const WormEffect(
-                  dotWidth: 8.0,
-                  dotHeight: 8.0,
-                  activeDotColor: PRIMARY_COLOR,
-                  dotColor: Colors.white,
-                ),
-              ),
-            ),
-          ],
-        );
-      },
+          ),
+        ),
+      ],
     );
   }
 
-  // gs:// 경로를 다운로드 URL로 병렬로 변환하는 함수
-  Future<List<String>> _getDownloadUrls(List<String> gsUrls) async {
-    try {
-      // 각 gs:// URL을 비동기적으로 병렬 요청
-      final downloadUrls = await Future.wait(
-        gsUrls.map((gsUrl) async {
-          return await FirebaseStorage.instance
-              .refFromURL(gsUrl)
-              .getDownloadURL();
-        }),
-      );
-
-      return downloadUrls;
-    } catch (e) {
-      print('Error fetching URLs: $e');
-      return [];
-    }
-  }
-
-  Widget getShimmer() {
+  Widget _buildShimmer() {
     return Shimmer.fromColors(
       baseColor: Colors.grey[300]!,
       highlightColor: Colors.grey[100]!,
@@ -154,7 +121,7 @@ class _ImageCarouselState extends ConsumerState<ImageCarousel> {
   }
 }
 
-// 사전 바로가기 widget
+// 사전 바로가기 위젯
 class _DictionaryComponent extends StatelessWidget {
   const _DictionaryComponent();
 
@@ -192,13 +159,13 @@ class _DictionaryComponent extends StatelessWidget {
               ),
             ),
           ],
-        )
+        ),
       ],
     );
   }
 }
 
-// 사전으로 가기위한 card
+// 사전으로 가는 카드 위젯
 class _CategoryCard extends StatelessWidget {
   final String imagePath;
   final String description;
@@ -283,7 +250,6 @@ class _ChooseOwnMeat extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             const Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
@@ -301,14 +267,14 @@ class _ChooseOwnMeat extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                     color: Colors.white,
                   ),
-                )
+                ),
               ],
             ),
             Icon(
               PhosphorIcons.caretRight(),
               color: Colors.white,
               size: 25.0,
-            )
+            ),
           ],
         ),
       ),
