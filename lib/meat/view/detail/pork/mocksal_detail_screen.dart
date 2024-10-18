@@ -1,3 +1,4 @@
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:meat_dictionary/common/const/colors.dart';
 import 'package:meat_dictionary/common/const/text_style.dart';
@@ -278,15 +279,29 @@ class _BottomContent extends StatelessWidget {
 }
 
 // 맛있는 목살 고르는법
-class _MocksalChoosingTips extends StatelessWidget {
+class _MocksalChoosingTips extends StatefulWidget {
   const _MocksalChoosingTips();
 
-  final List<String> imagePaths = const [
-    'assets/imgs/pork/fresh_choosing/1.png',
-    'assets/imgs/pork/fresh_choosing/2.png',
-    'assets/imgs/pork/fresh_choosing/3.png'
+  @override
+  State<_MocksalChoosingTips> createState() => _MocksalChoosingTipsState();
+}
+
+class _MocksalChoosingTipsState extends State<_MocksalChoosingTips> {
+  final List<String> gssGoodImageurls = const [
+    'gs://meat-dictionary.appspot.com/meat-detail/galmaegisal/good/1.jpg',
+    'gs://meat-dictionary.appspot.com/meat-detail/galmaegisal/good/2.jpg',
+    'gs://meat-dictionary.appspot.com/meat-detail/galmaegisal/good/2.jpg',
   ];
 
+  List<String> goodImageUrls = [];
+
+  final List<String> gsBadImageurls = const [
+    'gs://meat-dictionary.appspot.com/meat-detail/galmaegisal/good/1.jpg',
+    'gs://meat-dictionary.appspot.com/meat-detail/galmaegisal/good/2.jpg',
+    'gs://meat-dictionary.appspot.com/meat-detail/galmaegisal/good/2.jpg',
+  ];
+
+  List<String> badImageUrls = [];
   final List<String> titles = const [
     '고기가 섬을 이루는 것',
     '한쪽 살코기가 크지 않은 것',
@@ -301,6 +316,37 @@ class _MocksalChoosingTips extends StatelessWidget {
     '지방이 누런건 오래된 고기예요.'
   ];
 
+  Future<void> fetchDownloadUrls() async {
+    List<String> goodUrls = await Future.wait(
+      gssGoodImageurls.map((path) => convertGsToDownloadUrl(path)).toList(),
+    );
+
+    List<String> badUrls = await Future.wait(
+      gsBadImageurls.map((path) => convertGsToDownloadUrl(path)).toList(),
+    );
+
+    setState(() {
+      goodImageUrls = goodUrls;
+      badImageUrls = badUrls;
+    });
+  }
+
+  Future<String> convertGsToDownloadUrl(String gsPath) async {
+    try {
+      final ref = FirebaseStorage.instance.refFromURL(gsPath);
+      return await ref.getDownloadURL();
+    } catch (e) {
+      print('Error fetching download URL: $e');
+      return '';
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    fetchDownloadUrls();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -314,10 +360,19 @@ class _MocksalChoosingTips extends StatelessWidget {
               child: ChoosingYummyMeat(name: '목살')),
           const SizedBox(height: 16.0),
           HorizontalImages(
-            imagePaths: imagePaths,
             titles: titles,
             highlights: highlights,
             descriptions: descriptions,
+            goodImageUrls: goodImageUrls,
+            badImageUrls: badImageUrls,
+            goodDescriptionsList: const [
+              ['근육이 많이 갈라진 것', '하나의 근육이 아닌 것'],
+              ['흰색 근내 지방이 많은 것', '살코기가 안 많은 것'],
+            ],
+            badDescriptionsList: const [
+              ['하나의 근육이 아닌 것'],
+              ['지방이 거의 없는 것', '지방이 거의 없는 것'],
+            ],
           )
         ],
       ),
