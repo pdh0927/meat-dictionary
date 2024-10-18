@@ -5,7 +5,6 @@ import 'package:meat_dictionary/common/layout/default_layout.dart';
 import 'package:meat_dictionary/meat/component/custom_search_bar.dart';
 import 'package:meat_dictionary/meat/model/meat_model.dart';
 import 'package:meat_dictionary/meat/view/favorites_screen.dart';
-import 'package:meat_dictionary/meat/view/meat_list_screen.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 // 홈 화면
@@ -120,10 +119,10 @@ class _CategoryCard extends StatelessWidget {
     return InkWell(
       onTap: () {
         // 고기 리스트 바로가기
-        context.pushNamed(
-          MeatListScreen.routeName,
-          extra: meatType,
-        );
+        // context.pushNamed(
+        //   MeatListScreen.routeName,
+        //   extra: meatType,
+        // );
       },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 20.0),
