@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:meat_dictionary/card_news/component/slide_card_news_widget.dart';
 import 'package:meat_dictionary/card_news/provider/card_news_provider.dart';
 import 'package:meat_dictionary/common/const/colors.dart';
@@ -60,7 +59,7 @@ class HomeScreen extends ConsumerWidget {
       baseColor: Colors.grey[300]!,
       highlightColor: Colors.grey[100]!,
       child: Container(
-        height: 300,
+        height: 100.w,
         color: Colors.white,
         margin: const EdgeInsets.symmetric(horizontal: 16.0),
       ),
@@ -129,9 +128,14 @@ class _CategoryCard extends StatelessWidget {
     return InkWell(
       onTap: () {
         // 고기 리스트 바로가기
-        context.pushNamed(
-          MeatListScreen.routeName,
-          extra: meatType,
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => MeatListScreen(
+              meatType: meatType,
+              isTap: false,
+            ),
+          ),
         );
       },
       child: Container(

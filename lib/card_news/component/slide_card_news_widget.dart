@@ -1,5 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:meat_dictionary/common/const/colors.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 // 슬라이드 카드뉴스 위젯
@@ -45,16 +47,28 @@ class _SlideCardNewsWidgetState extends State<SlideCardNewsWidget> {
             controller: _pageController,
             itemCount: urls.length,
             itemBuilder: (context, index) {
-              return Image.network(
-                urls[index],
-                fit: BoxFit.fill,
-                width: double.infinity,
+              return ClipRRect(
+                borderRadius: BorderRadius.circular(8.0),
+                child: CachedNetworkImage(
+                  imageUrl: urls[index],
+                  fit: BoxFit.fill,
+                  width: double.infinity,
+                  placeholder: (context, url) => Shimmer.fromColors(
+                    baseColor: Colors.grey[300]!,
+                    highlightColor: Colors.grey[100]!,
+                    child: Container(
+                      color: Colors.grey[300],
+                    ),
+                  ),
+                  errorWidget: (context, url, error) =>
+                      const Icon(Icons.error, color: Colors.red),
+                ),
               );
             },
           ),
         ),
 
-        // 하단 페이지뷰
+        // 하단 페이지뷰 인디케이터
         Positioned(
           bottom: 16.0,
           child: SmoothPageIndicator(
@@ -69,7 +83,7 @@ class _SlideCardNewsWidgetState extends State<SlideCardNewsWidget> {
           ),
         ),
 
-        // close 버튼
+        // close 버튼 (팝업 모드일 때만 표시)
         if (widget.isPopup)
           Positioned(
             top: 5.0,

@@ -40,20 +40,25 @@ class DefaultLayout extends StatelessWidget {
       return null;
     } else {
       return AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.white, // 완전히 투명하게 설정
         elevation: 0,
         leading: leading,
         title: title != null
-            ? Text(title!,
+            ? Text(
+                title!,
                 style: const TextStyle(
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.w500,
-                ))
+                  fontSize: 17.0,
+                  color: Colors.black,
+                  fontWeight: FontWeight.w700,
+                ),
+              )
             : null,
         centerTitle: true,
         titleSpacing: 25,
         actions: actions ?? [],
-        foregroundColor: Colors.black,
+        foregroundColor: Colors.black, // 그림자 없도록 설정
+        shadowColor: Colors.transparent,
+        surfaceTintColor: Colors.transparent,
       );
     }
   }
