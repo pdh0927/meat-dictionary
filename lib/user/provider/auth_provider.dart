@@ -12,7 +12,6 @@ import 'package:meat_dictionary/meat/view/detail/pork/samgyeobsal_detail_screen.
 import 'package:meat_dictionary/meat/view/favorites_screen.dart';
 import 'package:meat_dictionary/meat/view/filter_screen.dart';
 import 'package:meat_dictionary/meat/view/meat_detail_screen.dart';
-import 'package:meat_dictionary/meat/view/meat_list_screen.dart';
 
 final authProvider = ChangeNotifierProvider<AuthProvider>((ref) {
   return AuthProvider();
@@ -34,14 +33,6 @@ class AuthProvider extends ChangeNotifier {
           path: '/meat_detail',
           name: MeatDetailScreen.routeName,
           builder: (_, __) => const MeatDetailScreen(),
-        ),
-        GoRoute(
-          path: '/meat_list',
-          name: MeatListScreen.routeName,
-          builder: (context, state) {
-            final meatType = state.extra as MeatType;
-            return MeatListScreen(meatType: meatType);
-          },
         ),
         GoRoute(
           path: '/favorites',
