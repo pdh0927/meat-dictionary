@@ -8,8 +8,8 @@ List<MeatModel> porkList = [
     usage: [Usage.grilling], // '구이' -> Usage.grilling
     description: '항정살만큼 부드럽고 쫄깃한 부위',
     texture: MeatTexture.slightlyChewy,
-    savoryFlavor: SavoryFlavor.normal,
-    meatAroma: MeatAroma.veryWeak,
+    savoryFlavor: SavoryFlavor.slightlySavory,
+    meatAroma: MeatAroma.veryStrong,
     price: 4,
     imgPath: 'assets/imgs/pork/가브리살.png',
   ),
@@ -19,9 +19,9 @@ List<MeatModel> porkList = [
     type: MeatType.pork,
     usage: [Usage.grilling], // '구이' -> Usage.grilling
     description: '부드러움과 풍미의 완벽한 황금비율',
-    texture: MeatTexture.verySoft,
-    savoryFlavor: SavoryFlavor.normal,
-    meatAroma: MeatAroma.weak,
+    texture: MeatTexture.slightlySoft,
+    savoryFlavor: SavoryFlavor.slightlyMild,
+    meatAroma: MeatAroma.veryWeak,
     price: 2,
     imgPath: 'assets/imgs/pork/mocksal/mocksal_main.png',
   ),

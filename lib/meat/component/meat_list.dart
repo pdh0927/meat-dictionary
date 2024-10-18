@@ -8,11 +8,10 @@ import 'package:meat_dictionary/meat/model/meat_model.dart';
 import 'package:meat_dictionary/meat/provider/favorites_provider.dart';
 import 'package:go_router/go_router.dart';
 
-// 고기 리스트
 class MeatList extends ConsumerWidget {
   final bool isFavoritesScreen;
   final MeatType meatType;
-  final Map<String, dynamic>? filterData; // 필터 데이터를 전달
+  final Map<String, dynamic>? filterData;
 
   const MeatList({
     super.key,
@@ -28,12 +27,12 @@ class MeatList extends ConsumerWidget {
     List<MeatModel> selectedList =
         meatType == MeatType.pork ? porkList : beefList;
 
-    // 필터 데이터가 존재하는 경우 리스트를 필터링 및 정렬
+    // 필터 적용
     if (filterData != null) {
       selectedList = _filterAndSortMeatList(selectedList, filterData!);
     }
 
-    // 즐겨찾기 화면인 경우 즐겨찾기 항목만 필터링
+    // 즐겨찾기 화면인 경우 필터링
     if (isFavoritesScreen) {
       selectedList = selectedList
           .where(
@@ -41,8 +40,12 @@ class MeatList extends ConsumerWidget {
           .toList();
     }
 
-    return Column(
-      children: selectedList.map((meatModel) {
+    // **ListView.builder로 렌더링**
+    return ListView.builder(
+      itemCount: selectedList.length,
+      padding: const EdgeInsets.symmetric(vertical: 8),
+      itemBuilder: (context, index) {
+        final meatModel = selectedList[index];
         final isSelected = ref
             .read(favoritesProvider.notifier)
             .isFavorite(meatModel.type, meatModel.id);
@@ -53,49 +56,38 @@ class MeatList extends ConsumerWidget {
                 meatModel,
                 filterData!['selectedAttributes'],
                 filterData!['selectedValues'],
-                _calculateWeights(filterData!['selectedAttributes']))
+                _calculateWeights(filterData!['selectedAttributes']),
+              )
             : null;
 
-        return Column(
-          children: [
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 14.0),
-              child: InkWell(
-                onTap: () {
-                  final routeName = routeNames[
-                      MeatIdentifier(meatModel.type, meatModel.name)];
-                  if (routeName != null) {
-                    context.pushNamed(
-                      routeName,
-                      extra: {'meatModel': meatModel},
-                    );
-                  } else {
-                    context.pushNamed("meat_detail");
-                  }
-                },
-                child: MeatListComponent(
-                  meatModel: meatModel,
-                  isSelected: isSelected,
-                  score: score,
-                ),
-              ),
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 4.0),
+          child: InkWell(
+            onTap: () {
+              final routeName =
+                  routeNames[MeatIdentifier(meatModel.type, meatModel.name)];
+              if (routeName != null) {
+                context.pushNamed(routeName, extra: {'meatModel': meatModel});
+              } else {
+                context.pushNamed("meat_detail");
+              }
+            },
+            child: MeatListComponent(
+              meatModel: meatModel,
+              isSelected: isSelected,
+              score: score,
             ),
-            const Divider(
-              height: 0,
-              thickness: 2.0,
-              color: Color(0xFFF4F6FA),
-            )
-          ],
+          ),
         );
-      }).toList(),
+      },
     );
   }
 
   List<MeatModel> _filterAndSortMeatList(
       List<MeatModel> selectedList, Map<String, dynamic> filterData) {
-    final List<String?> selectedAttributes = filterData['selectedAttributes'];
-    final List<double?> selectedValues = filterData['selectedValues'];
+    final selectedAttributes =
+        filterData['selectedAttributes'] as List<String?>;
+    final selectedValues = filterData['selectedValues'] as List<double?>;
 
     // 가중치 계산
     final weights = _calculateWeights(selectedAttributes);
@@ -162,7 +154,7 @@ class MeatList extends ConsumerWidget {
     } else if (selectedAttributes[0] != null) {
       return [1.0, 0.0, 0.0];
     } else {
-      return [0.0, 0.0, 0.0]; // 모든 가중치가 0인 경우 처리
+      return [0.0, 0.0, 0.0];
     }
   }
 }
