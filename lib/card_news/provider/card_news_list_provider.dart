@@ -15,19 +15,19 @@ class CardNewsListNotifier extends StateNotifier<List<CardNewsModel>> {
 
   DocumentSnapshot? _lastDocument; // 페이지네이션에 사용할 마지막 문서
   bool _isFetching = false; // 중복 호출 방지 플래그
-  bool get isFetching => _isFetching;
-
-  static const int _pageSize = 6; // 한 번에 불러올 문서 수
+  bool isLastPage = false; // 마지막 페이지 여부
 
   Future<void> fetchCardNews() async {
-    if (_isFetching) return; // 중복 호출 방지
+    if (_isFetching || isLastPage) return; // 중복 호출 방지
     _isFetching = true;
+
+    const int pageSize = 8; // 한 번에 불러올 문서 수
 
     try {
       Query query = FirebaseFirestore.instance
           .collection('card-news')
           .orderBy('createdAt', descending: true)
-          .limit(_pageSize);
+          .limit(pageSize);
 
       if (_lastDocument != null) {
         query = query.startAfterDocument(_lastDocument!);
@@ -48,9 +48,14 @@ class CardNewsListNotifier extends StateNotifier<List<CardNewsModel>> {
           );
         }).toList(),
       );
-
+      // 마지막 페이지 여부 체크
       if (querySnapshot.docs.isNotEmpty) {
         _lastDocument = querySnapshot.docs.last;
+        if (querySnapshot.docs.length < pageSize) {
+          isLastPage = true;
+        }
+      } else {
+        isLastPage = true;
       }
 
       // 기존 상태에 새로운 데이터 추가
@@ -60,6 +65,15 @@ class CardNewsListNotifier extends StateNotifier<List<CardNewsModel>> {
     } finally {
       _isFetching = false;
     }
+  }
+
+  // 추가 데이터 가져오기
+  bool fetchMoreData() {
+    if (!isLastPage) {
+      fetchCardNews();
+      return false;
+    }
+    return true; // 마지막 페이지일 경우 true 반환
   }
 
   // gs:// 경로를 다운로드 가능한 URL로 변환하는 함수
