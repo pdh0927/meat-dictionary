@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:meat_dictionary/card_news/component/slide_card_news_widget.dart';
 import 'package:meat_dictionary/card_news/provider/card_news_provider.dart';
 import 'package:meat_dictionary/common/const/colors.dart';
 import 'package:meat_dictionary/common/layout/default_layout.dart';
@@ -8,25 +9,34 @@ import 'package:meat_dictionary/meat/model/meat_model.dart';
 import 'package:meat_dictionary/meat/view/meat_list_screen.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:sizer/sizer.dart';
 
 // 홈 화면
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const DefaultLayout(
-      backgroundColor: Color(0xFFF4F6FA),
+  Widget build(BuildContext context, WidgetRef ref) {
+    final randomCardNews = ref.watch(randomCardNewsProvider);
+
+    return DefaultLayout(
+      backgroundColor: const Color(0xFFF4F6FA),
       child: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // 카드뉴스 위젯
-              ImageCarousel(),
-              SizedBox(height: 24.0),
-              Padding(
+              randomCardNews == null
+                  ? buildShimmer()
+                  : SlideCardNewsWidget(
+                      urls: randomCardNews.urls,
+                      isPopup: false,
+                      width: 100.w,
+                      height: 100.w,
+                    ),
+              const SizedBox(height: 24.0),
+              const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.0),
                 child: Column(
                   children: [
@@ -44,71 +54,8 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
-}
 
-// 카드뉴스 위젯
-class ImageCarousel extends ConsumerStatefulWidget {
-  const ImageCarousel({super.key});
-
-  @override
-  ConsumerState createState() => _ImageCarouselState();
-}
-
-class _ImageCarouselState extends ConsumerState<ImageCarousel> {
-  final PageController _pageController = PageController();
-
-  @override
-  void dispose() {
-    _pageController.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final randomCardNews = ref.watch(randomCardNewsProvider);
-
-    if (randomCardNews == null) {
-      // 로딩 중 Shimmer 효과
-      return _buildShimmer();
-    }
-
-    final urls = randomCardNews.urls;
-
-    return Stack(
-      alignment: Alignment.bottomCenter,
-      children: [
-        AspectRatio(
-          aspectRatio: 1 / 0.9,
-          child: PageView.builder(
-            controller: _pageController,
-            itemCount: urls.length,
-            itemBuilder: (context, index) {
-              return Image.network(
-                urls[index],
-                fit: BoxFit.fill,
-                width: double.infinity,
-              );
-            },
-          ),
-        ),
-        Positioned(
-          bottom: 16.0,
-          child: SmoothPageIndicator(
-            controller: _pageController,
-            count: urls.length,
-            effect: const WormEffect(
-              dotWidth: 8.0,
-              dotHeight: 8.0,
-              activeDotColor: PRIMARY_COLOR,
-              dotColor: Colors.white,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildShimmer() {
+  Widget buildShimmer() {
     return Shimmer.fromColors(
       baseColor: Colors.grey[300]!,
       highlightColor: Colors.grey[100]!,
