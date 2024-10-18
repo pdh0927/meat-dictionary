@@ -1,19 +1,28 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:meat_dictionary/common/const/colors.dart';
+import 'package:meat_dictionary/meat/component/detail/compare_popup_component.dart';
+import 'package:shimmer/shimmer.dart';
 
 class HorizontalImages extends StatelessWidget {
   const HorizontalImages({
     super.key,
-    required this.imagePaths,
     required this.titles,
     required this.highlights,
     required this.descriptions,
+    required this.goodImageUrls,
+    required this.badImageUrls,
+    required this.goodDescriptionsList,
+    required this.badDescriptionsList,
   });
 
-  final List<String> imagePaths;
   final List<String> titles;
   final List<String> highlights;
   final List<String> descriptions;
+  final List<String> goodImageUrls;
+  final List<String> badImageUrls;
+  final List<List<String>> goodDescriptionsList;
+  final List<List<String>> badDescriptionsList;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +30,7 @@ class HorizontalImages extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: List.generate(imagePaths.length, (index) {
+        children: List.generate(goodImageUrls.length, (index) {
           return Padding(
             padding: EdgeInsets.only(right: index == 0 ? 16 : 0, left: 16.0),
             child: SizedBox(
@@ -34,13 +43,24 @@ class HorizontalImages extends StatelessWidget {
                     barrierColor: Colors.black.withOpacity(0.7),
                     builder: (BuildContext context) {
                       return Dialog(
+                        insetPadding:
+                            const EdgeInsets.all(10.0), // 화면 가장자리에서 여백
+                        backgroundColor: Colors.transparent, // 투명 배경
                         child: Container(
-                          padding: const EdgeInsets.all(10.0),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(10.0),
-                            child: Image.asset(
-                              imagePaths[index],
-                              fit: BoxFit.contain,
+                          width: MediaQuery.of(context).size.width *
+                              0.9, // 화면의 90% 너비 사용
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                          child: IntrinsicHeight(
+                            child: ComparePopupComponent(
+                              title: titles[index],
+                              highlight: highlights[index],
+                              goodImageUrl: goodImageUrls[index],
+                              badImageUrl: badImageUrls[index],
+                              goodDescriptions: goodDescriptionsList[index],
+                              badDescriptions: badDescriptionsList[index],
                             ),
                           ),
                         ),
@@ -52,14 +72,21 @@ class HorizontalImages extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     // 이미지
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(10.0),
-                      child: Image.asset(
-                        imagePaths[index],
-                        fit: BoxFit.fill,
-                        width: 180,
-                        height: 120,
+                    CachedNetworkImage(
+                      imageUrl: goodImageUrls[index],
+                      fit: BoxFit.fill,
+                      width: 180,
+                      height: 120,
+                      placeholder: (context, url) => Shimmer.fromColors(
+                        baseColor: Colors.grey[300]!,
+                        highlightColor: Colors.grey[100]!,
+                        child: Container(
+                          color: Colors.grey[300],
+                        ),
                       ),
+                      errorWidget: (context, url, error) {
+                        return const Icon(Icons.error, color: Colors.red);
+                      },
                     ),
                     const SizedBox(height: 4.0),
                     // 제목
