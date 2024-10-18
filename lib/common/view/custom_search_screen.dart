@@ -129,75 +129,78 @@ class _CustomSearchScreenState extends ConsumerState<CustomSearchScreen> {
   @override
   Widget build(BuildContext context) {
     return DefaultLayout(
-      child: SafeArea(
-        child: Column(
-          children: [
-            // 검색 입력 필드와 뒤로 가기 버튼을 포함한 헤더
-            _SearchHeader(
-              onBackPressed: () => Navigator.pop(context),
-              searchController: _searchController,
-              onChanged: _search,
-              onClear: () {
-                _searchController.clear(); // 검색어 초기화
-                _search(''); // 검색 결과 초기화
-                setState(() {}); // UI 갱신
+      title: '검색',
+      child: Column(
+        children: [
+          const Divider(
+            height: 1.0,
+            thickness: 1.0,
+            color: Color(0xFFE4E4E4),
+          ),
+          const SizedBox(height: 24.0),
+
+          // 검색바
+          _SearchBar(
+            searchController: _searchController,
+            onChanged: _search,
+            onClear: () {
+              _searchController.clear(); // 검색어 초기화
+              _search(''); // 검색 결과 초기화
+              setState(() {}); // UI 갱신
+            },
+          ),
+          const SizedBox(height: 16.0),
+          if (_searchController.text.isEmpty)
+            // 검색어 입력이 없을 때, 최근 검색어와 인기 검색어 목록 표시
+            _SearchTabs(
+              isPopularSelected: isPopularSelected,
+              onTabSelected: (selected) {
+                setState(() {
+                  isPopularSelected = selected;
+                });
+              },
+              recentSearches: recentSearches,
+              popularSearches: popularSearches,
+              onRemoveRecent: _removeRecentSearch,
+              onSearchSelected: (meatIdentifier) {
+                _searchController.text = meatIdentifier.name;
+                _search(meatIdentifier.name);
+              },
+              findMeatModel: _findMeatModel,
+            )
+          else
+            // 검색어 입력이 있을 때, 검색 결과 목록 표시
+            _SearchResults(
+              searchResults: searchResults,
+              onResultSelected: (meat) async {
+                await _addRecentSearch(meat); // 검색 결과를 최근 검색어에 추가
+                final routeName =
+                    routeNames[MeatIdentifier(meat.type, meat.name)];
+
+                if (routeName != null) {
+                  context.pushNamed(
+                    routeName,
+                    extra: {'meatModel': meat},
+                  );
+                } else {
+                  context.pushNamed("meat_detail");
+                }
               },
             ),
-            const SizedBox(height: 16.0),
-            if (_searchController.text.isEmpty)
-              // 검색어 입력이 없을 때, 최근 검색어와 인기 검색어 목록 표시
-              _SearchTabs(
-                isPopularSelected: isPopularSelected,
-                onTabSelected: (selected) {
-                  setState(() {
-                    isPopularSelected = selected;
-                  });
-                },
-                recentSearches: recentSearches,
-                popularSearches: popularSearches,
-                onRemoveRecent: _removeRecentSearch,
-                onSearchSelected: (meatIdentifier) {
-                  _searchController.text = meatIdentifier.name;
-                  _search(meatIdentifier.name);
-                },
-                findMeatModel: _findMeatModel,
-              )
-            else
-              // 검색어 입력이 있을 때, 검색 결과 목록 표시
-              _SearchResults(
-                searchResults: searchResults,
-                onResultSelected: (meat) async {
-                  await _addRecentSearch(meat); // 검색 결과를 최근 검색어에 추가
-                  final routeName =
-                      routeNames[MeatIdentifier(meat.type, meat.name)];
-
-                  if (routeName != null) {
-                    context.pushNamed(
-                      routeName,
-                      extra: {'meatModel': meat},
-                    );
-                  } else {
-                    context.pushNamed("meat_detail");
-                  }
-                },
-              ),
-          ],
-        ),
+        ],
       ),
     );
   }
 }
 
 // 검색 화면 상단 헤더 (뒤로 가기 버튼, 검색 입력 필드)
-class _SearchHeader extends StatelessWidget {
-  const _SearchHeader({
-    required this.onBackPressed,
+class _SearchBar extends StatelessWidget {
+  const _SearchBar({
     required this.searchController,
     required this.onChanged,
     required this.onClear,
   });
 
-  final VoidCallback onBackPressed;
   final TextEditingController searchController;
   final ValueChanged<String> onChanged;
   final VoidCallback onClear;
@@ -207,23 +210,6 @@ class _SearchHeader extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const SizedBox(height: 10.0),
-        // 뒤로 가기 버튼과 제목
-        const Text(
-          '검색',
-          style: TextStyle(
-            fontSize: 17.0,
-            color: Colors.black,
-            fontWeight: FontWeight.w700,
-          ),
-        ),
-        const SizedBox(height: 15.0),
-        const Divider(
-          height: 0.0,
-          thickness: 1.0,
-          color: Color(0xFFE4E4E4),
-        ),
-        const SizedBox(height: 24.0),
         // 검색 입력 필드
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),

@@ -44,11 +44,14 @@ class DefaultLayout extends StatelessWidget {
         elevation: 0,
         leading: leading,
         title: title != null
-            ? Text(title!,
+            ? Text(
+                title!,
                 style: const TextStyle(
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.w500,
-                ))
+                  fontSize: 17.0,
+                  color: Colors.black,
+                  fontWeight: FontWeight.w700,
+                ),
+              )
             : null,
         centerTitle: true,
         titleSpacing: 25,
