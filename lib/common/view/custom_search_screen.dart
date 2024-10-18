@@ -205,30 +205,17 @@ class _SearchHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         const SizedBox(height: 10.0),
         // 뒤로 가기 버튼과 제목
-        Row(
-          children: [
-            const SizedBox(width: 5.0),
-            InkWell(
-              onTap: onBackPressed,
-              child: Icon(
-                PhosphorIcons.caretLeft(),
-                color: Colors.black,
-                size: 30.0,
-              ),
-            ),
-            const SizedBox(width: 20.0),
-            const Text(
-              '검색',
-              style: TextStyle(
-                fontSize: 17.0,
-                color: Colors.black,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ],
+        const Text(
+          '검색',
+          style: TextStyle(
+            fontSize: 17.0,
+            color: Colors.black,
+            fontWeight: FontWeight.w700,
+          ),
         ),
         const SizedBox(height: 15.0),
         const Divider(

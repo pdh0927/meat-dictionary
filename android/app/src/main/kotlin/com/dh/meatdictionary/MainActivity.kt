@@ -1,4 +1,4 @@
-package com.example.meat_dictionary
+package com.dh.meatdictionary
 
 import io.flutter.embedding.android.FlutterActivity
 

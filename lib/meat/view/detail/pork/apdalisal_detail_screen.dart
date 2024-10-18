@@ -5,6 +5,7 @@ import 'package:meat_dictionary/meat/component/detail/horizozntal_images.dart';
 import 'package:meat_dictionary/meat/component/detail/common_meat_detail_frame.dart';
 import 'package:meat_dictionary/meat/component/detail/introduction_component.dart';
 import 'package:meat_dictionary/meat/component/detail/recipe_widget.dart';
+import 'package:meat_dictionary/meat/component/detail/small_title_components.dart';
 import 'package:meat_dictionary/meat/model/meat_model.dart';
 
 // 앞다리 디테일
@@ -98,17 +99,7 @@ class _Introductions extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // 제목
-          Text.rich(
-            TextSpan(
-              children: [
-                TextSpan(text: '부위 ', style: detailThinContentStyle),
-                TextSpan(
-                  text: '소개',
-                  style: detailBoldContentStyle,
-                ),
-              ],
-            ),
-          ),
+          const IntroduceRegion(),
           const SizedBox(height: 16.0),
           IntroductionComponent(
             num: 1,
@@ -196,20 +187,7 @@ class _Tips extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // 제목
-          Text.rich(
-            TextSpan(
-              children: [
-                TextSpan(
-                  text: '개발자의 ',
-                  style: detailThinContentStyle,
-                ),
-                TextSpan(
-                  text: '팁',
-                  style: detailBoldContentStyle,
-                ),
-              ],
-            ),
-          ),
+          const DeveloperTips(),
           const SizedBox(height: 12.0),
           // 내용
           Column(
@@ -323,20 +301,9 @@ class _ApdalisalChoosingTips extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // 제목
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Text.rich(
-              TextSpan(
-                children: [
-                  TextSpan(text: '맛있는 ', style: detailThinContentStyle),
-                  TextSpan(text: '앞다리살 ', style: detailBoldContentStyle),
-                  TextSpan(
-                    text: '고르는법',
-                    style: detailThinContentStyle,
-                  ),
-                ],
-              ),
-            ),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16.0),
+            child: ChoosingYummyMeat(name: '앞다리살'),
           ),
           const SizedBox(height: 16.0),
           HorizontalImages(

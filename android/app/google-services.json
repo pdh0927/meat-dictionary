@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "899805645179",
+    "project_id": "meat-dictionary",
+    "storage_bucket": "meat-dictionary.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:899805645179:android:d85932035bfccf291d15de",
+        "android_client_info": {
+          "package_name": "com.dh.meatdictionary"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEN6SjbT6bbrqi7QpDjM57ut6WxIvtHEc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

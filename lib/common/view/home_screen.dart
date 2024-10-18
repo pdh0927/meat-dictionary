@@ -1,19 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:meat_dictionary/card_news/component/slide_card_news_widget.dart';
+import 'package:meat_dictionary/card_news/provider/card_news_provider.dart';
 import 'package:meat_dictionary/common/const/colors.dart';
 import 'package:meat_dictionary/common/layout/default_layout.dart';
 import 'package:meat_dictionary/meat/model/meat_model.dart';
 import 'package:meat_dictionary/meat/view/meat_list_screen.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:shimmer/shimmer.dart';
+import 'package:sizer/sizer.dart';
 
 // 홈 화면
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const DefaultLayout(
+  Widget build(BuildContext context, WidgetRef ref) {
+    final randomCardNews = ref.watch(randomCardNewsProvider);
+
+    return DefaultLayout(
       backgroundColor: const Color(0xFFF4F6FA),
       child: SafeArea(
         child: SingleChildScrollView(
@@ -21,22 +27,20 @@ class HomeScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // 카드뉴스 위젯
-              ImageCarousel(
-                imageUrls: [
-                  'assets/imgs/beef/안심.png',
-                  'assets/imgs/beef/안심.png',
-                  'assets/imgs/beef/안심.png',
-                  'assets/imgs/beef/안심.png',
-                  'assets/imgs/beef/안심.png',
-                  'assets/imgs/beef/안심.png',
-                ],
-              ),
-              SizedBox(height: 24.0),
-              Padding(
+              randomCardNews == null
+                  ? buildShimmer()
+                  : SlideCardNewsWidget(
+                      urls: randomCardNews.urls,
+                      isPopup: false,
+                      width: 100.w,
+                      height: 100.w,
+                    ),
+              const SizedBox(height: 24.0),
+              const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.0),
                 child: Column(
                   children: [
-                    // 사전 바로가기 widget
+                    // 사전 바로가기 위젯
                     _DictionaryComponent(),
                     SizedBox(height: 16.0),
                     // 취향 저격 부위 찾기 버튼
@@ -50,65 +54,21 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
-}
 
-// 카드뉴스 위젯
-class ImageCarousel extends StatefulWidget {
-  final List<String> imageUrls;
-
-  const ImageCarousel({super.key, required this.imageUrls});
-
-  @override
-  State createState() => _ImageCarouselState();
-}
-
-class _ImageCarouselState extends State<ImageCarousel> {
-  final PageController _pageController = PageController();
-
-  @override
-  void dispose() {
-    _pageController.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.bottomCenter,
-      children: [
-        AspectRatio(
-          aspectRatio: 1 / 0.9,
-          child: PageView.builder(
-            controller: _pageController,
-            itemCount: widget.imageUrls.length,
-            itemBuilder: (context, index) {
-              return Image.asset(
-                widget.imageUrls[index],
-                fit: BoxFit.cover,
-                width: double.infinity,
-              );
-            },
-          ),
-        ),
-        Positioned(
-          bottom: 16.0,
-          child: SmoothPageIndicator(
-            controller: _pageController,
-            count: widget.imageUrls.length,
-            effect: const WormEffect(
-              dotWidth: 8.0,
-              dotHeight: 8.0,
-              activeDotColor: PRIMARY_COLOR,
-              dotColor: Colors.white,
-            ),
-          ),
-        ),
-      ],
+  Widget buildShimmer() {
+    return Shimmer.fromColors(
+      baseColor: Colors.grey[300]!,
+      highlightColor: Colors.grey[100]!,
+      child: Container(
+        height: 300,
+        color: Colors.white,
+        margin: const EdgeInsets.symmetric(horizontal: 16.0),
+      ),
     );
   }
 }
 
-// 사전 바로가기 widget
+// 사전 바로가기 위젯
 class _DictionaryComponent extends StatelessWidget {
   const _DictionaryComponent();
 
@@ -146,13 +106,13 @@ class _DictionaryComponent extends StatelessWidget {
               ),
             ),
           ],
-        )
+        ),
       ],
     );
   }
 }
 
-// 사전으로 가기위한 card
+// 사전으로 가는 카드 위젯
 class _CategoryCard extends StatelessWidget {
   final String imagePath;
   final String description;
@@ -237,7 +197,6 @@ class _ChooseOwnMeat extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             const Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
@@ -255,14 +214,14 @@ class _ChooseOwnMeat extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                     color: Colors.white,
                   ),
-                )
+                ),
               ],
             ),
             Icon(
               PhosphorIcons.caretRight(),
               color: Colors.white,
               size: 25.0,
-            )
+            ),
           ],
         ),
       ),
