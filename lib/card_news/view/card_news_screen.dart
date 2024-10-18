@@ -22,6 +22,7 @@ class CardNewsScreen extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const SizedBox(height: 10.0),
+
             // 제목
             const Text(
               '카드 뉴스',
@@ -31,6 +32,7 @@ class CardNewsScreen extends ConsumerWidget {
                 fontWeight: FontWeight.w700,
               ),
             ),
+
             const SizedBox(height: 15.0),
             const Divider(
               height: 0.0,
@@ -38,7 +40,7 @@ class CardNewsScreen extends ConsumerWidget {
               color: Color(0xFFE4E4E4),
             ),
 
-            // 카드 뉴스 목록 (GridView)
+            // 카드 뉴스 목록
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.all(10.0),
@@ -74,7 +76,7 @@ class CardNewsScreen extends ConsumerWidget {
                                 showImageCarouselPopup(context, cardNews.urls);
                               },
                               child: Image.network(
-                                cardNews.urls.first, // 첫 번째 이미지 URL 사용
+                                cardNews.urls.first, // 첫 번째 이미지 썸네일로 사용
                                 fit: BoxFit.fill,
                                 width: double.infinity,
                               ),
@@ -98,14 +100,11 @@ class CardNewsScreen extends ConsumerWidget {
         return Dialog(
           backgroundColor: Colors.transparent,
           insetPadding: const EdgeInsets.all(10.0),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(16.0),
-            child: SlideCardNewsWidget(
-              urls: urls,
-              isPopup: true,
-              width: 100.w,
-              height: 100.w,
-            ),
+          child: SlideCardNewsWidget(
+            urls: urls,
+            isPopup: true,
+            width: 100.w,
+            height: 100.w,
           ),
         );
       },

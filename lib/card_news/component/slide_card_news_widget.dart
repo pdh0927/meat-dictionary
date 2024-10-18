@@ -37,6 +37,7 @@ class _SlideCardNewsWidgetState extends State<SlideCardNewsWidget> {
     return Stack(
       alignment: Alignment.bottomCenter,
       children: [
+        // 카드뉴스 내용
         SizedBox(
           width: widget.width,
           height: widget.height,
@@ -52,6 +53,8 @@ class _SlideCardNewsWidgetState extends State<SlideCardNewsWidget> {
             },
           ),
         ),
+
+        // 하단 페이지뷰
         Positioned(
           bottom: 16.0,
           child: SmoothPageIndicator(
@@ -65,6 +68,8 @@ class _SlideCardNewsWidgetState extends State<SlideCardNewsWidget> {
             ),
           ),
         ),
+
+        // close 버튼
         if (widget.isPopup)
           Positioned(
             top: 5.0,
@@ -72,7 +77,7 @@ class _SlideCardNewsWidgetState extends State<SlideCardNewsWidget> {
             child: IconButton(
               icon: const Icon(
                 Icons.close,
-                color: Colors.white,
+                color: Colors.black,
                 size: 25,
               ),
               onPressed: () {
