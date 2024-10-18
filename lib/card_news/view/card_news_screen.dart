@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:meat_dictionary/card_news/component/slide_card_news_widget.dart';
 import 'package:meat_dictionary/card_news/provider/card_news_list_provider.dart';
 import 'package:meat_dictionary/common/const/colors.dart';
 import 'package:meat_dictionary/common/layout/default_layout.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:sizer/sizer.dart';
 
+// 카드 뉴스 스크린
 class CardNewsScreen extends ConsumerWidget {
   const CardNewsScreen({super.key});
 
@@ -68,7 +71,7 @@ class CardNewsScreen extends ConsumerWidget {
 
                             return InkWell(
                               onTap: () {
-                                // 상세 페이지 이동 로직 추가 가능
+                                showImageCarouselPopup(context, cardNews.urls);
                               },
                               child: Image.network(
                                 cardNews.urls.first, // 첫 번째 이미지 URL 사용
@@ -84,6 +87,28 @@ class CardNewsScreen extends ConsumerWidget {
           ],
         ),
       ),
+    );
+  }
+
+  // 팝업 다이얼로그를 띄워 ImageCarousel을 표시하는 함수
+  void showImageCarouselPopup(BuildContext context, List<String> urls) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return Dialog(
+          backgroundColor: Colors.transparent,
+          insetPadding: const EdgeInsets.all(10.0),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(16.0),
+            child: SlideCardNewsWidget(
+              urls: urls,
+              isPopup: true,
+              width: 100.w,
+              height: 100.w,
+            ),
+          ),
+        );
+      },
     );
   }
 
