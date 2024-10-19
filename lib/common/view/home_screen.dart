@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:meat_dictionary/card_news/component/slide_card_news_widget.dart';
-import 'package:meat_dictionary/card_news/provider/card_news_provider.dart';
+import 'package:meat_dictionary/card_news/provider/random_card_news_provider.dart';
 import 'package:meat_dictionary/common/const/colors.dart';
 import 'package:meat_dictionary/common/layout/default_layout.dart';
 import 'package:meat_dictionary/meat/model/meat_model.dart';
