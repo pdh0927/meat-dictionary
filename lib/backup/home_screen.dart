@@ -215,7 +215,7 @@ class _FavoritesComponent extends StatelessWidget {
                 Text(
                   '자주 찾는 고기는 여기서 볼 수 있어요.',
                   style: TextStyle(
-                    color: GREY_70_COLOR,
+                    color: GREY_80_COLOR,
                     fontFamily: 'Pretendard',
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
@@ -228,7 +228,7 @@ class _FavoritesComponent extends StatelessWidget {
               width: 50.0,
               height: 50.0,
               decoration: const BoxDecoration(
-                color: BLUE_COLOR,
+                color: Colors.blue,
                 shape: BoxShape.circle,
               ),
               child: const Center(

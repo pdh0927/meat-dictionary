@@ -8,6 +8,7 @@ import 'package:meat_dictionary/common/layout/default_layout.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
 
+// 카드뉴스 화면
 class CardNewsScreen extends ConsumerStatefulWidget {
   const CardNewsScreen({super.key});
 
@@ -17,24 +18,27 @@ class CardNewsScreen extends ConsumerStatefulWidget {
 
 class _CardNewsScreenState extends ConsumerState<CardNewsScreen> {
   bool isLastPage = false; // 마지막 페이지 인지
-  final ScrollController _scrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController(); // scroll 컨트롤러
   bool? isFetching = true; // null이면 fetching 중, null이 아니면 fetching 완료
 
   @override
   void initState() {
-    _scrollController.addListener(_scrollListener);
+    _scrollController
+        .addListener(_scrollListener); // listenr로 _scrollController 감시
     super.initState();
   }
 
   void _scrollListener() {
+    // 스크롤이 양쪽 끝에 도달했는지 확인
     if (_scrollController.position.atEdge) {
+      // 스크롤이 맨 위가 아니라면 (즉, 아래쪽 끝에 도달) && 마지막 페이지가 아니라면
       if (_scrollController.position.pixels != 0 && !isLastPage) {
-        // 스크롤의 끝에 도달
         setState(() {
-          isFetching = null;
-          isLastPage = ref.read(cardNewsListProvider.notifier).fetchMoreData();
-          isFetching = isLastPage;
-          print(isLastPage);
+          isFetching = null; // fetching 중으로 변경
+          isLastPage = ref
+              .read(cardNewsListProvider.notifier)
+              .fetchMoreData(); // 데이터 더 가져오기
+          isFetching = isLastPage; // fetching 완료로 변경
         });
       }
     }
@@ -42,7 +46,7 @@ class _CardNewsScreenState extends ConsumerState<CardNewsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final cardNewsList = ref.watch(cardNewsListProvider);
+    final cardNewsList = ref.watch(cardNewsListProvider); // 카드뉴스 리스트
 
     return DefaultLayout(
       title: '카드뉴스',
@@ -73,27 +77,26 @@ class _CardNewsScreenState extends ConsumerState<CardNewsScreen> {
                     ),
                     itemCount: cardNewsList.length + 1,
                     itemBuilder: (context, index) {
-                      if (index < cardNewsList.length) {
-                        final cardNews = cardNewsList[index];
+                      final cardNews = cardNewsList[index];
 
-                        return InkWell(
-                          onTap: () {
-                            showCardNewsPopup(context, cardNews.urls);
-                          },
-                          child: CachedNetworkImage(
-                            width: double.infinity,
-                            height: double.infinity,
-                            imageUrl: cardNews.urls.first,
-                            fit: BoxFit.cover,
-                            placeholder: (context, url) =>
-                                _buildShimmerPlaceholder(),
-                            errorWidget: (context, url, error) =>
-                                const Icon(Icons.error),
-                          ),
-                        );
-                      }
-
-                      return null;
+                      return InkWell(
+                        onTap: () {
+                          // 카드뉴스 popup 띄우기
+                          showCardNewsPopup(context, cardNews.urls);
+                        },
+                        // 제일 첫 화면 썸네일
+                        child: CachedNetworkImage(
+                          width: double.infinity,
+                          height: double.infinity,
+                          imageUrl: cardNews.urls.first,
+                          fit: BoxFit.cover,
+                          // 로딩이 늦다면 shimmer 보여주기
+                          placeholder: (context, url) =>
+                              buildShimmerPlaceholder(),
+                          errorWidget: (context, url, error) =>
+                              const Icon(Icons.error),
+                        ),
+                      );
                     },
                   ),
                 ),
@@ -101,7 +104,7 @@ class _CardNewsScreenState extends ConsumerState<CardNewsScreen> {
             ],
           ),
 
-          // 데이터 로딩 중인 경우 중앙에 고정된 로딩 인디케이터
+          // 데이터 로딩 중이라면 indicator 표시
           if (isFetching == null || cardNewsList.isEmpty)
             const Center(
               child: CircularProgressIndicator(color: PRIMARY_COLOR),
@@ -131,7 +134,7 @@ class _CardNewsScreenState extends ConsumerState<CardNewsScreen> {
   }
 
   // Shimmer 플레이스홀더
-  Widget _buildShimmerPlaceholder() {
+  Widget buildShimmerPlaceholder() {
     return Shimmer.fromColors(
       baseColor: Colors.grey[300]!,
       highlightColor: Colors.grey[100]!,
