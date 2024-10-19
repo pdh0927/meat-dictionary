@@ -1,5 +1,5 @@
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:meat_dictionary/common/utils/data_utils.dart';
 import 'package:meat_dictionary/meat/component/detail/horizozntal_images.dart';
 import 'package:meat_dictionary/meat/component/detail/small_title_components.dart';
 
@@ -11,7 +11,7 @@ class FreshPorkChoosingTips extends StatefulWidget {
 }
 
 class _FreshPorkChoosingTipsState extends State<FreshPorkChoosingTips> {
-  final List<String> gssGoodImageurls = const [
+  final List<String> gsGoodImageurls = const [
     'gs://meat-dictionary.appspot.com/meat-detail/galmaegisal/good/1.jpg',
     'gs://meat-dictionary.appspot.com/meat-detail/galmaegisal/good/2.jpg',
     'gs://meat-dictionary.appspot.com/meat-detail/galmaegisal/good/2.jpg',
@@ -45,28 +45,16 @@ class _FreshPorkChoosingTipsState extends State<FreshPorkChoosingTips> {
   ];
 
   Future<void> fetchDownloadUrls() async {
-    List<String> goodUrls = await Future.wait(
-      gssGoodImageurls.map((path) => convertGsToDownloadUrl(path)).toList(),
-    );
+    List<String> goodUrls =
+        await DataUtils.convertMultipleGsToDownloadUrls(gsGoodImageurls);
 
-    List<String> badUrls = await Future.wait(
-      gsBadImageurls.map((path) => convertGsToDownloadUrl(path)).toList(),
-    );
+    List<String> badUrls =
+        await DataUtils.convertMultipleGsToDownloadUrls(gsBadImageurls);
 
     setState(() {
       goodImageUrls = goodUrls;
       badImageUrls = badUrls;
     });
-  }
-
-  Future<String> convertGsToDownloadUrl(String gsPath) async {
-    try {
-      final ref = FirebaseStorage.instance.refFromURL(gsPath);
-      return await ref.getDownloadURL();
-    } catch (e) {
-      print('Error fetching download URL: $e');
-      return '';
-    }
   }
 
   @override

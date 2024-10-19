@@ -1,7 +1,7 @@
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:meat_dictionary/common/const/colors.dart';
 import 'package:meat_dictionary/common/const/text_style.dart';
+import 'package:meat_dictionary/common/utils/data_utils.dart';
 import 'package:meat_dictionary/meat/component/detail/detail_menu_bar.dart';
 import 'package:meat_dictionary/meat/component/detail/horizozntal_images.dart';
 import 'package:meat_dictionary/meat/component/detail/common_meat_detail_frame.dart';
@@ -298,7 +298,7 @@ class _SamgyeobsalChoosingTips extends StatefulWidget {
 }
 
 class _SamgyeobsalChoosingTipsState extends State<_SamgyeobsalChoosingTips> {
-  final List<String> gssGoodImageurls = const [
+  final List<String> gsGoodImageurls = const [
     'gs://meat-dictionary.appspot.com/meat-detail/galmaegisal/good/1.jpg',
     'gs://meat-dictionary.appspot.com/meat-detail/galmaegisal/good/2.jpg',
     'gs://meat-dictionary.appspot.com/meat-detail/galmaegisal/good/2.jpg',
@@ -324,28 +324,16 @@ class _SamgyeobsalChoosingTipsState extends State<_SamgyeobsalChoosingTips> {
   ];
 
   Future<void> fetchDownloadUrls() async {
-    List<String> goodUrls = await Future.wait(
-      gssGoodImageurls.map((path) => convertGsToDownloadUrl(path)).toList(),
-    );
+    List<String> goodUrls =
+        await DataUtils.convertMultipleGsToDownloadUrls(gsGoodImageurls);
 
-    List<String> badUrls = await Future.wait(
-      gsBadImageurls.map((path) => convertGsToDownloadUrl(path)).toList(),
-    );
+    List<String> badUrls =
+        await DataUtils.convertMultipleGsToDownloadUrls(gsBadImageurls);
 
     setState(() {
       goodImageUrls = goodUrls;
       badImageUrls = badUrls;
     });
-  }
-
-  Future<String> convertGsToDownloadUrl(String gsPath) async {
-    try {
-      final ref = FirebaseStorage.instance.refFromURL(gsPath);
-      return await ref.getDownloadURL();
-    } catch (e) {
-      print('Error fetching download URL: $e');
-      return '';
-    }
   }
 
   @override

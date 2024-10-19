@@ -2,7 +2,7 @@ import 'dart:math';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:meat_dictionary/card_news/model/card_news_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
+import 'package:meat_dictionary/common/utils/data_utils.dart';
 
 final randomCardNewsProvider =
     StateNotifierProvider<RandomCardNewsNotifier, CardNewsModel?>((ref) {
@@ -47,7 +47,7 @@ class RandomCardNewsNotifier extends StateNotifier<CardNewsModel?> {
 
       if (selectedDoc != null) {
         // Firestore 문서를 모델로 변환하고 URL을 변환
-        final cardNews = await _convertUrlsToDownloadUrls(
+        final cardNews = await _convertUrlsUsingUtil(
           CardNewsModel.fromFirestore(selectedDoc),
         );
 
@@ -71,16 +71,10 @@ class RandomCardNewsNotifier extends StateNotifier<CardNewsModel?> {
     );
   }
 
-  /// CardNewsModel의 URLs을 다운로드 가능한 URL로 변환
-  Future<CardNewsModel> _convertUrlsToDownloadUrls(
-      CardNewsModel cardNews) async {
-    final downloadUrls = await Future.wait(
-      cardNews.urls.map((url) async {
-        final ref = FirebaseStorage.instance.refFromURL(url);
-
-        return await ref.getDownloadURL();
-      }),
-    );
+  /// Util을 사용해 CardNewsModel의 URLs을 다운로드 가능한 URL로 변환
+  Future<CardNewsModel> _convertUrlsUsingUtil(CardNewsModel cardNews) async {
+    final downloadUrls =
+        await DataUtils.convertMultipleGsToDownloadUrls(cardNews.urls);
 
     return CardNewsModel(
       id: cardNews.id,

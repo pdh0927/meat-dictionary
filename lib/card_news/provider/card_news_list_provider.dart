@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:meat_dictionary/card_news/model/card_news_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
+import 'package:meat_dictionary/common/utils/data_utils.dart';
 
 final cardNewsListProvider =
     StateNotifierProvider<CardNewsListNotifier, List<CardNewsModel>>((ref) {
@@ -39,7 +39,8 @@ class CardNewsListNotifier extends StateNotifier<List<CardNewsModel>> {
       final List<CardNewsModel> cardNewsList = await Future.wait(
         querySnapshot.docs.map((doc) async {
           final cardNews = CardNewsModel.fromFirestore(doc);
-          final urls = await _convertGsUrlsToDownloadUrls(cardNews.urls);
+          final urls =
+              await DataUtils.convertMultipleGsToDownloadUrls(cardNews.urls);
           return CardNewsModel(
             id: cardNews.id,
             title: cardNews.title,
@@ -74,20 +75,5 @@ class CardNewsListNotifier extends StateNotifier<List<CardNewsModel>> {
       return false;
     }
     return true; // 마지막 페이지일 경우 true 반환
-  }
-
-  // gs:// 경로를 다운로드 가능한 URL로 변환하는 함수
-  Future<List<String>> _convertGsUrlsToDownloadUrls(List<String> gsUrls) async {
-    try {
-      return await Future.wait(
-        gsUrls.map((url) async {
-          final ref = FirebaseStorage.instance.refFromURL(url);
-          return await ref.getDownloadURL();
-        }),
-      );
-    } catch (e) {
-      print('Error converting URLs: $e');
-      return [];
-    }
   }
 }
