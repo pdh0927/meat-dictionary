@@ -1,0 +1,2 @@
+flutter pub run build_runner build : 코드 생성을 위해 주석이나 어노테이션을 사용하여 모델 클래스, 직렬화 코드, 라우트 등을 생성할 때 사용
+flutter pub run build_runner watch : 위는 1회성이고 watch는 계속
