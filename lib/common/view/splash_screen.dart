@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:meat_dictionary/common/const/colors.dart';
 import 'package:meat_dictionary/common/layout/default_layout.dart';
 
+// 스플래쉬 스크린
 class SplashScreen extends ConsumerStatefulWidget {
   const SplashScreen({super.key});
 

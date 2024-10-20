@@ -40,7 +40,7 @@ class DefaultLayout extends StatelessWidget {
       return null;
     } else {
       return AppBar(
-        backgroundColor: Colors.white, // 완전히 투명하게 설정
+        backgroundColor: Colors.white,
         elevation: 0,
         leading: leading,
         title: title != null
@@ -56,9 +56,9 @@ class DefaultLayout extends StatelessWidget {
         centerTitle: true,
         titleSpacing: 25,
         actions: actions ?? [],
-        foregroundColor: Colors.black, // 그림자 없도록 설정
-        shadowColor: Colors.transparent,
-        surfaceTintColor: Colors.transparent,
+        foregroundColor: Colors.black, // AppBar의 아이콘과 텍스트 색상
+        shadowColor: Colors.transparent, // AppBar 그림자의 색상
+        surfaceTintColor: Colors.transparent, // Material 3 디자인에서 사용되는 광택 색상
       );
     }
   }
