@@ -1,10 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:meat_dictionary/common/view/splash_screen.dart';
 import 'package:meat_dictionary/firebase_options.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import 'common/provider/go_router_provider.dart';
 import 'common/provider/shared_preferences_provider.dart';
 
 void main() async {
@@ -32,14 +31,9 @@ class MyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final router = ref.watch(routerProvider);
-
-    return MaterialApp.router(
-      theme: ThemeData(fontFamily: 'Pretendard'),
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      routeInformationParser: router.routeInformationParser,
-      routerDelegate: router.routerDelegate,
-      routeInformationProvider: router.routeInformationProvider,
+      home: SplashScreen(),
     );
   }
 }

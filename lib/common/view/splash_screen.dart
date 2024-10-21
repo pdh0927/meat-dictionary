@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:meat_dictionary/common/const/colors.dart';
 import 'package:meat_dictionary/common/layout/default_layout.dart';
+import 'package:meat_dictionary/common/view/root_tab.dart';
 
 // 스플래쉬 스크린
 class SplashScreen extends ConsumerStatefulWidget {
@@ -23,9 +23,12 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
 
   Future<void> _navigateToHome() async {
     await Future.delayed(const Duration(seconds: 1));
-    if (mounted) {
-      context.go('/');
-    }
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const RootTab(),
+      ),
+    );
   }
 
   @override
