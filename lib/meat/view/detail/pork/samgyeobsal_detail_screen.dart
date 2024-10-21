@@ -10,7 +10,7 @@ import 'package:meat_dictionary/meat/component/detail/recipe_widget.dart';
 import 'package:meat_dictionary/meat/component/detail/small_title_components.dart';
 import 'package:meat_dictionary/meat/model/meat_model.dart';
 
-// 삼겹살 디테일
+// 삼겹살 디테일 화면
 class SamgyeobsalDetailScreen extends StatefulWidget {
   static String get routeName => 'samgyeobsal_detail';
 
@@ -33,8 +33,9 @@ class _SamgyeobsalDetailScreenState extends State<SamgyeobsalDetailScreen> {
   void dispose() {
     _scrollController.dispose();
     super.dispose();
-  } // 메뉴 선택 시 스크롤 위치로 이동하는 함수
+  }
 
+  // 메뉴 선택 시 스크롤 위치로 이동하는 함수
   void _scrollToSection(double offset) {
     _scrollController.animateTo(
       offset,
@@ -69,18 +70,23 @@ class _TopContents extends StatelessWidget {
           offsets: [500, 1000, 1500, 2000],
           onMenuSelected: onMenuSelected,
         ),
+
         const SizedBox(height: 18.0),
-        // 고기 소개 및 특징
+
         const Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.0),
           child: Column(
             children: [
+              // 고기 소개 및 특징
               _Introductions(),
+
               Divider(
                 height: 48,
                 thickness: 1.0,
                 color: Color(0xFFD8D8D8),
               ),
+
+              // 개발자의 팁
               _Tips(),
             ],
           ),
@@ -276,11 +282,13 @@ class _BottomContent extends StatelessWidget {
       children: [
         // 맛있는 삼겹살 고르는법
         _SamgyeobsalChoosingTips(),
+
         Divider(
           height: 48.0,
           thickness: 1.0,
           color: Color(0xFFD8D8D8),
         ),
+
         // 삼겹살 추천 레시피
         SamgyeobsalRecipe(),
       ],
@@ -304,8 +312,6 @@ class _SamgyeobsalChoosingTipsState extends State<_SamgyeobsalChoosingTips> {
     'gs://meat-dictionary.appspot.com/meat-detail/galmaegisal/good/2.jpg',
   ];
 
-  List<String> goodImageUrls = [];
-
   final List<String> gsBadImageurls = const [
     'gs://meat-dictionary.appspot.com/meat-detail/galmaegisal/good/1.jpg',
     'gs://meat-dictionary.appspot.com/meat-detail/galmaegisal/good/2.jpg',
@@ -313,16 +319,20 @@ class _SamgyeobsalChoosingTipsState extends State<_SamgyeobsalChoosingTips> {
   ];
 
   List<String> badImageUrls = [];
+  List<String> goodImageUrls = [];
 
   final List<String> titles = const ['오돌뼈가 존재 하는 것', '갈비 뗀 자국이 존재하는 것'];
 
+  // 강조 문자열
   final List<String> highlights = const ['오돌뼈', '갈비 뗀 자국'];
 
+  // 추가 설명
   final List<String> descriptions = const [
     '끝 쪽에 있을수록 더 좋은 고기예요.',
     '자국이 크면 클수록 좋아요.',
   ];
 
+  // url 데이터 변환
   Future<void> fetchDownloadUrls() async {
     List<String> goodUrls =
         await DataUtils.convertMultipleGsToDownloadUrls(gsGoodImageurls);
@@ -351,9 +361,13 @@ class _SamgyeobsalChoosingTipsState extends State<_SamgyeobsalChoosingTips> {
         children: [
           // 제목
           const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0),
-              child: ChoosingYummyMeat(name: '삼겹살')),
+            padding: EdgeInsets.symmetric(horizontal: 16.0),
+            child: ChoosingYummyMeat(name: '삼겹살'),
+          ),
+
           const SizedBox(height: 16.0),
+
+          // 가로 스크롤 이미지
           HorizontalImages(
             titles: titles,
             highlights: highlights,

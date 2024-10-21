@@ -22,7 +22,9 @@ class MeatProfile extends StatelessWidget {
         width: 100.w,
         fit: BoxFit.fill,
       ),
+
       const SizedBox(height: 20.0),
+
       SizedBox(
         width: double.infinity,
         child: Padding(
@@ -51,7 +53,9 @@ class MeatProfile extends StatelessWidget {
                   fontWeight: FontWeight.w400,
                 ),
               ),
+
               const SizedBox(height: 8.0),
+
               const SizedBox(
                 width: 56,
                 child: Divider(

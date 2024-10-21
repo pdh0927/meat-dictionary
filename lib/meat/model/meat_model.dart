@@ -1,7 +1,47 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'meat_model.g.dart';
+
+@JsonSerializable()
+class MeatModel {
+  int id;
+  String name;
+  MeatType type;
+  List<Usage> usage;
+  String description;
+  MeatTexture texture;
+  SavoryFlavor savoryFlavor;
+  MeatAroma meatAroma;
+  int price;
+  String imgPath;
+
+  MeatModel({
+    required this.id,
+    required this.name,
+    required this.type,
+    required this.usage,
+    required this.description,
+    required this.texture,
+    required this.savoryFlavor,
+    required this.meatAroma,
+    required this.price,
+    required this.imgPath,
+  });
+
+  @override
+  String toString() {
+    return 'MeatModel { '
+        'id: $id, '
+        'name: $name, '
+        'type: ${type.label}, '
+        '}';
+  }
+}
+
+// 고기 종류
 enum MeatType {
   pork,
   beef,
-  // 필요한 다른 타입도 여기에 추가 가능
 }
 
 extension MeatTypeExtension on MeatType {
@@ -15,6 +55,7 @@ extension MeatTypeExtension on MeatType {
   }
 }
 
+// 용도
 enum Usage {
   grilling, // 구이
   boiledPork, // 수육
@@ -46,6 +87,7 @@ extension UsageExtension on Usage {
   }
 }
 
+// 식감
 enum MeatTexture {
   verySoft,
   slightlySoft,
@@ -54,6 +96,7 @@ enum MeatTexture {
   chewy,
 }
 
+// 육향
 enum MeatAroma {
   veryWeak,
   weak,
@@ -62,6 +105,7 @@ enum MeatAroma {
   veryStrong,
 }
 
+// 지방
 enum SavoryFlavor {
   mild,
   slightlyMild,
@@ -187,40 +231,5 @@ extension SavoryFlavorExtension on SavoryFlavor {
       (flavor) => flavor.sliderValue == value,
       orElse: () => SavoryFlavor.normal, // 기본값으로 'normal' 설정
     );
-  }
-}
-
-class MeatModel {
-  int id;
-  String name;
-  MeatType type;
-  List<Usage> usage;
-  String description;
-  MeatTexture texture;
-  SavoryFlavor savoryFlavor;
-  MeatAroma meatAroma;
-  int price;
-  String imgPath;
-
-  MeatModel({
-    required this.id,
-    required this.name,
-    required this.type,
-    required this.usage,
-    required this.description,
-    required this.texture,
-    required this.savoryFlavor,
-    required this.meatAroma,
-    required this.price,
-    required this.imgPath,
-  });
-
-  @override
-  String toString() {
-    return 'MeatModel { '
-        'id: $id, '
-        'name: $name, '
-        'type: ${type.label}, '
-        '}';
   }
 }

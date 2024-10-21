@@ -32,8 +32,9 @@ class _MocksalDetailScreenState extends State<MocksalDetailScreen> {
   void dispose() {
     _scrollController.dispose();
     super.dispose();
-  } // 메뉴 선택 시 스크롤 위치로 이동하는 함수
+  }
 
+  // 메뉴 선택 시 스크롤 위치로 이동하는 함수
   void _scrollToSection(double offset) {
     _scrollController.animateTo(
       offset,
@@ -68,18 +69,23 @@ class _TopContents extends StatelessWidget {
           offsets: [500, 1000, 1500, 2000],
           onMenuSelected: onMenuSelected,
         ),
+
         const SizedBox(height: 18.0),
-        // 고기 소개 및 특징
+
         const Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.0),
           child: Column(
             children: [
+              // 고기 소개 및 특징
               _Introductions(),
+
               Divider(
                 height: 48,
                 thickness: 1.0,
                 color: Color(0xFFD8D8D8),
               ),
+
+              // 개발자의 팁
               _Tips(),
             ],
           ),
@@ -102,19 +108,25 @@ class _Introductions extends StatelessWidget {
         children: [
           // 제목
           const IntroduceRegion(),
+
           const SizedBox(height: 16.0),
+
           IntroductionComponent(
             num: 1,
             text:
                 Text('목살은 머리와 등심 사이, 목의 살이에요.', style: detailThinContentStyle),
           ),
+
           const SizedBox(height: 16.0),
+
           IntroductionComponent(
             num: 2,
             text:
                 Text('삼겹살 다음으로 인기있는 구이용 부위에요.', style: detailThinContentStyle),
           ),
+
           const SizedBox(height: 16.0),
+
           IntroductionComponent(
             num: 3,
             text: Text.rich(
@@ -130,12 +142,16 @@ class _Introductions extends StatelessWidget {
               ),
             ),
           ),
+
           const SizedBox(height: 16.0),
+
           IntroductionComponent(
             num: 4,
             text: Text('목심, 목등심 등으로도 불려요.', style: detailThinContentStyle),
           ),
+
           const SizedBox(height: 16.0),
+
           IntroductionComponent(
             num: 5,
             text: Text.rich(
@@ -172,7 +188,9 @@ class _Tips extends StatelessWidget {
         children: [
           // 제목
           const DeveloperTips(),
+
           const SizedBox(height: 12.0),
+
           // 내용
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 5.0),
@@ -266,11 +284,13 @@ class _BottomContent extends StatelessWidget {
       children: [
         // 맛있는 목살 고르는법
         _MocksalChoosingTips(),
+
         Divider(
           height: 48.0,
           thickness: 1.0,
           color: Color(0xFFD8D8D8),
         ),
+
         // 목살 추천 레시피
         MocksalRecipe(),
       ],
@@ -293,29 +313,32 @@ class _MocksalChoosingTipsState extends State<_MocksalChoosingTips> {
     'gs://meat-dictionary.appspot.com/meat-detail/galmaegisal/good/2.jpg',
   ];
 
-  List<String> goodImageUrls = [];
-
   final List<String> gsBadImageurls = const [
     'gs://meat-dictionary.appspot.com/meat-detail/galmaegisal/good/1.jpg',
     'gs://meat-dictionary.appspot.com/meat-detail/galmaegisal/good/2.jpg',
     'gs://meat-dictionary.appspot.com/meat-detail/galmaegisal/good/2.jpg',
   ];
 
+  List<String> goodImageUrls = [];
   List<String> badImageUrls = [];
+
   final List<String> titles = const [
     '고기가 섬을 이루는 것',
     '한쪽 살코기가 크지 않은 것',
     '지방이 희고 단단한 것'
   ];
 
+  // 강조 문자열
   final List<String> highlights = const ['섬', '살코기', '희고 단단'];
 
+  // 추가 설명
   final List<String> descriptions = const [
     '섬이 많을수록 부드러워요.',
     '살코기가 커지면 퍽퍽해요.',
     '지방이 누런건 오래된 고기예요.'
   ];
 
+  // url 데이터 변환
   Future<void> fetchDownloadUrls() async {
     List<String> goodUrls =
         await DataUtils.convertMultipleGsToDownloadUrls(gsGoodImageurls);
@@ -344,9 +367,15 @@ class _MocksalChoosingTipsState extends State<_MocksalChoosingTips> {
         children: [
           // 제목
           const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0),
-              child: ChoosingYummyMeat(name: '목살')),
+            padding: EdgeInsets.symmetric(horizontal: 16.0),
+            child: ChoosingYummyMeat(
+              name: '목살',
+            ),
+          ),
+
           const SizedBox(height: 16.0),
+
+          // 가로 스크롤 이미지
           HorizontalImages(
             titles: titles,
             highlights: highlights,

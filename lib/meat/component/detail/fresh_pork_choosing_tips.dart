@@ -3,6 +3,7 @@ import 'package:meat_dictionary/common/utils/data_utils.dart';
 import 'package:meat_dictionary/meat/component/detail/horizozntal_images.dart';
 import 'package:meat_dictionary/meat/component/detail/small_title_components.dart';
 
+// 신선한 고기 고르는 방법
 class FreshPorkChoosingTips extends StatefulWidget {
   const FreshPorkChoosingTips({super.key});
 
@@ -18,14 +19,14 @@ class _FreshPorkChoosingTipsState extends State<FreshPorkChoosingTips> {
     'gs://meat-dictionary.appspot.com/meat-detail/galmaegisal/good/1.jpg',
   ];
 
-  List<String> goodImageUrls = [];
-
   final List<String> gsBadImageurls = const [
     'gs://meat-dictionary.appspot.com/meat-detail/galmaegisal/good/1.jpg',
     'gs://meat-dictionary.appspot.com/meat-detail/galmaegisal/good/1.jpg',
     'gs://meat-dictionary.appspot.com/meat-detail/galmaegisal/good/2.jpg',
     'gs://meat-dictionary.appspot.com/meat-detail/galmaegisal/good/2.jpg',
   ];
+
+  List<String> goodImageUrls = [];
   List<String> badImageUrls = [];
 
   final List<String> titles = const [
@@ -35,8 +36,10 @@ class _FreshPorkChoosingTipsState extends State<FreshPorkChoosingTips> {
     '겉에 핏물이 없는 것',
   ];
 
+  // 강조 문자열
   final List<String> highlights = const ['탄력', '분홍', '희고 단단', '핏물'];
 
+  // 추가 설명
   final List<String> descriptions = const [
     '탄력이 있을수록 신선해요.',
     '색이 희미하면 신선하지 않아요.',
@@ -44,6 +47,7 @@ class _FreshPorkChoosingTipsState extends State<FreshPorkChoosingTips> {
     '핏물이 나오지 않았을수록 신선해요.',
   ];
 
+  // url 데이터 변환하는 함수
   Future<void> fetchDownloadUrls() async {
     List<String> goodUrls =
         await DataUtils.convertMultipleGsToDownloadUrls(gsGoodImageurls);
@@ -72,9 +76,13 @@ class _FreshPorkChoosingTipsState extends State<FreshPorkChoosingTips> {
         children: [
           // 제목
           const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0),
-              child: ChoosingFreshMeat()),
+            padding: EdgeInsets.symmetric(horizontal: 16.0),
+            child: ChoosingFreshMeat(),
+          ),
+
           const SizedBox(height: 16.0),
+
+          // 가로 스크롤 이미지
           HorizontalImages(
             titles: titles,
             highlights: highlights,

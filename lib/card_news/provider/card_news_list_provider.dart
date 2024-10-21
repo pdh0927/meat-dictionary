@@ -47,7 +47,7 @@ class CardNewsListNotifier extends StateNotifier<List<CardNewsModel>> {
           return cardNews.copyWith(urls: updatedUrls);
         }).toList(),
       );
-
+      print(cardNewsList);
       // 마지막 페이지 여부 체크
       if (querySnapshot.docs.isNotEmpty)
       // 가져온 데이터가 있다면

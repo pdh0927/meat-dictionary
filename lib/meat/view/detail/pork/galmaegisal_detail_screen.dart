@@ -33,8 +33,9 @@ class _GalmaegisalDetailScreenState extends State<GalmaegisalDetailScreen> {
   void dispose() {
     _scrollController.dispose();
     super.dispose();
-  } // 메뉴 선택 시 스크롤 위치로 이동하는 함수
+  }
 
+  // 메뉴 선택 시 스크롤 위치로 이동하는 함수
   void _scrollToSection(double offset) {
     _scrollController.animateTo(
       offset,
@@ -69,18 +70,23 @@ class _TopContents extends StatelessWidget {
           offsets: [500, 1000, 1500, 2000],
           onMenuSelected: onMenuSelected,
         ),
+
         const SizedBox(height: 18.0),
-        // 고기 소개 및 특징
+
         const Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.0),
           child: Column(
             children: [
+              // 고기 소개 및 특징
               _Introductions(),
+
               Divider(
                 height: 48,
                 thickness: 1.0,
                 color: Color(0xFFD8D8D8),
               ),
+
+              // 개발자의 팁
               _Tips(),
             ],
           ),
@@ -103,7 +109,9 @@ class _Introductions extends StatelessWidget {
         children: [
           // 제목
           const IntroduceRegion(),
+
           const SizedBox(height: 16.0),
+
           IntroductionComponent(
             num: 1,
             text: Text.rich(
@@ -121,12 +129,16 @@ class _Introductions extends StatelessWidget {
               ),
             ),
           ),
+
           const SizedBox(height: 16.0),
+
           IntroductionComponent(
             num: 2,
             text: Text('삼겹살 위에 있는 부위예요.', style: detailThinContentStyle),
           ),
+
           const SizedBox(height: 16.0),
+
           IntroductionComponent(
             num: 3,
             text: Text.rich(
@@ -148,7 +160,9 @@ class _Introductions extends StatelessWidget {
               ),
             ),
           ),
+
           const SizedBox(height: 16.0),
+
           IntroductionComponent(
             num: 4,
             text: Text.rich(
@@ -170,7 +184,9 @@ class _Introductions extends StatelessWidget {
               ),
             ),
           ),
+
           const SizedBox(height: 16.0),
+
           IntroductionComponent(
             num: 5,
             text: Text.rich(
@@ -211,7 +227,9 @@ class _Tips extends StatelessWidget {
         children: [
           // 제목
           const DeveloperTips(),
+
           const SizedBox(height: 12.0),
+
           // 내용
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 5.0),
@@ -252,7 +270,9 @@ class _Tips extends StatelessWidget {
                     ),
                   ],
                 ),
+
                 const SizedBox(height: 13.0),
+
                 // 내용 2
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -298,11 +318,13 @@ class _BottomContent extends StatelessWidget {
       children: [
         // 맛있는 갈매기살 고르는법
         _GalmaegisalChoosingTips(),
+
         Divider(
           height: 48.0,
           thickness: 1.0,
           color: Color(0xFFD8D8D8),
         ),
+
         // 갈매기살 추천 레시피
         GalmaegisalRecipe(),
       ],
@@ -326,14 +348,13 @@ class _GalmaegisalChoosingTipsState extends State<_GalmaegisalChoosingTips> {
     'gs://meat-dictionary.appspot.com/meat-detail/galmaegisal/good/2.jpg',
   ];
 
-  List<String> goodImageUrls = [];
-
   final List<String> gsBadImageurls = const [
     'gs://meat-dictionary.appspot.com/meat-detail/galmaegisal/good/2.jpg',
     'gs://meat-dictionary.appspot.com/meat-detail/galmaegisal/good/1.jpg',
     'gs://meat-dictionary.appspot.com/meat-detail/galmaegisal/good/2.jpg',
   ];
 
+  List<String> goodImageUrls = [];
   List<String> badImageUrls = [];
 
   final List<String> titles = const [
@@ -342,6 +363,7 @@ class _GalmaegisalChoosingTipsState extends State<_GalmaegisalChoosingTips> {
     '적당한 지방이 있는 것'
   ];
 
+  // 강조 문자열
   final List<String> highlights = const ['짙은 붉은색', '꿉꿉한 냄새', '적당한 지방'];
 
   final List<String> descriptions = const [
@@ -350,6 +372,7 @@ class _GalmaegisalChoosingTipsState extends State<_GalmaegisalChoosingTips> {
     '한층 더 부드럽게 느껴져요.'
   ];
 
+  // url 데이터 변환
   Future<void> fetchDownloadUrls() async {
     List<String> goodUrls =
         await DataUtils.convertMultipleGsToDownloadUrls(gsGoodImageurls);
@@ -381,7 +404,10 @@ class _GalmaegisalChoosingTipsState extends State<_GalmaegisalChoosingTips> {
             padding: EdgeInsets.symmetric(horizontal: 16.0),
             child: ChoosingYummyMeat(name: '갈매기살'),
           ),
+
           const SizedBox(height: 16.0),
+
+          // 가로 스크롤 이미지
           HorizontalImages(
             titles: titles,
             highlights: highlights,

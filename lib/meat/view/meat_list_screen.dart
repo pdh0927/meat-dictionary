@@ -33,18 +33,7 @@ class _MeatListScreenState extends State<MeatListScreen> {
   Widget build(BuildContext context) {
     return DefaultLayout(
       title: '육식도감',
-      leading: widget.isTap
-          ? null
-          : InkWell(
-              onTap: () {
-                Navigator.of(context).pop();
-              },
-              child: Icon(
-                PhosphorIcons.caretLeft(),
-                size: 25,
-                color: BLACK_COLOR,
-              ),
-            ),
+      leading: _buildLeadingButton(), // 뒤로 가기 버튼
       child: Column(
         children: [
           const Divider(
@@ -60,85 +49,24 @@ class _MeatListScreenState extends State<MeatListScreen> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                InkWell(
-                  onTap: () {
-                    setState(() {
-                      selectedMeatType = MeatType.pork;
-                    });
-                  },
-                  child: Column(
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          color: selectedMeatType == MeatType.pork
-                              ? PRIMARY_COLOR
-                              : const Color(0xFFE4E4E4),
-                          borderRadius: BorderRadius.circular(100),
-                        ),
-                        child: Image.asset(
-                          'assets/imgs/common/pig_face.png',
-                          fit: BoxFit.fill,
-                          width: 35,
-                          height: 35,
-                        ),
-                      ),
-                      const SizedBox(height: 4.0),
-                      Text(
-                        '돼지고기',
-                        style: TextStyle(
-                          fontSize: 12.0,
-                          fontWeight: FontWeight.w600,
-                          color: selectedMeatType == MeatType.pork
-                              ? PRIMARY_COLOR
-                              : const Color(0xFF8E8E8E),
-                        ),
-                      )
-                    ],
-                  ),
+                _MeatTypeButton(
+                  type: MeatType.pork,
+                  assetPath: 'assets/imgs/common/pig_face.png',
+                  label: '돼지고기',
+                  isSelected: selectedMeatType == MeatType.pork,
+                  onTap: () => _selectMeatType(MeatType.pork),
                 ),
                 const SizedBox(width: 40.0),
-                InkWell(
-                  onTap: () {
-                    setState(() {
-                      selectedMeatType = MeatType.beef;
-                    });
-                  },
-                  child: Column(
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          color: selectedMeatType == MeatType.beef
-                              ? PRIMARY_COLOR
-                              : const Color(0xFFE4E4E4),
-                          borderRadius: BorderRadius.circular(100),
-                        ),
-                        child: Image.asset(
-                          'assets/imgs/common/cow_face.png',
-                          fit: BoxFit.fill,
-                          width: 35,
-                          height: 35,
-                        ),
-                      ),
-                      const SizedBox(height: 4.0),
-                      Text(
-                        '소고기',
-                        style: TextStyle(
-                          fontSize: 12.0,
-                          fontWeight: FontWeight.w600,
-                          color: selectedMeatType == MeatType.beef
-                              ? PRIMARY_COLOR
-                              : const Color(0xFF8E8E8E),
-                        ),
-                      )
-                    ],
-                  ),
+                _MeatTypeButton(
+                  type: MeatType.beef,
+                  assetPath: 'assets/imgs/common/cow_face.png',
+                  label: '소고기',
+                  isSelected: selectedMeatType == MeatType.beef,
+                  onTap: () => _selectMeatType(MeatType.beef),
                 ),
               ],
             ),
           ),
-
           const SizedBox(height: 0),
 
           // 고기 리스트 표시
@@ -147,6 +75,76 @@ class _MeatListScreenState extends State<MeatListScreen> {
               isFavoritesScreen: false,
               meatType: selectedMeatType,
               filterData: null,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // 고기 타입 선택 시 상태 갱신
+  void _selectMeatType(MeatType type) {
+    setState(() {
+      selectedMeatType = type;
+    });
+  }
+
+  // 뒤로 가기 버튼 빌드
+  Widget? _buildLeadingButton() {
+    if (widget.isTap) return null;
+    return InkWell(
+      onTap: () => Navigator.of(context).pop(),
+      child: Icon(
+        PhosphorIcons.caretLeft(),
+        size: 25,
+        color: BLACK_COLOR,
+      ),
+    );
+  }
+}
+
+class _MeatTypeButton extends StatelessWidget {
+  final MeatType type;
+  final String assetPath;
+  final String label;
+  final bool isSelected;
+  final VoidCallback onTap;
+
+  const _MeatTypeButton({
+    super.key,
+    required this.type,
+    required this.assetPath,
+    required this.label,
+    required this.isSelected,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      child: Column(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              color: isSelected ? PRIMARY_COLOR : const Color(0xFFE4E4E4),
+              borderRadius: BorderRadius.circular(100),
+            ),
+            child: Image.asset(
+              assetPath,
+              fit: BoxFit.fill,
+              width: 35,
+              height: 35,
+            ),
+          ),
+          const SizedBox(height: 4.0),
+          Text(
+            label,
+            style: TextStyle(
+              fontSize: 12.0,
+              fontWeight: FontWeight.w600,
+              color: isSelected ? PRIMARY_COLOR : const Color(0xFF8E8E8E),
             ),
           ),
         ],

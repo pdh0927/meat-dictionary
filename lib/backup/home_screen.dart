@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:meat_dictionary/common/const/colors.dart';
 import 'package:meat_dictionary/common/layout/default_layout.dart';
-import 'package:meat_dictionary/meat/component/custom_search_bar.dart';
 import 'package:meat_dictionary/meat/model/meat_model.dart';
 import 'package:meat_dictionary/meat/view/favorites_screen.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
@@ -29,7 +28,7 @@ class HomeScreen extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               // 검색창
-              const CustomSearchBar(isHome: true),
+              // const CustomSearchBar(isHome: true),
               const SizedBox(height: 20),
               // 사전 바로가기
               const _DictionaryComponent(),

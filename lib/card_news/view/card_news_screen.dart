@@ -75,7 +75,7 @@ class _CardNewsScreenState extends ConsumerState<CardNewsScreen> {
                       mainAxisSpacing: 5.0,
                       childAspectRatio: 1,
                     ),
-                    itemCount: cardNewsList.length + 1,
+                    itemCount: cardNewsList.length,
                     itemBuilder: (context, index) {
                       final cardNews = cardNewsList[index];
 

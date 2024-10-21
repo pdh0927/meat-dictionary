@@ -6,6 +6,7 @@ import 'package:meat_dictionary/meat/provider/favorites_provider.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:sizer/sizer.dart';
 
+// meat list 각 항목 컴포넌트
 class MeatListComponent extends ConsumerWidget {
   final MeatModel meatModel;
   final bool isSelected;
@@ -23,10 +24,12 @@ class MeatListComponent extends ConsumerWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 10.0),
       decoration: BoxDecoration(
-          color: const Color(0xFFF8F8F8),
-          borderRadius: BorderRadius.circular(8.0)),
+        color: const Color(0xFFF8F8F8),
+        borderRadius: BorderRadius.circular(8.0),
+      ),
       child: Row(
         children: [
+          // 이미지
           ClipRRect(
             borderRadius: BorderRadius.circular(8.0),
             child: Image.asset(
@@ -36,13 +39,16 @@ class MeatListComponent extends ConsumerWidget {
               fit: BoxFit.fill,
             ),
           ),
+
           const SizedBox(width: 10),
+
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
                   children: [
+                    // 고기 이름
                     Text(
                       meatModel.name,
                       style: const TextStyle(
@@ -51,7 +57,10 @@ class MeatListComponent extends ConsumerWidget {
                         fontWeight: FontWeight.w600,
                       ),
                     ),
+
                     const Spacer(),
+
+                    // 즐겨찾기 버튼
                     InkWell(
                       onTap: () async {
                         await ref
@@ -69,7 +78,10 @@ class MeatListComponent extends ConsumerWidget {
                     ),
                   ],
                 ),
+
                 const SizedBox(height: 10),
+
+                // 고기 설명
                 Text(
                   meatModel.description,
                   style: const TextStyle(
@@ -78,7 +90,10 @@ class MeatListComponent extends ConsumerWidget {
                     fontWeight: FontWeight.w500,
                   ),
                 ),
+
                 const SizedBox(height: 9),
+
+                // 세부 지표
                 Row(
                   children: [
                     _OvalLabel(
@@ -107,6 +122,7 @@ class MeatListComponent extends ConsumerWidget {
   }
 }
 
+// 지표 라벨
 class _OvalLabel extends StatelessWidget {
   final String label;
   final String value;
@@ -126,6 +142,7 @@ class _OvalLabel extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
+          // 라벨명
           Text(
             label,
             style: const TextStyle(
@@ -134,7 +151,10 @@ class _OvalLabel extends StatelessWidget {
               fontWeight: FontWeight.w600,
             ),
           ),
+
           const SizedBox(width: 3),
+
+          // 수치
           Text(
             value,
             style: const TextStyle(
