@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:meat_dictionary/common/layout/default_layout.dart';
 import 'package:meat_dictionary/meat/component/meat_list.dart';
-import 'package:meat_dictionary/meat/component/two_menu.dart';
+import 'package:meat_dictionary/meat/component/meat_type_selector.dart';
 import 'package:meat_dictionary/meat/model/meat_model.dart';
 import 'package:meat_dictionary/meat/provider/favorites_provider.dart';
 
 // 즐겨찾기 화면
-class FavoritesScreen extends ConsumerStatefulWidget {
-  static String get routeName => 'favorites';
 
+class FavoritesScreen extends ConsumerStatefulWidget {
   const FavoritesScreen({super.key});
 
   @override
@@ -32,28 +31,32 @@ class _FavoritesScreenState extends ConsumerState<FavoritesScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // 고기 type 선택 버튼
-          TwoMenu(
-            selectIndex: selectedType == MeatType.pork ? 0 : 1,
-            onLeftTap: () => _onTypeChanged(MeatType.pork),
-            onRightTap: () => _onTypeChanged(MeatType.beef),
-            leftLabel: '돼지',
-            rightLabel: '소',
-          ),
           const SizedBox(height: 10.0),
-          // 전체 개수
+
+          // 고기 선택 버튼
+          Center(
+            child: MeatTypeSelector(
+              selectedType: selectedType,
+              onTypeChanged: _onTypeChanged,
+            ),
+          ),
+
+          const SizedBox(height: 15.0),
+
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Text(
-              '전체 ${ref.read(favoritesProvider)[selectedType]!.length}개',
+              '전체 ${ref.watch(favoritesProvider)[selectedType]!.length}개',
               style: const TextStyle(
                 fontWeight: FontWeight.w400,
                 fontSize: 15,
               ),
             ),
           ),
-          const SizedBox(height: 10.0),
-          // 즐겨찾기 고기 목록
+
+          const SizedBox(height: 8.0),
+
+          // 고기 리스트
           Expanded(
             child: MeatList(
               isFavoritesScreen: true,

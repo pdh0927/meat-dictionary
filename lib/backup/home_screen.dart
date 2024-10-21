@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:meat_dictionary/common/const/colors.dart';
 import 'package:meat_dictionary/common/layout/default_layout.dart';
 import 'package:meat_dictionary/meat/model/meat_model.dart';
-import 'package:meat_dictionary/meat/view/favorites_screen.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 // 홈 화면
@@ -176,7 +174,7 @@ class _FavoritesComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.pushNamed(FavoritesScreen.routeName);
+        // context.pushNamed(FavoritesScreen.routeName);
       },
       child: Container(
         width: double.infinity,
