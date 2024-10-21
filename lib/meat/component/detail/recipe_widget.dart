@@ -40,7 +40,9 @@ class RecipeWidgetFrame extends StatelessWidget {
               ],
             ),
           ),
+
           const SizedBox(height: 8.0),
+
           // 레시피 카드 그리드
           _buildRecipeGrid(),
         ],
@@ -132,18 +134,22 @@ class _RecipeCard extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  // 제목
                   Text(
                     title,
                     style: const TextStyle(
                       fontSize: 16.0,
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
-                      decoration: TextDecoration.underline, // 밑줄 추가
-                      decorationColor: PRIMARY_COLOR, // 밑줄 색상 설정
-                      decorationThickness: 2.5, // 밑줄 두께 설정
+                      decoration: TextDecoration.underline,
+                      decorationColor: PRIMARY_COLOR,
+                      decorationThickness: 2.0,
                     ),
                   ),
+
                   const SizedBox(height: 4.0),
+
+                  // 음식 이름
                   Text(
                     foodName,
                     style: const TextStyle(

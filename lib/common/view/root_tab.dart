@@ -12,6 +12,7 @@ import 'package:meat_dictionary/meat/view/favorites_screen.dart';
 import 'package:meat_dictionary/meat/view/meat_list_screen.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
+// 루트탭
 class RootTab extends ConsumerStatefulWidget {
   static String get routeName => 'rootTab';
 

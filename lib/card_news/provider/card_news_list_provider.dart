@@ -1,8 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:meat_dictionary/card_news/model/card_news_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
+import 'package:meat_dictionary/common/utils/data_utils.dart';
 
+// 카드뉴스 리스트 provider
 final cardNewsListProvider =
     StateNotifierProvider<CardNewsListNotifier, List<CardNewsModel>>((ref) {
   return CardNewsListNotifier();
@@ -17,8 +18,9 @@ class CardNewsListNotifier extends StateNotifier<List<CardNewsModel>> {
   bool _isFetching = false; // 중복 호출 방지 플래그
   bool isLastPage = false; // 마지막 페이지 여부
 
+  // 카드뉴스 가져오기
   Future<void> fetchCardNews() async {
-    if (_isFetching || isLastPage) return; // 중복 호출 방지
+    if (_isFetching || isLastPage) return; // 중복 호출 방지 로직
     _isFetching = true;
 
     const int pageSize = 8; // 한 번에 불러올 문서 수
@@ -39,19 +41,23 @@ class CardNewsListNotifier extends StateNotifier<List<CardNewsModel>> {
       final List<CardNewsModel> cardNewsList = await Future.wait(
         querySnapshot.docs.map((doc) async {
           final cardNews = CardNewsModel.fromFirestore(doc);
-          final urls = await _convertGsUrlsToDownloadUrls(cardNews.urls);
-          return CardNewsModel(
-            id: cardNews.id,
-            title: cardNews.title,
-            createdAt: cardNews.createdAt,
-            urls: urls,
-          );
+          final updatedUrls =
+              await DataUtils.convertMultipleGsToDownloadUrls(cardNews.urls);
+
+          return cardNews.copyWith(urls: updatedUrls);
         }).toList(),
       );
+      print(cardNewsList);
       // 마지막 페이지 여부 체크
-      if (querySnapshot.docs.isNotEmpty) {
+      if (querySnapshot.docs.isNotEmpty)
+      // 가져온 데이터가 있다면
+      {
+        // 마지막 문서 업데이트
         _lastDocument = querySnapshot.docs.last;
-        if (querySnapshot.docs.length < pageSize) {
+
+        if (querySnapshot.docs.length < pageSize)
+        // 마지막 페이지가 맞다면
+        {
           isLastPage = true;
         }
       } else {
@@ -74,20 +80,5 @@ class CardNewsListNotifier extends StateNotifier<List<CardNewsModel>> {
       return false;
     }
     return true; // 마지막 페이지일 경우 true 반환
-  }
-
-  // gs:// 경로를 다운로드 가능한 URL로 변환하는 함수
-  Future<List<String>> _convertGsUrlsToDownloadUrls(List<String> gsUrls) async {
-    try {
-      return await Future.wait(
-        gsUrls.map((url) async {
-          final ref = FirebaseStorage.instance.refFromURL(url);
-          return await ref.getDownloadURL();
-        }),
-      );
-    } catch (e) {
-      print('Error converting URLs: $e');
-      return [];
-    }
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
+// 디테일 페이지 스크롤 이동 메뉴
 class DetailMenuBar extends StatelessWidget {
   const DetailMenuBar({
     super.key,
@@ -27,6 +28,7 @@ class DetailMenuBar extends StatelessWidget {
   }
 }
 
+// 메뉴 버튼
 class _MenuButton extends StatelessWidget {
   const _MenuButton({
     required this.width,

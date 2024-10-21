@@ -1,13 +1,11 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:meat_dictionary/common/const/colors.dart';
 import 'package:meat_dictionary/common/layout/default_layout.dart';
 import 'package:meat_dictionary/common/provider/shared_preferences_provider.dart';
-import 'package:meat_dictionary/meat/const/data.dart';
-import 'package:meat_dictionary/meat/const/dummy_data.dart';
+import 'package:meat_dictionary/meat/const/meat_detail_sceen_data.dart';
+import 'package:meat_dictionary/meat/const/meat_model_data.dart';
 import 'package:meat_dictionary/meat/model/meat_identifier.dart';
 import 'package:meat_dictionary/meat/model/meat_model.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
@@ -23,11 +21,19 @@ class CustomSearchScreen extends ConsumerStatefulWidget {
 
 // 검색 화면의 상태를 관리하는 클래스
 class _CustomSearchScreenState extends ConsumerState<CustomSearchScreen> {
-  final TextEditingController _searchController =
-      TextEditingController(); // 검색어 입력을 관리하는 컨트롤러
-  List<MeatModel> allMeats = []; // 전체 고기 데이터
-  List<MeatModel> searchResults = []; // 검색 결과
-  List<MeatIdentifier> recentSearches = []; // 최근 검색어
+  // 검색어 입력을 관리하는 컨트롤러
+  final TextEditingController _searchController = TextEditingController();
+
+  // 전체 고기 데이터
+  List<MeatModel> allMeats = [];
+
+  // 검색 결과
+  List<MeatModel> searchResults = [];
+
+  // 최근 검색어
+  List<MeatIdentifier> recentSearches = [];
+
+  // 인기 검색어
   List<MeatIdentifier> popularSearches = [
     MeatIdentifier(MeatType.pork, '목살'),
     MeatIdentifier(MeatType.pork, '삼겹살'),
@@ -36,8 +42,10 @@ class _CustomSearchScreenState extends ConsumerState<CustomSearchScreen> {
     MeatIdentifier(MeatType.beef, '갈비'),
     MeatIdentifier(MeatType.pork, '갈매기살'),
     MeatIdentifier(MeatType.beef, '안심'),
-  ]; // 인기 검색어
-  bool isPopularSelected = false; // 인기 검색어와 최근 검색어 탭 상태를 관리
+  ];
+
+  // 인기 검색어와 최근 검색어 탭 상태를 관리
+  bool isPopularSelected = false;
 
   @override
   void initState() {
@@ -47,7 +55,7 @@ class _CustomSearchScreenState extends ConsumerState<CustomSearchScreen> {
   }
 
   // MeatIdentifier를 기반으로 MeatModel을 찾는 메서드
-  MeatModel? _findMeatModel(MeatIdentifier identifier) {
+  MeatModel _findMeatModel(MeatIdentifier identifier) {
     return allMeats.firstWhere(
       (meat) => meat.type == identifier.type && meat.name == identifier.name,
     );
@@ -60,24 +68,27 @@ class _CustomSearchScreenState extends ConsumerState<CustomSearchScreen> {
         prefs.getStringList('recentSearches') ?? [];
 
     setState(() {
-      // JSON 문자열을 MeatIdentifier 객체로 변환
+      // JSON 문자열을 MeatIdentifier 객체로 변환하여 대입
       recentSearches = recentSearchStrings.map((jsonString) {
         final jsonMap = jsonDecode(jsonString);
+
         return MeatIdentifier.fromJson(jsonMap);
       }).toList();
     });
   }
 
   // 검색어를 최근 검색어 목록에 추가하는 메서드
-  Future<void> _addRecentSearch(MeatModel meat) async {
+  Future<void> _addRecentSearch(MeatModel meatModel) async {
     final prefs = ref.read(sharedPreferencesProvider);
+
+    // 'recentSearches' 키로 저장된 최근 검색어 목록을 불러옴
     List<String> updatedRecentSearches =
         prefs.getStringList('recentSearches') ?? [];
 
-    final identifier = MeatIdentifier(meat.type, meat.name);
+    final identifier = MeatIdentifier(meatModel.type, meatModel.name);
     final identifierJson = identifier.toJson();
 
-    // JSON 문자열로 변환하여 저장
+    // 추가할 검색어를 JSON 문자열로 변환하여 저장
     final identifierString = jsonEncode(identifierJson);
 
     // 중복 제거
@@ -90,6 +101,7 @@ class _CustomSearchScreenState extends ConsumerState<CustomSearchScreen> {
     }
 
     await prefs.setStringList('recentSearches', updatedRecentSearches);
+
     // JSON 문자열을 다시 MeatIdentifier로 변환하여 상태 업데이트
     setState(() {
       recentSearches = updatedRecentSearches
@@ -101,13 +113,21 @@ class _CustomSearchScreenState extends ConsumerState<CustomSearchScreen> {
   // 특정 검색어를 최근 검색어 목록에서 제거하는 메서드
   Future<void> _removeRecentSearch(MeatIdentifier identifier) async {
     final prefs = ref.read(sharedPreferencesProvider);
+
+    // 'recentSearches' 키로 저장된 최근 검색어 목록을 불러옴
     List<String> updatedRecentSearches =
         prefs.getStringList('recentSearches') ?? [];
 
+    // 제거할 검색어를 JSON 형식의 문자열로 변환
     final identifierString = jsonEncode(identifier.toJson());
+
+    // 해당 문자열을 최근 검색어 목록에서 제거
     updatedRecentSearches.remove(identifierString);
 
+    // 변경된 목록을 SharedPreferences에 다시 저장
     await prefs.setStringList('recentSearches', updatedRecentSearches);
+
+    // 저장된 JSON 문자열을 다시 MeatIdentifier 객체로 변환하여 목록 생성
     setState(() {
       recentSearches = updatedRecentSearches.map((jsonString) {
         final jsonMap = jsonDecode(jsonString);
@@ -119,6 +139,7 @@ class _CustomSearchScreenState extends ConsumerState<CustomSearchScreen> {
   // 검색어에 따라 검색 결과를 필터링하는 메서드
   void _search(String query) {
     setState(() {
+      // 모든 고기 목록에서 검색어(query)가 포함된 항목만 필터링
       searchResults = allMeats
           .where(
               (meat) => meat.name.toLowerCase().contains(query.toLowerCase()))
@@ -139,7 +160,7 @@ class _CustomSearchScreenState extends ConsumerState<CustomSearchScreen> {
           ),
           const SizedBox(height: 24.0),
 
-          // 검색바
+          // 검색어 입력 bar
           _SearchBar(
             searchController: _searchController,
             onChanged: _search,
@@ -149,9 +170,13 @@ class _CustomSearchScreenState extends ConsumerState<CustomSearchScreen> {
               setState(() {}); // UI 갱신
             },
           ),
+
           const SizedBox(height: 16.0),
+
           if (_searchController.text.isEmpty)
-            // 검색어 입력이 없을 때, 최근 검색어와 인기 검색어 목록 표시
+            // 검색어 입력이 없을 때
+
+            // 최근, 인기 검색어 탭
             _SearchTabs(
               isPopularSelected: isPopularSelected,
               onTabSelected: (selected) {
@@ -169,22 +194,20 @@ class _CustomSearchScreenState extends ConsumerState<CustomSearchScreen> {
               findMeatModel: _findMeatModel,
             )
           else
-            // 검색어 입력이 있을 때, 검색 결과 목록 표시
+            // 검색어 입력이 있을 때
+
+            // 검색 결과
             _SearchResults(
               searchResults: searchResults,
-              onResultSelected: (meat) async {
-                await _addRecentSearch(meat); // 검색 결과를 최근 검색어에 추가
-                final routeName =
-                    routeNames[MeatIdentifier(meat.type, meat.name)];
+              onResultSelected: (meatModel) async {
+                await _addRecentSearch(meatModel); // 검색 결과를 최근 검색어에 추가
 
-                if (routeName != null) {
-                  context.pushNamed(
-                    routeName,
-                    extra: {'meatModel': meat},
-                  );
-                } else {
-                  context.pushNamed("meat_detail");
-                }
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => getMeatDetailScreen(meatModel),
+                  ),
+                );
               },
             ),
         ],
@@ -193,7 +216,7 @@ class _CustomSearchScreenState extends ConsumerState<CustomSearchScreen> {
   }
 }
 
-// 검색 화면 상단 헤더 (뒤로 가기 버튼, 검색 입력 필드)
+// 검색어 입력 bar
 class _SearchBar extends StatelessWidget {
   const _SearchBar({
     required this.searchController,
@@ -294,7 +317,7 @@ class _SearchResults extends StatelessWidget {
   }
 }
 
-// 인기 검색어와 최근 검색어 탭을 표시하는 위젯
+// 인기 검색어와 최근 검색어 선택 탭
 class _SearchTabs extends StatelessWidget {
   const _SearchTabs({
     required this.isPopularSelected,
@@ -312,7 +335,7 @@ class _SearchTabs extends StatelessWidget {
   final List<MeatIdentifier> popularSearches;
   final ValueChanged<MeatIdentifier> onRemoveRecent;
   final ValueChanged<MeatIdentifier> onSearchSelected;
-  final MeatModel? Function(MeatIdentifier) findMeatModel;
+  final MeatModel Function(MeatIdentifier) findMeatModel;
 
   @override
   Widget build(BuildContext context) {
@@ -323,12 +346,12 @@ class _SearchTabs extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            _SearchWordMenu(
+            _SearchMenuComponent(
               label: '최근 검색어',
               isSelected: !isPopularSelected,
               onTap: () => onTabSelected(false),
             ),
-            _SearchWordMenu(
+            _SearchMenuComponent(
               label: '인기 검색어',
               isSelected: isPopularSelected,
               onTap: () => onTabSelected(true),
@@ -336,6 +359,7 @@ class _SearchTabs extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 5.0),
+
         // 탭에 따른 검색어 목록 표시
         // 최근 검색어
         if (!isPopularSelected)
@@ -362,16 +386,13 @@ class _SearchTabs extends StatelessWidget {
               ),
               onTap: () {
                 final meatModel = findMeatModel(meatIdentifier);
-                final routeName = routeNames[meatIdentifier];
 
-                if (routeName != null && meatModel != null) {
-                  context.pushNamed(
-                    routeName,
-                    extra: {'meatModel': meatModel},
-                  );
-                } else {
-                  context.pushNamed("meat_detail");
-                }
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => getMeatDetailScreen(meatModel),
+                  ),
+                );
               },
             ),
           ),
@@ -394,16 +415,13 @@ class _SearchTabs extends StatelessWidget {
                 ),
                 onTap: () {
                   final meatModel = findMeatModel(meatIdentifier);
-                  final routeName = routeNames[meatIdentifier];
 
-                  if (routeName != null && meatModel != null) {
-                    context.pushNamed(
-                      routeName,
-                      extra: {'meatModel': meatModel},
-                    );
-                  } else {
-                    context.pushNamed("meat_detail");
-                  }
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => getMeatDetailScreen(meatModel),
+                    ),
+                  );
                 },
               );
             },
@@ -414,8 +432,8 @@ class _SearchTabs extends StatelessWidget {
 }
 
 // 탭 메뉴 위젯
-class _SearchWordMenu extends StatelessWidget {
-  const _SearchWordMenu({
+class _SearchMenuComponent extends StatelessWidget {
+  const _SearchMenuComponent({
     required this.label,
     required this.isSelected,
     required this.onTap,

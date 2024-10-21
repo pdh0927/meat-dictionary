@@ -1,6 +1,6 @@
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:meat_dictionary/common/const/text_style.dart';
+import 'package:meat_dictionary/common/utils/data_utils.dart';
 import 'package:meat_dictionary/meat/component/detail/detail_menu_bar.dart';
 import 'package:meat_dictionary/meat/component/detail/horizozntal_images.dart';
 import 'package:meat_dictionary/meat/component/detail/common_meat_detail_frame.dart';
@@ -31,8 +31,9 @@ class _ApdalisalDetailScreenState extends State<ApdalisalDetailScreen> {
   void dispose() {
     _scrollController.dispose();
     super.dispose();
-  } // 메뉴 선택 시 스크롤 위치로 이동하는 함수
+  }
 
+  // 메뉴 선택 시 스크롤 위치로 이동하는 함수
   void _scrollToSection(double offset) {
     _scrollController.animateTo(
       offset,
@@ -67,18 +68,23 @@ class _TopContents extends StatelessWidget {
           offsets: [500, 1000, 1500, 2000],
           onMenuSelected: onMenuSelected,
         ),
+
         const SizedBox(height: 18.0),
-        // 고기 소개 및 특징
+
         const Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.0),
           child: Column(
             children: [
+              // 고기 소개 및 특징
               _Introductions(),
+
               Divider(
                 height: 48,
                 thickness: 1.0,
                 color: Color(0xFFD8D8D8),
               ),
+
+              // 개발자의 팁
               _Tips(),
             ],
           ),
@@ -101,7 +107,9 @@ class _Introductions extends StatelessWidget {
         children: [
           // 제목
           const IntroduceRegion(),
+
           const SizedBox(height: 16.0),
+
           IntroductionComponent(
             num: 1,
             text: Text(
@@ -109,7 +117,9 @@ class _Introductions extends StatelessWidget {
               style: detailThinContentStyle,
             ),
           ),
+
           const SizedBox(height: 16.0),
+
           IntroductionComponent(
               num: 2,
               text: Text.rich(
@@ -131,6 +141,7 @@ class _Introductions extends StatelessWidget {
                 ),
               )),
           const SizedBox(height: 16.0),
+
           IntroductionComponent(
             num: 3,
             text: Text.rich(
@@ -148,7 +159,9 @@ class _Introductions extends StatelessWidget {
               ),
             ),
           ),
+
           const SizedBox(height: 16.0),
+
           IntroductionComponent(
             num: 4,
             text: Text.rich(
@@ -189,7 +202,9 @@ class _Tips extends StatelessWidget {
         children: [
           // 제목
           const DeveloperTips(),
+
           const SizedBox(height: 12.0),
+
           // 내용
           Column(
             children: [
@@ -219,7 +234,9 @@ class _Tips extends StatelessWidget {
                   ),
                 ],
               ),
+
               const SizedBox(height: 13.0),
+
               // 내용 2
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -264,11 +281,13 @@ class _BottomContent extends StatelessWidget {
       children: [
         // 맛있는 앞다리살 고르는법
         _ApdalisalChoosingTips(),
+
         Divider(
           height: 48.0,
           thickness: 1.0,
           color: Color(0xFFD8D8D8),
         ),
+
         // 앞다리살 추천 레시피
         ApdalisalRecipe(),
       ],
@@ -285,13 +304,11 @@ class _ApdalisalChoosingTips extends StatefulWidget {
 }
 
 class _ApdalisalChoosingTipsState extends State<_ApdalisalChoosingTips> {
-  final List<String> gssGoodImageurls = const [
+  final List<String> gsGoodImageurls = const [
     'gs://meat-dictionary.appspot.com/meat-detail/galmaegisal/good/1.jpg',
     'gs://meat-dictionary.appspot.com/meat-detail/galmaegisal/good/2.jpg',
     'gs://meat-dictionary.appspot.com/meat-detail/galmaegisal/good/2.jpg',
   ];
-
-  List<String> goodImageUrls = [];
 
   final List<String> gsBadImageurls = const [
     'gs://meat-dictionary.appspot.com/meat-detail/galmaegisal/good/1.jpg',
@@ -299,40 +316,32 @@ class _ApdalisalChoosingTipsState extends State<_ApdalisalChoosingTips> {
     'gs://meat-dictionary.appspot.com/meat-detail/galmaegisal/good/2.jpg',
   ];
 
+  List<String> goodImageUrls = [];
   List<String> badImageUrls = [];
 
   final List<String> titles = const ['낙엽 모양을 띄는 것', '살코기 중간에 지방이 껴있는것'];
 
+  // 강조할 문자열
   final List<String> highlights = const ['낙엽', '지방'];
 
+  // 추가 설명
   final List<String> descriptions = const [
     '살코기가 여러 덩이인게 좋아요.',
     '지방이 껴있어야 부드러워요.',
   ];
 
+  // url 데이터 변환
   Future<void> fetchDownloadUrls() async {
-    List<String> goodUrls = await Future.wait(
-      gssGoodImageurls.map((path) => convertGsToDownloadUrl(path)).toList(),
-    );
+    List<String> goodUrls =
+        await DataUtils.convertMultipleGsToDownloadUrls(gsGoodImageurls);
 
-    List<String> badUrls = await Future.wait(
-      gsBadImageurls.map((path) => convertGsToDownloadUrl(path)).toList(),
-    );
+    List<String> badUrls =
+        await DataUtils.convertMultipleGsToDownloadUrls(gsBadImageurls);
 
     setState(() {
       goodImageUrls = goodUrls;
       badImageUrls = badUrls;
     });
-  }
-
-  Future<String> convertGsToDownloadUrl(String gsPath) async {
-    try {
-      final ref = FirebaseStorage.instance.refFromURL(gsPath);
-      return await ref.getDownloadURL();
-    } catch (e) {
-      print('Error fetching download URL: $e');
-      return '';
-    }
   }
 
   @override
@@ -353,7 +362,10 @@ class _ApdalisalChoosingTipsState extends State<_ApdalisalChoosingTips> {
             padding: EdgeInsets.symmetric(horizontal: 16.0),
             child: ChoosingYummyMeat(name: '앞다리살'),
           ),
+
           const SizedBox(height: 16.0),
+
+          // 가로 스크롤 이미지
           HorizontalImages(
             titles: titles,
             highlights: highlights,

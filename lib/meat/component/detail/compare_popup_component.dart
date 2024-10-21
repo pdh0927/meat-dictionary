@@ -4,6 +4,7 @@ import 'package:meat_dictionary/common/const/colors.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
 
+// 비교 팝업 컴포넌트
 class ComparePopupComponent extends StatelessWidget {
   const ComparePopupComponent({
     super.key,
@@ -15,8 +16,8 @@ class ComparePopupComponent extends StatelessWidget {
     required this.badDescriptions,
   });
 
-  final String title;
-  final String highlight;
+  final String title; // 제목
+  final String highlight; // 제목 강조 단어
   final String goodImageUrl;
   final String badImageUrl;
   final List<String> goodDescriptions;
@@ -70,14 +71,18 @@ class ComparePopupComponent extends StatelessWidget {
                   ],
                 ),
               ),
+
               const SizedBox(height: 20.0),
+
               _buildComparisonColumn(
                 'GOOD',
                 goodImageUrl,
                 goodDescriptions,
                 const Color(0xFF21D25B),
               ),
+
               const SizedBox(height: 15.0),
+
               _buildComparisonColumn(
                 'BAD',
                 badImageUrl,
@@ -132,13 +137,15 @@ class ComparePopupComponent extends StatelessWidget {
             ),
           ),
         ),
+
         const SizedBox(height: 8.0),
+
         ClipRRect(
           borderRadius: BorderRadius.circular(8.0),
           child: CachedNetworkImage(
             imageUrl: imageUrl,
             fit: BoxFit.fill,
-            width: 100.w - 70, // 이미지 크기 조정
+            width: 100.w - 70,
             height: 25.h,
             placeholder: (context, url) => Shimmer.fromColors(
               baseColor: Colors.grey[300]!,
@@ -152,7 +159,9 @@ class ComparePopupComponent extends StatelessWidget {
             },
           ),
         ),
+
         const SizedBox(height: 8.0),
+
         // 설명을 세로로 나열
         ...descriptions.map((description) => getDescription(description)),
       ],

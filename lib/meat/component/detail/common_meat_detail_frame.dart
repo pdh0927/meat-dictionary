@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:meat_dictionary/common/const/colors.dart';
 import 'package:meat_dictionary/common/const/text_style.dart';
 import 'package:meat_dictionary/common/layout/default_layout.dart';
 import 'package:meat_dictionary/meat/component/detail/fresh_pork_choosing_tips.dart';
 import 'package:meat_dictionary/meat/component/detail/meat_profile.dart';
 import 'package:meat_dictionary/meat/component/detail/small_title_components.dart';
-import 'package:meat_dictionary/meat/const/dummy_data.dart';
+import 'package:meat_dictionary/meat/const/meat_detail_sceen_data.dart';
+import 'package:meat_dictionary/meat/const/meat_model_data.dart';
 import 'package:meat_dictionary/meat/model/meat_model.dart';
 import 'package:meat_dictionary/meat/provider/favorites_provider.dart';
-import 'package:meat_dictionary/meat/view/detail/pork/mocksal_detail_screeN.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:sizer/sizer.dart';
 
@@ -35,20 +34,20 @@ class CommonMeatDetailFrame extends ConsumerStatefulWidget {
 }
 
 class _CommonMeatDetailFrameState extends ConsumerState<CommonMeatDetailFrame> {
+  // 맨 위로 스크롤하는 함수
+  void scrollToTop() {
+    widget.scrollController.animateTo(
+      0.0,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final isSelected = ref
         .watch(favoritesProvider.notifier)
         .isFavorite(widget.meatModel.type, widget.meatModel.id);
-
-    // 맨 위로 스크롤하는 함수
-    void scrollToTop() {
-      widget.scrollController.animateTo(
-        0.0,
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeInOut,
-      );
-    }
 
     return DefaultLayout(
       leading: InkWell(
@@ -80,6 +79,7 @@ class _CommonMeatDetailFrameState extends ConsumerState<CommonMeatDetailFrame> {
                 child: Icon(PhosphorIcons.share(), size: 24),
               ),
             ),
+
             // 즐겨찾기 버튼
             InkWell(
               onTap: () async {
@@ -114,11 +114,16 @@ class _CommonMeatDetailFrameState extends ConsumerState<CommonMeatDetailFrame> {
         controller: widget.scrollController,
         child: Column(
           children: [
+            // 고기 프로필
             MeatProfile(
               meatModel: widget.meatModel,
             ),
+
             const SizedBox(height: 15.0),
+
+            // 윗쪽 내용
             widget.topChild,
+
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Column(
@@ -128,6 +133,7 @@ class _CommonMeatDetailFrameState extends ConsumerState<CommonMeatDetailFrame> {
                     thickness: 1.0,
                     color: Color(0xFFD8D8D8),
                   ),
+
                   // 풍미 그래프
                   _MeatAttributes(meatModel: widget.meatModel),
                   const Divider(
@@ -138,10 +144,12 @@ class _CommonMeatDetailFrameState extends ConsumerState<CommonMeatDetailFrame> {
                 ],
               ),
             ),
+
             // 신선한 고기 고르는 방법
             widget.meatModel.type == MeatType.pork
                 ? const FreshPorkChoosingTips()
                 : const FreshPorkChoosingTips(),
+
             const Divider(
               height: 48.0,
               thickness: 1.0,
@@ -231,22 +239,27 @@ class _VerticalBar extends StatelessWidget {
         // 막대 그래프
         Stack(
           children: [
+            // 배경 막대
             Container(
               width: 10,
               height: 80,
-              color: const Color(0xFFD9D9D9), // 배경색
+              color: const Color(0xFFD9D9D9),
             ),
+
+            // 수치 막대
             Positioned(
               bottom: 0,
               child: Container(
                 width: 10,
                 height: 80 * value,
-                color: PRIMARY_COLOR, // 막대 색상
+                color: PRIMARY_COLOR,
               ),
             ),
           ],
         ),
+
         const SizedBox(height: 8),
+
         // 속성명
         Text(
           title,
@@ -256,6 +269,7 @@ class _VerticalBar extends StatelessWidget {
             color: Colors.grey,
           ),
         ),
+
         // 속성 값 라벨
         Text(
           label,
@@ -291,11 +305,15 @@ class _Recommend extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        // 제목
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Text('추천', style: detailBoldSmallTitleStyle),
         ),
+
         const SizedBox(height: 8.0),
+
+        // 추천 내용
         SizedBox(
           height: 30.w + 50,
           child: ListView.builder(
@@ -330,21 +348,14 @@ class _RecommendCard extends ConsumerWidget {
     final favoriteIds = favoriteMap[meatModel.type] ?? {};
     final isFavorite = favoriteIds.contains(meatModel.id);
 
-    final Map<String, String> meatDetailRoutes = {
-      '목살': MocksalDetailScreen.routeName,
-    };
-
     return InkWell(
       onTap: () {
-        final routeName = meatDetailRoutes[meatModel.name];
-        if (routeName != null) {
-          context.pushNamed(
-            routeName,
-            extra: {'meatModel': meatModel},
-          );
-        } else {
-          context.pushNamed("meat_detail");
-        }
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => getMeatDetailScreen(meatModel),
+          ),
+        );
       },
       child: SizedBox(
         width: 30.w,

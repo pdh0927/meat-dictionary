@@ -4,6 +4,7 @@ import 'package:meat_dictionary/common/const/colors.dart';
 import 'package:meat_dictionary/meat/component/detail/compare_popup_component.dart';
 import 'package:shimmer/shimmer.dart';
 
+// 가로 스크롤 이미지
 class HorizontalImages extends StatelessWidget {
   const HorizontalImages({
     super.key,
@@ -88,7 +89,9 @@ class HorizontalImages extends StatelessWidget {
                         return const Icon(Icons.error, color: Colors.red);
                       },
                     ),
+
                     const SizedBox(height: 4.0),
+
                     // 제목
                     RichText(
                       maxLines: 2,

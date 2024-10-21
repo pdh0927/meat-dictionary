@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:meat_dictionary/card_news/component/slide_card_news_widget.dart';
-import 'package:meat_dictionary/card_news/provider/card_news_provider.dart';
+import 'package:meat_dictionary/card_news/provider/random_card_news_provider.dart';
 import 'package:meat_dictionary/common/const/colors.dart';
 import 'package:meat_dictionary/common/layout/default_layout.dart';
 import 'package:meat_dictionary/meat/model/meat_model.dart';
@@ -16,7 +16,7 @@ class HomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final randomCardNews = ref.watch(randomCardNewsProvider);
+    final randomCardNews = ref.watch(randomCardNewsProvider); // 랜덤 카드뉴스
 
     return DefaultLayout(
       backgroundColor: const Color(0xFFF4F6FA),
@@ -34,14 +34,18 @@ class HomeScreen extends ConsumerWidget {
                       width: 100.w,
                       height: 100.w,
                     ),
+
               const SizedBox(height: 24.0),
+
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.0),
                 child: Column(
                   children: [
                     // 사전 바로가기 위젯
                     _DictionaryComponent(),
+
                     SizedBox(height: 16.0),
+
                     // 취향 저격 부위 찾기 버튼
                     _ChooseOwnMeat(),
                   ],
@@ -54,6 +58,7 @@ class HomeScreen extends ConsumerWidget {
     );
   }
 
+  // shimmer를 return 하는 함수
   Widget buildShimmer() {
     return Shimmer.fromColors(
       baseColor: Colors.grey[300]!,
@@ -76,6 +81,7 @@ class _DictionaryComponent extends StatelessWidget {
     return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        // 제목
         Text(
           '어떤 고기를 찾고 계시나요?',
           style: TextStyle(
@@ -84,7 +90,10 @@ class _DictionaryComponent extends StatelessWidget {
             fontWeight: FontWeight.w600,
           ),
         ),
+
         SizedBox(height: 15),
+
+        // 바로가기 버튼
         Row(
           children: [
             // 돼지 card
@@ -156,6 +165,7 @@ class _CategoryCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // 설명
             Text(
               description,
               style: const TextStyle(
@@ -165,7 +175,9 @@ class _CategoryCard extends StatelessWidget {
                 color: Colors.white,
               ),
             ),
+
             const SizedBox(height: 15.0),
+
             // 고기 라벨
             Text(
               meatType.label,

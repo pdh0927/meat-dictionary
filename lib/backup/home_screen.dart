@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:meat_dictionary/common/const/colors.dart';
 import 'package:meat_dictionary/common/layout/default_layout.dart';
-import 'package:meat_dictionary/meat/component/custom_search_bar.dart';
 import 'package:meat_dictionary/meat/model/meat_model.dart';
 import 'package:meat_dictionary/meat/view/favorites_screen.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
@@ -29,7 +28,7 @@ class HomeScreen extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               // 검색창
-              const CustomSearchBar(isHome: true),
+              // const CustomSearchBar(isHome: true),
               const SizedBox(height: 20),
               // 사전 바로가기
               const _DictionaryComponent(),
@@ -215,7 +214,7 @@ class _FavoritesComponent extends StatelessWidget {
                 Text(
                   '자주 찾는 고기는 여기서 볼 수 있어요.',
                   style: TextStyle(
-                    color: GREY_70_COLOR,
+                    color: GREY_80_COLOR,
                     fontFamily: 'Pretendard',
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
@@ -228,7 +227,7 @@ class _FavoritesComponent extends StatelessWidget {
               width: 50.0,
               height: 50.0,
               decoration: const BoxDecoration(
-                color: BLUE_COLOR,
+                color: Colors.blue,
                 shape: BoxShape.circle,
               ),
               child: const Center(

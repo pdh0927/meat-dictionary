@@ -3,7 +3,6 @@ import 'package:go_router/go_router.dart';
 import 'package:meat_dictionary/common/const/colors.dart';
 import 'package:meat_dictionary/common/layout/default_layout.dart';
 import 'package:meat_dictionary/common/view/custom_search_screen.dart';
-import 'package:meat_dictionary/meat/component/custom_search_bar.dart';
 import 'package:meat_dictionary/meat/component/meat_list.dart';
 import 'package:meat_dictionary/meat/model/meat_model.dart';
 import 'package:meat_dictionary/meat/view/filter_screen.dart';
@@ -77,7 +76,7 @@ class _MeatListScreenState extends State<MeatListScreen> {
           children: [
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.0),
-              child: CustomSearchBar(isHome: false),
+              // child: CustomSearchBar(isHome: false),
             ),
             const SizedBox(height: 10),
             _FilterButton(

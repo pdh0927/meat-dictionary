@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meat_dictionary/common/const/colors.dart';
 
+// 소개 컴포넌트(번호+내용)
 class IntroductionComponent extends StatelessWidget {
   const IntroductionComponent({
     super.key,
@@ -16,6 +17,7 @@ class IntroductionComponent extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        // 번호
         Container(
           width: 24,
           height: 24,
@@ -33,7 +35,10 @@ class IntroductionComponent extends StatelessWidget {
             ),
           ),
         ),
+
         const SizedBox(width: 8.0),
+
+        // 내용
         Expanded(child: text)
       ],
     );
