@@ -164,10 +164,10 @@ class _CommonMeatDetailFrameState extends ConsumerState<CommonMeatDetailFrame> {
             ),
 
             // 다른 고기 추천
-            _Recommend(
-              thisPageId: widget.meatModel.id,
-              meatType: widget.meatModel.type,
-            ),
+            // _Recommend(
+            //   thisPageId: widget.meatModel.id,
+            //   meatType: widget.meatModel.type,
+            // ),
             const SizedBox(height: 50)
           ],
         ),
