@@ -1,9 +1,12 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:meat_dictionary/common/const/colors.dart';
+import 'package:meat_dictionary/common/utils/data_utils.dart';
 import 'package:meat_dictionary/meat/model/meat_model.dart';
 import 'package:meat_dictionary/meat/provider/favorites_provider.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
 
 // meat list 각 항목 컴포넌트
@@ -30,14 +33,50 @@ class MeatListComponent extends ConsumerWidget {
       child: Row(
         children: [
           // 이미지
-          ClipRRect(
-            borderRadius: BorderRadius.circular(8.0),
-            child: Image.asset(
-              meatModel.imgPath,
-              height: 20.w,
-              width: 20.w,
-              fit: BoxFit.fill,
-            ),
+          FutureBuilder<String>(
+            future: DataUtils.convertGsToDownloadUrl(meatModel.imgPath),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                // 로딩 중일 때 Shimmer 표시
+                return Shimmer.fromColors(
+                  baseColor: Colors.grey[300]!,
+                  highlightColor: Colors.grey[100]!,
+                  child: Container(
+                    height: 20.w,
+                    width: 20.w,
+                    color: Colors.grey[300],
+                  ),
+                );
+              } else if (snapshot.hasError || !snapshot.hasData) {
+                // 오류 발생 시 아이콘 표시
+                return const Icon(Icons.error, color: Colors.red, size: 50);
+              } else {
+                // 성공 시 CachedNetworkImage 사용
+                return ClipRRect(
+                  borderRadius: BorderRadius.circular(8.0),
+                  child: CachedNetworkImage(
+                    imageUrl: snapshot.data!,
+                    fit: BoxFit.fill,
+                    height: 20.w,
+                    width: 20.w,
+                    placeholder: (context, url) => Shimmer.fromColors(
+                      baseColor: Colors.grey[300]!,
+                      highlightColor: Colors.grey[100]!,
+                      child: Container(
+                        height: 20.w,
+                        width: 20.w,
+                        color: Colors.grey[300],
+                      ),
+                    ),
+                    errorWidget: (context, url, error) => const Icon(
+                      Icons.error,
+                      color: Colors.red,
+                      size: 50,
+                    ),
+                  ),
+                );
+              }
+            },
           ),
 
           const SizedBox(width: 10),
