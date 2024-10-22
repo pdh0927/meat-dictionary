@@ -308,13 +308,13 @@ class _MocksalChoosingTips extends StatefulWidget {
 
 class _MocksalChoosingTipsState extends State<_MocksalChoosingTips> {
   final List<String> gsGoodImageurls = const [
-    'gs://meat-dictionary.appspot.com/meat-detail/galmaegisal/good/1.jpg',
+    'gs://meat-dictionary.appspot.com/meat-detail/mocksal/good/mocksal_good_1.png',
     'gs://meat-dictionary.appspot.com/meat-detail/galmaegisal/good/2.jpg',
     'gs://meat-dictionary.appspot.com/meat-detail/galmaegisal/good/2.jpg',
   ];
 
   final List<String> gsBadImageurls = const [
-    'gs://meat-dictionary.appspot.com/meat-detail/galmaegisal/good/1.jpg',
+    'gs://meat-dictionary.appspot.com/meat-detail/mocksal/bad/mocksal_bad_1.png',
     'gs://meat-dictionary.appspot.com/meat-detail/galmaegisal/good/2.jpg',
     'gs://meat-dictionary.appspot.com/meat-detail/galmaegisal/good/2.jpg',
   ];
@@ -340,16 +340,22 @@ class _MocksalChoosingTipsState extends State<_MocksalChoosingTips> {
 
   // url 데이터 변환
   Future<void> fetchDownloadUrls() async {
-    List<String> goodUrls =
-        await DataUtils.convertMultipleGsToDownloadUrls(gsGoodImageurls);
+    try {
+      List<String> goodUrls =
+          await DataUtils.convertMultipleGsToDownloadUrls(gsGoodImageurls);
 
-    List<String> badUrls =
-        await DataUtils.convertMultipleGsToDownloadUrls(gsBadImageurls);
+      List<String> badUrls =
+          await DataUtils.convertMultipleGsToDownloadUrls(gsBadImageurls);
 
-    setState(() {
-      goodImageUrls = goodUrls;
-      badImageUrls = badUrls;
-    });
+      if (mounted) {
+        setState(() {
+          goodImageUrls = goodUrls;
+          badImageUrls = badUrls;
+        });
+      }
+    } catch (e) {
+      print('Error fetching URLs: $e');
+    }
   }
 
   @override

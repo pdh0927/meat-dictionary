@@ -334,16 +334,22 @@ class _SamgyeobsalChoosingTipsState extends State<_SamgyeobsalChoosingTips> {
 
   // url 데이터 변환
   Future<void> fetchDownloadUrls() async {
-    List<String> goodUrls =
-        await DataUtils.convertMultipleGsToDownloadUrls(gsGoodImageurls);
+    try {
+      List<String> goodUrls =
+          await DataUtils.convertMultipleGsToDownloadUrls(gsGoodImageurls);
 
-    List<String> badUrls =
-        await DataUtils.convertMultipleGsToDownloadUrls(gsBadImageurls);
+      List<String> badUrls =
+          await DataUtils.convertMultipleGsToDownloadUrls(gsBadImageurls);
 
-    setState(() {
-      goodImageUrls = goodUrls;
-      badImageUrls = badUrls;
-    });
+      if (mounted) {
+        setState(() {
+          goodImageUrls = goodUrls;
+          badImageUrls = badUrls;
+        });
+      }
+    } catch (e) {
+      print('Error fetching URLs: $e');
+    }
   }
 
   @override

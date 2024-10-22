@@ -307,19 +307,17 @@ class _ApdalisalChoosingTipsState extends State<_ApdalisalChoosingTips> {
   final List<String> gsGoodImageurls = const [
     'gs://meat-dictionary.appspot.com/meat-detail/galmaegisal/good/1.jpg',
     'gs://meat-dictionary.appspot.com/meat-detail/galmaegisal/good/2.jpg',
-    'gs://meat-dictionary.appspot.com/meat-detail/galmaegisal/good/2.jpg',
   ];
 
   final List<String> gsBadImageurls = const [
     'gs://meat-dictionary.appspot.com/meat-detail/galmaegisal/good/1.jpg',
-    'gs://meat-dictionary.appspot.com/meat-detail/galmaegisal/good/2.jpg',
     'gs://meat-dictionary.appspot.com/meat-detail/galmaegisal/good/2.jpg',
   ];
 
   List<String> goodImageUrls = [];
   List<String> badImageUrls = [];
 
-  final List<String> titles = const ['낙엽 모양을 띄는 것', '살코기 중간에 지방이 껴있는것'];
+  final List<String> titles = const ['낙엽 모양을 띄는 것', '살코기 중간에 지방이 껴있는 것'];
 
   // 강조할 문자열
   final List<String> highlights = const ['낙엽', '지방'];
@@ -332,16 +330,22 @@ class _ApdalisalChoosingTipsState extends State<_ApdalisalChoosingTips> {
 
   // url 데이터 변환
   Future<void> fetchDownloadUrls() async {
-    List<String> goodUrls =
-        await DataUtils.convertMultipleGsToDownloadUrls(gsGoodImageurls);
+    try {
+      List<String> goodUrls =
+          await DataUtils.convertMultipleGsToDownloadUrls(gsGoodImageurls);
 
-    List<String> badUrls =
-        await DataUtils.convertMultipleGsToDownloadUrls(gsBadImageurls);
+      List<String> badUrls =
+          await DataUtils.convertMultipleGsToDownloadUrls(gsBadImageurls);
 
-    setState(() {
-      goodImageUrls = goodUrls;
-      badImageUrls = badUrls;
-    });
+      if (mounted) {
+        setState(() {
+          goodImageUrls = goodUrls;
+          badImageUrls = badUrls;
+        });
+      }
+    } catch (e) {
+      print('Error fetching URLs: $e');
+    }
   }
 
   @override
