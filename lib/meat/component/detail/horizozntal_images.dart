@@ -33,7 +33,8 @@ class HorizontalImages extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: List.generate(goodImageUrls.length, (index) {
           return Padding(
-            padding: EdgeInsets.only(right: index == 0 ? 16 : 0, left: 16.0),
+            padding: EdgeInsets.only(
+                right: index == goodImageUrls.length - 1 ? 16 : 0, left: 16.0),
             child: SizedBox(
               width: 180.0,
               child: GestureDetector(
