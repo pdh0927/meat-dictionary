@@ -288,7 +288,7 @@ class _BottomContent extends StatelessWidget {
         ),
 
         // 앞다리살 추천 레시피
-        ApdalisalRecipe(),
+        _ApdalisalRecipe(),
       ],
     );
   }
@@ -367,8 +367,8 @@ class _ApdalisalChoosingTipsState extends State<_ApdalisalChoosingTips> {
 }
 
 // 앞다리살 추천 레시피
-class ApdalisalRecipe extends StatelessWidget {
-  const ApdalisalRecipe({super.key});
+class _ApdalisalRecipe extends StatelessWidget {
+  const _ApdalisalRecipe();
 
   final List<String> imageUrls = const [
     'assets/imgs/pork/mocksal/recipe/1.png',

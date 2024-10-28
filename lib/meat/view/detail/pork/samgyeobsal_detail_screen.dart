@@ -289,7 +289,7 @@ class _BottomContent extends StatelessWidget {
         ),
 
         // 삼겹살 추천 레시피
-        SamgyeobsalRecipe(),
+        _SamgyeobsalRecipe(),
       ],
     );
   }
@@ -369,8 +369,8 @@ class _SamgyeobsalChoosingTipsState extends State<_SamgyeobsalChoosingTips> {
 }
 
 // 삼겹살 추천 레시피
-class SamgyeobsalRecipe extends StatelessWidget {
-  const SamgyeobsalRecipe({super.key});
+class _SamgyeobsalRecipe extends StatelessWidget {
+  const _SamgyeobsalRecipe();
 
   final List<String> imageUrls = const [
     'assets/imgs/pork/mocksal/recipe/1.png',

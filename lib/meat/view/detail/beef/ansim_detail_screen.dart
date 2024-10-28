@@ -290,7 +290,7 @@ class _BottomContent extends StatelessWidget {
         ),
 
         // 안심 추천 레시피
-        AnsimRecipe(),
+        _AnsimRecipe(),
       ],
     );
   }
@@ -377,8 +377,8 @@ class __AnsimChoosingTipsState extends State<_AnsimChoosingTips> {
 }
 
 // 안심 추천 레시피
-class AnsimRecipe extends StatelessWidget {
-  const AnsimRecipe({super.key});
+class _AnsimRecipe extends StatelessWidget {
+  const _AnsimRecipe();
 
   final List<String> imageUrls = const [
     'assets/imgs/pork/mocksal/recipe/1.png',

@@ -325,7 +325,7 @@ class _BottomContent extends StatelessWidget {
         ),
 
         // 갈매기살 추천 레시피
-        GalmaegisalRecipe(),
+        _GalmaegisalRecipe(),
       ],
     );
   }
@@ -415,8 +415,8 @@ class _GalmaegisalChoosingTipsState extends State<_GalmaegisalChoosingTips> {
 }
 
 // 갈매기살 추천 레시피
-class GalmaegisalRecipe extends StatelessWidget {
-  const GalmaegisalRecipe({super.key});
+class _GalmaegisalRecipe extends StatelessWidget {
+  const _GalmaegisalRecipe();
 
   final List<String> imageUrls = const [
     'assets/imgs/pork/mocksal/recipe/1.png',
