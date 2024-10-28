@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:meat_dictionary/meat/model/meat_model.dart';
 import 'package:meat_dictionary/meat/view/detail/beef/ansim_detail_screen.dart';
+import 'package:meat_dictionary/meat/view/detail/beef/chaekkeutsal_detail_screen.dart';
 import 'package:meat_dictionary/meat/view/detail/pork/apdalisal_detail_screen.dart';
 import 'package:meat_dictionary/meat/view/detail/pork/galmaegisal_detail_screen.dart';
 import 'package:meat_dictionary/meat/view/detail/pork/hangjeongsal_detail_screen.dart';
@@ -29,6 +30,8 @@ Widget getMeatDetailScreen(MeatModel meat) {
     switch (meat.name) {
       case '안심':
         return AnsimDetailScreen(meatModel: meat);
+      case '채끝살':
+        return ChaekkeutsalDetailScreen(meatModel: meat);
 
       default:
         return const MeatDetailScreen(); // 기본 상세 화면

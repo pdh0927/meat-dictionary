@@ -74,10 +74,10 @@ List<MeatModel> porkList = [
 List<MeatModel> beefList = [
   MeatModel(
     id: 1,
-    name: '아롱사태',
+    name: '채끝살',
     type: MeatType.beef,
     usage: [Usage.boiledPork], // '수육' -> Usage.boiledPork
-    description: '항정살만큼 부드럽고 쫄깃한 부위',
+    description: '육향과 식감의 조화로운 밸런스',
     texture: MeatTexture.slightlyChewy,
     savoryFlavor: SavoryFlavor.normal,
     meatAroma: MeatAroma.weak,
