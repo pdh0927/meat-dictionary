@@ -12,7 +12,7 @@ List<MeatModel> porkList = [
     meatAroma: MeatAroma.veryStrong,
     price: 4,
     imgPath:
-        'gs://meat-dictionary.appspot.com/meat-detail/hangjeongsal/hangjeongsal_thubnail.png',
+        'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fhangjeongsal%2Fhangjeongsal_thubnail.png?alt=media&token=cf3786a4-14c0-467d-8e18-de0ff7a97dda',
   ),
   MeatModel(
     id: 2,
@@ -25,7 +25,7 @@ List<MeatModel> porkList = [
     meatAroma: MeatAroma.veryWeak,
     price: 2,
     imgPath:
-        'gs://meat-dictionary.appspot.com/meat-detail/hangjeongsal/hangjeongsal_thubnail.png',
+        'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fhangjeongsal%2Fhangjeongsal_thubnail.png?alt=media&token=cf3786a4-14c0-467d-8e18-de0ff7a97dda',
   ),
   MeatModel(
     id: 3,
@@ -38,7 +38,7 @@ List<MeatModel> porkList = [
     meatAroma: MeatAroma.weak,
     price: 2,
     imgPath:
-        'gs://meat-dictionary.appspot.com/meat-detail/hangjeongsal/hangjeongsal_thubnail.png',
+        'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fhangjeongsal%2Fhangjeongsal_thubnail.png?alt=media&token=cf3786a4-14c0-467d-8e18-de0ff7a97dda',
   ),
   MeatModel(
     id: 4,
@@ -51,7 +51,7 @@ List<MeatModel> porkList = [
     meatAroma: MeatAroma.weak,
     price: 2,
     imgPath:
-        'gs://meat-dictionary.appspot.com/meat-detail/hangjeongsal/hangjeongsal_thubnail.png',
+        'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fhangjeongsal%2Fhangjeongsal_thubnail.png?alt=media&token=cf3786a4-14c0-467d-8e18-de0ff7a97dda',
   ),
   MeatModel(
     id: 6,
@@ -67,7 +67,7 @@ List<MeatModel> porkList = [
     meatAroma: MeatAroma.weak,
     price: 2,
     imgPath:
-        'gs://meat-dictionary.appspot.com/meat-detail/hangjeongsal/hangjeongsal_thubnail.png',
+        'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fhangjeongsal%2Fhangjeongsal_thubnail.png?alt=media&token=cf3786a4-14c0-467d-8e18-de0ff7a97dda',
   ),
 ];
 
@@ -83,7 +83,7 @@ List<MeatModel> beefList = [
     meatAroma: MeatAroma.weak,
     price: 4,
     imgPath:
-        'gs://meat-dictionary.appspot.com/meat-detail/hangjeongsal/hangjeongsal_thubnail.png',
+        'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fhangjeongsal%2Fhangjeongsal_thubnail.png?alt=media&token=cf3786a4-14c0-467d-8e18-de0ff7a97dda',
   ),
   MeatModel(
     id: 2,
@@ -96,7 +96,7 @@ List<MeatModel> beefList = [
     meatAroma: MeatAroma.weak,
     price: 2,
     imgPath:
-        'gs://meat-dictionary.appspot.com/meat-detail/hangjeongsal/hangjeongsal_thubnail.png',
+        'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fhangjeongsal%2Fhangjeongsal_thubnail.png?alt=media&token=cf3786a4-14c0-467d-8e18-de0ff7a97dda',
   ),
   MeatModel(
     id: 3,
@@ -109,7 +109,7 @@ List<MeatModel> beefList = [
     meatAroma: MeatAroma.weak,
     price: 2,
     imgPath:
-        'gs://meat-dictionary.appspot.com/meat-detail/hangjeongsal/hangjeongsal_thubnail.png',
+        'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fhangjeongsal%2Fhangjeongsal_thubnail.png?alt=media&token=cf3786a4-14c0-467d-8e18-de0ff7a97dda',
   ),
   MeatModel(
     id: 4,
@@ -122,7 +122,7 @@ List<MeatModel> beefList = [
     meatAroma: MeatAroma.weak,
     price: 2,
     imgPath:
-        'gs://meat-dictionary.appspot.com/meat-detail/hangjeongsal/hangjeongsal_thubnail.png',
+        'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fhangjeongsal%2Fhangjeongsal_thubnail.png?alt=media&token=cf3786a4-14c0-467d-8e18-de0ff7a97dda',
   ),
   MeatModel(
     id: 5,
@@ -138,7 +138,7 @@ List<MeatModel> beefList = [
     meatAroma: MeatAroma.weak,
     price: 2,
     imgPath:
-        'gs://meat-dictionary.appspot.com/meat-detail/hangjeongsal/hangjeongsal_thubnail.png',
+        'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fhangjeongsal%2Fhangjeongsal_thubnail.png?alt=media&token=cf3786a4-14c0-467d-8e18-de0ff7a97dda',
   ),
   MeatModel(
     id: 6,
@@ -154,6 +154,6 @@ List<MeatModel> beefList = [
     meatAroma: MeatAroma.weak,
     price: 2,
     imgPath:
-        'gs://meat-dictionary.appspot.com/meat-detail/hangjeongsal/hangjeongsal_thubnail.png',
+        'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fhangjeongsal%2Fhangjeongsal_thubnail.png?alt=media&token=cf3786a4-14c0-467d-8e18-de0ff7a97dda',
   ),
 ];

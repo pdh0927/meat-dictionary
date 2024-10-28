@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meat_dictionary/common/const/colors.dart';
 import 'package:meat_dictionary/common/const/text_style.dart';
-import 'package:meat_dictionary/common/utils/data_utils.dart';
 import 'package:meat_dictionary/meat/component/detail/detail_menu_bar.dart';
 import 'package:meat_dictionary/meat/component/detail/horizozntal_images.dart';
 import 'package:meat_dictionary/meat/component/detail/common_meat_detail_frame.dart';
@@ -342,20 +341,17 @@ class _GalmaegisalChoosingTips extends StatefulWidget {
 }
 
 class _GalmaegisalChoosingTipsState extends State<_GalmaegisalChoosingTips> {
-  final List<String> gsGoodImageurls = const [
-    'gs://meat-dictionary.appspot.com/meat-detail/galmaegisal/good/1.jpg',
-    'gs://meat-dictionary.appspot.com/meat-detail/galmaegisal/good/2.jpg',
-    'gs://meat-dictionary.appspot.com/meat-detail/galmaegisal/good/2.jpg',
+  final List<String> goodImageUrls = const [
+    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F1.jpg?alt=media&token=8ec5fe9e-1f5e-478c-9158-8e492fd5f11d',
+    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F1.jpg?alt=media&token=8ec5fe9e-1f5e-478c-9158-8e492fd5f11d',
+    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F1.jpg?alt=media&token=8ec5fe9e-1f5e-478c-9158-8e492fd5f11d',
   ];
 
-  final List<String> gsBadImageurls = const [
-    'gs://meat-dictionary.appspot.com/meat-detail/galmaegisal/good/2.jpg',
-    'gs://meat-dictionary.appspot.com/meat-detail/galmaegisal/good/1.jpg',
-    'gs://meat-dictionary.appspot.com/meat-detail/galmaegisal/good/2.jpg',
+  final List<String> badImageUrls = const [
+    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F2.jpg?alt=media&token=53faf929-74a0-4c9e-9316-d55a5e11b8c6',
+    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F2.jpg?alt=media&token=53faf929-74a0-4c9e-9316-d55a5e11b8c6',
+    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F2.jpg?alt=media&token=53faf929-74a0-4c9e-9316-d55a5e11b8c6',
   ];
-
-  List<String> goodImageUrls = [];
-  List<String> badImageUrls = [];
 
   final List<String> titles = const [
     '짙은 붉은색을 띄는 것',
@@ -372,30 +368,9 @@ class _GalmaegisalChoosingTipsState extends State<_GalmaegisalChoosingTips> {
     '한층 더 부드럽게 느껴져요.'
   ];
 
-  // url 데이터 변환
-  Future<void> fetchDownloadUrls() async {
-    try {
-      List<String> goodUrls =
-          await DataUtils.convertMultipleGsToDownloadUrls(gsGoodImageurls);
-
-      List<String> badUrls =
-          await DataUtils.convertMultipleGsToDownloadUrls(gsBadImageurls);
-
-      if (mounted) {
-        setState(() {
-          goodImageUrls = goodUrls;
-          badImageUrls = badUrls;
-        });
-      }
-    } catch (e) {
-      print('Error fetching URLs: $e');
-    }
-  }
-
   @override
   void initState() {
     super.initState();
-    fetchDownloadUrls();
   }
 
   @override

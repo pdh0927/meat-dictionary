@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:meat_dictionary/common/const/colors.dart';
-import 'package:meat_dictionary/common/utils/data_utils.dart';
 import 'package:meat_dictionary/meat/model/meat_model.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
@@ -19,50 +18,28 @@ class MeatProfile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
       // 이미지
-      FutureBuilder<String>(
-        future: DataUtils.convertGsToDownloadUrl(meatModel.imgPath),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            // 로딩 중일 때 Shimmer 표시
-            return Shimmer.fromColors(
-              baseColor: Colors.grey[300]!,
-              highlightColor: Colors.grey[100]!,
-              child: Container(
-                height: 50.w,
-                width: 100.w,
-                color: Colors.grey[300],
-              ),
-            );
-          } else if (snapshot.hasError || !snapshot.hasData) {
-            // 오류 발생 시 아이콘 표시
-            return const Icon(Icons.error, color: Colors.red, size: 50);
-          } else {
-            // 성공 시 CachedNetworkImage 사용
-            return ClipRRect(
-              borderRadius: BorderRadius.circular(8.0),
-              child: CachedNetworkImage(
-                imageUrl: snapshot.data!,
-                fit: BoxFit.fill,
-                height: 50.w,
-                width: 100.w,
-                placeholder: (context, url) => Shimmer.fromColors(
-                  baseColor: Colors.grey[300]!,
-                  highlightColor: Colors.grey[100]!,
-                  child: Container(
-                    height: 50.w,
-                    width: 100.w,
-                    color: Colors.grey[300],
-                  ),
-                ),
-                errorWidget: (context, url, error) => const Icon(
-                  Icons.error,
-                  color: Colors.red,
-                  size: 50,
-                ),
-              ),
-            );
-          }
-        },
+      ClipRRect(
+        borderRadius: BorderRadius.circular(8.0),
+        child: CachedNetworkImage(
+          imageUrl: meatModel.imgPath,
+          fit: BoxFit.fill,
+          height: 50.w,
+          width: 100.w,
+          placeholder: (context, url) => Shimmer.fromColors(
+            baseColor: Colors.grey[300]!,
+            highlightColor: Colors.grey[100]!,
+            child: Container(
+              height: 50.w,
+              width: 100.w,
+              color: Colors.grey[300],
+            ),
+          ),
+          errorWidget: (context, url, error) => const Icon(
+            Icons.error,
+            color: Colors.red,
+            size: 50,
+          ),
+        ),
       ),
 
       const SizedBox(height: 20.0),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:meat_dictionary/common/utils/data_utils.dart';
 import 'package:meat_dictionary/meat/component/detail/horizozntal_images.dart';
 import 'package:meat_dictionary/meat/component/detail/small_title_components.dart';
 
@@ -12,22 +11,19 @@ class FreshPorkChoosingTips extends StatefulWidget {
 }
 
 class _FreshPorkChoosingTipsState extends State<FreshPorkChoosingTips> {
-  final List<String> gsGoodImageurls = const [
-    'gs://meat-dictionary.appspot.com/meat-detail/fresh-choosing/pork/good/elasticity_good.png',
-    'gs://meat-dictionary.appspot.com/meat-detail/galmaegisal/good/2.jpg',
-    'gs://meat-dictionary.appspot.com/meat-detail/galmaegisal/good/2.jpg',
-    'gs://meat-dictionary.appspot.com/meat-detail/fresh-choosing/pork/good/blood_good.png',
+  final List<String> goodImageUrls = const [
+    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Ffresh-choosing%2Fpork%2Fgood%2Felasticity_good.png?alt=media&token=5c5608fc-0e3f-4d27-95bf-ee9e1a98b530',
+    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Ffresh-choosing%2Fpork%2Fgood%2Felasticity_good.png?alt=media&token=5c5608fc-0e3f-4d27-95bf-ee9e1a98b530',
+    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Ffresh-choosing%2Fpork%2Fgood%2Felasticity_good.png?alt=media&token=5c5608fc-0e3f-4d27-95bf-ee9e1a98b530',
+    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Ffresh-choosing%2Fpork%2Fgood%2Fblood_good.png?alt=media&token=6ea29f4b-fb33-4905-abc8-c7e1b481d560',
   ];
 
-  final List<String> gsBadImageurls = const [
-    'gs://meat-dictionary.appspot.com/meat-detail/fresh-choosing/pork/bad/elasticity_bad.png',
-    'gs://meat-dictionary.appspot.com/meat-detail/galmaegisal/good/1.jpg',
-    'gs://meat-dictionary.appspot.com/meat-detail/galmaegisal/good/2.jpg',
-    'gs://meat-dictionary.appspot.com/meat-detail/fresh-choosing/pork/bad/blood_bad.png',
+  final List<String> badImageUrls = const [
+    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Ffresh-choosing%2Fpork%2Fbad%2Felasticity_bad.png?alt=media&token=a08b6d9b-64c4-47d7-8548-fcd74a1d5d6f',
+    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Ffresh-choosing%2Fpork%2Fbad%2Felasticity_bad.png?alt=media&token=a08b6d9b-64c4-47d7-8548-fcd74a1d5d6f',
+    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Ffresh-choosing%2Fpork%2Fbad%2Felasticity_bad.png?alt=media&token=a08b6d9b-64c4-47d7-8548-fcd74a1d5d6f',
+    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Ffresh-choosing%2Fpork%2Fbad%2Fblood_bad.png?alt=media&token=9cd1f17e-8870-46eb-aedf-19e90e7a20c7',
   ];
-
-  List<String> goodImageUrls = [];
-  List<String> badImageUrls = [];
 
   final List<String> titles = const [
     '흐물하지 않고 탄력 있는 것',
@@ -47,30 +43,9 @@ class _FreshPorkChoosingTipsState extends State<FreshPorkChoosingTips> {
     '핏물이 나오지 않았을수록 신선해요.',
   ];
 
-  // url 데이터 변환하는 함수
-  Future<void> fetchDownloadUrls() async {
-    try {
-      List<String> goodUrls =
-          await DataUtils.convertMultipleGsToDownloadUrls(gsGoodImageurls);
-
-      List<String> badUrls =
-          await DataUtils.convertMultipleGsToDownloadUrls(gsBadImageurls);
-
-      if (mounted) {
-        setState(() {
-          goodImageUrls = goodUrls;
-          badImageUrls = badUrls;
-        });
-      }
-    } catch (e) {
-      print('Error fetching URLs: $e');
-    }
-  }
-
   @override
   void initState() {
     super.initState();
-    fetchDownloadUrls();
   }
 
   @override
