@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:meat_dictionary/common/const/colors.dart';
@@ -11,6 +12,7 @@ import 'package:meat_dictionary/meat/const/meat_model_data.dart';
 import 'package:meat_dictionary/meat/model/meat_model.dart';
 import 'package:meat_dictionary/meat/provider/favorites_provider.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
 
 // 공통 고기 detail 내용
@@ -365,11 +367,25 @@ class _RecommendCard extends ConsumerWidget {
             // 고기 사진
             ClipRRect(
               borderRadius: BorderRadius.circular(8.0),
-              child: Image.asset(
-                meatModel.imgPath,
+              child: CachedNetworkImage(
+                imageUrl: meatModel.imgPath,
+                fit: BoxFit.fill,
                 height: 30.w,
                 width: 30.w,
-                fit: BoxFit.fill,
+                placeholder: (context, url) => Shimmer.fromColors(
+                  baseColor: Colors.grey[300]!,
+                  highlightColor: Colors.grey[100]!,
+                  child: Container(
+                    height: 30.w,
+                    width: 30.w,
+                    color: Colors.grey[300],
+                  ),
+                ),
+                errorWidget: (context, url, error) => const Icon(
+                  Icons.error,
+                  color: Colors.red,
+                  size: 30,
+                ),
               ),
             ),
             const SizedBox(height: 8.0),

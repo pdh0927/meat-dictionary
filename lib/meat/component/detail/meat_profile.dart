@@ -1,6 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:meat_dictionary/common/const/colors.dart';
 import 'package:meat_dictionary/meat/model/meat_model.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
 
 // 고기 프로필
@@ -16,11 +18,28 @@ class MeatProfile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
       // 이미지
-      Image.asset(
-        meatModel.imgPath,
-        height: 50.w,
-        width: 100.w,
-        fit: BoxFit.fill,
+      ClipRRect(
+        borderRadius: BorderRadius.circular(8.0),
+        child: CachedNetworkImage(
+          imageUrl: meatModel.imgPath,
+          fit: BoxFit.fill,
+          height: 50.w,
+          width: 100.w,
+          placeholder: (context, url) => Shimmer.fromColors(
+            baseColor: Colors.grey[300]!,
+            highlightColor: Colors.grey[100]!,
+            child: Container(
+              height: 50.w,
+              width: 100.w,
+              color: Colors.grey[300],
+            ),
+          ),
+          errorWidget: (context, url, error) => const Icon(
+            Icons.error,
+            color: Colors.red,
+            size: 50,
+          ),
+        ),
       ),
 
       const SizedBox(height: 20.0),

@@ -1,7 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:meat_dictionary/card_news/model/card_news_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:meat_dictionary/common/utils/data_utils.dart';
 
 // 카드뉴스 리스트 provider
 final cardNewsListProvider =
@@ -38,16 +37,10 @@ class CardNewsListNotifier extends StateNotifier<List<CardNewsModel>> {
       final querySnapshot = await query.get();
 
       // 새로 가져온 데이터들을 모델 리스트로 변환하고 URL을 변환
-      final List<CardNewsModel> cardNewsList = await Future.wait(
-        querySnapshot.docs.map((doc) async {
-          final cardNews = CardNewsModel.fromFirestore(doc);
-          final updatedUrls =
-              await DataUtils.convertMultipleGsToDownloadUrls(cardNews.urls);
+      final List<CardNewsModel> cardNewsList = querySnapshot.docs
+          .map((doc) => CardNewsModel.fromFirestore(doc))
+          .toList();
 
-          return cardNews.copyWith(urls: updatedUrls);
-        }).toList(),
-      );
-      print(cardNewsList);
       // 마지막 페이지 여부 체크
       if (querySnapshot.docs.isNotEmpty)
       // 가져온 데이터가 있다면

@@ -2,7 +2,6 @@ import 'dart:math';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:meat_dictionary/card_news/model/card_news_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:meat_dictionary/common/utils/data_utils.dart';
 
 // 랜덤 카드뉴스 provider(홈화면 사용)
 final randomCardNewsProvider =
@@ -51,11 +50,9 @@ class RandomCardNewsNotifier extends StateNotifier<CardNewsModel?> {
         // Firestore 문서를 모델로 변환하고 URL을 변환
         final CardNewsModel randomCardNews =
             CardNewsModel.fromFirestore(selectedDoc);
-        final downloadUrls = await DataUtils.convertMultipleGsToDownloadUrls(
-            randomCardNews.urls);
 
         // 상태 업데이트
-        state = randomCardNews.copyWith(urls: downloadUrls);
+        state = randomCardNews;
       }
     } catch (e) {
       print('Error fetching random card news: $e');

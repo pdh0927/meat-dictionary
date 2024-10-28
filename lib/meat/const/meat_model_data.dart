@@ -11,7 +11,8 @@ List<MeatModel> porkList = [
     savoryFlavor: SavoryFlavor.slightlySavory,
     meatAroma: MeatAroma.veryStrong,
     price: 4,
-    imgPath: 'assets/imgs/pork/가브리살.png',
+    imgPath:
+        'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fhangjeongsal%2Fhangjeongsal_thubnail.png?alt=media&token=cf3786a4-14c0-467d-8e18-de0ff7a97dda',
   ),
   MeatModel(
     id: 2,
@@ -23,7 +24,8 @@ List<MeatModel> porkList = [
     savoryFlavor: SavoryFlavor.slightlyMild,
     meatAroma: MeatAroma.veryWeak,
     price: 2,
-    imgPath: 'assets/imgs/pork/mocksal/mocksal_main.png',
+    imgPath:
+        'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fhangjeongsal%2Fhangjeongsal_thubnail.png?alt=media&token=cf3786a4-14c0-467d-8e18-de0ff7a97dda',
   ),
   MeatModel(
     id: 3,
@@ -35,7 +37,8 @@ List<MeatModel> porkList = [
     savoryFlavor: SavoryFlavor.slightlyMild,
     meatAroma: MeatAroma.weak,
     price: 2,
-    imgPath: 'assets/imgs/pork/삼겹살.png',
+    imgPath:
+        'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fhangjeongsal%2Fhangjeongsal_thubnail.png?alt=media&token=cf3786a4-14c0-467d-8e18-de0ff7a97dda',
   ),
   MeatModel(
     id: 4,
@@ -47,22 +50,8 @@ List<MeatModel> porkList = [
     savoryFlavor: SavoryFlavor.normal,
     meatAroma: MeatAroma.weak,
     price: 2,
-    imgPath: 'assets/imgs/pork/안심.png',
-  ),
-  MeatModel(
-    id: 5,
-    name: '등심',
-    type: MeatType.pork,
-    usage: [
-      Usage.cutlet,
-      Usage.sweetAndSourPork
-    ], // '돈가스', '탕수육' -> Usage.cutlet, Usage.sweetAndSourPork
-    description: '이건 구이로 먹지 마세요!',
-    texture: MeatTexture.slightlyChewy,
-    savoryFlavor: SavoryFlavor.normal,
-    meatAroma: MeatAroma.weak,
-    price: 2,
-    imgPath: 'assets/imgs/pork/등심.png',
+    imgPath:
+        'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fhangjeongsal%2Fhangjeongsal_thubnail.png?alt=media&token=cf3786a4-14c0-467d-8e18-de0ff7a97dda',
   ),
   MeatModel(
     id: 6,
@@ -77,7 +66,8 @@ List<MeatModel> porkList = [
     savoryFlavor: SavoryFlavor.normal,
     meatAroma: MeatAroma.weak,
     price: 2,
-    imgPath: 'assets/imgs/pork/등심.png',
+    imgPath:
+        'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fhangjeongsal%2Fhangjeongsal_thubnail.png?alt=media&token=cf3786a4-14c0-467d-8e18-de0ff7a97dda',
   ),
 ];
 
@@ -92,7 +82,8 @@ List<MeatModel> beefList = [
     savoryFlavor: SavoryFlavor.normal,
     meatAroma: MeatAroma.weak,
     price: 4,
-    imgPath: 'assets/imgs/beef/아롱사태.png',
+    imgPath:
+        'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fhangjeongsal%2Fhangjeongsal_thubnail.png?alt=media&token=cf3786a4-14c0-467d-8e18-de0ff7a97dda',
   ),
   MeatModel(
     id: 2,
@@ -104,7 +95,8 @@ List<MeatModel> beefList = [
     savoryFlavor: SavoryFlavor.normal,
     meatAroma: MeatAroma.weak,
     price: 2,
-    imgPath: 'assets/imgs/beef/부채살.png',
+    imgPath:
+        'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fhangjeongsal%2Fhangjeongsal_thubnail.png?alt=media&token=cf3786a4-14c0-467d-8e18-de0ff7a97dda',
   ),
   MeatModel(
     id: 3,
@@ -116,7 +108,8 @@ List<MeatModel> beefList = [
     savoryFlavor: SavoryFlavor.slightlyMild,
     meatAroma: MeatAroma.weak,
     price: 2,
-    imgPath: 'assets/imgs/beef/안창살.png',
+    imgPath:
+        'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fhangjeongsal%2Fhangjeongsal_thubnail.png?alt=media&token=cf3786a4-14c0-467d-8e18-de0ff7a97dda',
   ),
   MeatModel(
     id: 4,
@@ -128,7 +121,8 @@ List<MeatModel> beefList = [
     savoryFlavor: SavoryFlavor.normal,
     meatAroma: MeatAroma.weak,
     price: 2,
-    imgPath: 'assets/imgs/beef/안심.png',
+    imgPath:
+        'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fhangjeongsal%2Fhangjeongsal_thubnail.png?alt=media&token=cf3786a4-14c0-467d-8e18-de0ff7a97dda',
   ),
   MeatModel(
     id: 5,
@@ -143,7 +137,8 @@ List<MeatModel> beefList = [
     savoryFlavor: SavoryFlavor.normal,
     meatAroma: MeatAroma.weak,
     price: 2,
-    imgPath: 'assets/imgs/beef/등심.png',
+    imgPath:
+        'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fhangjeongsal%2Fhangjeongsal_thubnail.png?alt=media&token=cf3786a4-14c0-467d-8e18-de0ff7a97dda',
   ),
   MeatModel(
     id: 6,
@@ -158,6 +153,7 @@ List<MeatModel> beefList = [
     savoryFlavor: SavoryFlavor.normal,
     meatAroma: MeatAroma.weak,
     price: 2,
-    imgPath: 'assets/imgs/beef/등심.png',
+    imgPath:
+        'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fhangjeongsal%2Fhangjeongsal_thubnail.png?alt=media&token=cf3786a4-14c0-467d-8e18-de0ff7a97dda',
   ),
 ];

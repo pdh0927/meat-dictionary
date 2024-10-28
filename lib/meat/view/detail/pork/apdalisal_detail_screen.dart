@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:meat_dictionary/common/const/text_style.dart';
-import 'package:meat_dictionary/common/utils/data_utils.dart';
 import 'package:meat_dictionary/meat/component/detail/detail_menu_bar.dart';
 import 'package:meat_dictionary/meat/component/detail/horizozntal_images.dart';
 import 'package:meat_dictionary/meat/component/detail/common_meat_detail_frame.dart';
@@ -304,22 +303,17 @@ class _ApdalisalChoosingTips extends StatefulWidget {
 }
 
 class _ApdalisalChoosingTipsState extends State<_ApdalisalChoosingTips> {
-  final List<String> gsGoodImageurls = const [
-    'gs://meat-dictionary.appspot.com/meat-detail/galmaegisal/good/1.jpg',
-    'gs://meat-dictionary.appspot.com/meat-detail/galmaegisal/good/2.jpg',
-    'gs://meat-dictionary.appspot.com/meat-detail/galmaegisal/good/2.jpg',
+  final List<String> goodImageUrls = const [
+    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F1.jpg?alt=media&token=8ec5fe9e-1f5e-478c-9158-8e492fd5f11d',
+    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F1.jpg?alt=media&token=8ec5fe9e-1f5e-478c-9158-8e492fd5f11d',
   ];
 
-  final List<String> gsBadImageurls = const [
-    'gs://meat-dictionary.appspot.com/meat-detail/galmaegisal/good/1.jpg',
-    'gs://meat-dictionary.appspot.com/meat-detail/galmaegisal/good/2.jpg',
-    'gs://meat-dictionary.appspot.com/meat-detail/galmaegisal/good/2.jpg',
+  final List<String> badImageUrls = const [
+    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F2.jpg?alt=media&token=53faf929-74a0-4c9e-9316-d55a5e11b8c6',
+    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F2.jpg?alt=media&token=53faf929-74a0-4c9e-9316-d55a5e11b8c6',
   ];
 
-  List<String> goodImageUrls = [];
-  List<String> badImageUrls = [];
-
-  final List<String> titles = const ['낙엽 모양을 띄는 것', '살코기 중간에 지방이 껴있는것'];
+  final List<String> titles = const ['낙엽 모양을 띄는 것', '살코기 중간에 지방이 껴있는 것'];
 
   // 강조할 문자열
   final List<String> highlights = const ['낙엽', '지방'];
@@ -330,24 +324,9 @@ class _ApdalisalChoosingTipsState extends State<_ApdalisalChoosingTips> {
     '지방이 껴있어야 부드러워요.',
   ];
 
-  // url 데이터 변환
-  Future<void> fetchDownloadUrls() async {
-    List<String> goodUrls =
-        await DataUtils.convertMultipleGsToDownloadUrls(gsGoodImageurls);
-
-    List<String> badUrls =
-        await DataUtils.convertMultipleGsToDownloadUrls(gsBadImageurls);
-
-    setState(() {
-      goodImageUrls = goodUrls;
-      badImageUrls = badUrls;
-    });
-  }
-
   @override
   void initState() {
     super.initState();
-    fetchDownloadUrls();
   }
 
   @override
