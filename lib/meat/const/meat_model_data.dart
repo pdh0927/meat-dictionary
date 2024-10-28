@@ -116,7 +116,7 @@ List<MeatModel> beefList = [
     name: '안심',
     type: MeatType.beef,
     usage: [Usage.steak], // '스테이크' -> Usage.steak
-    description: '부드럽고 담백한',
+    description: '끝판왕 스테이크 부위',
     texture: MeatTexture.normal,
     savoryFlavor: SavoryFlavor.normal,
     meatAroma: MeatAroma.weak,
