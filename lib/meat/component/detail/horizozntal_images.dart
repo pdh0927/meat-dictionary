@@ -36,7 +36,7 @@ class HorizontalImages extends StatelessWidget {
             padding: EdgeInsets.only(
                 right: index == goodImageUrls.length - 1 ? 16 : 0, left: 16.0),
             child: SizedBox(
-              width: 180.0,
+              width: 195.0,
               child: GestureDetector(
                 onTap: () {
                   // 확대 했을 때
@@ -77,7 +77,7 @@ class HorizontalImages extends StatelessWidget {
                     CachedNetworkImage(
                       imageUrl: goodImageUrls[index],
                       fit: BoxFit.fill,
-                      width: 180,
+                      width: 195,
                       height: 120,
                       placeholder: (context, url) => Shimmer.fromColors(
                         baseColor: Colors.grey[300]!,
