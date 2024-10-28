@@ -188,4 +188,20 @@ List<MeatModel> beefList = [
     imgPath:
         'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fhangjeongsal%2Fhangjeongsal_thubnail.png?alt=media&token=cf3786a4-14c0-467d-8e18-de0ff7a97dda',
   ),
+  MeatModel(
+    id: 9,
+    name: '차돌박이',
+    type: MeatType.beef,
+    usage: [
+      Usage.steak,
+      Usage.grilling
+    ], // '스테이크', '구이' -> Usage.steak, Usage.grilling
+    description: '이건 구이로 먹지 마세요!',
+    texture: MeatTexture.slightlyChewy,
+    savoryFlavor: SavoryFlavor.normal,
+    meatAroma: MeatAroma.weak,
+    price: 2,
+    imgPath:
+        'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fhangjeongsal%2Fhangjeongsal_thubnail.png?alt=media&token=cf3786a4-14c0-467d-8e18-de0ff7a97dda',
+  ),
 ];

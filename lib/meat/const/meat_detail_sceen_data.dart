@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:meat_dictionary/meat/model/meat_model.dart';
 import 'package:meat_dictionary/meat/view/detail/beef/ansim_detail_screen.dart';
 import 'package:meat_dictionary/meat/view/detail/beef/buchaesal_detail_screen.dart';
+import 'package:meat_dictionary/meat/view/detail/beef/chadolbagi_detail_screen.dart';
 import 'package:meat_dictionary/meat/view/detail/beef/chaekkeutsal_detail_screen.dart';
 import 'package:meat_dictionary/meat/view/detail/beef/eobjinsal_detail_screen.dart';
 import 'package:meat_dictionary/meat/view/detail/beef/salchisal_detail_screen.dart';
@@ -44,6 +45,8 @@ Widget getMeatDetailScreen(MeatModel meat) {
         return EobjinsalDetailScreen(meatModel: meat);
       case '살치살':
         return SalchisalDetailScreen(meatModel: meat);
+      case '차돌박이':
+        return ChadolbagiDetailScreen(meatModel: meat);
       default:
         return const MeatDetailScreen(); // 기본 상세 화면
     }
