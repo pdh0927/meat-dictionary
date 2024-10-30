@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:meat_dictionary/common/const/text_style.dart';
 import 'package:meat_dictionary/meat/component/detail/detail_menu_bar.dart';
-import 'package:meat_dictionary/meat/component/detail/horizozntal_images.dart';
 import 'package:meat_dictionary/meat/component/detail/common_meat_detail_frame.dart';
 import 'package:meat_dictionary/meat/component/detail/introduction_component.dart';
 import 'package:meat_dictionary/meat/component/detail/recipe_widget.dart';
 import 'package:meat_dictionary/meat/component/detail/small_title_components.dart';
 import 'package:meat_dictionary/meat/model/meat_model.dart';
 
-// 앞다리 디테일
-class ApdalisalDetailScreen extends StatefulWidget {
-  static String get routeName => 'apdalisal_detail';
-
-  const ApdalisalDetailScreen({
+// 갈비 디테일
+class GalbiDetailScreen extends StatefulWidget {
+  const GalbiDetailScreen({
     super.key,
     required this.meatModel,
   });
@@ -20,10 +17,10 @@ class ApdalisalDetailScreen extends StatefulWidget {
   final MeatModel meatModel;
 
   @override
-  State<ApdalisalDetailScreen> createState() => _ApdalisalDetailScreenState();
+  State<GalbiDetailScreen> createState() => _GalbiDetailScreenState();
 }
 
-class _ApdalisalDetailScreenState extends State<ApdalisalDetailScreen> {
+class _GalbiDetailScreenState extends State<GalbiDetailScreen> {
   final ScrollController _scrollController = ScrollController();
 
   @override
@@ -112,7 +109,7 @@ class _Introductions extends StatelessWidget {
           IntroductionComponent(
             num: 1,
             text: Text(
-              '앞다리에서 사태살을 분리하고 남은 부위에요.',
+              '소의 갈비뼈와 그 주변부의 살을 갈비라고 해요.',
               style: detailThinContentStyle,
             ),
           ),
@@ -125,15 +122,7 @@ class _Introductions extends StatelessWidget {
                 TextSpan(
                   children: [
                     TextSpan(
-                      text: '가격 대비 맛이 좋아 ',
-                      style: detailThinContentStyle,
-                    ),
-                    TextSpan(
-                      text: '가성비가 뛰어난 ',
-                      style: detailBoldContentStyle,
-                    ),
-                    TextSpan(
-                      text: '부위에요.',
+                      text: '뼈 위에 붙은 고기를 갈비, 뼈 사이의 고기를 갈비살(늑간살)이라고 불러요.',
                       style: detailThinContentStyle,
                     ),
                   ],
@@ -147,18 +136,13 @@ class _Introductions extends StatelessWidget {
               TextSpan(
                 children: [
                   TextSpan(
-                    text: '밸런스가 좋아 ',
-                    style: detailBoldContentStyle,
-                  ),
-                  TextSpan(
-                    text: '어떤 요리에도 잘 어울려요.',
+                    text: '갈비뼈 위치에 따라 꽃갈비, 본갈비, 참갈비로 나뉘어요.',
                     style: detailThinContentStyle,
                   ),
                 ],
               ),
             ),
           ),
-
           const SizedBox(height: 16.0),
 
           IntroductionComponent(
@@ -167,15 +151,68 @@ class _Introductions extends StatelessWidget {
               TextSpan(
                 children: [
                   TextSpan(
-                    text: '지방이 적고 살코기가 많아, ',
-                    style: detailThinContentStyle,
-                  ),
-                  TextSpan(
-                    text: '다이어터',
+                    text: '꽃갈비',
                     style: detailBoldContentStyle,
                   ),
                   TextSpan(
-                    text: '에게도 적합한 부위에요.',
+                    text: '는 마블링이 좋아 구이용으로 적합해요.',
+                    style: detailThinContentStyle,
+                  ),
+                ],
+              ),
+            ),
+          ),
+          const SizedBox(height: 16.0),
+
+          IntroductionComponent(
+            num: 5,
+            text: Text.rich(
+              TextSpan(
+                children: [
+                  TextSpan(
+                    text: '본갈비',
+                    style: detailBoldContentStyle,
+                  ),
+                  TextSpan(
+                    text: '는 마블링이 좋은것은 구이, 아닌것은 찜이나 탕으로 추천해요.',
+                    style: detailThinContentStyle,
+                  ),
+                ],
+              ),
+            ),
+          ),
+          const SizedBox(height: 16.0),
+
+          IntroductionComponent(
+            num: 6,
+            text: Text.rich(
+              TextSpan(
+                children: [
+                  TextSpan(
+                    text: '참갈비',
+                    style: detailBoldContentStyle,
+                  ),
+                  TextSpan(
+                    text: '는 식감이 있어서 찜으로 추천해요.',
+                    style: detailThinContentStyle,
+                  ),
+                ],
+              ),
+            ),
+          ),
+          const SizedBox(height: 16.0),
+
+          IntroductionComponent(
+            num: 7,
+            text: Text.rich(
+              TextSpan(
+                children: [
+                  TextSpan(
+                    text: '갈비살(늑간살)',
+                    style: detailBoldContentStyle,
+                  ),
+                  TextSpan(
+                    text: '은 씹는맛이 있고, 육향이 강한 부위에요.',
                     style: detailThinContentStyle,
                   ),
                 ],
@@ -223,7 +260,7 @@ class _Tips extends StatelessWidget {
                         TextSpan(
                           children: [
                             TextSpan(
-                              text: '맛있는 고기는 먹고싶지만, 지방이 많은건 싫으신 분께 추천해요.',
+                              text: '무난한 구이용 부위를 고르신다면 추천해요.',
                               style: detailThinContentStyle,
                             ),
                           ],
@@ -252,7 +289,7 @@ class _Tips extends StatelessWidget {
                         TextSpan(
                           children: [
                             TextSpan(
-                              text: '너무 많이 익히면 퍽퍽해져서, 적당한 조리가 필요해요!',
+                              text: '특징에 맞는 고기 선택를 선택해주세요.',
                               style: detailThinContentStyle,
                             ),
                           ],
@@ -278,8 +315,8 @@ class _BottomContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Column(
       children: [
-        // 맛있는 앞다리살 고르는법
-        _ApdalisalChoosingTips(),
+        // 맛있는 갈비 고르는법
+        _GalbiChoosingTips(),
 
         Divider(
           height: 48.0,
@@ -287,43 +324,22 @@ class _BottomContent extends StatelessWidget {
           color: Color(0xFFD8D8D8),
         ),
 
-        // 앞다리살 추천 레시피
-        _ApdalisalRecipe(),
+        // 갈비 추천 레시피
+        _GalbiRecipe(),
       ],
     );
   }
 }
 
-// 맛있는 앞다리살 고르는법
-class _ApdalisalChoosingTips extends StatefulWidget {
-  const _ApdalisalChoosingTips();
+// 맛있는 갈비 고르는법
+class _GalbiChoosingTips extends StatefulWidget {
+  const _GalbiChoosingTips();
 
   @override
-  State<_ApdalisalChoosingTips> createState() => _ApdalisalChoosingTipsState();
+  State<_GalbiChoosingTips> createState() => _ChadolbagiChoosingTipsState();
 }
 
-class _ApdalisalChoosingTipsState extends State<_ApdalisalChoosingTips> {
-  final List<String> goodImageUrls = const [
-    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F1.jpg?alt=media&token=8ec5fe9e-1f5e-478c-9158-8e492fd5f11d',
-    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F1.jpg?alt=media&token=8ec5fe9e-1f5e-478c-9158-8e492fd5f11d',
-  ];
-
-  final List<String> badImageUrls = const [
-    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F2.jpg?alt=media&token=53faf929-74a0-4c9e-9316-d55a5e11b8c6',
-    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F2.jpg?alt=media&token=53faf929-74a0-4c9e-9316-d55a5e11b8c6',
-  ];
-
-  final List<String> titles = const ['낙엽 모양을 띄는 것', '살코기 중간에 지방이 껴있는 것'];
-
-  // 강조할 문자열
-  final List<String> highlights = const ['낙엽', '지방'];
-
-  // 추가 설명
-  final List<String> descriptions = const [
-    '살코기가 여러 덩이인게 좋아요.',
-    '지방이 껴있어야 부드러워요.',
-  ];
-
+class _ChadolbagiChoosingTipsState extends State<_GalbiChoosingTips> {
   @override
   void initState() {
     super.initState();
@@ -339,36 +355,27 @@ class _ApdalisalChoosingTipsState extends State<_ApdalisalChoosingTips> {
           // 제목
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.0),
-            child: ChoosingYummyMeat(name: '앞다리살'),
+            child: ChoosingYummyMeat(name: '갈비'),
           ),
 
           const SizedBox(height: 16.0),
 
-          // 가로 스크롤 이미지
-          HorizontalImages(
-            titles: titles,
-            highlights: highlights,
-            descriptions: descriptions,
-            goodImageUrls: goodImageUrls,
-            badImageUrls: badImageUrls,
-            goodDescriptionsList: const [
-              ['근육이 많이 갈라진 것', '하나의 근육이 아닌 것'],
-              ['흰색 근내 지방이 많은 것', '살코기가 안 많은 것'],
-            ],
-            badDescriptionsList: const [
-              ['하나의 근육이 아닌 것'],
-              ['지방이 거의 없는 것', '지방이 거의 없는 것'],
-            ],
-          )
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 18.0),
+            child: Text(
+              '신선한 고기를 고르면 다 맛있어요!',
+              style: detailThinContentStyle,
+            ),
+          ),
         ],
       ),
     );
   }
 }
 
-// 앞다리살 추천 레시피
-class _ApdalisalRecipe extends StatelessWidget {
-  const _ApdalisalRecipe();
+// 갈비 추천 레시피
+class _GalbiRecipe extends StatelessWidget {
+  const _GalbiRecipe();
 
   final List<String> imageUrls = const [
     'assets/imgs/pork/mocksal/recipe/1.png',

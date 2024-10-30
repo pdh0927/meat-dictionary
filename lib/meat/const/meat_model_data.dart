@@ -74,10 +74,10 @@ List<MeatModel> porkList = [
 List<MeatModel> beefList = [
   MeatModel(
     id: 1,
-    name: '아롱사태',
+    name: '채끝살',
     type: MeatType.beef,
     usage: [Usage.boiledPork], // '수육' -> Usage.boiledPork
-    description: '항정살만큼 부드럽고 쫄깃한 부위',
+    description: '육향과 식감의 조화로운 밸런스',
     texture: MeatTexture.slightlyChewy,
     savoryFlavor: SavoryFlavor.normal,
     meatAroma: MeatAroma.weak,
@@ -100,7 +100,7 @@ List<MeatModel> beefList = [
   ),
   MeatModel(
     id: 3,
-    name: '안창살',
+    name: '살치살',
     type: MeatType.beef,
     usage: [Usage.grilling], // '구이' -> Usage.grilling
     description: '잘 고르기 도전해보자!',
@@ -116,13 +116,13 @@ List<MeatModel> beefList = [
     name: '안심',
     type: MeatType.beef,
     usage: [Usage.steak], // '스테이크' -> Usage.steak
-    description: '부드럽고 담백한',
+    description: '끝판왕 스테이크 부위',
     texture: MeatTexture.normal,
     savoryFlavor: SavoryFlavor.normal,
     meatAroma: MeatAroma.weak,
     price: 2,
     imgPath:
-        'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fhangjeongsal%2Fhangjeongsal_thubnail.png?alt=media&token=cf3786a4-14c0-467d-8e18-de0ff7a97dda',
+        'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fbeef%2Fansim%2Fansim_thumbnail.png?alt=media&token=15ad8ca1-32ca-4613-9e22-c88aa45d342a',
   ),
   MeatModel(
     id: 5,
@@ -155,5 +155,53 @@ List<MeatModel> beefList = [
     price: 2,
     imgPath:
         'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fhangjeongsal%2Fhangjeongsal_thubnail.png?alt=media&token=cf3786a4-14c0-467d-8e18-de0ff7a97dda',
+  ),
+  MeatModel(
+    id: 7,
+    name: '토시살',
+    type: MeatType.beef,
+    usage: [
+      Usage.steak,
+      Usage.grilling
+    ], // '스테이크', '구이' -> Usage.steak, Usage.grilling
+    description: '이건 구이로 먹지 마세요!',
+    texture: MeatTexture.slightlyChewy,
+    savoryFlavor: SavoryFlavor.normal,
+    meatAroma: MeatAroma.weak,
+    price: 2,
+    imgPath:
+        'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fhangjeongsal%2Fhangjeongsal_thubnail.png?alt=media&token=cf3786a4-14c0-467d-8e18-de0ff7a97dda',
+  ),
+  MeatModel(
+    id: 8,
+    name: '업진살',
+    type: MeatType.beef,
+    usage: [
+      Usage.steak,
+      Usage.grilling
+    ], // '스테이크', '구이' -> Usage.steak, Usage.grilling
+    description: '이건 구이로 먹지 마세요!',
+    texture: MeatTexture.slightlyChewy,
+    savoryFlavor: SavoryFlavor.normal,
+    meatAroma: MeatAroma.weak,
+    price: 2,
+    imgPath:
+        'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fhangjeongsal%2Fhangjeongsal_thubnail.png?alt=media&token=cf3786a4-14c0-467d-8e18-de0ff7a97dda',
+  ),
+  MeatModel(
+    id: 9,
+    name: '차돌박이',
+    type: MeatType.beef,
+    usage: [
+      Usage.steak,
+      Usage.grilling
+    ], // '스테이크', '구이' -> Usage.steak, Usage.grilling
+    description: '이건 구이로 먹지 마세요!',
+    texture: MeatTexture.slightlyChewy,
+    savoryFlavor: SavoryFlavor.normal,
+    meatAroma: MeatAroma.weak,
+    price: 2,
+    imgPath:
+        'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fbeef%2Fchadolbagi%2Fchadolbagi_thumbnail.png?alt=media&token=9314ac6a-d5ea-46ce-88b7-2517f955bfd1',
   ),
 ];

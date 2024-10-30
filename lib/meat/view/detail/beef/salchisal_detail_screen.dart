@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:meat_dictionary/common/const/text_style.dart';
 import 'package:meat_dictionary/meat/component/detail/detail_menu_bar.dart';
-import 'package:meat_dictionary/meat/component/detail/horizozntal_images.dart';
 import 'package:meat_dictionary/meat/component/detail/common_meat_detail_frame.dart';
 import 'package:meat_dictionary/meat/component/detail/introduction_component.dart';
 import 'package:meat_dictionary/meat/component/detail/recipe_widget.dart';
 import 'package:meat_dictionary/meat/component/detail/small_title_components.dart';
 import 'package:meat_dictionary/meat/model/meat_model.dart';
 
-// 앞다리 디테일
-class ApdalisalDetailScreen extends StatefulWidget {
-  static String get routeName => 'apdalisal_detail';
-
-  const ApdalisalDetailScreen({
+// 살치살 디테일
+class SalchisalDetailScreen extends StatefulWidget {
+  const SalchisalDetailScreen({
     super.key,
     required this.meatModel,
   });
@@ -20,10 +17,10 @@ class ApdalisalDetailScreen extends StatefulWidget {
   final MeatModel meatModel;
 
   @override
-  State<ApdalisalDetailScreen> createState() => _ApdalisalDetailScreenState();
+  State<SalchisalDetailScreen> createState() => _SalchisalDetailScreenState();
 }
 
-class _ApdalisalDetailScreenState extends State<ApdalisalDetailScreen> {
+class _SalchisalDetailScreenState extends State<SalchisalDetailScreen> {
   final ScrollController _scrollController = ScrollController();
 
   @override
@@ -112,7 +109,7 @@ class _Introductions extends StatelessWidget {
           IntroductionComponent(
             num: 1,
             text: Text(
-              '앞다리에서 사태살을 분리하고 남은 부위에요.',
+              '소의 윗등심에 붙어있는 부위에요.',
               style: detailThinContentStyle,
             ),
           ),
@@ -125,15 +122,15 @@ class _Introductions extends StatelessWidget {
                 TextSpan(
                   children: [
                     TextSpan(
-                      text: '가격 대비 맛이 좋아 ',
+                      text: '매우 ',
                       style: detailThinContentStyle,
                     ),
                     TextSpan(
-                      text: '가성비가 뛰어난 ',
+                      text: '화려한 마블링',
                       style: detailBoldContentStyle,
                     ),
                     TextSpan(
-                      text: '부위에요.',
+                      text: '이 특징이에요.',
                       style: detailThinContentStyle,
                     ),
                   ],
@@ -142,23 +139,17 @@ class _Introductions extends StatelessWidget {
           const SizedBox(height: 16.0),
 
           IntroductionComponent(
-            num: 3,
-            text: Text.rich(
-              TextSpan(
-                children: [
-                  TextSpan(
-                    text: '밸런스가 좋아 ',
-                    style: detailBoldContentStyle,
-                  ),
-                  TextSpan(
-                    text: '어떤 요리에도 잘 어울려요.',
-                    style: detailThinContentStyle,
-                  ),
-                ],
-              ),
-            ),
-          ),
-
+              num: 3,
+              text: Text.rich(
+                TextSpan(
+                  children: [
+                    TextSpan(
+                      text: '마블링이 많은 만큼 엄청 부드러워요.',
+                      style: detailThinContentStyle,
+                    ),
+                  ],
+                ),
+              )),
           const SizedBox(height: 16.0),
 
           IntroductionComponent(
@@ -167,15 +158,7 @@ class _Introductions extends StatelessWidget {
               TextSpan(
                 children: [
                   TextSpan(
-                    text: '지방이 적고 살코기가 많아, ',
-                    style: detailThinContentStyle,
-                  ),
-                  TextSpan(
-                    text: '다이어터',
-                    style: detailBoldContentStyle,
-                  ),
-                  TextSpan(
-                    text: '에게도 적합한 부위에요.',
+                    text: '소에서 가장 비싼 부위 중 하나에요.',
                     style: detailThinContentStyle,
                   ),
                 ],
@@ -223,7 +206,7 @@ class _Tips extends StatelessWidget {
                         TextSpan(
                           children: [
                             TextSpan(
-                              text: '맛있는 고기는 먹고싶지만, 지방이 많은건 싫으신 분께 추천해요.',
+                              text: '부드럽고 고급진 맛을 느끼고 싶으신분께 추천해요.',
                               style: detailThinContentStyle,
                             ),
                           ],
@@ -252,7 +235,7 @@ class _Tips extends StatelessWidget {
                         TextSpan(
                           children: [
                             TextSpan(
-                              text: '너무 많이 익히면 퍽퍽해져서, 적당한 조리가 필요해요!',
+                              text: '마블링이 많은 부위로, 바짝 익혀서 드세요!',
                               style: detailThinContentStyle,
                             ),
                           ],
@@ -278,8 +261,8 @@ class _BottomContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Column(
       children: [
-        // 맛있는 앞다리살 고르는법
-        _ApdalisalChoosingTips(),
+        // 맛있는 살치살 고르는법
+        _SalchisalChoosingTips(),
 
         Divider(
           height: 48.0,
@@ -287,41 +270,40 @@ class _BottomContent extends StatelessWidget {
           color: Color(0xFFD8D8D8),
         ),
 
-        // 앞다리살 추천 레시피
-        _ApdalisalRecipe(),
+        // 살치살 추천 레시피
+        _SalchisalRecipe(),
       ],
     );
   }
 }
 
-// 맛있는 앞다리살 고르는법
-class _ApdalisalChoosingTips extends StatefulWidget {
-  const _ApdalisalChoosingTips();
+// 맛있는 살치살 고르는법
+class _SalchisalChoosingTips extends StatefulWidget {
+  const _SalchisalChoosingTips();
 
   @override
-  State<_ApdalisalChoosingTips> createState() => _ApdalisalChoosingTipsState();
+  State<_SalchisalChoosingTips> createState() => _SalchisalChoosingTipsState();
 }
 
-class _ApdalisalChoosingTipsState extends State<_ApdalisalChoosingTips> {
+class _SalchisalChoosingTipsState extends State<_SalchisalChoosingTips> {
   final List<String> goodImageUrls = const [
-    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F1.jpg?alt=media&token=8ec5fe9e-1f5e-478c-9158-8e492fd5f11d',
     'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F1.jpg?alt=media&token=8ec5fe9e-1f5e-478c-9158-8e492fd5f11d',
   ];
 
   final List<String> badImageUrls = const [
     'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F2.jpg?alt=media&token=53faf929-74a0-4c9e-9316-d55a5e11b8c6',
-    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F2.jpg?alt=media&token=53faf929-74a0-4c9e-9316-d55a5e11b8c6',
   ];
 
-  final List<String> titles = const ['낙엽 모양을 띄는 것', '살코기 중간에 지방이 껴있는 것'];
+  final List<String> titles = const [
+    '등급이 높은 것',
+  ];
 
   // 강조할 문자열
-  final List<String> highlights = const ['낙엽', '지방'];
+  final List<String> highlights = const ['등급'];
 
   // 추가 설명
   final List<String> descriptions = const [
-    '살코기가 여러 덩이인게 좋아요.',
-    '지방이 껴있어야 부드러워요.',
+    '어느정도의 지방 함럄이 필요해요.',
   ];
 
   @override
@@ -339,36 +321,27 @@ class _ApdalisalChoosingTipsState extends State<_ApdalisalChoosingTips> {
           // 제목
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.0),
-            child: ChoosingYummyMeat(name: '앞다리살'),
+            child: ChoosingYummyMeat(name: '살치살'),
           ),
 
           const SizedBox(height: 16.0),
-
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 18.0),
+            child: Text(
+              '신선한 고기를 고르면 다 맛있어요!',
+              style: detailThinContentStyle,
+            ),
+          ),
           // 가로 스크롤 이미지
-          HorizontalImages(
-            titles: titles,
-            highlights: highlights,
-            descriptions: descriptions,
-            goodImageUrls: goodImageUrls,
-            badImageUrls: badImageUrls,
-            goodDescriptionsList: const [
-              ['근육이 많이 갈라진 것', '하나의 근육이 아닌 것'],
-              ['흰색 근내 지방이 많은 것', '살코기가 안 많은 것'],
-            ],
-            badDescriptionsList: const [
-              ['하나의 근육이 아닌 것'],
-              ['지방이 거의 없는 것', '지방이 거의 없는 것'],
-            ],
-          )
         ],
       ),
     );
   }
 }
 
-// 앞다리살 추천 레시피
-class _ApdalisalRecipe extends StatelessWidget {
-  const _ApdalisalRecipe();
+// 살치살 추천 레시피
+class _SalchisalRecipe extends StatelessWidget {
+  const _SalchisalRecipe();
 
   final List<String> imageUrls = const [
     'assets/imgs/pork/mocksal/recipe/1.png',

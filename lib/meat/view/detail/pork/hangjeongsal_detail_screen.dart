@@ -313,7 +313,7 @@ class _BottomContent extends StatelessWidget {
         ),
 
         // 항정살 추천 레시피
-        HangjeongsalRecipe(),
+        _HangjeongsalRecipe(),
       ],
     );
   }
@@ -396,8 +396,8 @@ class _HangjeongsalChoosingTipsState extends State<_HangjeongsalChoosingTips> {
 }
 
 // 항정살 추천 레시피
-class HangjeongsalRecipe extends StatelessWidget {
-  const HangjeongsalRecipe({super.key});
+class _HangjeongsalRecipe extends StatelessWidget {
+  const _HangjeongsalRecipe();
 
   final List<String> imageUrls = const [
     'assets/imgs/pork/mocksal/recipe/1.png',
