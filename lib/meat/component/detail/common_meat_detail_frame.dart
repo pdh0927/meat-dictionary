@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:meat_dictionary/common/const/colors.dart';
 import 'package:meat_dictionary/common/const/text_style.dart';
 import 'package:meat_dictionary/common/layout/default_layout.dart';
+import 'package:meat_dictionary/meat/component/detail/fresh_beef_choosing_tips.dart';
 import 'package:meat_dictionary/meat/component/detail/fresh_pork_choosing_tips.dart';
 import 'package:meat_dictionary/meat/component/detail/meat_profile.dart';
 import 'package:meat_dictionary/meat/component/detail/small_title_components.dart';
@@ -150,7 +151,7 @@ class _CommonMeatDetailFrameState extends ConsumerState<CommonMeatDetailFrame> {
             // 신선한 고기 고르는 방법
             widget.meatModel.type == MeatType.pork
                 ? const FreshPorkChoosingTips()
-                : const FreshPorkChoosingTips(),
+                : const FreshBeefChoosingTips(),
 
             const Divider(
               height: 48.0,
