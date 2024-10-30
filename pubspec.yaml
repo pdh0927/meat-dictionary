@@ -80,7 +80,6 @@ flutter:
     - assets/imgs/pork/mocksal/
     - assets/imgs/pork/mocksal/recipe/
     - assets/imgs/pork/fresh_choosing/
-    - assets/imgs/beef/
   
 
   # An image asset can refer to one or more resolution-specific "variants", see
