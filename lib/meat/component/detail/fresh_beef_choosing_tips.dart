@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meat_dictionary/meat/component/detail/horizozntal_images.dart';
 import 'package:meat_dictionary/meat/component/detail/small_title_components.dart';
+import 'package:meat_dictionary/meat/model/meat_model.dart';
 
 // 신선한 소고기 고르는 방법
 class FreshBeefChoosingTips extends StatefulWidget {
@@ -58,7 +59,9 @@ class _FreshBeefChoosingTipsState extends State<FreshBeefChoosingTips> {
           // 제목
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.0),
-            child: ChoosingFreshMeat(),
+            child: ChoosingFreshMeat(
+              type: MeatType.beef,
+            ),
           ),
 
           const SizedBox(height: 16.0),

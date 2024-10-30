@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meat_dictionary/common/const/text_style.dart';
+import 'package:meat_dictionary/meat/model/meat_model.dart';
 
 // 부위 소개
 class IntroduceRegion extends StatelessWidget {
@@ -101,7 +102,12 @@ class ChoosingYummyMeat extends StatelessWidget {
 
 // 신선한 고기 고르는법
 class ChoosingFreshMeat extends StatelessWidget {
-  const ChoosingFreshMeat({super.key});
+  const ChoosingFreshMeat({
+    super.key,
+    required this.type,
+  });
+
+  final MeatType type;
 
   @override
   Widget build(BuildContext context) {
@@ -109,7 +115,11 @@ class ChoosingFreshMeat extends StatelessWidget {
       TextSpan(
         children: [
           TextSpan(
-            text: '신선한 고기 ',
+            text: '좋은 ',
+            style: detailThinSmallTitleStyle,
+          ),
+          TextSpan(
+            text: '${type == MeatType.pork ? '돼지고기' : '소고기'} ',
             style: detailBoldSmallTitleStyle,
           ),
           TextSpan(
