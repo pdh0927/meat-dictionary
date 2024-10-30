@@ -122,7 +122,7 @@ List<MeatModel> beefList = [
     meatAroma: MeatAroma.weak,
     price: 2,
     imgPath:
-        'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fhangjeongsal%2Fhangjeongsal_thubnail.png?alt=media&token=cf3786a4-14c0-467d-8e18-de0ff7a97dda',
+        'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fbeef%2Fansim%2Fansim_thumbnail.png?alt=media&token=15ad8ca1-32ca-4613-9e22-c88aa45d342a',
   ),
   MeatModel(
     id: 5,
@@ -202,6 +202,6 @@ List<MeatModel> beefList = [
     meatAroma: MeatAroma.weak,
     price: 2,
     imgPath:
-        'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fhangjeongsal%2Fhangjeongsal_thubnail.png?alt=media&token=cf3786a4-14c0-467d-8e18-de0ff7a97dda',
+        'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fbeef%2Fchadolbagi%2Fchadolbagi_thumbnail.png?alt=media&token=9314ac6a-d5ea-46ce-88b7-2517f955bfd1',
   ),
 ];

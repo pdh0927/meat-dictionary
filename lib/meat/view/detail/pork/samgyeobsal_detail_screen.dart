@@ -306,12 +306,12 @@ class _SamgyeobsalChoosingTips extends StatefulWidget {
 
 class _SamgyeobsalChoosingTipsState extends State<_SamgyeobsalChoosingTips> {
   final List<String> goodImageUrls = const [
-    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F1.jpg?alt=media&token=8ec5fe9e-1f5e-478c-9158-8e492fd5f11d',
+    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fsamgyeobsal%2Fgood%2Fodolppyeo_good.png?alt=media&token=4b7c3736-a3c7-4065-b014-8ead14e5d9fc',
     'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F1.jpg?alt=media&token=8ec5fe9e-1f5e-478c-9158-8e492fd5f11d',
   ];
 
   final List<String> badImageUrls = const [
-    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F2.jpg?alt=media&token=53faf929-74a0-4c9e-9316-d55a5e11b8c6',
+    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fsamgyeobsal%2Fbad%2Fodolppyeo_bad.png?alt=media&token=f697686a-23af-4685-98b1-c0219aac5ef8',
     'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F2.jpg?alt=media&token=53faf929-74a0-4c9e-9316-d55a5e11b8c6',
   ];
 

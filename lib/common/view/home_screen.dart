@@ -99,7 +99,7 @@ class _DictionaryComponent extends StatelessWidget {
             // 돼지 card
             Expanded(
               child: _CategoryCard(
-                imagePath: 'assets/imgs/common/pig_home.png',
+                imagePath: 'assets/imgs/common/pork_menu.png',
                 description: '극강 감칠맛과 다용도 활용',
                 meatType: MeatType.pork,
               ),
@@ -108,7 +108,7 @@ class _DictionaryComponent extends StatelessWidget {
             // 소 card
             Expanded(
               child: _CategoryCard(
-                imagePath: 'assets/imgs/common/cow_home.png',
+                imagePath: 'assets/imgs/common/beef_menu.png',
                 description: '진항 풍미와 고급진 맛',
                 meatType: MeatType.beef,
               ),
@@ -165,19 +165,6 @@ class _CategoryCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // 설명
-            Text(
-              description,
-              style: const TextStyle(
-                fontFamily: 'Pretendard',
-                fontSize: 12,
-                fontWeight: FontWeight.w500,
-                color: Colors.white,
-              ),
-            ),
-
-            const SizedBox(height: 15.0),
-
             // 고기 라벨
             Text(
               meatType.label,
@@ -185,6 +172,19 @@ class _CategoryCard extends StatelessWidget {
                 fontFamily: 'Pretendard',
                 fontSize: 18,
                 fontWeight: FontWeight.w700,
+                color: Colors.white,
+              ),
+            ),
+
+            const SizedBox(height: 15.0),
+
+            // 설명
+            Text(
+              description,
+              style: const TextStyle(
+                fontFamily: 'Pretendard',
+                fontSize: 12,
+                fontWeight: FontWeight.w500,
                 color: Colors.white,
               ),
             ),
@@ -202,7 +202,9 @@ class _ChooseOwnMeat extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        _showSnackbar(context);
+      },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 13.0),
         decoration: BoxDecoration(
@@ -242,5 +244,19 @@ class _ChooseOwnMeat extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  // 스낵바를 표시하는 함수
+  void _showSnackbar(BuildContext context) {
+    final snackBar = SnackBar(
+      content: const Text('곧 업데이트될 기능입니다!'),
+      duration: const Duration(seconds: 2), // 2초 동안 표시
+      behavior: SnackBarBehavior.floating, // 화면에 떠 있는 형태로 표시
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+    );
+
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 }
