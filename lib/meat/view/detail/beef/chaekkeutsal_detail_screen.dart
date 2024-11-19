@@ -62,8 +62,8 @@ class _TopContents extends StatelessWidget {
       children: [
         // 바로가기 메뉴
         DetailMenuBar(
-          names: ['1', '2', '3', '4'],
-          offsets: [500, 1000, 1500, 2000],
+          names: const ['부위 소개', '고르는 법', '추천 레시피'],
+          offsets: const [300, 950, 1300],
           onMenuSelected: onMenuSelected,
         ),
 
@@ -299,12 +299,26 @@ class _ChaekkeutsalChoosingTips extends StatefulWidget {
 }
 
 class __ChaekkeutsalChoosingTipsState extends State<_ChaekkeutsalChoosingTips> {
-  final List<String> goodImageUrls = const [
-    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F1.jpg?alt=media&token=8ec5fe9e-1f5e-478c-9158-8e492fd5f11d',
+  final List<List<String>> goodImageUrls = const [
+    [
+      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fbeef%2Fchaekkeutsal%2Fgood%2FT_good.png?alt=media&token=2f879f7d-141c-482d-a96a-b76a5a428286'
+    ],
   ];
 
-  final List<String> badImageUrls = const [
-    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F2.jpg?alt=media&token=53faf929-74a0-4c9e-9316-d55a5e11b8c6',
+  final List<List<String>> badImageUrls = const [
+    [
+      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fbeef%2Fchaekkeutsal%2Fbad%2FT_bad.png?alt=media&token=3460df1f-9491-456e-b914-37cdad115229'
+    ],
+  ];
+
+  final List<List<String?>> goodDetailImageUrls = const [
+    [null],
+  ];
+
+  final List<List<String?>> badDetailImageUrls = const [
+    [
+      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fbeef%2Fchaekkeutsal%2Fbad%2FT_bad2.png?alt=media&token=044706c8-71e5-430b-94ad-9c321bb4491e'
+    ],
   ];
 
   final List<String> titles = const [
@@ -344,8 +358,10 @@ class __ChaekkeutsalChoosingTipsState extends State<_ChaekkeutsalChoosingTips> {
             titles: titles,
             highlights: highlights,
             descriptions: descriptions,
-            goodImageUrls: goodImageUrls,
-            badImageUrls: badImageUrls,
+            goodImageUrlList: goodImageUrls,
+            badImageUrlsList: badImageUrls,
+            goodDetailImageUrls: goodDetailImageUrls,
+            badDetailImageUrls: badDetailImageUrls,
             goodDescriptionsList: const [
               ['T자 지방이 작은 것', '하나의 근육으로 이루어진 것'],
             ],

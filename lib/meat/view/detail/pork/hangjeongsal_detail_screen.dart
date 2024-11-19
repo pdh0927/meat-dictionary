@@ -65,8 +65,8 @@ class _TopContents extends StatelessWidget {
       children: [
         // 바로가기 메뉴
         DetailMenuBar(
-          names: ['1', '2', '3', '4'],
-          offsets: [500, 1000, 1500, 2000],
+          names: const ['부위 소개', '고르는 법', '추천 레시피'],
+          offsets: const [300, 800, 1200],
           onMenuSelected: onMenuSelected,
         ),
 
@@ -329,27 +329,35 @@ class _HangjeongsalChoosingTips extends StatefulWidget {
 }
 
 class _HangjeongsalChoosingTipsState extends State<_HangjeongsalChoosingTips> {
-  final List<String> goodImageUrls = const [
-    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F1.jpg?alt=media&token=8ec5fe9e-1f5e-478c-9158-8e492fd5f11d',
-    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F1.jpg?alt=media&token=8ec5fe9e-1f5e-478c-9158-8e492fd5f11d',
+  final List<List<String>> goodImageUrls = const [
+    [
+      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F1.jpg?alt=media&token=8ec5fe9e-1f5e-478c-9158-8e492fd5f11d',
+    ],
   ];
 
-  final List<String> badImageUrls = const [
-    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F2.jpg?alt=media&token=53faf929-74a0-4c9e-9316-d55a5e11b8c6',
-    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F2.jpg?alt=media&token=53faf929-74a0-4c9e-9316-d55a5e11b8c6',
+  final List<List<String>> badImageUrls = const [
+    [
+      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F2.jpg?alt=media&token=53faf929-74a0-4c9e-9316-d55a5e11b8c6',
+    ],
+  ];
+
+  final List<List<String?>> goodDetailImageUrls = const [
+    [null],
+  ];
+
+  final List<List<String?>> badDetailImageUrls = const [
+    [null],
   ];
 
   final List<String> titles = const [
-    '지방이 희고 탄탄한 것',
     '마블링이 촘촘한 것',
   ];
 
   // 강조 문자열
-  final List<String> highlights = const ['희고 탄탄', '마블링'];
+  final List<String> highlights = const ['마블링'];
 
   // 추가 설명
   final List<String> descriptions = const [
-    '항정살은 특히나 지방이 중요해요.',
     '마블링 = 지방.',
   ];
 
@@ -378,15 +386,15 @@ class _HangjeongsalChoosingTipsState extends State<_HangjeongsalChoosingTips> {
             titles: titles,
             highlights: highlights,
             descriptions: descriptions,
-            goodImageUrls: goodImageUrls,
-            badImageUrls: badImageUrls,
+            goodImageUrlList: goodImageUrls,
+            badImageUrlsList: badImageUrls,
+            goodDetailImageUrls: goodDetailImageUrls,
+            badDetailImageUrls: badDetailImageUrls,
             goodDescriptionsList: const [
-              ['근육이 많이 갈라진 것', '하나의 근육이 아닌 것'],
-              ['흰색 근내 지방이 많은 것', '살코기가 안 많은 것'],
+              ['살코기에도 마블링이 좋은 것', '더 부드럽게 먹을 수 있어요'],
             ],
             badDescriptionsList: const [
-              ['하나의 근육이 아닌 것'],
-              ['지방이 거의 없는 것', '지방이 거의 없는 것'],
+              ['마블링 없는 살코기에 위아래 지방이 붙은 것'],
             ],
           )
         ],

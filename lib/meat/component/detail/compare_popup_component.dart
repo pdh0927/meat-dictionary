@@ -4,24 +4,45 @@ import 'package:meat_dictionary/common/const/colors.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
 
-// 비교 팝업 컴포넌트
-class ComparePopupComponent extends StatelessWidget {
+class ComparePopupComponent extends StatefulWidget {
   const ComparePopupComponent({
     super.key,
     required this.title,
     required this.highlight,
-    required this.goodImageUrl,
-    required this.badImageUrl,
+    required this.goodImageUrls,
+    required this.badImageUrls,
+    required this.goodDetailImageUrls,
+    required this.badDetailImageUrls,
     required this.goodDescriptions,
     required this.badDescriptions,
   });
 
-  final String title; // 제목
-  final String highlight; // 제목 강조 단어
-  final String goodImageUrl;
-  final String badImageUrl;
+  final String title;
+  final String highlight;
+  final List<String> goodImageUrls;
+  final List<String> badImageUrls;
+  final List<String?> goodDetailImageUrls; // null 허용: 설명 이미지
+  final List<String?> badDetailImageUrls; // null 허용: 설명 이미지
   final List<String> goodDescriptions;
   final List<String> badDescriptions;
+
+  @override
+  State<ComparePopupComponent> createState() => _ComparePopupComponentState();
+}
+
+class _ComparePopupComponentState extends State<ComparePopupComponent> {
+  Map<int, bool> goodImageStates = {};
+  Map<int, bool> badImageStates = {};
+
+  void toggleImage(int index, bool isGood) {
+    setState(() {
+      if (isGood) {
+        goodImageStates[index] = !(goodImageStates[index] ?? false);
+      } else {
+        badImageStates[index] = !(badImageStates[index] ?? false);
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +66,7 @@ class ComparePopupComponent extends StatelessWidget {
                 text: TextSpan(
                   children: [
                     TextSpan(
-                      text: title.split(highlight)[0],
+                      text: widget.title.split(widget.highlight)[0],
                       style: const TextStyle(
                         color: BLACK_COLOR,
                         fontSize: 18.0,
@@ -53,7 +74,7 @@ class ComparePopupComponent extends StatelessWidget {
                       ),
                     ),
                     TextSpan(
-                      text: highlight,
+                      text: widget.highlight,
                       style: const TextStyle(
                         color: PRIMARY_COLOR,
                         fontSize: 18.0,
@@ -61,7 +82,7 @@ class ComparePopupComponent extends StatelessWidget {
                       ),
                     ),
                     TextSpan(
-                      text: title.split(highlight).last,
+                      text: widget.title.split(widget.highlight).last,
                       style: const TextStyle(
                         color: BLACK_COLOR,
                         fontSize: 18.0,
@@ -76,18 +97,22 @@ class ComparePopupComponent extends StatelessWidget {
 
               _buildComparisonColumn(
                 'GOOD',
-                goodImageUrl,
-                goodDescriptions,
+                widget.goodImageUrls,
+                widget.goodDetailImageUrls,
+                widget.goodDescriptions,
                 const Color(0xFF21D25B),
+                true,
               ),
 
               const SizedBox(height: 15.0),
 
               _buildComparisonColumn(
                 'BAD',
-                badImageUrl,
-                badDescriptions,
+                widget.badImageUrls,
+                widget.badDetailImageUrls,
+                widget.badDescriptions,
                 Colors.redAccent,
+                false,
               ),
             ],
           ),
@@ -98,7 +123,7 @@ class ComparePopupComponent extends StatelessWidget {
           top: 15.0,
           right: 10.0,
           child: InkWell(
-            onTap: () => Navigator.of(context).pop(), // 팝업 닫기 기능
+            onTap: () => Navigator.of(context).pop(),
             child: const Icon(
               Icons.close,
               size: 24.0,
@@ -110,65 +135,89 @@ class ComparePopupComponent extends StatelessWidget {
     );
   }
 
-  // 이미지와 설명 목록을 포함하는 Column 위젯 생성 함수
   Widget _buildComparisonColumn(
     String label,
-    String imageUrl,
+    List<String> imageUrls,
+    List<String?> detailImageUrls,
     List<String> descriptions,
     Color color,
+    bool isGood,
   ) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Container(
-          width: 50.0,
-          height: 25.0,
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            color: color,
-            borderRadius: BorderRadius.circular(8.0),
-          ),
-          child: Text(
-            label,
-            style: const TextStyle(
-              fontSize: 13.0,
-              color: Colors.white,
-              fontWeight: FontWeight.w700,
+    return SizedBox(
+      width: 100.w - 70,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            width: 50.0,
+            height: 25.0,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: color,
+              borderRadius: BorderRadius.circular(8.0),
             ),
-          ),
-        ),
-
-        const SizedBox(height: 8.0),
-
-        ClipRRect(
-          borderRadius: BorderRadius.circular(8.0),
-          child: CachedNetworkImage(
-            imageUrl: imageUrl,
-            fit: BoxFit.fill,
-            width: 100.w - 70,
-            height: 25.h,
-            placeholder: (context, url) => Shimmer.fromColors(
-              baseColor: Colors.grey[300]!,
-              highlightColor: Colors.grey[100]!,
-              child: Container(
-                color: Colors.grey[300],
+            child: Text(
+              label,
+              style: const TextStyle(
+                fontSize: 13.0,
+                color: Colors.white,
+                fontWeight: FontWeight.w700,
               ),
             ),
-            errorWidget: (context, url, error) {
-              return const Icon(Icons.error, color: Colors.red);
-            },
           ),
-        ),
 
-        const SizedBox(height: 8.0),
+          const SizedBox(height: 8.0),
 
-        // 설명을 세로로 나열
-        ...descriptions.map((description) => getDescription(description)),
-      ],
+          // 이미지 영역: 이미지가 없으면 표시하지 않음
+          if (imageUrls.isNotEmpty)
+            SizedBox(
+              height: 25.h,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: imageUrls.length,
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                    onTap: () => toggleImage(index, isGood),
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 8.0),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8.0),
+                        child: CachedNetworkImage(
+                          imageUrl: (isGood
+                                      ? goodImageStates[index]
+                                      : badImageStates[index]) ==
+                                  true
+                              ? (detailImageUrls[index] ?? imageUrls[index])
+                              : imageUrls[index],
+                          fit: BoxFit.fill,
+                          width: 100.w - 90,
+                          height: 25.h,
+                          placeholder: (context, url) => Shimmer.fromColors(
+                            baseColor: Colors.grey[300]!,
+                            highlightColor: Colors.grey[100]!,
+                            child: Container(
+                              color: Colors.grey[300],
+                            ),
+                          ),
+                          errorWidget: (context, url, error) {
+                            return const Icon(Icons.error, color: Colors.red);
+                          },
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+
+          // 이미지가 없는 경우에도 설명은 항상 표시
+          SizedBox(height: imageUrls.isNotEmpty ? 8.0 : 0.0),
+          ...descriptions.map((description) => getDescription(description)),
+        ],
+      ),
     );
   }
 
-  // 개별 설명 텍스트 위젯 생성 함수
   Widget getDescription(String description) {
     return Padding(
       padding: const EdgeInsets.only(left: 5, bottom: 4.0),

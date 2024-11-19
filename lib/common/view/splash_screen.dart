@@ -25,9 +25,28 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
     await Future.delayed(const Duration(seconds: 1));
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(
-        builder: (context) => const RootTab(),
-      ),
+      _createPageRoute(const RootTab()),
+    );
+  }
+
+  PageRouteBuilder _createPageRoute(Widget page) {
+    return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) => page,
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        const begin = Offset(1.0, 0.0); // 시작 위치 (우측 밖)
+        const end = Offset.zero; // 끝 위치 (제자리)
+        const curve = Curves.easeInOut;
+
+        var slideAnimation = Tween(begin: begin, end: end).animate(
+          CurvedAnimation(parent: animation, curve: curve),
+        );
+
+        return SlideTransition(
+          position: slideAnimation,
+          child: child,
+        );
+      },
+      transitionDuration: const Duration(milliseconds: 600), // 애니메이션 시간
     );
   }
 
@@ -35,18 +54,11 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
   Widget build(BuildContext context) {
     return DefaultLayout(
       backgroundColor: PRIMARY_COLOR,
-      child: SizedBox(
-        width: MediaQuery.of(context).size.width,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              'assets/imgs/common/beef_menu.png',
-              width: MediaQuery.of(context).size.width / 2,
-            ),
-            const SizedBox(height: 16),
-            const CircularProgressIndicator(color: Colors.white)
-          ],
+      child: Center(
+        child: Image.asset(
+          'assets/imgs/common/splash_logo.png',
+          width: MediaQuery.of(context).size.width / 1.5,
+          height: MediaQuery.of(context).size.width / 1.5,
         ),
       ),
     );

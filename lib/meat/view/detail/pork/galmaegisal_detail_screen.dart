@@ -65,8 +65,8 @@ class _TopContents extends StatelessWidget {
       children: [
         // 바로가기 메뉴
         DetailMenuBar(
-          names: ['1', '2', '3', '4'],
-          offsets: [500, 1000, 1500, 2000],
+          names: const ['부위 소개', '고르는 법', '추천 레시피'],
+          offsets: const [300, 930, 1350],
           onMenuSelected: onMenuSelected,
         ),
 
@@ -341,31 +341,48 @@ class _GalmaegisalChoosingTips extends StatefulWidget {
 }
 
 class _GalmaegisalChoosingTipsState extends State<_GalmaegisalChoosingTips> {
-  final List<String> goodImageUrls = const [
-    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F1.jpg?alt=media&token=8ec5fe9e-1f5e-478c-9158-8e492fd5f11d',
-    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2Fsmell_good.png?alt=media&token=b875d2f0-0ff1-4914-ba1c-6f3629e3c28c',
-    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F1.jpg?alt=media&token=8ec5fe9e-1f5e-478c-9158-8e492fd5f11d',
+  final List<List<String>> goodImageUrls = const [
+    [
+      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F1.jpg?alt=media&token=8ec5fe9e-1f5e-478c-9158-8e492fd5f11d'
+    ],
+    [
+      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2Fsmell_good.png?alt=media&token=b875d2f0-0ff1-4914-ba1c-6f3629e3c28c'
+    ],
   ];
 
-  final List<String> badImageUrls = const [
-    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F2.jpg?alt=media&token=53faf929-74a0-4c9e-9316-d55a5e11b8c6',
-    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fbad%2Fsmell_bad.png?alt=media&token=ae0a2aa9-8204-449b-a5fe-28ec6bdd8439',
-    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F2.jpg?alt=media&token=53faf929-74a0-4c9e-9316-d55a5e11b8c6',
+  final List<List<String>> badImageUrls = const [
+    [
+      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F2.jpg?alt=media&token=53faf929-74a0-4c9e-9316-d55a5e11b8c6'
+    ],
+    [
+      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fbad%2Fsmell_bad.png?alt=media&token=ae0a2aa9-8204-449b-a5fe-28ec6bdd8439'
+    ],
+  ];
+
+  final List<List<String?>> goodDetailImageUrls = const [
+    [null],
+    [null],
+  ];
+
+  final List<List<String?>> badDetailImageUrls = const [
+    [null],
+    [null],
   ];
 
   final List<String> titles = const [
     '짙은 붉은색을 띄는 것',
     '꿉꿉한 냄새가 나지 않는 것',
-    '적당한 지방이 있는 것'
   ];
 
   // 강조 문자열
-  final List<String> highlights = const ['짙은 붉은색', '꿉꿉한 냄새', '적당한 지방'];
+  final List<String> highlights = const [
+    '짙은 붉은색',
+    '꿉꿉한 냄새',
+  ];
 
   final List<String> descriptions = const [
     '너무 옅은색이나 갈색은 피해주세요.',
     '부패 상태를 확인할 수 있어요.',
-    '한층 더 부드럽게 느껴져요.'
   ];
 
   @override
@@ -393,19 +410,17 @@ class _GalmaegisalChoosingTipsState extends State<_GalmaegisalChoosingTips> {
             titles: titles,
             highlights: highlights,
             descriptions: descriptions,
-            goodImageUrls: goodImageUrls,
-            badImageUrls: badImageUrls,
+            goodImageUrlList: goodImageUrls,
+            badImageUrlsList: badImageUrls,
+            goodDetailImageUrls: goodDetailImageUrls,
+            badDetailImageUrls: badDetailImageUrls,
             goodDescriptionsList: const [
-              ['근육이 많이 갈라진 것', '하나의 근육이 아닌 것', '하나의 근육이 아닌 것'],
-              ['흰색 근내 지방이 많은 것', '살코기가 안 많은 것'],
+              ['어둡지만 확실히 붉은색 인 것'],
+              ['신선한 피 냄새가 나는 것'],
             ],
             badDescriptionsList: const [
-              [
-                '하나의 근육이 아닌 것',
-                '하나의 근육이 아닌 것',
-                '하나의 근육이 아닌 것',
-              ],
-              ['지방이 거의 없는 것', '지방이 거의 없는 것'],
+              ['탁한 갈색을 띄는 것'],
+              ['내장 주변이라 부패 잘 일어남'],
             ],
           )
         ],

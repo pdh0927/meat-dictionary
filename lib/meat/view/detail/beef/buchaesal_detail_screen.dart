@@ -61,8 +61,8 @@ class _TopContents extends StatelessWidget {
       children: [
         // 바로가기 메뉴
         DetailMenuBar(
-          names: ['1', '2', '3', '4'],
-          offsets: [500, 1000, 1500, 2000],
+          names: const ['부위 소개', '고르는 법', '추천 레시피'],
+          offsets: const [300, 850, 1300],
           onMenuSelected: onMenuSelected,
         ),
 
@@ -292,12 +292,28 @@ class _BuchaesalChoosingTips extends StatefulWidget {
 }
 
 class _BuchaesalChoosingTipsState extends State<_BuchaesalChoosingTips> {
-  final List<String> goodImageUrls = const [
-    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F1.jpg?alt=media&token=8ec5fe9e-1f5e-478c-9158-8e492fd5f11d',
+  final List<List<String>> goodImageUrls = const [
+    [
+      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fbeef%2Fbuchaesal%2Fgood%2FforceString_good.png?alt=media&token=a0b1614f-0ff2-4bce-8f2c-151c1cc0ba55',
+    ],
   ];
 
-  final List<String> badImageUrls = const [
-    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F2.jpg?alt=media&token=53faf929-74a0-4c9e-9316-d55a5e11b8c6',
+  final List<List<String>> badImageUrls = const [
+    [
+      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fbeef%2Fbuchaesal%2Fbad%2FforceString_bad.png?alt=media&token=fdae878e-a154-4cbf-91ab-142aeb8ac950',
+    ],
+  ];
+
+  final List<List<String?>> goodDetailImageUrls = const [
+    [
+      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fbeef%2Fbuchaesal%2Fgood%2FforceString_good2.png?alt=media&token=647030dc-8085-4682-936a-a1667160ed10'
+    ],
+  ];
+
+  final List<List<String?>> badDetailImageUrls = const [
+    [
+      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fbeef%2Fbuchaesal%2Fbad%2FforceString_bad2.png?alt=media&token=5abe96ec-563c-453a-9b3e-644209327f47'
+    ],
   ];
 
   final List<String> titles = const [
@@ -337,13 +353,15 @@ class _BuchaesalChoosingTipsState extends State<_BuchaesalChoosingTips> {
             titles: titles,
             highlights: highlights,
             descriptions: descriptions,
-            goodImageUrls: goodImageUrls,
-            badImageUrls: badImageUrls,
+            goodImageUrlList: goodImageUrls,
+            badImageUrlsList: badImageUrls,
+            goodDetailImageUrls: goodDetailImageUrls,
+            badDetailImageUrls: badDetailImageUrls,
             goodDescriptionsList: const [
-              ['가운데 힘줄이 얇은 것', '힘줄이 얇은쪽이 더 부드러워요', '힘줄이 얇아야 굽기도 쉬워요'],
+              ['가운데 힘줄이 얇은 것', '힘줄이 얇아야 굽기도 쉬워요'],
             ],
             badDescriptionsList: const [
-              ['가운데 힘줄이 두꺼운 것', '힘줄이 두꺼운쪽 고기가 더 질겨요', '힘줄이 두꺼울수록 조리도 어려워요.'],
+              ['가운데 힘줄이 두꺼운 것', '힘줄이 두꺼울수록 조리도 어려워요.'],
             ],
           )
         ],

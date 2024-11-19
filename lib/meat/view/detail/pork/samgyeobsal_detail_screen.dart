@@ -305,14 +305,32 @@ class _SamgyeobsalChoosingTips extends StatefulWidget {
 }
 
 class _SamgyeobsalChoosingTipsState extends State<_SamgyeobsalChoosingTips> {
-  final List<String> goodImageUrls = const [
-    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fsamgyeobsal%2Fgood%2Fodolppyeo_good.png?alt=media&token=4b7c3736-a3c7-4065-b014-8ead14e5d9fc',
-    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F1.jpg?alt=media&token=8ec5fe9e-1f5e-478c-9158-8e492fd5f11d',
+  final List<List<String>> goodImageUrls = const [
+    [
+      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fsamgyeobsal%2Fgood%2Fodolppyeo_good.png?alt=media&token=4b7c3736-a3c7-4065-b014-8ead14e5d9fc'
+    ],
+    [
+      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fsamgyeobsal%2Fgood%2Fgagook_good.png?alt=media&token=1aa76abf-d68a-4ffb-bdea-95793cbdf220'
+    ],
   ];
 
-  final List<String> badImageUrls = const [
-    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fsamgyeobsal%2Fbad%2Fodolppyeo_bad.png?alt=media&token=f697686a-23af-4685-98b1-c0219aac5ef8',
-    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F2.jpg?alt=media&token=53faf929-74a0-4c9e-9316-d55a5e11b8c6',
+  final List<List<String>> badImageUrls = const [
+    [
+      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fsamgyeobsal%2Fbad%2Fodolppyeo_bad.png?alt=media&token=f697686a-23af-4685-98b1-c0219aac5ef8'
+    ],
+    [
+      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fsamgyeobsal%2Fbad%2Fgagookl_bad.png?alt=media&token=a70a8c32-6681-4bfd-972c-fc66e6b86232'
+    ],
+  ];
+
+  final List<List<String?>> goodDetailImageUrls = const [
+    [null],
+    [null],
+  ];
+
+  final List<List<String?>> badDetailImageUrls = const [
+    [null],
+    [null],
   ];
 
   final List<String> titles = const ['오돌뼈가 끝쪽에 있는 것', '갈비 뗀 자국이 존재하는 것'];
@@ -351,8 +369,10 @@ class _SamgyeobsalChoosingTipsState extends State<_SamgyeobsalChoosingTips> {
             titles: titles,
             highlights: highlights,
             descriptions: descriptions,
-            goodImageUrls: goodImageUrls,
-            badImageUrls: badImageUrls,
+            goodImageUrlList: goodImageUrls,
+            badImageUrlsList: badImageUrls,
+            goodDetailImageUrls: goodDetailImageUrls,
+            badDetailImageUrls: badDetailImageUrls,
             goodDescriptionsList: const [
               ['근육이 많이 갈라진 것', '하나의 근육이 아닌 것'],
               ['흰색 근내 지방이 많은 것', '살코기가 안 많은 것'],
@@ -373,19 +393,19 @@ class _SamgyeobsalRecipe extends StatelessWidget {
   const _SamgyeobsalRecipe();
 
   final List<String> imageUrls = const [
-    'assets/imgs/pork/mocksal/recipe/1.png',
-    'assets/imgs/pork/mocksal/recipe/2.png',
-    'assets/imgs/pork/mocksal/recipe/3.png',
-    'assets/imgs/pork/mocksal/recipe/4.png',
+    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fsamgyeobsal%2Frecipe%2F1.png?alt=media&token=9d5a51b5-28d2-432c-9761-eb4c5a05c036',
+    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fsamgyeobsal%2Frecipe%2F2.png?alt=media&token=c1d74d12-62af-473a-9cfc-71ef43fec955',
+    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fsamgyeobsal%2Frecipe%2F3.png?alt=media&token=57c07ca1-bf88-4f38-874f-152d92b4ccaf',
+    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fsamgyeobsal%2Frecipe%2F4.png?alt=media&token=71d203b1-9d83-411d-8a8b-f390a455677b',
   ];
   final List<String> titles = const [
+    '육식도감 PICK',
+    '색다른 PICK',
     '인플루언서 PICK',
     '자취생 PICK',
-    '육식도감 PICK',
-    'HOT',
   ];
   final List<String> foodNames = const [
-    '목살 수육',
+    '에어프라이어를 이용한 통삼겹!',
     '제육복음',
     '목살 스테이크',
     '목살 간장 덮밥',
@@ -393,7 +413,7 @@ class _SamgyeobsalRecipe extends StatelessWidget {
   final List<String> linkUrls = const [
     'https://www.youtube.com/watch?v=_FKZDjgXm90',
     'https://www.youtube.com/watch?v=_FKZDjgXm90',
-    'https://www.youtube.com/watch?v=_FKZDjgXm90',
+    'https://www.youtube.com/watch?v=yMGBNlyq6Qo',
     'https://www.youtube.com/watch?v=_FKZDjgXm90',
   ];
 

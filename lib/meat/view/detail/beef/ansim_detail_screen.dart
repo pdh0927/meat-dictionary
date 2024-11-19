@@ -61,8 +61,8 @@ class _TopContents extends StatelessWidget {
       children: [
         // 바로가기 메뉴
         DetailMenuBar(
-          names: ['1', '2', '3', '4'],
-          offsets: [500, 1000, 1500, 2000],
+          names: const ['부위 소개', '고르는 법', '추천 레시피'],
+          offsets: const [300, 900, 1250],
           onMenuSelected: onMenuSelected,
         ),
 
@@ -305,31 +305,36 @@ class _AnsimChoosingTips extends StatefulWidget {
 }
 
 class __AnsimChoosingTipsState extends State<_AnsimChoosingTips> {
-  final List<String> goodImageUrls = const [
-    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F1.jpg?alt=media&token=8ec5fe9e-1f5e-478c-9158-8e492fd5f11d',
-    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F1.jpg?alt=media&token=8ec5fe9e-1f5e-478c-9158-8e492fd5f11d',
-    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F1.jpg?alt=media&token=8ec5fe9e-1f5e-478c-9158-8e492fd5f11d',
+  final List<List<String>> goodImageUrls = const [
+    [
+      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fbeef%2Fansim%2Fgood%2Fcircle_good.png?alt=media&token=755e4080-4582-4f04-9da0-b2635ea2cbd7'
+    ],
   ];
 
-  final List<String> badImageUrls = const [
-    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F2.jpg?alt=media&token=53faf929-74a0-4c9e-9316-d55a5e11b8c6',
-    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F2.jpg?alt=media&token=53faf929-74a0-4c9e-9316-d55a5e11b8c6',
+  final List<List<String>> badImageUrls = const [
+    [
+      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fbeef%2Fansim%2Fbad%2Fcircle_bad.png?alt=media&token=f98077ef-8638-44b2-ae67-1f72f8027bbc',
+    ],
+  ];
+
+  final List<List<String?>> goodDetailImageUrls = const [
+    [null],
+  ];
+
+  final List<List<String?>> badDetailImageUrls = const [
+    [null],
   ];
 
   final List<String> titles = const [
     '가장 원에 가까운 것',
-    '하나의 큰 덩이를 이루는 것',
-    '떡지방이 작은 것'
   ];
 
   // 강조할 문자열
-  final List<String> highlights = const ['원', '큰 덩이', '떡지방'];
+  final List<String> highlights = const ['원'];
 
   // 추가 설명
   final List<String> descriptions = const [
     '원에 가까울수록 좋은 부위에요.',
-    '옆에 붙은 고기는 질겨요.',
-    '지방을 돈내고 먹을 필욘 없어요.',
   ];
 
   @override
@@ -357,8 +362,10 @@ class __AnsimChoosingTipsState extends State<_AnsimChoosingTips> {
             titles: titles,
             highlights: highlights,
             descriptions: descriptions,
-            goodImageUrls: goodImageUrls,
-            badImageUrls: badImageUrls,
+            goodImageUrlList: goodImageUrls,
+            badImageUrlsList: badImageUrls,
+            goodDetailImageUrls: goodDetailImageUrls,
+            badDetailImageUrls: badDetailImageUrls,
             goodDescriptionsList: const [
               ['가장 동그란 것', '샤토브리앙'],
               ['하나의 고기 덩어리인 것'],
