@@ -18,27 +18,24 @@ class MeatProfile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
       // 이미지
-      ClipRRect(
-        borderRadius: BorderRadius.circular(8.0),
-        child: CachedNetworkImage(
-          imageUrl: meatModel.imgPath,
-          fit: BoxFit.fill,
-          height: 50.w,
-          width: 100.w,
-          placeholder: (context, url) => Shimmer.fromColors(
-            baseColor: Colors.grey[300]!,
-            highlightColor: Colors.grey[100]!,
-            child: Container(
-              height: 50.w,
-              width: 100.w,
-              color: Colors.grey[300],
-            ),
+      CachedNetworkImage(
+        imageUrl: meatModel.imgPath,
+        fit: BoxFit.fill,
+        height: 50.w,
+        width: 100.w,
+        placeholder: (context, url) => Shimmer.fromColors(
+          baseColor: Colors.grey[300]!,
+          highlightColor: Colors.grey[100]!,
+          child: Container(
+            height: 50.w,
+            width: 100.w,
+            color: Colors.grey[300],
           ),
-          errorWidget: (context, url, error) => const Icon(
-            Icons.error,
-            color: Colors.red,
-            size: 50,
-          ),
+        ),
+        errorWidget: (context, url, error) => const Icon(
+          Icons.error,
+          color: Colors.red,
+          size: 50,
         ),
       ),
 
