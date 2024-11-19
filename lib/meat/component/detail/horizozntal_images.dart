@@ -11,8 +11,10 @@ class HorizontalImages extends StatelessWidget {
     required this.titles,
     required this.highlights,
     required this.descriptions,
-    required this.goodImageUrls,
-    required this.badImageUrls,
+    required this.goodImageUrlList,
+    required this.badImageUrlsList,
+    required this.goodDetailImageUrls,
+    required this.badDetailImageUrls,
     required this.goodDescriptionsList,
     required this.badDescriptionsList,
   });
@@ -20,8 +22,10 @@ class HorizontalImages extends StatelessWidget {
   final List<String> titles;
   final List<String> highlights;
   final List<String> descriptions;
-  final List<String> goodImageUrls;
-  final List<String> badImageUrls;
+  final List<List<String>> goodImageUrlList;
+  final List<List<String>> badImageUrlsList;
+  final List<List<String?>> goodDetailImageUrls;
+  final List<List<String?>> badDetailImageUrls;
   final List<List<String>> goodDescriptionsList;
   final List<List<String>> badDescriptionsList;
 
@@ -31,10 +35,11 @@ class HorizontalImages extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: List.generate(goodImageUrls.length, (index) {
+        children: List.generate(goodImageUrlList.length, (index) {
           return Padding(
             padding: EdgeInsets.only(
-                right: index == goodImageUrls.length - 1 ? 16 : 0, left: 16.0),
+                right: index == goodImageUrlList.length - 1 ? 16 : 0,
+                left: 16.0),
             child: SizedBox(
               width: 195.0,
               child: GestureDetector(
@@ -59,8 +64,10 @@ class HorizontalImages extends StatelessWidget {
                             child: ComparePopupComponent(
                               title: titles[index],
                               highlight: highlights[index],
-                              goodImageUrl: goodImageUrls[index],
-                              badImageUrl: badImageUrls[index],
+                              goodImageUrls: goodImageUrlList[index],
+                              badImageUrls: badImageUrlsList[index],
+                              goodDetailImageUrls: goodDetailImageUrls[index],
+                              badDetailImageUrls: badDetailImageUrls[index],
                               goodDescriptions: goodDescriptionsList[index],
                               badDescriptions: badDescriptionsList[index],
                             ),
@@ -75,7 +82,7 @@ class HorizontalImages extends StatelessWidget {
                   children: [
                     // 이미지
                     CachedNetworkImage(
-                      imageUrl: goodImageUrls[index],
+                      imageUrl: goodImageUrlList[index][0],
                       fit: BoxFit.fill,
                       width: 195,
                       height: 120,
