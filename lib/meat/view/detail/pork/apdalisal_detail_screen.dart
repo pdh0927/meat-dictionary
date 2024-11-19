@@ -63,8 +63,8 @@ class _TopContents extends StatelessWidget {
       children: [
         // 바로가기 메뉴
         DetailMenuBar(
-          names: ['1', '2', '3', '4'],
-          offsets: [500, 1000, 1500, 2000],
+          names: const ['부위 소개', '고르는 법', '추천 레시피'],
+          offsets: const [300, 930, 1350],
           onMenuSelected: onMenuSelected,
         ),
 
@@ -303,25 +303,34 @@ class _ApdalisalChoosingTips extends StatefulWidget {
 }
 
 class _ApdalisalChoosingTipsState extends State<_ApdalisalChoosingTips> {
-  final List<String> goodImageUrls = const [
-    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F1.jpg?alt=media&token=8ec5fe9e-1f5e-478c-9158-8e492fd5f11d',
-    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F1.jpg?alt=media&token=8ec5fe9e-1f5e-478c-9158-8e492fd5f11d',
+  final List<List<String>> goodImageUrls = const [
+    [
+      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fapdalisal%2Fgood%2Fleaves_good.png?alt=media&token=9d3be3f0-868c-4dbb-a96d-792bfc6df973',
+    ],
   ];
 
-  final List<String> badImageUrls = const [
-    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F2.jpg?alt=media&token=53faf929-74a0-4c9e-9316-d55a5e11b8c6',
-    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F2.jpg?alt=media&token=53faf929-74a0-4c9e-9316-d55a5e11b8c6',
+  final List<List<String>> badImageUrls = const [
+    [
+      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fapdalisal%2Fbad%2Fleaves_bad.png?alt=media&token=9de6420c-0fa6-46e0-86df-d2c4d1ebf24d',
+    ],
   ];
 
-  final List<String> titles = const ['낙엽 모양을 띄는 것', '살코기 중간에 지방이 껴있는 것'];
+  final List<List<String?>> goodDetailImageUrls = const [
+    [null],
+  ];
+
+  final List<List<String?>> badDetailImageUrls = const [
+    [null],
+  ];
+
+  final List<String> titles = const ['낙엽 모양을 띄는 것'];
 
   // 강조할 문자열
-  final List<String> highlights = const ['낙엽', '지방'];
+  final List<String> highlights = const ['낙엽'];
 
   // 추가 설명
   final List<String> descriptions = const [
     '살코기가 여러 덩이인게 좋아요.',
-    '지방이 껴있어야 부드러워요.',
   ];
 
   @override
@@ -349,15 +358,15 @@ class _ApdalisalChoosingTipsState extends State<_ApdalisalChoosingTips> {
             titles: titles,
             highlights: highlights,
             descriptions: descriptions,
-            goodImageUrls: goodImageUrls,
-            badImageUrls: badImageUrls,
+            goodImageUrlList: goodImageUrls,
+            badImageUrlsList: badImageUrls,
+            goodDetailImageUrls: goodDetailImageUrls,
+            badDetailImageUrls: badDetailImageUrls,
             goodDescriptionsList: const [
-              ['근육이 많이 갈라진 것', '하나의 근육이 아닌 것'],
-              ['흰색 근내 지방이 많은 것', '살코기가 안 많은 것'],
+              ['고기 중앙에서부터 갈라진 것', '하나의 살덩어리가 아닌 것'],
             ],
             badDescriptionsList: const [
-              ['하나의 근육이 아닌 것'],
-              ['지방이 거의 없는 것', '지방이 거의 없는 것'],
+              ['불규칙한 모양인 것', '고기가 갈라지지 않고 한덩어리인 것'],
             ],
           )
         ],

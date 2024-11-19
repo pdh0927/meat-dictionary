@@ -60,8 +60,8 @@ class _TopContents extends StatelessWidget {
       children: [
         // 바로가기 메뉴
         DetailMenuBar(
-          names: ['1', '2', '3', '4'],
-          offsets: [500, 1000, 1500, 2000],
+          names: const ['부위 소개', '고르는 법', '추천 레시피'],
+          offsets: const [300, 800, 1100],
           onMenuSelected: onMenuSelected,
         ),
 

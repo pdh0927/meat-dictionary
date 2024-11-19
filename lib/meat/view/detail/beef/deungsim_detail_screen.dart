@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:meat_dictionary/common/const/text_style.dart';
 import 'package:meat_dictionary/meat/component/detail/detail_menu_bar.dart';
+import 'package:meat_dictionary/meat/component/detail/horizozntal_images.dart';
 import 'package:meat_dictionary/meat/component/detail/common_meat_detail_frame.dart';
 import 'package:meat_dictionary/meat/component/detail/introduction_component.dart';
 import 'package:meat_dictionary/meat/component/detail/recipe_widget.dart';
 import 'package:meat_dictionary/meat/component/detail/small_title_components.dart';
 import 'package:meat_dictionary/meat/model/meat_model.dart';
 
-// 갈비 디테일
-class GalbiDetailScreen extends StatefulWidget {
-  const GalbiDetailScreen({
+// 등심 디테일
+class DeungsimDetailScreen extends StatefulWidget {
+  const DeungsimDetailScreen({
     super.key,
     required this.meatModel,
   });
@@ -17,10 +18,10 @@ class GalbiDetailScreen extends StatefulWidget {
   final MeatModel meatModel;
 
   @override
-  State<GalbiDetailScreen> createState() => _GalbiDetailScreenState();
+  State<DeungsimDetailScreen> createState() => _DeungsimDetailScreenState();
 }
 
-class _GalbiDetailScreenState extends State<GalbiDetailScreen> {
+class _DeungsimDetailScreenState extends State<DeungsimDetailScreen> {
   final ScrollController _scrollController = ScrollController();
 
   @override
@@ -61,7 +62,7 @@ class _TopContents extends StatelessWidget {
         // 바로가기 메뉴
         DetailMenuBar(
           names: const ['부위 소개', '고르는 법', '추천 레시피'],
-          offsets: const [300, 800, 1100],
+          offsets: const [300, 900, 1250],
           onMenuSelected: onMenuSelected,
         ),
 
@@ -109,7 +110,7 @@ class _Introductions extends StatelessWidget {
           IntroductionComponent(
             num: 1,
             text: Text(
-              '소의 갈비뼈와 그 주변부의 살을 갈비라고 해요.',
+              '소의 등쪽에 위치한 부위에요.',
               style: detailThinContentStyle,
             ),
           ),
@@ -122,7 +123,27 @@ class _Introductions extends StatelessWidget {
                 TextSpan(
                   children: [
                     TextSpan(
-                      text: '뼈 위에 붙은 고기를 갈비, 뼈 사이의 고기를 갈비살(늑간살)이라고 불러요.',
+                      text: '윗등심',
+                      style: detailBoldContentStyle,
+                    ),
+                    TextSpan(
+                      text: ', ',
+                      style: detailThinContentStyle,
+                    ),
+                    TextSpan(
+                      text: '꽃등심',
+                      style: detailBoldContentStyle,
+                    ),
+                    TextSpan(
+                      text: ', ',
+                      style: detailThinContentStyle,
+                    ),
+                    TextSpan(
+                      text: '아랫등심',
+                      style: detailBoldContentStyle,
+                    ),
+                    TextSpan(
+                      text: '으로 나뉘어요.',
                       style: detailThinContentStyle,
                     ),
                   ],
@@ -136,13 +157,30 @@ class _Introductions extends StatelessWidget {
               TextSpan(
                 children: [
                   TextSpan(
-                    text: '갈비뼈 위치에 따라 꽃갈비, 본갈비, 참갈비로 나뉘어요.',
+                    text: '해외에서는 ',
+                    style: detailThinContentStyle,
+                  ),
+                  TextSpan(
+                    text: '척아이롤',
+                    style: detailBoldContentStyle,
+                  ),
+                  TextSpan(
+                    text: ', ',
+                    style: detailThinContentStyle,
+                  ),
+                  TextSpan(
+                    text: '립아이',
+                    style: detailBoldContentStyle,
+                  ),
+                  TextSpan(
+                    text: '라고 불러요.',
                     style: detailThinContentStyle,
                   ),
                 ],
               ),
             ),
           ),
+
           const SizedBox(height: 16.0),
 
           IntroductionComponent(
@@ -151,11 +189,7 @@ class _Introductions extends StatelessWidget {
               TextSpan(
                 children: [
                   TextSpan(
-                    text: '꽃갈비',
-                    style: detailBoldContentStyle,
-                  ),
-                  TextSpan(
-                    text: '는 마블링이 좋아 구이용으로 적합해요.',
+                    text: '윗등심은 척아이롤에 포함돼요.',
                     style: detailThinContentStyle,
                   ),
                 ],
@@ -170,11 +204,7 @@ class _Introductions extends StatelessWidget {
               TextSpan(
                 children: [
                   TextSpan(
-                    text: '본갈비',
-                    style: detailBoldContentStyle,
-                  ),
-                  TextSpan(
-                    text: '는 마블링이 좋은것은 구이, 아닌것은 찜이나 탕으로 추천해요.',
+                    text: '꽃듬심, 아랫등심은 립아이에 포함돼요.',
                     style: detailThinContentStyle,
                   ),
                 ],
@@ -189,30 +219,7 @@ class _Introductions extends StatelessWidget {
               TextSpan(
                 children: [
                   TextSpan(
-                    text: '참갈비',
-                    style: detailBoldContentStyle,
-                  ),
-                  TextSpan(
-                    text: '는 식감이 있어서 찜으로 추천해요.',
-                    style: detailThinContentStyle,
-                  ),
-                ],
-              ),
-            ),
-          ),
-          const SizedBox(height: 16.0),
-
-          IntroductionComponent(
-            num: 7,
-            text: Text.rich(
-              TextSpan(
-                children: [
-                  TextSpan(
-                    text: '갈비살(늑간살)',
-                    style: detailBoldContentStyle,
-                  ),
-                  TextSpan(
-                    text: '은 씹는맛이 있고, 육향이 강한 부위에요.',
+                    text: '고르는 방법에 따라서 맛의 차이가 커요.',
                     style: detailThinContentStyle,
                   ),
                 ],
@@ -260,7 +267,7 @@ class _Tips extends StatelessWidget {
                         TextSpan(
                           children: [
                             TextSpan(
-                              text: '무난한 구이용 부위를 고르신다면 추천해요.',
+                              text: '스테이크를 먹고 싶은데, 어떤 부위를 먹을지 고민되는 분께 추천해요.',
                               style: detailThinContentStyle,
                             ),
                           ],
@@ -289,7 +296,7 @@ class _Tips extends StatelessWidget {
                         TextSpan(
                           children: [
                             TextSpan(
-                              text: '특징에 맞는 고기 선택를 선택해주세요.',
+                              text: '고기를 잘 고르는 것이 중요해요!',
                               style: detailThinContentStyle,
                             ),
                           ],
@@ -315,8 +322,8 @@ class _BottomContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Column(
       children: [
-        // 맛있는 갈비 고르는법
-        _GalbiChoosingTips(),
+        // 맛있는 등심 고르는법
+        _DeungsimChoosingTips(),
 
         Divider(
           height: 48.0,
@@ -324,22 +331,100 @@ class _BottomContent extends StatelessWidget {
           color: Color(0xFFD8D8D8),
         ),
 
-        // 갈비 추천 레시피
-        _GalbiRecipe(),
+        // 등심 추천 레시피
+        _DeungsimRecipe(),
       ],
     );
   }
 }
 
-// 맛있는 갈비 고르는법
-class _GalbiChoosingTips extends StatefulWidget {
-  const _GalbiChoosingTips();
+// 맛있는 등심 고르는법
+class _DeungsimChoosingTips extends StatefulWidget {
+  const _DeungsimChoosingTips();
 
   @override
-  State<_GalbiChoosingTips> createState() => _ChadolbagiChoosingTipsState();
+  State<_DeungsimChoosingTips> createState() => _DeungsimChoosingTipsState();
 }
 
-class _ChadolbagiChoosingTipsState extends State<_GalbiChoosingTips> {
+class _DeungsimChoosingTipsState extends State<_DeungsimChoosingTips> {
+  final List<List<String>> goodImageUrls = const [
+    [
+      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fbeef%2Fdeungsim%2Fgood%2Fsalchi_good.png?alt=media&token=5eafa853-cb37-495d-ada2-d7f88a1a212f'
+    ],
+    [
+      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F1.jpg?alt=media&token=8ec5fe9e-1f5e-478c-9158-8e492fd5f11d'
+    ],
+    [
+      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F1.jpg?alt=media&token=8ec5fe9e-1f5e-478c-9158-8e492fd5f11d'
+    ],
+    [
+      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F1.jpg?alt=media&token=8ec5fe9e-1f5e-478c-9158-8e492fd5f11d'
+    ],
+    [
+      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F1.jpg?alt=media&token=8ec5fe9e-1f5e-478c-9158-8e492fd5f11d'
+    ],
+  ];
+
+  final List<List<String>> badImageUrls = const [
+    [
+      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fbeef%2Fdeungsim%2Fbad%2Fsalchi_bad.png?alt=media&token=1f155147-d3bf-4a5c-ba9f-649b9d247357'
+    ],
+    [
+      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F2.jpg?alt=media&token=53faf929-74a0-4c9e-9316-d55a5e11b8c6'
+    ],
+    [
+      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F2.jpg?alt=media&token=53faf929-74a0-4c9e-9316-d55a5e11b8c6'
+    ],
+    [
+      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F2.jpg?alt=media&token=53faf929-74a0-4c9e-9316-d55a5e11b8c6'
+    ],
+    [
+      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F2.jpg?alt=media&token=53faf929-74a0-4c9e-9316-d55a5e11b8c6'
+    ],
+  ];
+
+  final List<List<String?>> goodDetailImageUrls = const [
+    [null],
+    [null],
+    [null],
+    [null],
+    [null],
+  ];
+
+  final List<List<String?>> badDetailImageUrls = const [
+    [null],
+    [null],
+    [null],
+    [null],
+    [null],
+  ];
+
+  final List<String> titles = const [
+    '[윗등심1] 살치살이 큰것',
+    '[윗등심2] 널판근이 작은것',
+    '[꽃/아랫등심1] 새우살이 큰것',
+    '[꽃/아랫등심2] 덧살이 작은것',
+    '[꽃/아랫등심3] 떡지방 작은것',
+  ];
+
+  // 강조할 문자열
+  final List<String> highlights = const [
+    '살치살',
+    '널판근',
+    '새우살',
+    '덧살',
+    '떡지방',
+  ];
+
+  // 추가 설명
+  final List<String> descriptions = const [
+    '살치살이 큰 것이 부드러워요.',
+    '널판근이 작은 것이 부드러워요.',
+    '새우살이 큰 것이 맛있어요.',
+    '덧살이 작은 것이 부드러워요.',
+    '떡지방은 못 먹어요...',
+  ];
+
   @override
   void initState() {
     super.initState();
@@ -355,27 +440,44 @@ class _ChadolbagiChoosingTipsState extends State<_GalbiChoosingTips> {
           // 제목
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.0),
-            child: ChoosingYummyMeat(name: '갈비'),
+            child: ChoosingYummyMeat(name: '등심'),
           ),
 
           const SizedBox(height: 16.0),
 
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 18.0),
-            child: Text(
-              '신선한 고기를 고르면 다 맛있어요!',
-              style: detailThinContentStyle,
-            ),
-          ),
+          // 가로 스크롤 이미지
+          HorizontalImages(
+            titles: titles,
+            highlights: highlights,
+            descriptions: descriptions,
+            goodImageUrlList: goodImageUrls,
+            badImageUrlsList: badImageUrls,
+            goodDetailImageUrls: goodDetailImageUrls,
+            badDetailImageUrls: badDetailImageUrls,
+            goodDescriptionsList: const [
+              ['위 혹은 아래에 빗살무늬가 선명한 것', '빗살무늬가 살치살이에요'],
+              ['위 혹은 아래에 빗살무늬가 선명한 것', '빗살무늬가 살치살이에요'],
+              ['위 혹은 아래에 빗살무늬가 선명한 것', '빗살무늬가 살치살이에요'],
+              ['위 혹은 아래에 빗살무늬가 선명한 것', '빗살무늬가 살치살이에요'],
+              ['위 혹은 아래에 빗살무늬가 선명한 것', '빗살무늬가 살치살이에요'],
+            ],
+            badDescriptionsList: const [
+              ['빗살무늬가 어디에도 없는 것', '다른 부위가 섞인 것'],
+              ['빗살무늬가 어디에도 없는 것', '다른 부위가 섞인 것'],
+              ['빗살무늬가 어디에도 없는 것', '다른 부위가 섞인 것'],
+              ['빗살무늬가 어디에도 없는 것', '다른 부위가 섞인 것'],
+              ['빗살무늬가 어디에도 없는 것', '다른 부위가 섞인 것'],
+            ],
+          )
         ],
       ),
     );
   }
 }
 
-// 갈비 추천 레시피
-class _GalbiRecipe extends StatelessWidget {
-  const _GalbiRecipe();
+// 등심 추천 레시피
+class _DeungsimRecipe extends StatelessWidget {
+  const _DeungsimRecipe();
 
   final List<String> imageUrls = const [
     'assets/imgs/pork/mocksal/recipe/1.png',

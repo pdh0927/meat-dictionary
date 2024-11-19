@@ -320,12 +320,24 @@ class _TosisalChoosingTips extends StatefulWidget {
 }
 
 class _TosisalChoosingTipsState extends State<_TosisalChoosingTips> {
-  final List<String> goodImageUrls = const [
-    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F1.jpg?alt=media&token=8ec5fe9e-1f5e-478c-9158-8e492fd5f11d',
+  final List<List<String>> goodImageUrls = const [
+    [
+      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F1.jpg?alt=media&token=8ec5fe9e-1f5e-478c-9158-8e492fd5f11d',
+    ],
   ];
 
-  final List<String> badImageUrls = const [
-    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F2.jpg?alt=media&token=53faf929-74a0-4c9e-9316-d55a5e11b8c6',
+  final List<List<String>> badImageUrls = const [
+    [
+      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F2.jpg?alt=media&token=53faf929-74a0-4c9e-9316-d55a5e11b8c6',
+    ],
+  ];
+
+  final List<List<String?>> goodDetailImageUrls = const [
+    [null],
+  ];
+
+  final List<List<String?>> badDetailImageUrls = const [
+    [null],
   ];
 
   final List<String> titles = const [
@@ -367,8 +379,10 @@ class _TosisalChoosingTipsState extends State<_TosisalChoosingTips> {
             titles: titles,
             highlights: highlights,
             descriptions: descriptions,
-            goodImageUrls: goodImageUrls,
-            badImageUrls: badImageUrls,
+            goodImageUrlList: goodImageUrls,
+            badImageUrlsList: badImageUrls,
+            goodDetailImageUrls: goodDetailImageUrls,
+            badDetailImageUrls: badDetailImageUrls,
             goodDescriptionsList: const [
               ['내장쪽 부위라 부패가 잘 돼요.', '피냄새는 괜찮아요.', '꿉꿉한 냄새는 피해야해요.'],
               ['내장쪽 부위라 부패가 잘 돼요.', '짙은 붉은색은 괜찮아요.', '갈색은 피해야해요.'],

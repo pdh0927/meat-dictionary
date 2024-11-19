@@ -64,8 +64,8 @@ class _TopContents extends StatelessWidget {
       children: [
         // 바로가기 메뉴
         DetailMenuBar(
-          names: ['1', '2', '3', '4'],
-          offsets: [500, 1000, 1500, 2000],
+          names: const ['부위 소개', '고르는 법', '추천 레시피'],
+          offsets: const [300, 900, 1400],
           onMenuSelected: onMenuSelected,
         ),
 
@@ -306,32 +306,36 @@ class _MocksalChoosingTips extends StatefulWidget {
 }
 
 class _MocksalChoosingTipsState extends State<_MocksalChoosingTips> {
-  final List<String> goodImageUrls = const [
-    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fmocksal%2Fgood%2Fmocksal_good_1.png?alt=media&token=9cab9237-c88f-4ccb-90d9-6d6ce2c2a9e4',
-    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F1.jpg?alt=media&token=8ec5fe9e-1f5e-478c-9158-8e492fd5f11d',
-    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F1.jpg?alt=media&token=8ec5fe9e-1f5e-478c-9158-8e492fd5f11d',
+  final List<List<String>> goodImageUrls = const [
+    [
+      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fmocksal%2Fgood%2Fmocksal_good_1.png?alt=media&token=9cab9237-c88f-4ccb-90d9-6d6ce2c2a9e4',
+    ],
   ];
 
-  final List<String> badImageUrls = const [
-    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fmocksal%2Fbad%2Fmocksal_bad_1.png?alt=media&token=8a98d5b3-5180-4f73-b47e-47b20b214f02',
-    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F2.jpg?alt=media&token=53faf929-74a0-4c9e-9316-d55a5e11b8c6',
-    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F2.jpg?alt=media&token=53faf929-74a0-4c9e-9316-d55a5e11b8c6',
+  final List<List<String>> badImageUrls = const [
+    [
+      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fmocksal%2Fbad%2Fmocksal_bad_1.png?alt=media&token=8a98d5b3-5180-4f73-b47e-47b20b214f02',
+    ],
+  ];
+
+  final List<List<String?>> goodDetailImageUrls = const [
+    [null],
+  ];
+
+  final List<List<String?>> badDetailImageUrls = const [
+    [null],
   ];
 
   final List<String> titles = const [
     '고기가 섬을 이루는 것',
-    '한쪽 살코기가 크지 않은 것',
-    '지방이 희고 단단한 것'
   ];
 
   // 강조 문자열
-  final List<String> highlights = const ['섬', '살코기', '희고 단단'];
+  final List<String> highlights = const ['섬'];
 
   // 추가 설명
   final List<String> descriptions = const [
     '섬이 많을수록 부드러워요.',
-    '살코기가 커지면 퍽퍽해요.',
-    '지방이 누런건 오래된 고기예요.'
   ];
 
   @override
@@ -361,15 +365,15 @@ class _MocksalChoosingTipsState extends State<_MocksalChoosingTips> {
             titles: titles,
             highlights: highlights,
             descriptions: descriptions,
-            goodImageUrls: goodImageUrls,
-            badImageUrls: badImageUrls,
+            goodImageUrlList: goodImageUrls,
+            badImageUrlsList: badImageUrls,
+            goodDetailImageUrls: goodDetailImageUrls,
+            badDetailImageUrls: badDetailImageUrls,
             goodDescriptionsList: const [
-              ['근육이 많이 갈라진 것', '하나의 근육이 아닌 것'],
-              ['흰색 근내 지방이 많은 것', '살코기가 안 많은 것'],
+              ['고기가 지방을 두고 많이 갈라진 것', '사이사이 지방이 많이 낀 것'],
             ],
             badDescriptionsList: const [
-              ['하나의 근육이 아닌 것'],
-              ['지방이 거의 없는 것', '지방이 거의 없는 것'],
+              ['고기 섬이 많이 없는 것', '하나의 살코기가 큰 것'],
             ],
           )
         ],
