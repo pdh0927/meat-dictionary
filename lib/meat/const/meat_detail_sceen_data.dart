@@ -4,6 +4,7 @@ import 'package:meat_dictionary/meat/view/detail/beef/ansim_detail_screen.dart';
 import 'package:meat_dictionary/meat/view/detail/beef/buchaesal_detail_screen.dart';
 import 'package:meat_dictionary/meat/view/detail/beef/chadolbagi_detail_screen.dart';
 import 'package:meat_dictionary/meat/view/detail/beef/chaekkeutsal_detail_screen.dart';
+import 'package:meat_dictionary/meat/view/detail/beef/deungsim_detail_screen.dart';
 import 'package:meat_dictionary/meat/view/detail/beef/eobjinsal_detail_screen.dart';
 import 'package:meat_dictionary/meat/view/detail/beef/galbi_detail_screen.dart';
 import 'package:meat_dictionary/meat/view/detail/beef/salchisal_detail_screen.dart';
@@ -50,6 +51,8 @@ Widget getMeatDetailScreen(MeatModel meat) {
         return ChadolbagiDetailScreen(meatModel: meat);
       case '갈비':
         return GalbiDetailScreen(meatModel: meat);
+      case '등심':
+        return DeungsimDetailScreen(meatModel: meat);
       default:
         return const MeatDetailScreen(); // 기본 상세 화면
     }
