@@ -10,8 +10,6 @@ import 'package:meat_dictionary/meat/model/meat_model.dart';
 
 // 앞다리 디테일
 class ApdalisalDetailScreen extends StatefulWidget {
-  static String get routeName => 'apdalisal_detail';
-
   const ApdalisalDetailScreen({
     super.key,
     required this.meatModel,
@@ -380,28 +378,28 @@ class _ApdalisalRecipe extends StatelessWidget {
   const _ApdalisalRecipe();
 
   final List<String> imageUrls = const [
-    'assets/imgs/pork/mocksal/recipe/1.png',
-    'assets/imgs/pork/mocksal/recipe/2.png',
-    'assets/imgs/pork/mocksal/recipe/3.png',
-    'assets/imgs/pork/mocksal/recipe/4.png',
+    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fapdalisal%2Frecipe%2F%E1%84%8B%E1%85%A1%E1%87%81%E1%84%83%E1%85%A1%E1%84%85%E1%85%B5%E1%84%89%E1%85%A1%E1%86%AF1_%E1%84%83%E1%85%AB%E1%84%8C%E1%85%B5%E1%84%87%E1%85%AE%E1%86%AF%E1%84%87%E1%85%A2%E1%86%A8.png?alt=media&token=0f1b4e06-1cdb-4577-a25d-7e4cb6c0eedf',
+    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fapdalisal%2Frecipe%2F%E1%84%8B%E1%85%A1%E1%87%81%E1%84%83%E1%85%A1%E1%84%85%E1%85%B5%E1%84%89%E1%85%A1%E1%86%AF2_%E1%84%8B%E1%85%A1%E1%87%81%E1%84%83%E1%85%A1%E1%84%85%E1%85%B5%E1%84%89%E1%85%A1%E1%86%AF%E1%84%89%E1%85%AE%E1%84%8B%E1%85%B2%E1%86%A8.jpg?alt=media&token=fc67a848-7047-430a-97b6-c43db9d4d5c9',
+    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fapdalisal%2Frecipe%2F%E1%84%8B%E1%85%A1%E1%87%81%E1%84%83%E1%85%A1%E1%84%85%E1%85%B5%E1%84%89%E1%85%A1%E1%86%AF3_%E1%84%83%E1%85%A9%E1%86%BC%E1%84%91%E1%85%A1%E1%84%8B%E1%85%B2%E1%86%A8.jpg?alt=media&token=16b58597-657a-44ae-817a-986506b44cfe',
+    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fapdalisal%2Frecipe%2F%E1%84%8B%E1%85%A1%E1%87%81%E1%84%83%E1%85%A1%E1%84%85%E1%85%B5%E1%84%89%E1%85%A1%E1%86%AF4_%E1%84%8C%E1%85%A6%E1%84%8B%E1%85%B2%E1%86%A8%E1%84%87%E1%85%A9%E1%86%A9%E1%84%8B%E1%85%B3%E1%86%B7.png?alt=media&token=db4c7b22-0b41-4225-844b-de0cd2cea99c',
   ];
   final List<String> titles = const [
-    '인플루언서 PICK',
-    '자취생 PICK',
-    '육식도감 PICK',
-    'HOT',
+    '인플루언서 Pick!',
+    '육식도감 Pick!',
+    '이색적인 Pick!',
+    '자취생 Pick!'
   ];
   final List<String> foodNames = const [
-    '목살 수육',
-    '제육복음',
-    '목살 스테이크',
-    '목살 간장 덮밥',
+    '돼지불백',
+    '앞다리살 수육',
+    '앞다리살 동파육',
+    '제육볶음',
   ];
   final List<String> linkUrls = const [
-    'https://www.youtube.com/watch?v=_FKZDjgXm90',
-    'https://www.youtube.com/watch?v=_FKZDjgXm90',
-    'https://www.youtube.com/watch?v=_FKZDjgXm90',
-    'https://www.youtube.com/watch?v=_FKZDjgXm90',
+    'https://www.youtube.com/watch?v=Kx_4ecv9ZWU',
+    'https://youtube.com/shorts/zHVjSV-OAYI?si=yQwCELu17rztt1aN',
+    'https://youtube.com/shorts/JQLgEuVH_6U?si=ntKPnn7tmu6DRufT',
+    'https://www.youtube.com/watch?v=spjIN3vPVVY',
   ];
 
   @override

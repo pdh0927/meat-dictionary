@@ -344,28 +344,14 @@ class _SalchisalRecipe extends StatelessWidget {
   const _SalchisalRecipe();
 
   final List<String> imageUrls = const [
-    'assets/imgs/pork/mocksal/recipe/1.png',
-    'assets/imgs/pork/mocksal/recipe/2.png',
-    'assets/imgs/pork/mocksal/recipe/3.png',
-    'assets/imgs/pork/mocksal/recipe/4.png',
+    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fbeef%2Fsalchisal%2Frecipe%2F%E1%84%89%E1%85%A1%E1%86%AF%E1%84%8E%E1%85%B5%E1%84%89%E1%85%A1%E1%86%AF1_%E1%84%89%E1%85%A1%E1%86%AF%E1%84%8E%E1%85%B5%E1%84%89%E1%85%A1%E1%86%AF%E1%84%89%E1%85%B3%E1%84%90%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%8F%E1%85%B3.jpg?alt=media&token=0c6435dd-17e0-4840-8e5a-82d1bf6023eb',
+    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fbeef%2Fsalchisal%2Frecipe%2F%E1%84%89%E1%85%A1%E1%86%AF%E1%84%8E%E1%85%B5%E1%84%89%E1%85%A1%E1%86%AF2_%E1%84%89%E1%85%A1%E1%86%AF%E1%84%8E%E1%85%B5%E1%84%89%E1%85%A1%E1%86%AF%E1%84%89%E1%85%B3%E1%84%90%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%8F%E1%85%B3.jpg?alt=media&token=5a141517-6d25-4466-a5e6-41cec67b9558',
   ];
-  final List<String> titles = const [
-    '인플루언서 PICK',
-    '자취생 PICK',
-    '육식도감 PICK',
-    'HOT',
-  ];
-  final List<String> foodNames = const [
-    '목살 수육',
-    '제육복음',
-    '목살 스테이크',
-    '목살 간장 덮밥',
-  ];
+  final List<String> titles = const ['육식도감 Pick', '자취생 Pick'];
+  final List<String> foodNames = const ['살치살 스테이크', '초스피드 살치살 스테이크'];
   final List<String> linkUrls = const [
-    'https://www.youtube.com/watch?v=_FKZDjgXm90',
-    'https://www.youtube.com/watch?v=_FKZDjgXm90',
-    'https://www.youtube.com/watch?v=_FKZDjgXm90',
-    'https://www.youtube.com/watch?v=_FKZDjgXm90',
+    'https://youtube.com/shorts/ReaQrFMWh7c?si=1LM8wm7lr_Li9yAQ',
+    'https://youtube.com/shorts/a6fwhlB7LCg?si=bwfVVkhcCtTiofHz'
   ];
 
   @override

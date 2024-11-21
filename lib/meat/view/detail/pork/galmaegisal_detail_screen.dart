@@ -11,8 +11,6 @@ import 'package:meat_dictionary/meat/model/meat_model.dart';
 
 // 갈매기살 디테일
 class GalmaegisalDetailScreen extends StatefulWidget {
-  static String get routeName => 'galmaegisal_detail';
-
   const GalmaegisalDetailScreen({
     super.key,
     required this.meatModel,
@@ -434,28 +432,14 @@ class _GalmaegisalRecipe extends StatelessWidget {
   const _GalmaegisalRecipe();
 
   final List<String> imageUrls = const [
-    'assets/imgs/pork/mocksal/recipe/1.png',
-    'assets/imgs/pork/mocksal/recipe/2.png',
-    'assets/imgs/pork/mocksal/recipe/3.png',
-    'assets/imgs/pork/mocksal/recipe/4.png',
+    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Frecipe%2F%E1%84%80%E1%85%A1%E1%86%AF%E1%84%86%E1%85%A2%E1%84%80%E1%85%B5%E1%84%89%E1%85%A1%E1%86%AF1_%E1%84%8E%E1%85%A1%E1%84%8B%E1%85%A8%E1%84%85%E1%85%A7%E1%86%AB%E1%84%80%E1%85%A1%E1%86%AF%E1%84%86%E1%85%A2%E1%84%80%E1%85%B5%E1%84%89%E1%85%A1%E1%86%AF%E1%84%89%E1%85%AE%E1%84%8B%E1%85%B2%E1%86%A8.jpg?alt=media&token=0310eaec-0da7-4b24-8d5c-398442f51fbd',
+    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Frecipe%2F%E1%84%80%E1%85%A1%E1%86%AF%E1%84%86%E1%85%A2%E1%84%80%E1%85%B5%E1%84%89%E1%85%A1%E1%86%AF2_%E1%84%8B%E1%85%A3%E1%86%BC%E1%84%82%E1%85%A7%E1%86%B7%E1%84%80%E1%85%A1%E1%86%AF%E1%84%86%E1%85%A2%E1%84%80%E1%85%B5%E1%84%89%E1%85%A1%E1%86%AF.jpg?alt=media&token=884b90fc-ca7f-40c6-932f-9e6acfbb402e',
   ];
-  final List<String> titles = const [
-    '인플루언서 PICK',
-    '자취생 PICK',
-    '육식도감 PICK',
-    'HOT',
-  ];
-  final List<String> foodNames = const [
-    '목살 수육',
-    '제육복음',
-    '목살 스테이크',
-    '목살 간장 덮밥',
-  ];
+  final List<String> titles = const ['인플루언서 Pick!', '육식도감 Pick!'];
+  final List<String> foodNames = const ['갈매기살 수육', '양념갈매기살'];
   final List<String> linkUrls = const [
-    'https://www.youtube.com/watch?v=_FKZDjgXm90',
-    'https://www.youtube.com/watch?v=_FKZDjgXm90',
-    'https://www.youtube.com/watch?v=_FKZDjgXm90',
-    'https://www.youtube.com/watch?v=_FKZDjgXm90',
+    'https://youtube.com/shorts/iRaaEg3t6ik?si=mk71nuBLOqkAHi8A',
+    'https://youtu.be/dVxxQw39KKU?si=aGmuIhkiQkq6uZOv'
   ];
 
   @override
