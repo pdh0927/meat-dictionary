@@ -23,7 +23,7 @@
 🛒 **구매도 좀 더 똑똑하게**  
 🗞️ **재미있는 정보까지 카드뉴스로 제공**  
 
-[YouTube 링크](https://www.youtube.com/shorts/XmoS10DLQao)
+[시연 영상](https://www.youtube.com/shorts/XmoS10DLQao)
 
 ---
 
