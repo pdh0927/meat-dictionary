@@ -31,69 +31,79 @@
 
 ### 고기 부위별 설명 화면
 
-![고기 부위별 설명 화면](https://prod-files-secure.s3.us-west-2.amazonaws.com/a3e29db4-24e1-4b27-b8f1-6245f33b8a0b/04217704-5260-4621-8d0e-f1d0fb1dc8e9/Simulator_Screenshot_-_iPhone_15_Pro_-_2024-11-25_at_11.42.57.png)
+![고기 부위별 설명 화면](https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/git-image%2Fmeat-dictionary%2F1.png?alt=media&token=9f1a7976-8727-42a6-be53-1331633531e8)
 
 - **기능 설명**
   - 고기의 기본적인 프로필 제공 (이미지, 한 줄 평, 소개)
   - 고기 잘 고르는 방법 제공 (신선한 고기 고르는 법, 부위별 잘 고르는 법)
   - 추천 레시피 제공
 - **구현 기술**
-  - 빠른 접근을 위해 빠른 스크롤 이동 메뉴 제공
-  - `Riverpod` 기반 상태 관리와 캐싱 최적화를 통해 네트워크 트래픽 최소화
-  - `Shimmer` 효과와 `CachedNetworkImage`를 활용하여 로딩 중 사용자 경험을 개선
-- **문제점 및 해결책**
-  - **문제점**: 코드 중복 설계, 재미 요소 부족, 과도한 데이터 사용량  
-    **해결책**: 공통 데이터 모델화, 빠른 스크롤 및 강조 UI 제공, 이미지 품질 유지 및 압축 적용  
+  - 빠른 접근이 가능하도록 빠른 스크롤 이동 메뉴 제공
+  - 불러온 데이터를 `Riverpod` 기반 상태 관리와 캐싱 최적화를 통해 네트워크 트래픽을 최소화
+  - `Shimmer` 효과와 `CachedNetworkImage`를 활용해 이미지 로딩 중 사용자 경험을 개선하고 네트워크 트래픽 최소화
+- **문제점**
+  - 1: 부위별로 공통적인 부분과 개별적인 부분을 코드 중복을 최소화하는 설계에 어려움을 겪음  
+  - 2: 사전 형태의 앱 특성상 사용자에게 재미있고 편리한 경험을 제공하는 데 어려움을 느낌  
+  - 3: 앱 특성상 한 번에 다수의 이미지를 로드하면서 데이터 사용량이 과다하게 발생
+- **해결책**
+  - 1: 모델(model)을 활용하여 공통적인 데이터를 인자로 처리함으로써 코드 중복을 최소화  
+  - 1: 구현 전에 설계 단계를 철저히 수행하여 구조를 명확히 정의하고, 이를 통해 리팩토링 작업을 최소화  
+  - 2: 빠른 스크롤 메뉴와 주요 단어 강조를 사용하여 사용자에게 편리함 제공  
+  - 3: 사용자가 불편함을 느끼지 않는 범위 내에서 이미지 품질을 유지하며 최대한 압축해 저장하여 데이터 사용량 최적화  
 
 ---
 
 ### 검색 기능
 
-![검색 기능 화면](https://prod-files-secure.s3.us-west-2.amazonaws.com/a3e29db4-24e1-4b27-b8f1-6245f33b8a0b/a88be1f5-4871-4735-beb3-2f968da3e6d0/Simulator_Screenshot_-_iPhone_15_Pro_-_2024-11-25_at_19.47.56.png)
+![검색 기능 화면](https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/git-image%2Fmeat-dictionary%2F2.png?alt=media&token=ca3566aa-0238-4d60-93ec-09f80897424d)
 
 - **기능 설명**
-  - 고기 부위를 검색하고 정보를 확인할 수 있는 기능
-  - 최근 검색어와 인기 검색어 제공
-  - 검색어 실시간 필터링
+  - 사용자가 원하는 고기 부위를 검색하여 정보를 확인할 수 있는 기능 제공
+  - 최근 검색어와 인기 검색어를 통해 사용자에게 유용한 검색 경험 제공
+  - 검색어를 입력하면 관련 고기 부위가 실시간으로 필터링되어 결과를 보여줌
 - **구현 기술**
-  - `TextEditingController`와 `onChanged` 콜백을 활용해 검색어 실시간 감지
-  - `SharedPreferences`를 통해 최근 검색어 저장 및 불러오기
-- **문제점 및 해결책**
-  - **문제점**: 결과 출력 제한, 빠른 입력 시 불필요한 렌더링 발생  
-    **해결책**: 실시간 검색 결과 제공, `Debouncing`으로 검색 최적화  
+  - `TextEditingController`와 `onChanged` 콜백을 활용해 사용자가 입력하는 검색어를 실시간으로 감지하고 결과를 업데이트
+  - `SharedPreferences`를 사용해 최근 검색어를 로컬에 저장하고 불러오기
+- **문제점**
+  - 1: 검색 버튼을 눌러야만 결과가 출력되기 때문에 사용자 경험이 다소 제한적  
+  - 2: 검색 중 사용자의 입력 속도가 빠를 경우 불필요한 필터링과 렌더링이 발생
+- **해결책**
+  - 1: 단어를 입력할 때 `TextEditingController`를 실시간으로 체크해서 검색 결과를 사용자에게 제공  
+  - 2: `Debouncing`을 사용해 검색이 멈췄을 때 렌더링이 발생하도록 구현  
 
 ---
 
 ### 카드뉴스
 
-![카드뉴스 화면](https://prod-files-secure.s3.us-west-2.amazonaws.com/a3e29db4-24e1-4b27-b8f1-6245f33b8a0b/4d4f142e-dbce-433d-b0dc-16978d1c55b7/Simulator_Screenshot_-_iPhone_15_Pro_-_2024-11-25_at_12.17.22.png)
+![카드뉴스 화면](https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/git-image%2Fmeat-dictionary%2F3.png?alt=media&token=6949764e-97a1-4b38-ab1c-c906cf942933)
 
 - **기능 설명**
-  - 재미있는 고기 정보를 카드뉴스 형태로 제공
-  - 매주 새로운 카드뉴스 추가
+  - 재미있는 고기에 관한 정보를 카드뉴스 형태로 제공
+  - 매주 1개씩 카드뉴스 추가됨
 - **구현 기술**
-  - `GridView.builder`를 사용한 동적 렌더링
-  - `Pagination`으로 스크롤 동작에 따라 데이터 추가 로드
-  - `Riverpod` 기반 상태 관리와 캐싱 최적화를 통해 네트워크 요청 최소화  
+  - `GridView.builder`를 사용하여 카드뉴스를 그리드 형태로 동적으로 렌더링
+  - 대용량 사진 데이터 처리를 위해 `Pagination`을 구현하고, 스크롤 동작에 따라 데이터가 동적으로 추가되는 기능 설계
+  - 불러온 데이터를 `Riverpod` 기반 상태 관리와 캐싱 최적화를 통해 네트워크 요청을 최소화  
 
 ---
 
 ### 취향 저격 부위 찾기
 
-![취향 저격 부위 찾기 화면](https://prod-files-secure.s3.us-west-2.amazonaws.com/a3e29db4-24e1-4b27-b8f1-6245f33b8a0b/35a154b8-b4db-4e53-9da7-890e8f49e6c2/Simulator_Screenshot_-_iPhone_15_Pro_-_2024-11-25_at_12.09.17.png)
+![취향 저격 부위 찾기 화면](https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/git-image%2Fmeat-dictionary%2F4.png?alt=media&token=69fc9a60-9a9c-4300-813e-b0f74fdd2b08)
 
 - **기능 설명**
-  - 고기 스펙 우선순위에 따라 속성과 단계를 선택하여 개인화된 결과 제공
+  - 고기 스펙의 우선순위에 따라 속성과 단계를 선택하여 검색 결과 개인화
 - **구현 기술**
-  - `Slider`를 활용한 단계별 값 조정 및 UI 반영  
+  - `Slider`를 사용해 단계별 값을 조정하고 선택 결과를 UI에 반영  
 
 ---
 
 ### 고기 리스트
 
-![고기 리스트 화면](https://prod-files-secure.s3.us-west-2.amazonaws.com/a3e29db4-24e1-4b27-b8f1-6245f33b8a0b/253bf8e1-da6d-4037-a479-4579423bd836/Simulator_Screenshot_-_iPhone_15_Pro_-_2024-11-25_at_11.42.52.png)
+![고기 리스트 화면](https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/git-image%2Fmeat-dictionary%2F5.png?alt=media&token=c9e010f4-178f-4b5c-a098-b9e11a7ab889)
 
 - **기능 설명**
-  - 고기 부위별 리스트와 즐겨찾기 기능 제공
+  - 고기 부위별 리스트 제공
+  - 즐겨찾기 기능 제공
 - **구현 기술**
-  - `Optimal Response`를 사용하여 즐겨찾기 UX 향상  
+  - 즐겨찾기를 할 때 `Optimal Response`를 사용하여 사용자 경험을 증진
