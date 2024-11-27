@@ -31,7 +31,7 @@
 
 ### 고기 부위별 설명 화면
 
-<img src="https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/git-image%2Fmeat-dictionary%2F1.png?alt=media&token=9f1a7976-8727-42a6-be53-1331633531e8" alt="고기 부위별 설명 화면" width="500"/>
+<img src="https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/git-image%2Fmeat-dictionary%2F1.png?alt=media&token=9f1a7976-8727-42a6-be53-1331633531e8" alt="고기 부위별 설명 화면" width="300"/>
 
 - **기능 설명**
   - 고기의 기본적인 프로필 제공 (이미지, 한 줄 평, 소개)
@@ -55,7 +55,7 @@
 
 ### 검색 기능
 
-<img src="https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/git-image%2Fmeat-dictionary%2F2.png?alt=media&token=ca3566aa-0238-4d60-93ec-09f80897424d" alt="검색 기능 화면" width="500"/>
+<img src="https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/git-image%2Fmeat-dictionary%2F2.png?alt=media&token=ca3566aa-0238-4d60-93ec-09f80897424d" alt="검색 기능 화면" width="200"/>
 
 - **기능 설명**
   - 사용자가 원하는 고기 부위를 검색하여 정보를 확인할 수 있는 기능 제공
@@ -89,7 +89,7 @@
 
 ### 취향 저격 부위 찾기
 
-<img src="https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/git-image%2Fmeat-dictionary%2F4.png?alt=media&token=69fc9a60-9a9c-4300-813e-b0f74fdd2b08" alt="취향 저격 부위 찾기 화면" width="500"/>
+<img src="https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/git-image%2Fmeat-dictionary%2F4.png?alt=media&token=69fc9a60-9a9c-4300-813e-b0f74fdd2b08" alt="취향 저격 부위 찾기 화면" width="150"/>
 
 - **기능 설명**
   - 고기 스펙의 우선순위에 따라 속성과 단계를 선택하여 검색 결과 개인화
