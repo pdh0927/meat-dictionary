@@ -111,7 +111,7 @@ class _Introductions extends StatelessWidget {
           IntroductionComponent(
             num: 1,
             text: Text(
-              '등과 엉덩이 사이 허리쪽 부위에요.',
+              '등과 엉덩이 사이 허리 쪽 부위에요.',
               style: detailThinContentStyle,
             ),
           ),
@@ -146,7 +146,7 @@ class _Introductions extends StatelessWidget {
               TextSpan(
                 children: [
                   TextSpan(
-                    text: '채찍의 끝 부분이 닿는 부위라고 하여 채끝살이라고 불려요.',
+                    text: '채찍의 끝부분이 닿는 부위라고 하여 채끝살이라고 불려요.',
                     style: detailThinContentStyle,
                   ),
                 ],
@@ -218,7 +218,7 @@ class _Tips extends StatelessWidget {
                         TextSpan(
                           children: [
                             TextSpan(
-                              text: '씹는맛과 육향의 밸런스 좋은 스테이크를 원하는 분께 추천해요.',
+                              text: '씹는 맛과 육향의 밸런스 좋은 스테이크를 원하는 분께 추천해요.',
                               style: detailThinContentStyle,
                             ),
                           ],
@@ -380,8 +380,8 @@ class _ChaekkeutsalRecipe extends StatelessWidget {
   const _ChaekkeutsalRecipe();
 
   final List<String> imageUrls = const [
-    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fbeef%2Fchaekkeutsal%2Frecipe%2F%E1%84%8E%E1%85%A2%E1%84%81%E1%85%B3%E1%87%80%E1%84%89%E1%85%A1%E1%86%AF1_%E1%84%8E%E1%85%A2%E1%84%81%E1%85%B3%E1%87%80%E1%84%89%E1%85%A1%E1%86%AF%E1%84%89%E1%85%B3%E1%84%90%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%8F%E1%85%B3.jpg?alt=media&token=3377022b-308e-4564-99bb-14dc60a49253',
-    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fbeef%2Fchaekkeutsal%2Frecipe%2F%E1%84%8E%E1%85%A2%E1%84%81%E1%85%B3%E1%87%80%E1%84%89%E1%85%A1%E1%86%AF2_%E1%84%8E%E1%85%A2%E1%84%81%E1%85%B3%E1%87%80%E1%84%89%E1%85%A1%E1%86%AF%20%E1%84%89%E1%85%B3%E1%84%90%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%8F%E1%85%B3.jpg?alt=media&token=5e67c772-9dc0-459d-b321-4dc6a6a1b058',
+    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fbeef%2Fchaekkeutsal%2Frecipe%2Fsteak1.png?alt=media&token=8145316f-b8d0-4771-b9dc-2aab099a9fce',
+    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fbeef%2Fchaekkeutsal%2Frecipe%2Fsteak2.png?alt=media&token=389436f3-f58b-42e9-b643-90318cb9c825',
   ];
   final List<String> titles = const ['육식도감 Pick', '자취생 Pick!'];
   final List<String> foodNames = const ['채끝살 스테이크1', '채끝살 스테이크2'];

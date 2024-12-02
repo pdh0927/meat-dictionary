@@ -206,7 +206,7 @@ class _Tips extends StatelessWidget {
                         TextSpan(
                           children: [
                             TextSpan(
-                              text: '부드럽고 고급진 맛을 느끼고 싶으신분께 추천해요.',
+                              text: '부드럽고 고급 진 맛을 느끼고 싶으신 분께 추천해요.',
                               style: detailThinContentStyle,
                             ),
                           ],
@@ -286,26 +286,6 @@ class _SalchisalChoosingTips extends StatefulWidget {
 }
 
 class _SalchisalChoosingTipsState extends State<_SalchisalChoosingTips> {
-  final List<String> goodImageUrls = const [
-    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F1.jpg?alt=media&token=8ec5fe9e-1f5e-478c-9158-8e492fd5f11d',
-  ];
-
-  final List<String> badImageUrls = const [
-    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F2.jpg?alt=media&token=53faf929-74a0-4c9e-9316-d55a5e11b8c6',
-  ];
-
-  final List<String> titles = const [
-    '등급이 높은 것',
-  ];
-
-  // 강조할 문자열
-  final List<String> highlights = const ['등급'];
-
-  // 추가 설명
-  final List<String> descriptions = const [
-    '어느정도의 지방 함럄이 필요해요.',
-  ];
-
   @override
   void initState() {
     super.initState();

@@ -245,7 +245,7 @@ class _Tips extends StatelessWidget {
                                         PRIMARY_COLOR.withOpacity(0.6)),
                               ),
                               TextSpan(
-                                text: '를 느끼고 싶은분께 추천해요.',
+                                text: '를 느끼고 싶은 분께 추천해요.',
                                 style: detailThinContentStyle,
                               ),
                             ],
@@ -329,14 +329,12 @@ class _HangjeongsalChoosingTips extends StatefulWidget {
 class _HangjeongsalChoosingTipsState extends State<_HangjeongsalChoosingTips> {
   final List<List<String>> goodImageUrls = const [
     [
-      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F1.jpg?alt=media&token=8ec5fe9e-1f5e-478c-9158-8e492fd5f11d',
+      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fhangjeongsal%2Fgood%2Fmabling_good.png?alt=media&token=6acc9386-6077-4377-9ab8-63e2b9071ab9',
     ],
   ];
 
   final List<List<String>> badImageUrls = const [
-    [
-      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F2.jpg?alt=media&token=53faf929-74a0-4c9e-9316-d55a5e11b8c6',
-    ],
+    [],
   ];
 
   final List<List<String?>> goodDetailImageUrls = const [
@@ -356,7 +354,7 @@ class _HangjeongsalChoosingTipsState extends State<_HangjeongsalChoosingTips> {
 
   // 추가 설명
   final List<String> descriptions = const [
-    '마블링 = 지방.',
+    '항정살도 살코기의 마블링이 중요해요.',
   ];
 
   @override

@@ -221,7 +221,7 @@ class _Tips extends StatelessWidget {
                         TextSpan(
                           children: [
                             TextSpan(
-                              text: '맛있는 고기는 먹고싶지만, 지방이 많은건 싫으신 분께 추천해요.',
+                              text: '맛있는 고기는 먹고 싶지만, 지방이 많은 건 싫으신 분께 추천해요.',
                               style: detailThinContentStyle,
                             ),
                           ],
@@ -364,7 +364,7 @@ class _ApdalisalChoosingTipsState extends State<_ApdalisalChoosingTips> {
               ['고기 중앙에서부터 갈라진 것', '하나의 살덩어리가 아닌 것'],
             ],
             badDescriptionsList: const [
-              ['불규칙한 모양인 것', '고기가 갈라지지 않고 한덩어리인 것'],
+              ['불규칙한 모양인 것', '고기가 갈라지지 않고 한 덩어리인 것'],
             ],
           )
         ],

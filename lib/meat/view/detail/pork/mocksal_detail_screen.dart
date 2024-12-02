@@ -119,7 +119,7 @@ class _Introductions extends StatelessWidget {
           IntroductionComponent(
             num: 2,
             text:
-                Text('삼겹살 다음으로 인기있는 구이용 부위에요.', style: detailThinContentStyle),
+                Text('삼겹살 다음으로 인기 있는 구이용 부위에요.', style: detailThinContentStyle),
           ),
 
           const SizedBox(height: 16.0),
@@ -306,22 +306,26 @@ class _MocksalChoosingTips extends StatefulWidget {
 class _MocksalChoosingTipsState extends State<_MocksalChoosingTips> {
   final List<List<String>> goodImageUrls = const [
     [
-      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fmocksal%2Fgood%2Fmocksal_good_1.png?alt=media&token=9cab9237-c88f-4ccb-90d9-6d6ce2c2a9e4',
+      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fmocksal%2Fgood%2Fsum_good.png?alt=media&token=47e92230-6cf8-4727-9674-e0e72b2c33a9',
     ],
   ];
 
   final List<List<String>> badImageUrls = const [
     [
-      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fmocksal%2Fbad%2Fmocksal_bad_1.png?alt=media&token=8a98d5b3-5180-4f73-b47e-47b20b214f02',
+      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fmocksal%2Fbad%2Fsum_bad.png?alt=media&token=fe591891-314f-4b2b-8ae8-3b87dcd11ca8',
     ],
   ];
 
   final List<List<String?>> goodDetailImageUrls = const [
-    [null],
+    [
+      "https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fmocksal%2Fgood%2Fsum_good2.png?alt=media&token=54fad350-825c-4cb6-9325-5933b753be02"
+    ],
   ];
 
   final List<List<String?>> badDetailImageUrls = const [
-    [null],
+    [
+      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fmocksal%2Fbad%2Fsum_bad2.png?alt=media&token=bda520e3-52da-475b-87b5-73a7da54d896'
+    ],
   ];
 
   final List<String> titles = const [

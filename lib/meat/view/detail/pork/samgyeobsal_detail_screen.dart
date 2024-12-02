@@ -331,7 +331,7 @@ class _SamgyeobsalChoosingTipsState extends State<_SamgyeobsalChoosingTips> {
     [null],
   ];
 
-  final List<String> titles = const ['오돌뼈가 끝쪽에 있는 것', '갈비 뗀 자국이 존재하는 것'];
+  final List<String> titles = const ['오돌뼈가 끝 쪽에 있는 것', '갈비 뗀 자국이 존재하는 것'];
 
   // 강조 문자열
   final List<String> highlights = const ['오돌뼈', '갈비 뗀 자국'];

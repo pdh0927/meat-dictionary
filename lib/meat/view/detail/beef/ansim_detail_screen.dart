@@ -318,11 +318,15 @@ class __AnsimChoosingTipsState extends State<_AnsimChoosingTips> {
   ];
 
   final List<List<String?>> goodDetailImageUrls = const [
-    [null],
+    [
+      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fbeef%2Fansim%2Fgood%2Fcircle_good2.png?alt=media&token=c47e1465-d860-420e-ae00-b41c4c59d09e'
+    ],
   ];
 
   final List<List<String?>> badDetailImageUrls = const [
-    [null],
+    [
+      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fbeef%2Fansim%2Fbad%2Fcircle_bad2.png?alt=media&token=fd2cd4e9-6518-4252-9dd7-d97e03ceee9e'
+    ],
   ];
 
   final List<String> titles = const [
@@ -369,7 +373,7 @@ class __AnsimChoosingTipsState extends State<_AnsimChoosingTips> {
             goodDescriptionsList: const [
               ['가장 동그란 것', '샤토브리앙'],
               ['하나의 고기 덩어리인 것'],
-              ['살코기로만 이루어 진 것', '마블링이 많은 것'],
+              ['살코기로만 이루어진 것', '마블링이 많은 것'],
             ],
             badDescriptionsList: const [
               ['타원형으로 길쭉한 것'],

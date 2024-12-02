@@ -145,7 +145,7 @@ class _Introductions extends StatelessWidget {
               TextSpan(
                 children: [
                   TextSpan(
-                    text: '마블링은 많진 않지만, 근육자체가 질기진 않아요.',
+                    text: '마블링은 많진 않지만, 근육 자체가 질기진 않아요.',
                     style: detailThinContentStyle,
                   ),
                 ],
@@ -212,7 +212,7 @@ class _Tips extends StatelessWidget {
                         TextSpan(
                           children: [
                             TextSpan(
-                              text: '합리적인 가격에 괜찮은 고기를 드시고 싶은분께 추천해요.',
+                              text: '합리적인 가격에 괜찮은 고기를 드시고 싶은 분께 추천해요.',
                               style: detailThinContentStyle,
                             ),
                           ],
@@ -325,7 +325,7 @@ class _BuchaesalChoosingTipsState extends State<_BuchaesalChoosingTips> {
 
   // 추가 설명
   final List<String> descriptions = const [
-    '힘줄이 얇은쪽 고기가 부드러워요.',
+    '힘줄이 얇은 쪽 고기가 부드러워요.',
   ];
 
   @override
