@@ -11,8 +11,6 @@ import 'package:meat_dictionary/meat/model/meat_model.dart';
 
 // 목살 디테일
 class MocksalDetailScreen extends StatefulWidget {
-  static String get routeName => 'mocksal_detail';
-
   const MocksalDetailScreen({
     super.key,
     required this.meatModel,
@@ -121,7 +119,7 @@ class _Introductions extends StatelessWidget {
           IntroductionComponent(
             num: 2,
             text:
-                Text('삼겹살 다음으로 인기있는 구이용 부위에요.', style: detailThinContentStyle),
+                Text('삼겹살 다음으로 인기 있는 구이용 부위에요.', style: detailThinContentStyle),
           ),
 
           const SizedBox(height: 16.0),
@@ -308,22 +306,26 @@ class _MocksalChoosingTips extends StatefulWidget {
 class _MocksalChoosingTipsState extends State<_MocksalChoosingTips> {
   final List<List<String>> goodImageUrls = const [
     [
-      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fmocksal%2Fgood%2Fmocksal_good_1.png?alt=media&token=9cab9237-c88f-4ccb-90d9-6d6ce2c2a9e4',
+      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fmocksal%2Fgood%2Fsum_good.png?alt=media&token=47e92230-6cf8-4727-9674-e0e72b2c33a9',
     ],
   ];
 
   final List<List<String>> badImageUrls = const [
     [
-      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fmocksal%2Fbad%2Fmocksal_bad_1.png?alt=media&token=8a98d5b3-5180-4f73-b47e-47b20b214f02',
+      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fmocksal%2Fbad%2Fsum_bad.png?alt=media&token=fe591891-314f-4b2b-8ae8-3b87dcd11ca8',
     ],
   ];
 
   final List<List<String?>> goodDetailImageUrls = const [
-    [null],
+    [
+      "https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fmocksal%2Fgood%2Fsum_good2.png?alt=media&token=54fad350-825c-4cb6-9325-5933b753be02"
+    ],
   ];
 
   final List<List<String?>> badDetailImageUrls = const [
-    [null],
+    [
+      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fmocksal%2Fbad%2Fsum_bad2.png?alt=media&token=bda520e3-52da-475b-87b5-73a7da54d896'
+    ],
   ];
 
   final List<String> titles = const [
@@ -387,28 +389,28 @@ class _MocksalRecipe extends StatelessWidget {
   const _MocksalRecipe();
 
   final List<String> imageUrls = const [
-    'assets/imgs/pork/mocksal/recipe/1.png',
-    'assets/imgs/pork/mocksal/recipe/2.png',
-    'assets/imgs/pork/mocksal/recipe/3.png',
-    'assets/imgs/pork/mocksal/recipe/4.png',
+    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fmocksal%2Frecipe%2F%E1%84%86%E1%85%A9%E1%86%A8%E1%84%89%E1%85%A1%E1%86%AF1_%E1%84%80%E1%85%A1%E1%86%B7%E1%84%8C%E1%85%A1%E1%84%86%E1%85%A9%E1%86%A8%E1%84%89%E1%85%A1%E1%86%AF%E1%84%8D%E1%85%A1%E1%84%80%E1%85%B3%E1%86%AF%E1%84%8B%E1%85%B5.jpg?alt=media&token=5391d829-d2d5-47d9-8d96-cf5c891784ee',
+    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fmocksal%2Frecipe%2F%E1%84%86%E1%85%A9%E1%86%A8%E1%84%89%E1%85%A1%E1%86%AF2_%E1%84%86%E1%85%A2%E1%84%8F%E1%85%A9%E1%86%B7%E1%84%86%E1%85%A9%E1%86%A8%E1%84%89%E1%85%A1%E1%86%AF%E1%84%80%E1%85%AE%E1%84%8B%E1%85%B5.jpg?alt=media&token=5a8b3bb6-4237-4d9a-98b8-2f245936c68e',
+    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fmocksal%2Frecipe%2F%E1%84%86%E1%85%A9%E1%86%A8%E1%84%89%E1%85%A1%E1%86%AF3_%E1%84%8B%E1%85%A3%E1%86%BC%E1%84%82%E1%85%A7%E1%86%B7%E1%84%86%E1%85%A9%E1%86%A8%E1%84%89%E1%85%A1%E1%86%AF%E1%84%83%E1%85%A5%E1%87%81%E1%84%87%E1%85%A1%E1%86%B8.jpg?alt=media&token=c2cbd4a1-1044-45ea-a605-ab7f920af2ad',
+    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fmocksal%2Frecipe%2F%E1%84%86%E1%85%A9%E1%86%A8%E1%84%89%E1%85%A1%E1%86%AF4_%E1%84%86%E1%85%A2%E1%84%8B%E1%85%AE%E1%86%AB%E1%84%80%E1%85%B5%E1%86%B7%E1%84%8E%E1%85%B5%E1%84%86%E1%85%A9%E1%86%A8%E1%84%89%E1%85%A1%E1%86%AF%E1%84%8D%E1%85%B5%E1%86%B7.jpg?alt=media&token=8d6fdb1f-ab3b-45fb-b6eb-cafdab239d5c',
   ];
   final List<String> titles = const [
-    '인플루언서 PICK',
-    '자취생 PICK',
-    '육식도감 PICK',
-    'HOT',
+    '인플루언서 Pick!',
+    '육식도감 Pick!',
+    '이색적인 Pick!',
+    '자취생 Pick!'
   ];
   final List<String> foodNames = const [
-    '목살 수육',
-    '제육복음',
-    '목살 스테이크',
-    '목살 간장 덮밥',
+    '감자목살짜글이',
+    '매콤목살구이',
+    '양념목살덮밥',
+    '매운김치목살찜'
   ];
   final List<String> linkUrls = const [
-    'https://www.youtube.com/watch?v=_FKZDjgXm90',
-    'https://www.youtube.com/watch?v=_FKZDjgXm90',
-    'https://www.youtube.com/watch?v=_FKZDjgXm90',
-    'https://www.youtube.com/watch?v=_FKZDjgXm90',
+    'https://youtu.be/yjsTAAnBZqs?si=UzwU2_w3YhUcfEr2',
+    'https://youtu.be/3jt_vdD60tk?si=2TD6Tnt5vtu-5Z0D',
+    'https://youtu.be/gs17aCSBgN4?si=14TpEw6CcQSZyaNf',
+    'https://youtu.be/09li1coY4As?si=Ng-BdahVlPgXNUt9'
   ];
 
   @override

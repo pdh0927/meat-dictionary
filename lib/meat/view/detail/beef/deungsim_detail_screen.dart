@@ -204,7 +204,7 @@ class _Introductions extends StatelessWidget {
               TextSpan(
                 children: [
                   TextSpan(
-                    text: '꽃듬심, 아랫등심은 립아이에 포함돼요.',
+                    text: '꽃등심, 아랫등심은 립아이에 포함돼요.',
                     style: detailThinContentStyle,
                   ),
                 ],
@@ -349,19 +349,16 @@ class _DeungsimChoosingTips extends StatefulWidget {
 class _DeungsimChoosingTipsState extends State<_DeungsimChoosingTips> {
   final List<List<String>> goodImageUrls = const [
     [
-      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fbeef%2Fdeungsim%2Fgood%2Fsalchi_good.png?alt=media&token=5eafa853-cb37-495d-ada2-d7f88a1a212f'
+      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fbeef%2Fdeungsim%2Fgood%2Fsalchi_good.png?alt=media&token=943de6d8-3d4d-449d-b7fa-858909d1f1a8'
     ],
     [
-      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F1.jpg?alt=media&token=8ec5fe9e-1f5e-478c-9158-8e492fd5f11d'
+      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fbeef%2Fdeungsim%2Fgood%2Fneolpangeun_good.png?alt=media&token=a9071d86-a9db-4d9b-9a81-991bacd74218'
     ],
     [
-      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F1.jpg?alt=media&token=8ec5fe9e-1f5e-478c-9158-8e492fd5f11d'
+      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fbeef%2Fdeungsim%2Fgood%2Fsaewoosal_good.png?alt=media&token=9fc7e6c7-76a7-4001-a09a-502b6be1ed3c'
     ],
     [
-      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F1.jpg?alt=media&token=8ec5fe9e-1f5e-478c-9158-8e492fd5f11d'
-    ],
-    [
-      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F1.jpg?alt=media&token=8ec5fe9e-1f5e-478c-9158-8e492fd5f11d'
+      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fbeef%2Fdeungsim%2Fgood%2Ffat_good.png?alt=media&token=ed9e6387-16d2-46e2-a839-9b34b4116eab'
     ],
   ];
 
@@ -370,32 +367,39 @@ class _DeungsimChoosingTipsState extends State<_DeungsimChoosingTips> {
       'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fbeef%2Fdeungsim%2Fbad%2Fsalchi_bad.png?alt=media&token=1f155147-d3bf-4a5c-ba9f-649b9d247357'
     ],
     [
-      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F2.jpg?alt=media&token=53faf929-74a0-4c9e-9316-d55a5e11b8c6'
+      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fbeef%2Fdeungsim%2Fbad%2Fneolpangeun_bad.png?alt=media&token=8f45ab6f-471c-496e-a4ab-1f16797e4a3a'
     ],
     [
-      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F2.jpg?alt=media&token=53faf929-74a0-4c9e-9316-d55a5e11b8c6'
+      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fbeef%2Fdeungsim%2Fbad%2Fsaewoosal_bad.png?alt=media&token=faa90e6b-6f8e-4728-b132-0a52df55b248'
     ],
     [
-      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F2.jpg?alt=media&token=53faf929-74a0-4c9e-9316-d55a5e11b8c6'
-    ],
-    [
-      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F2.jpg?alt=media&token=53faf929-74a0-4c9e-9316-d55a5e11b8c6'
+      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fbeef%2Fdeungsim%2Fbad%2Ffat_bad.png?alt=media&token=7ba57371-3eaa-4cc6-8c34-93e3ed994d13'
     ],
   ];
 
   final List<List<String?>> goodDetailImageUrls = const [
-    [null],
-    [null],
-    [null],
-    [null],
+    [
+      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fbeef%2Fdeungsim%2Fgood%2Fsalchi_good2.png?alt=media&token=960782b8-4622-451c-9f71-639c0513f44f'
+    ],
+    [
+      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fbeef%2Fdeungsim%2Fgood%2Fneolpangeun_good2.png?alt=media&token=13513212-b782-46e3-a8aa-20a7285d0ea1'
+    ],
+    [
+      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fbeef%2Fdeungsim%2Fgood%2Fsaewoosal_good%202.png?alt=media&token=c0332cd1-c743-4d6a-a81d-a8eb8c27068f'
+    ],
     [null],
   ];
 
   final List<List<String?>> badDetailImageUrls = const [
-    [null],
-    [null],
-    [null],
-    [null],
+    [
+      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fbeef%2Fdeungsim%2Fbad%2Fsalchi_bad2.png?alt=media&token=6f6d7a0a-b0d2-4a12-b909-ec8d1c84dc2a'
+    ],
+    [
+      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fbeef%2Fdeungsim%2Fbad%2Fneolpangeun_bad2.png?alt=media&token=9491885f-a984-4aea-8dee-6d948315ab92'
+    ],
+    [
+      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fbeef%2Fdeungsim%2Fbad%2Fsaewoosal_bad2.png?alt=media&token=8e1bde15-afcb-4d19-9c20-20bf4cc80e61'
+    ],
     [null],
   ];
 
@@ -403,8 +407,7 @@ class _DeungsimChoosingTipsState extends State<_DeungsimChoosingTips> {
     '[윗등심1] 살치살이 큰것',
     '[윗등심2] 널판근이 작은것',
     '[꽃/아랫등심1] 새우살이 큰것',
-    '[꽃/아랫등심2] 덧살이 작은것',
-    '[꽃/아랫등심3] 떡지방 작은것',
+    '[꽃/아랫등심2] 떡지방 작은것',
   ];
 
   // 강조할 문자열
@@ -412,7 +415,6 @@ class _DeungsimChoosingTipsState extends State<_DeungsimChoosingTips> {
     '살치살',
     '널판근',
     '새우살',
-    '덧살',
     '떡지방',
   ];
 
@@ -421,7 +423,6 @@ class _DeungsimChoosingTipsState extends State<_DeungsimChoosingTips> {
     '살치살이 큰 것이 부드러워요.',
     '널판근이 작은 것이 부드러워요.',
     '새우살이 큰 것이 맛있어요.',
-    '덧살이 작은 것이 부드러워요.',
     '떡지방은 못 먹어요...',
   ];
 
@@ -455,18 +456,16 @@ class _DeungsimChoosingTipsState extends State<_DeungsimChoosingTips> {
             goodDetailImageUrls: goodDetailImageUrls,
             badDetailImageUrls: badDetailImageUrls,
             goodDescriptionsList: const [
-              ['위 혹은 아래에 빗살무늬가 선명한 것', '빗살무늬가 살치살이에요'],
-              ['위 혹은 아래에 빗살무늬가 선명한 것', '빗살무늬가 살치살이에요'],
-              ['위 혹은 아래에 빗살무늬가 선명한 것', '빗살무늬가 살치살이에요'],
-              ['위 혹은 아래에 빗살무늬가 선명한 것', '빗살무늬가 살치살이에요'],
-              ['위 혹은 아래에 빗살무늬가 선명한 것', '빗살무늬가 살치살이에요'],
+              ['빗살무늬가 선명한 것', '마블링이 빗살무늬인 것'],
+              ['가운데 지방 사이의 근육이 작은 것', '널판근이라고 불러요'],
+              ['새우모양으로 된 근육이 큰 것'],
+              ['다른 조건이 같다면 떡지방이 작은 것', '지방을 돈 주고 사는건 피해요'],
             ],
             badDescriptionsList: const [
-              ['빗살무늬가 어디에도 없는 것', '다른 부위가 섞인 것'],
-              ['빗살무늬가 어디에도 없는 것', '다른 부위가 섞인 것'],
-              ['빗살무늬가 어디에도 없는 것', '다른 부위가 섞인 것'],
-              ['빗살무늬가 어디에도 없는 것', '다른 부위가 섞인 것'],
-              ['빗살무늬가 어디에도 없는 것', '다른 부위가 섞인 것'],
+              ['빗살무늬가 작은 것', '마블링이 그물모양인 것'],
+              ['가운데 지방 사이의 근육이 큰 것'],
+              ['새우모양으로 된 근육이 작은 것'],
+              ['떡지방이 큰 것', '프라이팬 코팅 합시다...'],
             ],
           )
         ],
@@ -480,28 +479,14 @@ class _DeungsimRecipe extends StatelessWidget {
   const _DeungsimRecipe();
 
   final List<String> imageUrls = const [
-    'assets/imgs/pork/mocksal/recipe/1.png',
-    'assets/imgs/pork/mocksal/recipe/2.png',
-    'assets/imgs/pork/mocksal/recipe/3.png',
-    'assets/imgs/pork/mocksal/recipe/4.png',
+    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fbeef%2Fdeungsim%2Frecipe%2F%E1%84%83%E1%85%B3%E1%86%BC%E1%84%89%E1%85%B5%E1%86%B71_%E1%84%86%E1%85%A9%E1%86%BC%E1%84%80%E1%85%A9%E1%86%AF%E1%84%85%E1%85%B5%E1%84%8B%E1%85%A1%E1%86%AB%E1%84%87%E1%85%B5%E1%84%91%E1%85%B3.jpg?alt=media&token=78223073-b9b6-46a7-957f-d7932d8c604e',
+    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fbeef%2Fdeungsim%2Frecipe%2F%E1%84%83%E1%85%B3%E1%86%BC%E1%84%89%E1%85%B5%E1%86%B72_%E1%84%83%E1%85%B3%E1%86%BC%E1%84%89%E1%85%B5%E1%86%B7%E1%84%89%E1%85%B3%E1%84%90%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%8F%E1%85%B3.jpg?alt=media&token=ff6dfe67-a66e-4d22-b50c-62c3e32672c6',
   ];
-  final List<String> titles = const [
-    '인플루언서 PICK',
-    '자취생 PICK',
-    '육식도감 PICK',
-    'HOT',
-  ];
-  final List<String> foodNames = const [
-    '목살 수육',
-    '제육복음',
-    '목살 스테이크',
-    '목살 간장 덮밥',
-  ];
+  final List<String> titles = const ['이색적인 Pick', '육식도감 Pick'];
+  final List<String> foodNames = const ['몽골리안비프', '등심 스테이크'];
   final List<String> linkUrls = const [
-    'https://www.youtube.com/watch?v=_FKZDjgXm90',
-    'https://www.youtube.com/watch?v=_FKZDjgXm90',
-    'https://www.youtube.com/watch?v=_FKZDjgXm90',
-    'https://www.youtube.com/watch?v=_FKZDjgXm90',
+    'https://youtube.com/shorts/8Dkp3rO2mqs?si=PC9NzHLafRLK5KTI',
+    'https://www.youtube.com/watch?v=MKlcJCWH-To'
   ];
 
   @override

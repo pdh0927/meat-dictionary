@@ -11,8 +11,6 @@ import 'package:meat_dictionary/meat/model/meat_model.dart';
 
 // 삼겹살 디테일 화면
 class SamgyeobsalDetailScreen extends StatefulWidget {
-  static String get routeName => 'samgyeobsal_detail';
-
   const SamgyeobsalDetailScreen({
     super.key,
     required this.meatModel,
@@ -65,8 +63,8 @@ class _TopContents extends StatelessWidget {
       children: [
         // 바로가기 메뉴
         DetailMenuBar(
-          names: ['1', '2', '3', '4'],
-          offsets: [500, 1000, 1500, 2000],
+          names: const ['부위 소개', '고르는 법', '추천 레시피'],
+          offsets: const [300, 900, 1400],
           onMenuSelected: onMenuSelected,
         ),
 
@@ -333,7 +331,7 @@ class _SamgyeobsalChoosingTipsState extends State<_SamgyeobsalChoosingTips> {
     [null],
   ];
 
-  final List<String> titles = const ['오돌뼈가 끝쪽에 있는 것', '갈비 뗀 자국이 존재하는 것'];
+  final List<String> titles = const ['오돌뼈가 끝 쪽에 있는 것', '갈비 뗀 자국이 존재하는 것'];
 
   // 강조 문자열
   final List<String> highlights = const ['오돌뼈', '갈비 뗀 자국'];
@@ -393,27 +391,27 @@ class _SamgyeobsalRecipe extends StatelessWidget {
   const _SamgyeobsalRecipe();
 
   final List<String> imageUrls = const [
-    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fsamgyeobsal%2Frecipe%2F1.png?alt=media&token=9d5a51b5-28d2-432c-9761-eb4c5a05c036',
-    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fsamgyeobsal%2Frecipe%2F2.png?alt=media&token=c1d74d12-62af-473a-9cfc-71ef43fec955',
-    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fsamgyeobsal%2Frecipe%2F3.png?alt=media&token=57c07ca1-bf88-4f38-874f-152d92b4ccaf',
-    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fsamgyeobsal%2Frecipe%2F4.png?alt=media&token=71d203b1-9d83-411d-8a8b-f390a455677b',
+    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fsamgyeobsal%2Frecipe%2Fairflyer_samgyeob.png?alt=media&token=1f4abdf9-dcb2-43dc-b592-d212109b9d10',
+    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fsamgyeobsal%2Frecipe%2Fsamgyeobsal_potato_jolim.png?alt=media&token=6d4f9501-c044-4035-9caa-7749feb84173',
+    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fsamgyeobsal%2Frecipe%2Fnaengsampadeopbab.png?alt=media&token=988b045b-eb3e-4b28-b4e4-c06cf8d524f4',
+    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fsamgyeobsal%2Frecipe%2Fsamgyeobsal_deopbab.png?alt=media&token=b616a516-9c9d-40d1-be64-eaae38eb68e0',
   ];
   final List<String> titles = const [
     '육식도감 PICK',
-    '색다른 PICK',
-    '인플루언서 PICK',
     '자취생 PICK',
+    '인플루언서 PICK',
+    '이색적인 PICK',
   ];
   final List<String> foodNames = const [
-    '에어프라이어를 이용한 통삼겹!',
-    '제육복음',
-    '목살 스테이크',
-    '목살 간장 덮밥',
+    '에어프라이어 통삼겹!',
+    '삼겹살 감자조림',
+    '냉삼파덮밥',
+    '삼겹살 덮밥',
   ];
   final List<String> linkUrls = const [
-    'https://www.youtube.com/watch?v=_FKZDjgXm90',
-    'https://www.youtube.com/watch?v=_FKZDjgXm90',
-    'https://www.youtube.com/watch?v=yMGBNlyq6Qo',
+    'https://www.youtube.com/shorts/HnJWnXmvM8o',
+    'https://www.youtube.com/watch?v=dHaPmBmKNEU',
+    'https://www.youtube.com/watch?v=ZkgnxTVMGi0',
     'https://www.youtube.com/watch?v=_FKZDjgXm90',
   ];
 

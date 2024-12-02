@@ -122,7 +122,7 @@ class _Introductions extends StatelessWidget {
                 TextSpan(
                   children: [
                     TextSpan(
-                      text: '소 한마리에 6kg 정도 소량 나와요.',
+                      text: '소 한 마리에 4kg 정도 소량 나와요.',
                       style: detailThinContentStyle,
                     ),
                   ],
@@ -173,7 +173,7 @@ class _Introductions extends StatelessWidget {
               TextSpan(
                 children: [
                   TextSpan(
-                    text: '돌의 일종인 차돌이 박힌것 같다고 해서 차돌박이에요!',
+                    text: '돌의 일종인 차돌이 박힌 것 같다고 해서 차돌박이에요!',
                     style: detailThinContentStyle,
                   ),
                 ],
@@ -340,28 +340,28 @@ class _ChadolbagiRecipe extends StatelessWidget {
   const _ChadolbagiRecipe();
 
   final List<String> imageUrls = const [
-    'assets/imgs/pork/mocksal/recipe/1.png',
-    'assets/imgs/pork/mocksal/recipe/2.png',
-    'assets/imgs/pork/mocksal/recipe/3.png',
-    'assets/imgs/pork/mocksal/recipe/4.png',
+    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fbeef%2Fchadolbagi%2Frecipe%2Fchadolbokkeum_pasta.png?alt=media&token=72b63a81-683c-4f33-9c8d-a6e3729f8f15',
+    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fbeef%2Fchadolbagi%2Frecipe%2Fchadolbagi_%20deopbab.png?alt=media&token=2f081800-0ce0-4c9d-beff-e187706ecf97',
+    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fbeef%2Fchadolbagi%2Frecipe%2Fchadol_sugjubokkeum.png?alt=media&token=d5b795e4-341c-439d-af95-f4ce87583174',
+    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fbeef%2Fchadolbagi%2Frecipe%2Fchadolbagi%20_sotbab.png?alt=media&token=695dcdc6-1e84-481e-bf52-bb53e3b7c7ed',
   ];
   final List<String> titles = const [
     '인플루언서 PICK',
     '자취생 PICK',
     '육식도감 PICK',
-    'HOT',
+    '이색적인 PICK',
   ];
   final List<String> foodNames = const [
-    '목살 수육',
-    '제육복음',
-    '목살 스테이크',
-    '목살 간장 덮밥',
+    '차돌볶음 파스타',
+    '차돌박이 덮밥',
+    '차돌 숙주볶음',
+    '차돌박이 솥밥',
   ];
   final List<String> linkUrls = const [
-    'https://www.youtube.com/watch?v=_FKZDjgXm90',
-    'https://www.youtube.com/watch?v=_FKZDjgXm90',
-    'https://www.youtube.com/watch?v=_FKZDjgXm90',
-    'https://www.youtube.com/watch?v=_FKZDjgXm90',
+    'https://www.youtube.com/watch?v=z0El5XIQSxI',
+    'https://www.youtube.com/shorts/Rkk9Mku4g5g',
+    'https://www.youtube.com/shorts/gz6DQVdstJg',
+    'https://www.youtube.com/watch?v=lREoxY1pvZE',
   ];
 
   @override

@@ -145,7 +145,7 @@ class _Introductions extends StatelessWidget {
               TextSpan(
                 children: [
                   TextSpan(
-                    text: '마블링은 많진 않지만, 근육자체가 질기진 않아요.',
+                    text: '마블링은 많진 않지만, 근육 자체가 질기진 않아요.',
                     style: detailThinContentStyle,
                   ),
                 ],
@@ -212,7 +212,7 @@ class _Tips extends StatelessWidget {
                         TextSpan(
                           children: [
                             TextSpan(
-                              text: '합리적인 가격에 괜찮은 고기를 드시고 싶은분께 추천해요.',
+                              text: '합리적인 가격에 괜찮은 고기를 드시고 싶은 분께 추천해요.',
                               style: detailThinContentStyle,
                             ),
                           ],
@@ -325,7 +325,7 @@ class _BuchaesalChoosingTipsState extends State<_BuchaesalChoosingTips> {
 
   // 추가 설명
   final List<String> descriptions = const [
-    '힘줄이 얇은쪽 고기가 부드러워요.',
+    '힘줄이 얇은 쪽 고기가 부드러워요.',
   ];
 
   @override
@@ -375,28 +375,14 @@ class _BuchaesalRecipe extends StatelessWidget {
   const _BuchaesalRecipe();
 
   final List<String> imageUrls = const [
-    'assets/imgs/pork/mocksal/recipe/1.png',
-    'assets/imgs/pork/mocksal/recipe/2.png',
-    'assets/imgs/pork/mocksal/recipe/3.png',
-    'assets/imgs/pork/mocksal/recipe/4.png',
+    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fbeef%2Fbuchaesal%2Frecipe%2F%E1%84%87%E1%85%AE%E1%84%8E%E1%85%A2%E1%84%89%E1%85%A1%E1%86%AF1_%E1%84%87%E1%85%AE%E1%84%8E%E1%85%A2%E1%84%89%E1%85%A1%E1%86%AF%E1%84%83%E1%85%A5%E1%87%81%E1%84%87%E1%85%A1%E1%86%B8.jpg?alt=media&token=3603a076-914e-4fc0-ae22-3ed3c3dbec69',
+    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fbeef%2Fbuchaesal%2Frecipe%2F%E1%84%87%E1%85%AE%E1%84%8E%E1%85%A2%E1%84%89%E1%85%A1%E1%86%AF2_%E1%84%87%E1%85%AE%E1%84%8E%E1%85%A2%E1%84%89%E1%85%A1%E1%86%AF%20%E1%84%89%E1%85%B3%E1%84%90%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%8F%E1%85%B3.jpg?alt=media&token=bbdbd389-da97-4ca7-858d-bf8bcb7f2852',
   ];
-  final List<String> titles = const [
-    '인플루언서 PICK',
-    '자취생 PICK',
-    '육식도감 PICK',
-    'HOT',
-  ];
-  final List<String> foodNames = const [
-    '목살 수육',
-    '제육복음',
-    '목살 스테이크',
-    '목살 간장 덮밥',
-  ];
+  final List<String> titles = const ['이색적인 Pick', '육식도감 Pick!'];
+  final List<String> foodNames = const ['부채살덮밥', '부채살스테이크'];
   final List<String> linkUrls = const [
-    'https://www.youtube.com/watch?v=_FKZDjgXm90',
-    'https://www.youtube.com/watch?v=_FKZDjgXm90',
-    'https://www.youtube.com/watch?v=_FKZDjgXm90',
-    'https://www.youtube.com/watch?v=_FKZDjgXm90',
+    'https://youtu.be/2KXO_af8U9k?si=PlTFQ_ARE_pN0IfO',
+    'https://youtube.com/shorts/COIQ2SSFDjE?si=iYfUv-Z2EM2aNnw5'
   ];
 
   @override

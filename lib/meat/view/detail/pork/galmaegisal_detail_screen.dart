@@ -11,8 +11,6 @@ import 'package:meat_dictionary/meat/model/meat_model.dart';
 
 // 갈매기살 디테일
 class GalmaegisalDetailScreen extends StatefulWidget {
-  static String get routeName => 'galmaegisal_detail';
-
   const GalmaegisalDetailScreen({
     super.key,
     required this.meatModel,
@@ -133,7 +131,7 @@ class _Introductions extends StatelessWidget {
 
           IntroductionComponent(
             num: 2,
-            text: Text('삼겹살 위에 있는 부위예요.', style: detailThinContentStyle),
+            text: Text('삼겹살 위 내장 가까이에 있는 부위예요.', style: detailThinContentStyle),
           ),
 
           const SizedBox(height: 16.0),
@@ -260,7 +258,7 @@ class _Tips extends StatelessWidget {
                                 ),
                               ),
                               TextSpan(
-                                  text: '을 느끼고 싶은분께 추천해요.',
+                                  text: '을 느끼고 싶은 분께 추천해요.',
                                   style: detailThinContentStyle),
                             ],
                           ),
@@ -343,7 +341,7 @@ class _GalmaegisalChoosingTips extends StatefulWidget {
 class _GalmaegisalChoosingTipsState extends State<_GalmaegisalChoosingTips> {
   final List<List<String>> goodImageUrls = const [
     [
-      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F1.jpg?alt=media&token=8ec5fe9e-1f5e-478c-9158-8e492fd5f11d'
+      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2Fcolor_good.png?alt=media&token=0e0eca34-be97-46e5-a54b-69c9720d44b7'
     ],
     [
       'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2Fsmell_good.png?alt=media&token=b875d2f0-0ff1-4914-ba1c-6f3629e3c28c'
@@ -351,9 +349,7 @@ class _GalmaegisalChoosingTipsState extends State<_GalmaegisalChoosingTips> {
   ];
 
   final List<List<String>> badImageUrls = const [
-    [
-      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fgood%2F2.jpg?alt=media&token=53faf929-74a0-4c9e-9316-d55a5e11b8c6'
-    ],
+    [],
     [
       'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Fbad%2Fsmell_bad.png?alt=media&token=ae0a2aa9-8204-449b-a5fe-28ec6bdd8439'
     ],
@@ -370,7 +366,7 @@ class _GalmaegisalChoosingTipsState extends State<_GalmaegisalChoosingTips> {
   ];
 
   final List<String> titles = const [
-    '짙은 붉은색을 띄는 것',
+    '짙은 붉은색을 띠는 것',
     '꿉꿉한 냄새가 나지 않는 것',
   ];
 
@@ -381,7 +377,7 @@ class _GalmaegisalChoosingTipsState extends State<_GalmaegisalChoosingTips> {
   ];
 
   final List<String> descriptions = const [
-    '너무 옅은색이나 갈색은 피해주세요.',
+    '너무 옅은 색이나 갈색은 피해주세요.',
     '부패 상태를 확인할 수 있어요.',
   ];
 
@@ -415,11 +411,11 @@ class _GalmaegisalChoosingTipsState extends State<_GalmaegisalChoosingTips> {
             goodDetailImageUrls: goodDetailImageUrls,
             badDetailImageUrls: badDetailImageUrls,
             goodDescriptionsList: const [
-              ['어둡지만 확실히 붉은색 인 것'],
+              ['어둡지만 확실히 붉은색인 것'],
               ['신선한 피 냄새가 나는 것'],
             ],
             badDescriptionsList: const [
-              ['탁한 갈색을 띄는 것'],
+              ['탁한 갈색을 띠는 것'],
               ['내장 주변이라 부패 잘 일어남'],
             ],
           )
@@ -434,28 +430,14 @@ class _GalmaegisalRecipe extends StatelessWidget {
   const _GalmaegisalRecipe();
 
   final List<String> imageUrls = const [
-    'assets/imgs/pork/mocksal/recipe/1.png',
-    'assets/imgs/pork/mocksal/recipe/2.png',
-    'assets/imgs/pork/mocksal/recipe/3.png',
-    'assets/imgs/pork/mocksal/recipe/4.png',
+    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Frecipe%2F%E1%84%80%E1%85%A1%E1%86%AF%E1%84%86%E1%85%A2%E1%84%80%E1%85%B5%E1%84%89%E1%85%A1%E1%86%AF1_%E1%84%8E%E1%85%A1%E1%84%8B%E1%85%A8%E1%84%85%E1%85%A7%E1%86%AB%E1%84%80%E1%85%A1%E1%86%AF%E1%84%86%E1%85%A2%E1%84%80%E1%85%B5%E1%84%89%E1%85%A1%E1%86%AF%E1%84%89%E1%85%AE%E1%84%8B%E1%85%B2%E1%86%A8.jpg?alt=media&token=0310eaec-0da7-4b24-8d5c-398442f51fbd',
+    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fgalmaegisal%2Frecipe%2F%E1%84%80%E1%85%A1%E1%86%AF%E1%84%86%E1%85%A2%E1%84%80%E1%85%B5%E1%84%89%E1%85%A1%E1%86%AF2_%E1%84%8B%E1%85%A3%E1%86%BC%E1%84%82%E1%85%A7%E1%86%B7%E1%84%80%E1%85%A1%E1%86%AF%E1%84%86%E1%85%A2%E1%84%80%E1%85%B5%E1%84%89%E1%85%A1%E1%86%AF.jpg?alt=media&token=884b90fc-ca7f-40c6-932f-9e6acfbb402e',
   ];
-  final List<String> titles = const [
-    '인플루언서 PICK',
-    '자취생 PICK',
-    '육식도감 PICK',
-    'HOT',
-  ];
-  final List<String> foodNames = const [
-    '목살 수육',
-    '제육복음',
-    '목살 스테이크',
-    '목살 간장 덮밥',
-  ];
+  final List<String> titles = const ['인플루언서 Pick!', '육식도감 Pick!'];
+  final List<String> foodNames = const ['갈매기살 수육', '양념갈매기살'];
   final List<String> linkUrls = const [
-    'https://www.youtube.com/watch?v=_FKZDjgXm90',
-    'https://www.youtube.com/watch?v=_FKZDjgXm90',
-    'https://www.youtube.com/watch?v=_FKZDjgXm90',
-    'https://www.youtube.com/watch?v=_FKZDjgXm90',
+    'https://youtube.com/shorts/iRaaEg3t6ik?si=mk71nuBLOqkAHi8A',
+    'https://youtu.be/dVxxQw39KKU?si=aGmuIhkiQkq6uZOv'
   ];
 
   @override
