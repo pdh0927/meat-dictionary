@@ -48,6 +48,7 @@ dependencies:
   firebase_storage: ^12.3.3
   cached_network_image: ^3.4.1
   json_annotation: ^4.9.0
+  firebase_analytics: ^11.3.5
 
 dev_dependencies:
   flutter_test:
