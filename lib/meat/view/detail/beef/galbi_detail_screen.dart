@@ -378,28 +378,14 @@ class _GalbiRecipe extends StatelessWidget {
   const _GalbiRecipe();
 
   final List<String> imageUrls = const [
-    'assets/imgs/pork/mocksal/recipe/1.png',
-    'assets/imgs/pork/mocksal/recipe/2.png',
-    'assets/imgs/pork/mocksal/recipe/3.png',
-    'assets/imgs/pork/mocksal/recipe/4.png',
+    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fbeef%2Fgalbi%2Frecipe%2F%E1%84%80%E1%85%A1%E1%86%AF%E1%84%87%E1%85%B5%E1%84%89%E1%85%A1%E1%86%AF1_%E1%84%8B%E1%85%A3%E1%86%BC%E1%84%82%E1%85%A7%E1%86%B7%E1%84%80%E1%85%A1%E1%86%AF%E1%84%87%E1%85%B5%E1%84%89%E1%85%A1%E1%86%AF.jpg?alt=media&token=a45715af-2724-4404-91be-edbdd95ecfde',
+    'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fbeef%2Fgalbi%2Frecipe%2F%E1%84%80%E1%85%A1%E1%86%AF%E1%84%87%E1%85%B5%E1%84%89%E1%85%A1%E1%86%AF2_%E1%84%80%E1%85%A1%E1%86%AF%E1%84%87%E1%85%B5%E1%84%89%E1%85%A1%E1%86%AF%E1%84%83%E1%85%A5%E1%87%81%E1%84%87%E1%85%A1%E1%86%B8.jpg?alt=media&token=5c1458f1-b30e-41ba-8594-10b7203ba2c0',
   ];
-  final List<String> titles = const [
-    '인플루언서 PICK',
-    '자취생 PICK',
-    '육식도감 PICK',
-    'HOT',
-  ];
-  final List<String> foodNames = const [
-    '목살 수육',
-    '제육복음',
-    '목살 스테이크',
-    '목살 간장 덮밥',
-  ];
+  final List<String> titles = const ['이색적인 Pick', '육식도감 Pick'];
+  final List<String> foodNames = const ['양념갈비살', '갈비살 덮밥'];
   final List<String> linkUrls = const [
-    'https://www.youtube.com/watch?v=_FKZDjgXm90',
-    'https://www.youtube.com/watch?v=_FKZDjgXm90',
-    'https://www.youtube.com/watch?v=_FKZDjgXm90',
-    'https://www.youtube.com/watch?v=_FKZDjgXm90',
+    'https://youtu.be/5718bGlGNfQ?si=Ns-mpB4hqPbFnbQ1',
+    'https://youtube.com/shorts/tUN5qd1FlqE?si=DyD0VU3reMufj3Ht'
   ];
 
   @override

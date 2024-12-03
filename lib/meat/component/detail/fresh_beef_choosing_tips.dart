@@ -23,7 +23,7 @@ class _FreshBeefChoosingTipsState extends State<FreshBeefChoosingTips> {
       'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fbeef%2Ffresh-choosing%2Fgood%2Fblood_good.png?alt=media&token=67740b50-dc34-4c76-bd79-80840fbc033b'
     ],
     [
-      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Ffresh-choosing%2Fpork%2Fgood%2Fblood_good.png?alt=media&token=6ea29f4b-fb33-4905-abc8-c7e1b481d560'
+      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fbeef%2Ffresh-choosing%2Fgood%2Fmabling_good.png?alt=media&token=7e9486bc-a5ec-4a75-83af-9cf00aa70805'
     ],
     [
       'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fbeef%2Ffresh-choosing%2Fgood%2Ffat_good.png?alt=media&token=4186ca20-a6aa-49e6-902e-9e1fb6c514fb'
@@ -41,7 +41,7 @@ class _FreshBeefChoosingTipsState extends State<FreshBeefChoosingTips> {
       'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fbeef%2Ffresh-choosing%2Fbad%2Fblood_bad.png?alt=media&token=bfc58b3d-cc5d-475b-b7e8-3a9bacc3965f'
     ],
     [
-      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Ffresh-choosing%2Fpork%2Fbad%2Fblood_bad.png?alt=media&token=9cd1f17e-8870-46eb-aedf-19e90e7a20c7'
+      'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fbeef%2Ffresh-choosing%2Fbad%2Fmabling_bad.png?alt=media&token=21454430-f854-4c98-a43a-6636819220dd'
     ],
     [
       'https://firebasestorage.googleapis.com/v0/b/meat-dictionary.appspot.com/o/meat-detail%2Fbeef%2Ffresh-choosing%2Fbad%2Ffat_bad.png?alt=media&token=9d977042-2582-4af5-814b-7bc1a3018843'
@@ -126,7 +126,7 @@ class _FreshBeefChoosingTipsState extends State<FreshBeefChoosingTips> {
               ['고기가 흐물흐물한 것', '눌렀을 때 천천히 돌아오는 것'],
               ['너무 어두운 색인 것', '갈색으로 변색된 것'],
               ['겉에 핏물이 많이 나온 것'],
-              ['지방덩어리(떡지방)이 큰 것', '지방이 누런색인 것'],
+              ['마블링이 거의 없는 것', '지방덩어리(떡지방)이 큰 것'],
               ['떡지방이 큰 것', '지방 가격을 빼주지는 않아요'],
             ],
           )

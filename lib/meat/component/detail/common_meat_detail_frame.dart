@@ -70,18 +70,18 @@ class _CommonMeatDetailFrameState extends ConsumerState<CommonMeatDetailFrame> {
           mainAxisSize: MainAxisSize.min,
           children: [
             // 공유하기 버튼
-            InkWell(
-              onTap: () {
-                // 공유하기 버튼 눌렀을 때의 동작 여기에 추가
-              },
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 6.0,
-                  vertical: 8.0,
-                ),
-                child: Icon(PhosphorIcons.share(), size: 24),
-              ),
-            ),
+            // InkWell(
+            //   onTap: () {
+            //     // 공유하기 버튼 눌렀을 때의 동작 여기에 추가
+            //   },
+            //   child: Padding(
+            //     padding: const EdgeInsets.symmetric(
+            //       horizontal: 6.0,
+            //       vertical: 8.0,
+            //     ),
+            //     child: Icon(PhosphorIcons.share(), size: 24),
+            //   ),
+            // ),
 
             // 즐겨찾기 버튼
             InkWell(
@@ -409,7 +409,9 @@ class _RecommendCard extends ConsumerWidget {
                         .toggleFavorite(meatModel.type, meatModel.id);
                   },
                   child: Icon(
-                    isFavorite ? PhosphorIconsFill.star : PhosphorIcons.star(),
+                    isFavorite
+                        ? PhosphorIconsFill.heart
+                        : PhosphorIcons.heart(),
                     color: isFavorite ? const Color(0XFFFF0000) : GREY_COLOR,
                     size: 18.0,
                   ),
