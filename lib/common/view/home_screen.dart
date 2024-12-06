@@ -44,10 +44,10 @@ class HomeScreen extends ConsumerWidget {
                     // 사전 바로가기 위젯
                     _DictionaryComponent(),
 
-                    SizedBox(height: 16.0),
+                    // SizedBox(height: 16.0),
 
                     // 취향 저격 부위 찾기 버튼
-                    _ChooseOwnMeat(),
+                    // _ChooseOwnMeat(),
                   ],
                 ),
               ),
