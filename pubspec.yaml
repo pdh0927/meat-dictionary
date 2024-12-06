@@ -124,17 +124,22 @@ flutter:
 flutter_launcher_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/imgs/common/app_icon.jpg"
+  image_path:  "assets/imgs/common/app_icon.png"
+  adaptive_icon_background: "#FFFFFF" # Android 아이콘 배경색 (흰색)
+  adaptive_icon_foreground: "assets/imgs/common/app_icon.png" # 전경 이미지
   min_sdk_android: 21 # android min sdk min:16, default 21
   web:
     generate: true
-    image_path: "assets/imgs/common/app_icon.jpg"
+    image_path:  "assets/imgs/common/app_icon.png"
     background_color: "#hexcode"
     theme_color: "#hexcode"
   windows:
     generate: true
-    image_path: "assets/imgs/common/app_icon.jpg"
+    image_path:  "assets/imgs/common/app_icon.png"
     icon_size: 48 # min:48, max:256, default: 48
   macos:
     generate: true
-    image_path: "assets/imgs/common/app_icon.jpg"
+    image_path:  "assets/imgs/common/app_icon.png"
+
+
+    
