@@ -98,7 +98,6 @@ class _UsageCard extends StatelessWidget {
       child: Text(
         usage,
         style: TextStyle(
-          fontFamily: "Pretend",
           fontWeight: FontWeight.w500,
           fontSize: 13.0,
           color: textColor,

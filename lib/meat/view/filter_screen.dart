@@ -100,7 +100,6 @@ class _FilterScreenState extends State<FilterScreen> {
                   const Text(
                     '우선순위로 검색할 수 있어요.',
                     style: TextStyle(
-                      fontFamily: 'Pretendard',
                       fontSize: 16.0,
                       fontWeight: FontWeight.w600,
                       color: BLACK_COLOR,
@@ -111,7 +110,6 @@ class _FilterScreenState extends State<FilterScreen> {
                     child: const Text(
                       '초기화',
                       style: TextStyle(
-                        fontFamily: 'Pretendard',
                         fontSize: 12.0,
                         fontWeight: FontWeight.w400,
                         color: GREY_40_COLOR,
@@ -215,7 +213,6 @@ class _AttributeSelectWidget extends StatelessWidget {
             Text(
               '$num순위',
               style: const TextStyle(
-                fontFamily: 'Pretendard',
                 fontSize: 17.0,
                 fontWeight: FontWeight.w400,
                 color: GREY_80_COLOR,
@@ -283,7 +280,6 @@ class _AttributeCard extends StatelessWidget {
         child: Text(
           name,
           style: TextStyle(
-            fontFamily: 'Pretendard',
             fontSize: 14.0,
             fontWeight: isSelected ? FontWeight.w500 : FontWeight.w400,
             color: isSelected
@@ -367,7 +363,6 @@ class _ValueBoxState extends State<_ValueBox> {
           Text(
             '원하는 ${widget.label}을 선택해주세요.',
             style: const TextStyle(
-              fontFamily: 'Pretendard',
               fontSize: 15.0,
               fontWeight: FontWeight.w600,
             ),
@@ -377,7 +372,6 @@ class _ValueBoxState extends State<_ValueBox> {
           Text(
             descriptions[widget.label]!,
             style: const TextStyle(
-              fontFamily: 'Pretendard',
               fontSize: 12.0,
               fontWeight: FontWeight.w400,
             ),
@@ -394,7 +388,6 @@ class _ValueBoxState extends State<_ValueBox> {
                 child: Text(
                   values[_currentValue.toInt()],
                   style: const TextStyle(
-                    fontFamily: 'Pretendard',
                     fontSize: 15.0,
                     fontWeight: FontWeight.w600,
                     color: BLACK_COLOR,
@@ -439,7 +432,6 @@ class _ValueBoxState extends State<_ValueBox> {
                         Text(
                           values.first,
                           style: const TextStyle(
-                            fontFamily: 'Pretendard',
                             fontSize: 12.0,
                             fontWeight: FontWeight.w400,
                             color: GREY_80_COLOR,
@@ -448,7 +440,6 @@ class _ValueBoxState extends State<_ValueBox> {
                         Text(
                           values.last,
                           style: const TextStyle(
-                            fontFamily: 'Pretendard',
                             fontSize: 12.0,
                             fontWeight: FontWeight.w400,
                             color: GREY_80_COLOR,
