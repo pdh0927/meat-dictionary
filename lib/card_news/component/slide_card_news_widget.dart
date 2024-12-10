@@ -47,22 +47,19 @@ class _SlideCardNewsWidgetState extends State<SlideCardNewsWidget> {
             controller: _pageController,
             itemCount: urls.length,
             itemBuilder: (context, index) {
-              return ClipRRect(
-                borderRadius: BorderRadius.circular(8.0),
-                child: CachedNetworkImage(
-                  imageUrl: urls[index],
-                  fit: BoxFit.fill,
-                  width: double.infinity,
-                  placeholder: (context, url) => Shimmer.fromColors(
-                    baseColor: Colors.grey[300]!,
-                    highlightColor: Colors.grey[100]!,
-                    child: Container(
-                      color: Colors.grey[300],
-                    ),
+              return CachedNetworkImage(
+                imageUrl: urls[index],
+                fit: BoxFit.fill,
+                width: double.infinity,
+                placeholder: (context, url) => Shimmer.fromColors(
+                  baseColor: Colors.grey[300]!,
+                  highlightColor: Colors.grey[100]!,
+                  child: Container(
+                    color: Colors.grey[300],
                   ),
-                  errorWidget: (context, url, error) =>
-                      const Icon(Icons.error, color: Colors.red),
                 ),
+                errorWidget: (context, url, error) =>
+                    const Icon(Icons.error, color: Colors.red),
               );
             },
           ),

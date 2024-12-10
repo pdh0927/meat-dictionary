@@ -85,7 +85,6 @@ class _DictionaryComponent extends StatelessWidget {
         Text(
           '어떤 고기를 찾고 계시나요?',
           style: TextStyle(
-            fontFamily: "Pretendard",
             fontSize: 18,
             fontWeight: FontWeight.w600,
           ),
@@ -169,7 +168,6 @@ class _CategoryCard extends StatelessWidget {
             Text(
               meatType.label,
               style: const TextStyle(
-                fontFamily: 'Pretendard',
                 fontSize: 18,
                 fontWeight: FontWeight.w700,
                 color: Colors.white,
@@ -182,7 +180,6 @@ class _CategoryCard extends StatelessWidget {
             Text(
               description,
               style: const TextStyle(
-                fontFamily: 'Pretendard',
                 fontSize: 12,
                 fontWeight: FontWeight.w500,
                 color: Colors.white,

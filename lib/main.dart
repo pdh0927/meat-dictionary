@@ -38,6 +38,9 @@ class MyApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        fontFamily: 'Pretendard',
+      ),
       home: const SplashScreen(),
       navigatorObservers: [observer],
     );

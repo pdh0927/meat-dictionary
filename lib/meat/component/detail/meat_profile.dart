@@ -53,7 +53,6 @@ class MeatProfile extends StatelessWidget {
                 meatModel.name,
                 style: const TextStyle(
                   color: BLACK_COLOR,
-                  fontFamily: "Pretend",
                   fontSize: 24.0,
                   fontWeight: FontWeight.w700,
                 ),
@@ -64,7 +63,6 @@ class MeatProfile extends StatelessWidget {
                 meatModel.description,
                 style: const TextStyle(
                   color: Color(0xFF8E8E8E),
-                  fontFamily: "Pretend",
                   fontSize: 12.0,
                   fontWeight: FontWeight.w400,
                 ),

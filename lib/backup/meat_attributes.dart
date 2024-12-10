@@ -93,7 +93,6 @@ class _AttributeBar extends StatelessWidget {
         style: const TextStyle(
           color: Colors.black,
           fontSize: 14.0,
-          fontFamily: 'Pretendard',
           fontWeight: FontWeight.w600,
         ),
       ),
@@ -121,7 +120,6 @@ class _AttributeBar extends StatelessWidget {
             style: const TextStyle(
               color: Colors.black,
               fontSize: 14.0,
-              fontFamily: 'Pretendard',
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -219,7 +217,6 @@ class _ValueLabel extends StatelessWidget {
     const TextStyle labelTextStyle = TextStyle(
       color: Color(0xFF3A3A3C),
       fontSize: 9,
-      fontFamily: 'Pretendard',
       fontWeight: FontWeight.w400,
     );
 

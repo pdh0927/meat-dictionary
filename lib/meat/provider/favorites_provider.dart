@@ -32,7 +32,7 @@ class FavoritesNotifier extends StateNotifier<Map<MeatType, Set<int>>> {
   // 즐겨찾기 상태를 토글하는 함수 (추가/삭제)
   Future<void> toggleFavorite(MeatType type, int id) async {
     final prefs = ref.read(sharedPreferencesProvider);
-    final key = '${type.label}_favorites';
+    final key = '${type.name}_favorites';
     final currentFavorites = (prefs.getStringList(key) ?? []).toSet();
 
     if (state[type]?.contains(id) ?? false) {

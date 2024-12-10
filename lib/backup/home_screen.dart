@@ -53,7 +53,6 @@ class _DictionaryComponent extends StatelessWidget {
         const Text(
           '육식도감 사전 바로가기 🥩',
           style: TextStyle(
-            fontFamily: "Pretendard",
             fontSize: 21,
             fontWeight: FontWeight.w700,
           ),
@@ -154,7 +153,6 @@ class _CategoryCard extends StatelessWidget {
             Text(
               meatType.label,
               style: const TextStyle(
-                fontFamily: 'Pretendard',
                 fontSize: 17,
                 fontWeight: FontWeight.w700,
               ),
@@ -203,7 +201,6 @@ class _FavoritesComponent extends StatelessWidget {
                   '즐겨찾기 바로가기',
                   style: TextStyle(
                     color: BLACK_COLOR,
-                    fontFamily: 'Pretendard',
                     fontSize: 17,
                     fontWeight: FontWeight.w700,
                   ),
@@ -213,7 +210,6 @@ class _FavoritesComponent extends StatelessWidget {
                   '자주 찾는 고기는 여기서 볼 수 있어요.',
                   style: TextStyle(
                     color: GREY_80_COLOR,
-                    fontFamily: 'Pretendard',
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
                   ),
